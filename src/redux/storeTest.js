@@ -2,11 +2,16 @@ const storeTest = {
   auth: {
     token: '',
     name: '',
+    photo: '',
   },
   operations: {
-    income: [{}, {}],
-    costs: [{}, {}],
-    incomeCategories: ['', ''],
-    costsCategories: ['', ''],
+    ballance: '',
+    income: [], //[{}, {}]
+    costs: [], //[{}, {}]
+    incomeCategories: [], //['', '', '']
+    costsCategories: [], //['', '', '']
+  },
+  statistics: {
+    mounth: '',
   },
 };
