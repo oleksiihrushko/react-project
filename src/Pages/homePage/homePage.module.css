@@ -1,8 +1,38 @@
 .sectionHomePage {
-  padding-top: 95px;
+  height: calc(100vh - 60px);
 }
 
+.wrapper {}
+
 .wrapperDescription {
+  box-sizing: border-box;
+  padding-top: 85px;
+  padding-left: 16px;
   height: 290px;
-  background-color: var(--background-color);
+  background-color: #f4f6fb;
+  border-radius: 0 0 0 120px;
+  padding-left: 36px;
+}
+
+.title {
+  font-family: 'Roboto';
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 40px;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 13px;
+}
+
+.description {
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 23px;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+  color: #52555f;
+  padding-left: 12px;
+  letter-spacing: 2.52px;
 }
