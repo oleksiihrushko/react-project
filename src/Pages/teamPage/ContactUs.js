@@ -1,5 +1,5 @@
 import React from 'react';
-import s from 'ContactUs.module.css';
+import s from './ContactUs.module.css';
 import photo1 from './pageContactUs/photo1.jpg';
 import photo2 from './pageContactUs/photo2.jpg';
 import photo3 from './pageContactUs/photo3.jpg';
