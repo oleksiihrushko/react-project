@@ -1,16 +1,29 @@
 import react from 'react';
-import { useHustory, useLocation} from 'react-router-dom';
+import { useHistory, useLocation} from 'react-router-dom';
 import s from './TeamPage.module.css'
 
 const TeamPageBtnBack = () => {
-    const history = useHustory;
+    const history = useHistory;
     const location = ureLocation;
     const isContacts = location.pathname.split('/')[1] === 'contacts';
     const handleClickBack = () => {
         history.push('/');
     }
 
-    return (1);
+    return (
+        <div>
+            isContacts && (
+                <button
+                className={s.arrowBtn}
+                type="button"
+                onClick={handleClickBack}
+                >
+                <p className={s.textBackBtn}>Назад</p>
+                </button>
+            )
+        </div>
+
+    );
 } 
 
 export default TeamPageBtnBack;
