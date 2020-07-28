@@ -15,9 +15,9 @@ class AuthForm extends Component {
           <Link className={styles.google} href="#">
             <img className={styles.googleIcon} src={googleIcon} alt="google-icon"/>Google</Link>
           <p className={styles.authDescr}>Или зайти в приложение с помощью имейла и пароля, сперва зарегистрировавшись:</p>
-          <label>
-          <span className={styles.label}>Электронная почта</span>
+          <label className={styles.label} for={email}>Электронная почта</label>
           <input
+            id={email}
             className={styles.input}
             type="email"
             placeholder="your@email.com"
@@ -25,10 +25,9 @@ class AuthForm extends Component {
             value=""
             onChange={()=>{}}
           />
-        </label>
-        <label>
-        <span className={styles.label}>Пароль</span> 
+        <label className={styles.label} for={password}>Пароль</label>
           <input
+            id={password}
             className={styles.input}
             type="password"
             placeholder="password"
@@ -36,7 +35,7 @@ class AuthForm extends Component {
             value=""
             onChange={()=>{}}
           />
-        </label>
+        
 
         <button type="submit">Sign up as "login"</button>
         </form>
