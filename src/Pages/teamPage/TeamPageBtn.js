@@ -1,5 +1,6 @@
 import react from 'react';
 import { useHustory, useLocation} from 'react-router-dom';
+import s from './TeamPage.module.css'
 
 const TeamPageBtnBack = () => {
     const history = useHustory;
