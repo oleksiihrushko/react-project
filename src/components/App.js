@@ -25,7 +25,7 @@ const App = () => {
           <Redirect to="/login" />
         </Switch> */}
       </Suspense>
-      <ModalPage/>
+      {/* <ModalPage/> */}
     </BrowserRouter>
   );
 };

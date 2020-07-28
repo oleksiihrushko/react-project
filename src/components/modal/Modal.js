@@ -1,11 +1,12 @@
 import React, { createRef, useEffect } from "react";
 import styles from "./Modal.module.css";
 
-const Modal = ({ closeModal }) => {
+const Modal = ({ text, onTrue }) => {
   const handleKeydown = (e) => {
     console.log(e.code);
 
     if (e.code === "Escape") {
+      onTrue();
       closeModal();
     }
   };
@@ -14,6 +15,7 @@ const Modal = ({ closeModal }) => {
     console.log(e.target);
 
     if (e.target === modalRef.current) {
+      onTrue();
       closeModal();
     }
   };
@@ -30,7 +32,7 @@ const Modal = ({ closeModal }) => {
 
   const modalRef = createRef();
 
-  const logout = () => {
+  const onTrue = () => {
     closeModal();
   }
 
@@ -44,7 +46,7 @@ const Modal = ({ closeModal }) => {
           <button
             className={styles.btnModal}
             type="button"
-            onClick={logout}
+            onClick={onTrue}
 
           >
             ДA
