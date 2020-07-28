@@ -11,15 +11,55 @@
 }
 
 .googleDescr {
-  margin: 0;
-  padding: 0;
   font-family: 'Roboto';
+  margin: 0 auto;
+  width: 90%;
   font-size: 11px;
   text-align: center;
   margin-bottom: 26px;
+  line-height: 17px;
+  color: #52555f;
 }
 
 .google {
+  display: flex;
+  margin: 0 auto;
   width: 120px;
   height: 40px;
+  margin-bottom: 40px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 2px 3px rgba(170,178,197,.29);
+  background-color: #f5f7fa;
+  color: #000;
+  border-radius: 20px;
+  text-decoration: none;
+}
+
+.authDescr {
+  font-size: 11px;
+  margin-bottom: 20px;
+  line-height: 17px;
+  color: #52555f;
+}
+
+.googleIcon {
+  min-width: 25px;
+  height: 25px;
+}
+
+.input {
+  width: 100%;
+  height: 52px;
+  background-color: #f5f7fa;
+  border: none;
+border-radius: 24px;
+  outline: none;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 30px;
 }
