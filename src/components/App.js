@@ -1,9 +1,10 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter, Switch, Redirect } from 'react-router-dom';
 import routes from '../routes';
-
 import PrivateRoute from '../services/PrivateRoute';
 import PublicRoute from '../services/PublicRoute';
+import Modal from '../components/modal/Modal';
+import ModalPage from '../Pages/ModalPage/ModalPage';
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           <Redirect to="/login" />
         </Switch> */}
       </Suspense>
+      <ModalPage/>
     </BrowserRouter>
   );
 };
