@@ -17,66 +17,66 @@ const ContactUs = () => {
             <ul className={s.contactus_ul}>
                 <li className={s.contactus_li}>
                     <img src={photo1} alt="us" className={s.contactus_img} />
-                    <p className={s.contactus_name_p}>Виталий Калинбет</p>
+                    <p className={s.contactus_name_p}>asfsadffa</p>
                     <p className={s.contactus_title_p}>Team Lead</p>
-                    <p className={s.contactus_email_p}>bosssvit@gmail.com</p>
+                    <p className={s.contactus_email_p}>afsdfs@gmail.com</p>
                 </li>
                 <li className={s.contactus_li}>
                     <img src={photo2} alt="us" className={s.contactus_img} />
-                    <p className={s.contactus_name_p}>Егор Васильев</p>
-                    <p className={s.contactus_title_p}>Product Owner</p>
-                    <p className={s.contactus_email_p}>egordelta@gmail.com</p>
+                    <p className={s.contactus_name_p}>vdvsdfdsfb</p>
+                    <p className={s.contactus_title_p}>sbdfbdfbd</p>
+                    <p className={s.contactus_email_p}>sdfbdfbds@gmail.com</p>
                 </li>
                 <li className={s.contactus_li}>
                     <img src={photo3} alt="us" className={s.contactus_img} />
-                    <p className={s.contactus_name_p}>Денис Беляк</p>
+                    <p className={s.contactus_name_p}>sdfbdfb</p>
                     <p className={s.contactus_title_p}>Scrum Master</p>
-                    <p className={s.contactus_email_p}>denis.belyak@gmail.com</p>
+                    <p className={s.contactus_email_p}>sdbfdfb@gmail.com</p>
                 </li>
                 <li className={s.contactus_li}>
                     <img src={photo4} alt="us" className={s.contactus_img} />
-                    <p className={s.contactus_name_p}>Виктория Ушакова</p>
-                    <p className={s.contactus_title_p}>Frontend Developer</p>
-                    <p className={s.contactus_email_p}>iamushakova@gmail.com</p>
+                    <p className={s.contactus_name_p}>sdfbdfbdfbs</p>
+                    <p className={s.contactus_title_p}>bsdfbdfbdsfb</p>
+                    <p className={s.contactus_email_p}>sdfgdfgdsg@gmail.com</p>
                 </li>
                 <li className={s.contactus_li}>
                     <img src={photo5} alt="us" className={s.contactus_img} />
-                    <p className={s.contactus_name_p}>Борис Демченко</p>
-                    <p className={s.contactus_title_p}>Frontend Developer</p>
-                    <p className={s.contactus_email_p}>demchenko_boris86@gmail.com</p>
+                    <p className={s.contactus_name_p}>gdfgdfgds</p>
+                    <p className={s.contactus_title_p}>gsdfgdfghff</p>
+                    <p className={s.contactus_email_p}>gsfgdsfgdfss@gmail.com</p>
                 </li>
                 <li className={s.contactus_li}>
                     <img src={photo6} alt="us" className={s.contactus_img} />
-                    <p className={s.contactus_name_p}>Ольга Савицкая</p>
-                    <p className={s.contactus_title_p}>Frontend Developer</p>
-                    <p className={s.contactus_email_p}>о.savytska77@gmail.com</p>
+                    <p className={s.contactus_name_p}>gsdfgdsfgggga</p>
+                    <p className={s.contactus_title_p}>sdhdsfhds</p>
+                    <p className={s.contactus_email_p}>gsdfgdsfga@gmail.com</p>
                 </li>
                     <li className={s.contactus_li}>
                     <img src={photo7} alt="us" className={s.contactus_img} />
-                    <p className={s.contactus_name_p}>Владимир Потапенко</p>
-                    <p className={s.contactus_title_p}>Frontend Developer</p>
-                    <p className={s.contactus_email_p}>vlarus@ukr.net</p>
+                    <p className={s.contactus_name_p}>sdfdsfhdfgs</p>
+                    <p className={s.contactus_title_p}>gsdfgdfgss</p>
+                    <p className={s.contactus_email_p}>gsdfgdsfga@gmail.com</p>
                 </li>
                 <li className={s.contactus_li}>
                     <img src={photo8} alt="us" className={s.contactus_img} />
-                    <p className={s.contactus_name_p}>Евгений Рой</p>
-                    <p className={s.contactus_title_p}>Frontend Developer</p>
-                    <p className={s.contactus_email_p}>box.rz.box@gmail.com</p>
+                    <p className={s.contactus_name_p}>hfghdfhd</p>
+                    <p className={s.contactus_title_p}>sdhdshdsdf</p>
+                    <p className={s.contactus_email_p}>sdgdfsgg@gmail.com</p>
                 </li>
                 <li className={s.contactus_li}>
                     <img src={photo9} alt="us" className={s.contactus_img} />
-                    <p className={s.contactus_name_p}>Дмитрий Велков</p>
-                    <p className={s.contactus_title_p}>Frontend Developer</p>
-                    <p className={s.contactus_email_p}>velkov55@gmail.com</p>
+                    <p className={s.contactus_name_p}>hdgfghfghfd</p>
+                    <p className={s.contactus_title_p}>sdgdsfgdsfghhh</p>
+                    <p className={s.contactus_email_p}>sdgfdfgdfgs@gmail.com</p>
                 </li>
                 <li className={s.contactus_li}>
                     <img src={photo10} alt="us" className={s.contactus_img} />
-                    <p className={s.contactus_name_p}>Ярослав Адашян</p>
-                    <p className={s.contactus_title_p}>Project Manager</p>
-                    <p className={s.contactus_email_p}>adashyan27@gmail.com</p>
+                    <p className={s.contactus_name_p}>gsdfgdfgd</p>
+                    <p className={s.contactus_title_p}>sdfgdsfgds</p>
+                    <p className={s.contactus_email_p}>sdgdsfgdsfggg@gmail.com</p>
                 </li>
             </ul>
-        </div>    
+        </div>
     );
 };
 
