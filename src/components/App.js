@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
-import { BrowserRouter, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Redirect, Route } from 'react-router-dom';
 import routes from '../routes';
-
+import ContactsPage from '../Pages/teamPage/TeamPage';
 import PrivateRoute from '../services/PrivateRoute';
 import PublicRoute from '../services/PublicRoute';
 
@@ -9,6 +9,10 @@ const App = () => {
   return (
     <BrowserRouter>
       <Suspense fallback={<h1>Loading...</h1>}>
+          <Switch>
+            
+            <Route  path="/contacts" component={ContactsPage}/>
+</Switch>
         {/* <Switch>
           {routes.map(route => {
             return route.private ? (

@@ -51,7 +51,7 @@ const ContactUs = () => {
                     <p className={s.contactus_title_p}>sdhdsfhds</p>
                     <p className={s.contactus_email_p}>gsdfgdsfga@gmail.com</p>
                 </li>
-                    <li className={s.contactus_li}>
+                <li className={s.contactus_li}>
                     <img src={photo7} alt="us" className={s.contactus_img} />
                     <p className={s.contactus_name_p}>sdfdsfhdfgs</p>
                     <p className={s.contactus_title_p}>gsdfgdfgss</p>
