@@ -1,4 +1,5 @@
 import React from 'react'
+import AuthForm from '../../components/authForm/AuthForm'
 import styles from './homePage.module.css'
 
 const HomePage = () => {
@@ -8,8 +9,8 @@ const HomePage = () => {
           <div className={styles.wrapperDescription}>
             <h1 className={styles.title}>Kapusta</h1>
             <p className={styles.description}>smart finance</p>
-
           </div>
+          <AuthForm/>
         </div>
       </section>
     );

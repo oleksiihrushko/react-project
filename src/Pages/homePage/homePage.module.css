@@ -1,0 +1,8 @@
+.sectionHomePage {
+  padding-top: 95px;
+}
+
+.wrapperDescription {
+  height: 290px;
+  background-color: var(--background-color);
+}
