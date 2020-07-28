@@ -1,17 +1,22 @@
 .sectionHomePage {
   height: calc(100vh - 60px);
+  width: 100vw;
+  padding-bottom: 66px;
 }
 
-.wrapper {}
+.wrapper {
+  width: 100%;
+  background-color: #f4f6fb;
+  height: 290px;
+  border-radius: 0 0 0 120px;
+}
 
 .wrapperDescription {
   box-sizing: border-box;
   padding-top: 85px;
   padding-left: 16px;
-  height: 290px;
-  background-color: #f4f6fb;
-  border-radius: 0 0 0 120px;
   padding-left: 36px;
+  margin-bottom: 50px;
 }
 
 .title {
@@ -21,7 +26,17 @@
   line-height: 40px;
   margin: 0;
   padding: 0;
-  margin-bottom: 13px;
+  margin-bottom: 9px;
+}
+
+.icon {
+  position: absolute;
+  fill: #d6dbe7;
+  opacity: 0.7;
+  right: -46px;
+  width: 90px;
+  top: 96px;
+  transform: scale(-1, -1);
 }
 
 .description {

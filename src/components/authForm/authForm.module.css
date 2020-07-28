@@ -1,0 +1,25 @@
+.authWrapper {
+  background-color: #fff;
+  padding-top: 52px;
+  padding: 52px 18px 50px 18px;
+  position: relative;
+  margin: 0 auto;
+  width: 304px;
+  border-radius: 25px;
+  box-shadow: 0 9px 57px rgba(179,185,199, 0.25);
+  box-sizing: border-box;
+}
+
+.googleDescr {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto';
+  font-size: 11px;
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.google {
+  width: 120px;
+  height: 40px;
+}
