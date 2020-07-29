@@ -77,12 +77,15 @@ button:focus {
 .container {
   width: 280px;
   margin: 0 auto;
-
-  @media (min-width: 768px) {
+}
+@media (min-width: 768px) {
+  .container {
     width: 688px;
   }
+}
 
-  @media (min-width: 1280px) {
+@media (min-width: 1280px) {
+  .container {
     width: 1091px;
   }
 }
