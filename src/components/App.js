@@ -4,7 +4,7 @@ import routes from "../routes";
 import PrivateRoute from "../services/PrivateRoute";
 import PublicRoute from "../services/PublicRoute";
 import Modal from "../components/modal/Modal";
-import OneOperation from "./oneOperation/OneOperation";
+import OperationList from "./operationList/OperationList";
 
 const App = () => {
   return (
@@ -25,7 +25,7 @@ const App = () => {
           <Redirect to="/login" />
         </Switch> */}
       </Suspense>
-      <OneOperation />
+      <OperationList/>
     </BrowserRouter>
   );
 };
