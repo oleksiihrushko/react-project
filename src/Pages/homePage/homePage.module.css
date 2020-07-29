@@ -1,6 +1,5 @@
 .sectionHomePage {
-  /* height: calc(100vh - 60px); */
-  height: 100vh;
+  height: calc(100vh - 60px);
   padding-bottom: 66px;
 }
 
@@ -28,12 +27,10 @@
   font-weight: 700;
   font-size: 12px;
   line-height: 23px;
+  letter-spacing: 1.52px;
   text-transform: uppercase;
-  margin: 0;
-  padding: 0;
   color: #52555f;
   padding-left: 12px;
-  letter-spacing: 1.52px;
 }
 
 .icon {
@@ -60,16 +57,33 @@
 }
 
 @media (min-width: 768px) {
-  width: 688px;
-
   .wrapper {
     width: 100%;
     background-color: #f4f6fb;
     height: 513px;
     border-radius: 0 0 0 120px;
   }
+
+  .wrapperDescription {
+    padding-top: 116px;
+    padding-left: 135px;
+    margin-bottom: 40px;
+  }
+
+  .title {
+    font-size: 75px;
+    font-weight: 700;
+    line-height: 45px;
+    margin-bottom: 20px;
+  }
+
+  .description {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 23px;
+    padding-left: 30px;
+  }
 }
 
 @media (min-width: 1280px) {
-  width: 1091px;
 }
