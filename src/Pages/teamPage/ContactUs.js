@@ -13,7 +13,7 @@ import photo10 from './pageContactUs/photo10.jpg';
 
 const ContactUs = () => {
     return (
-        <div className={s.contactus_div_main}>
+        <div className={`${s.contactus_div_main} container`}>
             <ul className={s.contactus_ul}>
                 <li className={s.contactus_li}>
                     <img src={photo1} alt="us" className={s.contactus_img} />

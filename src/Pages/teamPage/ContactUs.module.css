@@ -1,8 +1,8 @@
-.contactus_div_main {
+/* .contactus_div_main {
     width: 300gitpx;
     margin: 0 auto;
 }
-  
+   */
 .contactus_ul {
     list-style: none;
     /* display: flex;
@@ -35,8 +35,10 @@
 }
   
 .contactus_img {
-    height: 300px;
-    width: 240px;
+    /* height: 300px; */
+    /* width: 240px; */
+    max-width: 100%;
+    height: auto;
     border-radius: 10px;
 }
   
