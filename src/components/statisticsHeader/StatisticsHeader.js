@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import 'moment/locale/uk';
+import 'moment/locale/ru';
+import { ReactComponent as ArrowBack } from './arrowBack/back.svg';
+import { ReactComponent as PrevMonth } from './arrowBack/leftArrow.svg';
+import { ReactComponent as NextMonth } from './arrowBack/rightArrow.svg';
+import styles from './StatisticsHeader.module.css';
+// import Media from 'react-media';
 
 class StatisticsHeader extends Component {
   state = {
@@ -41,38 +46,50 @@ class StatisticsHeader extends Component {
 
   render() {
     // console.log(this.state.date);
-    const { date, currentDate } = this.state;
+    const { date } = this.state;
     return (
-      <div>
+      <div  className={`${styles.statisticsHeader} container`}>
         <h2>Statictics header</h2>
-        <button type="button" onClick={this.handleGoBack}>
-          Go back
+
+        <button
+          className={styles.button}
+          type="button"
+          onClick={this.handleGoBack}
+        >
+          <ArrowBack />
+          На главную
         </button>
         <div>
           <p>Текущий период</p>
-          <div>
+          <div className={styles.calendarContainer}>
             <button
+              className={styles.button}
               type="button"
               name="prevMonthBtn"
               onClick={this.handleChangeMonth}
             >
-              Prev month
+              <PrevMonth />
             </button>
-            <p>{date && moment(date).format(' MMMM YYYY')}</p>
+            <p className={styles.calendarText}>
+              {date && moment(date).format(' MMMM YYYY')}
+            </p>
             <button
+              className={styles.button}
               type="button"
               name="nextMonthBtn"
               onClick={this.handleChangeMonth}
             >
-              Next month
+              <NextMonth />
             </button>
           </div>
         </div>
         <div>
           <p>
-            Баланс на{' '}
-            <span>{date && moment(date).format('DD MMMM YYYY')} року:</span>
+            Баланс на <span>{date && moment(date).format('L')}:</span>
           </p>
+          <div className={styles.statisticsHeaderBalance}>
+            <span className={styles.statisticsSpan}>1111 UAH</span>
+          </div>
         </div>
       </div>
     );

@@ -1,0 +1,45 @@
+.calendarContainer {
+  display: flex;
+}
+
+.calendarText {
+  font-family: 'RobotoBlack';
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.52px;
+}
+
+.button {
+  border: none;
+  background-color: transparent;
+}
+
+.statisticsHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  background-color: #f4f6fb;
+  /* width: 280px; */
+}
+
+.statisticsHeaderBalance {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 180px;
+  height: 43px;
+  border-radius: 19px;
+  border: 2px solid #ffffff;
+  background-color: #f4f6fb;
+}
+/* 
+@media (min-width: 768px) {
+  width: 688px;
+}
+
+@media (min-width: 1280px) {
+  width: 1091px;
+} */
