@@ -1,13 +1,17 @@
-import React, { Suspense } from 'react';
-import { BrowserRouter, Switch, Redirect, Route } from 'react-router-dom';
-import routes from '../routes';
+import React, { Suspense } from "react";
+import { BrowserRouter, Switch, Redirect } from "react-router-dom";
+import routes from "../routes";
+
+import Header from "./header/Header";
 import ContactsPage from '../Pages/teamPage/TeamPage';
-import PrivateRoute from '../services/PrivateRoute';
-import PublicRoute from '../services/PublicRoute';
+
+import PrivateRoute from "../services/PrivateRoute";
+import PublicRoute from "../services/PublicRoute";
 
 const App = () => {
   return (
     <BrowserRouter>
+      <Header />
       <Suspense fallback={<h1>Loading...</h1>}>
           <Switch>
             
