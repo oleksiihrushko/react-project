@@ -1,5 +1,5 @@
 import api from '../../services/api';
-import authSlice from './authSlice';
+import authSlice from '../auth/authSlice';
 import loaderSlice from '../loader/loaderSlice';
 
 // const registerResponse = {
@@ -20,13 +20,18 @@ import loaderSlice from '../loader/loaderSlice';
 //   },
 // };
 
+//{
+//   "status": "error",
+//   "error": "Server selection timed out after 30000 ms"
+// }
+
 export const register = (credentials) => (dispatch) => {
   dispatch(loaderSlice.actions.setLoadingTrue());
   api
     .register(credentials)
-    .then((data) => {
-      api.token.set(data.user.token);
-      dispatch(authSlice.actions.registerSuccess(data.user.userData));
+    .then(({ user }) => {
+      api.token.set(user.token);
+      dispatch(authSlice.actions.registerSuccess(user.userData));
       dispatch(authSlice.actions.setErrorNull());
     })
     .catch((error) => dispatch(authSlice.actions.registerError(error)))
@@ -34,20 +39,20 @@ export const register = (credentials) => (dispatch) => {
 };
 
 export const login = (credentials) => (dispatch) => {
-  dispatch(themeSlice.actions.setLoadingTrue());
+  dispatch(loaderSlice.actions.setLoadingTrue());
   api
     .login(credentials)
-    .then((data) => {
-      api.token.set(data.data.token);
-      dispatch(authSlice.actions.loginSuccess(data.data));
+    .then(({ user }) => {
+      api.token.set(user.token);
+      dispatch(authSlice.actions.loginSuccess(user.userData));
       dispatch(authSlice.actions.setErrorNull());
     })
     .catch((error) => dispatch(authSlice.actions.registerError(error)))
-    .finally(dispatch(themeSlice.actions.setLoadingFalse()));
+    .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
 };
 
 export const logOut = () => (dispatch) => {
-  dispatch(themeSlice.actions.setLoadingTrue());
+  dispatch(loaderSlice.actions.setLoadingTrue());
   api
     .logout()
     .then(() => {
@@ -56,24 +61,5 @@ export const logOut = () => (dispatch) => {
       dispatch(authSlice.actions.setErrorNull());
     })
     .catch((error) => dispatch(authSlice.actions.logoutError(error)))
-    .finally(dispatch(themeSlice.actions.setLoadingFalse()));
-};
-
-export const getCurrentUser = () => (dispatch, getState) => {
-  const {
-    auth: { token: persistedToken },
-  } = getState();
-
-  if (!persistedToken) {
-    return;
-  }
-
-  api.token.set(persistedToken);
-
-  dispatch(themeSlice.actions.setLoadingTrue());
-  api
-    .getCurrentUser()
-    .then(({ data }) => dispatch(authSlice.actions.getCurrentUserSuccess(data)))
-    .catch((error) => dispatch(authSlice.actions.getCurrentUserError(error)))
-    .finally(dispatch(themeSlice.actions.setLoadingFalse()));
+    .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
 };
