@@ -1,42 +1,65 @@
-import axios from 'axios';
-import authActions from './authActions';
+import api from '../../services/api';
+import authSlice from './authSlice';
+import loaderSlice from '../loader/loaderSlice';
 
-axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com/';
+// const registerResponse = {
+//   status: 'success',
+//   user: {
+//     userData: {
+//       name: {
+//         fullName: 'string',
+//         firstName: 'string',
+//         lastName: 'string',
+//       },
+//       email: 'user@example.com',
+//       photo: 'string',
+//       userNew: true,
+//     },
+//     token:
+//       'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZDNhMTM4NmIxZTg1NTdjZjIzNjY3ODEiLCJpYXQiOjE1NjQwODcxNzV9.jSdzHuBSf4yKS6t7zwt0AoQIchHlz73JDOjfHVdbTBk',
+//   },
+// };
 
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
-  },
-};
-
-const register = credentials => dispatch => {
-  dispatch(authActions.registerRequest());
-
-  axios
-    .post('/users/signup', credentials)
-    .then(response => {
-      token.set(response.data.token);
-      dispatch(authActions.registerSuccess(response.data));
+export const register = (credentials) => (dispatch) => {
+  dispatch(loaderSlice.actions.setLoadingTrue());
+  api
+    .register(credentials)
+    .then((data) => {
+      api.token.set(data.user.token);
+      dispatch(authSlice.actions.registerSuccess(data.user.userData));
+      dispatch(authSlice.actions.setErrorNull());
     })
-    .catch(error => dispatch(authActions.registerError(error)));
+    .catch((error) => dispatch(authSlice.actions.registerError(error)))
+    .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
 };
 
-const logIn = credentials => dispatch => {
-  dispatch(authActions.logInRequest());
-
-  axios
-    .post('/users/logIn', credentials)
-    .then(response => {
-      token.set(response.data.token);
-      dispatch(authActions.logInSuccess(response.data));
+export const login = (credentials) => (dispatch) => {
+  dispatch(themeSlice.actions.setLoadingTrue());
+  api
+    .login(credentials)
+    .then((data) => {
+      api.token.set(data.data.token);
+      dispatch(authSlice.actions.loginSuccess(data.data));
+      dispatch(authSlice.actions.setErrorNull());
     })
-    .catch(error => dispatch(authActions.logInError(error)));
+    .catch((error) => dispatch(authSlice.actions.registerError(error)))
+    .finally(dispatch(themeSlice.actions.setLoadingFalse()));
 };
 
-const getCurrentUser = () => (dispatch, getState) => {
+export const logOut = () => (dispatch) => {
+  dispatch(themeSlice.actions.setLoadingTrue());
+  api
+    .logout()
+    .then(() => {
+      api.token.unset();
+      dispatch(authSlice.actions.logoutSuccess());
+      dispatch(authSlice.actions.setErrorNull());
+    })
+    .catch((error) => dispatch(authSlice.actions.logoutError(error)))
+    .finally(dispatch(themeSlice.actions.setLoadingFalse()));
+};
+
+export const getCurrentUser = () => (dispatch, getState) => {
   const {
     auth: { token: persistedToken },
   } = getState();
@@ -45,25 +68,12 @@ const getCurrentUser = () => (dispatch, getState) => {
     return;
   }
 
-  token.set(persistedToken);
-  dispatch(authActions.getCurrentUserRequest());
+  api.token.set(persistedToken);
 
-  axios
-    .get('/users/current')
-    .then(({ data }) => dispatch(authActions.getCurrentUserSuccess(data)))
-    .catch(error => authActions.getCurrentUserError(error));
+  dispatch(themeSlice.actions.setLoadingTrue());
+  api
+    .getCurrentUser()
+    .then(({ data }) => dispatch(authSlice.actions.getCurrentUserSuccess(data)))
+    .catch((error) => dispatch(authSlice.actions.getCurrentUserError(error)))
+    .finally(dispatch(themeSlice.actions.setLoadingFalse()));
 };
-
-const logOut = () => dispatch => {
-  dispatch(authActions.logoutRequest());
-
-  axios
-    .post('/users/logout')
-    .then(() => {
-      token.unset();
-      dispatch(authActions.logoutSuccess());
-    })
-    .catch(error => dispatch(authActions.logoutError(error)));
-};
-
-export default { register, logOut, logIn, getCurrentUser };
