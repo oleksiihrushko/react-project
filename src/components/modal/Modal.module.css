@@ -1,0 +1,50 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(128, 128, 128, 0.3);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalWindow {
+  height: 170px;
+  width: 280px;
+  background-color: white;
+  border-radius: 25px;
+  position: relative;
+}
+
+.modalDescription {
+  font-size: 13px;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+
+.borderBtn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btnModal {
+  margin-left: 17px;
+  margin-top: 90px;
+  height: 40px;
+  width: 115px;
+  background-color: white;
+  border: 1.5px solid gray;
+  border-radius: 11px;
+  font-size: 11px;
+}
+
+.btnModal:hover,
+.btnModal:focus {
+  background-color: orange;
+  border: none;
+  color: white;
+}
