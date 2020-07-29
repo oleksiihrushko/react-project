@@ -16,7 +16,6 @@ const Modal = ({ text, onTrue }) => {
 
     if (e.target === modalRef.current) {
       onTrue();
-      closeModal();
     }
   };
 
