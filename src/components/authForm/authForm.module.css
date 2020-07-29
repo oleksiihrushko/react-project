@@ -6,15 +6,14 @@
   margin: 0 auto;
   width: 304px;
   border-radius: 25px;
-  box-shadow: 0 9px 57px rgba(179,185,199, 0.25);
+  box-shadow: 10px 10px 30px 0px rgba(170, 178, 197, 0.8);
   box-sizing: border-box;
 }
 
 .googleDescr {
-  font-family: 'Roboto';
   margin: 0 auto;
-  width: 90%;
   font-size: 11px;
+  font-weight: bold;
   text-align: center;
   margin-bottom: 26px;
   line-height: 17px;
@@ -22,6 +21,9 @@
 }
 
 .google {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 23px;
   display: flex;
   margin: 0 auto;
   width: 120px;
@@ -30,23 +32,25 @@
   text-align: center;
   align-items: center;
   justify-content: center;
-  box-shadow: 1px 2px 3px rgba(170,178,197,.29);
+  box-shadow: 1px 2px 3px rgba(170, 178, 197, 0.29);
   background-color: #f5f7fa;
-  color: #000;
+  color: #52555f;
   border-radius: 20px;
   text-decoration: none;
 }
 
+.googleIcon {
+  width: 30px;
+  height: 30px;
+}
+
 .authDescr {
+  width: 94%;
   font-size: 11px;
+  font-weight: 600;
   margin-bottom: 20px;
   line-height: 17px;
   color: #52555f;
-}
-
-.googleIcon {
-  min-width: 25px;
-  height: 25px;
 }
 
 .input {
@@ -54,12 +58,49 @@
   height: 52px;
   background-color: #f5f7fa;
   border: none;
-border-radius: 24px;
+  border-radius: 24px;
   outline: none;
+  padding-left: 27px;
+  font-size: 14px;
+}
+
+.inputPassword {
+  margin-bottom: 40px;
 }
 
 .label {
   font-size: 11px;
-  font-weight: 400;
-  line-height: 30px;
+  font-weight: 600;
+  width: 100%;
+  line-height: 35px;
+}
+
+.authBtnWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonLogin,
+.buttonRegister {
+  font-size: 11px;
+  font-weight: 600;
+  width: 47.5%;
+  height: 45px;
+  border: none;
+  /* border: 2px solid #f4f6fb; */
+  background-color: #fff;
+  border-radius: 17px;
+  text-transform: uppercase;
+  box-shadow: 1px 2px 3px rgba(170, 178, 197, 0.29);
+  color: #52555f;
+  background-color: #f5f7fa;
+}
+
+.google:hover,
+.buttonLogin:hover,
+.buttonRegister:hover {
+  transition: 0.3s ease-in-out;
+  background-color: #ff6b08;
+  color: #fff;
 }

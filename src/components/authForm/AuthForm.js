@@ -1,43 +1,64 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
-import googleIcon from '../../ui/google-icon.png'
-import styles from './authForm.module.css'
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import googleIcon from "../../ui/google-icon.png";
+import styles from "./authForm.module.css";
 
 class AuthForm extends Component {
   state = {
-    email: ""
-  }
+    email: "",
+  };
   render() {
     return (
       <div className={styles.authWrapper}>
         <form>
-          <p className={styles.googleDescr}>Вы можете авторизироваться с помощью  google account:</p>
+          <p className={styles.googleDescr}>
+            Вы можете авторизироваться с помощью Google account:
+          </p>
           <Link className={styles.google} href="#">
-            <img className={styles.googleIcon} src={googleIcon} alt="google-icon"/>Google</Link>
-          <p className={styles.authDescr}>Или зайти в приложение с помощью имейла и пароля, сперва зарегистрировавшись:</p>
-          <label className={styles.label} for={email}>Электронная почта</label>
+            <img
+              className={styles.googleIcon}
+              src={googleIcon}
+              alt="google-icon"
+            />
+            Google
+          </Link>
+          <p className={styles.authDescr}>
+            Или зайти в приложение с помощью имейла и пароля, сперва
+            зарегистрировавшись:
+          </p>
+          <label className={styles.label} for="email">
+            Электронная почта
+          </label>
           <input
-            id={email}
+            id="email"
             className={styles.input}
             type="email"
-            placeholder="your@email.com"
+            placeholder="Your@email.com"
             name="email"
             value=""
-            onChange={()=>{}}
+            onChange={() => {}}
           />
-        <label className={styles.label} for={password}>Пароль</label>
+          <label className={styles.label} for="password">
+            Пароль
+          </label>
           <input
-            id={password}
-            className={styles.input}
+            id="password"
+            className={styles.input + " " + styles.inputPassword}
             type="password"
-            placeholder="password"
+            placeholder="Пароль"
             name="password"
             value=""
-            onChange={()=>{}}
+            onChange={() => {}}
           />
-        
 
-        <button type="submit">Sign up as "login"</button>
+          <div className={styles.authBtnWrapper}>
+            <button className={styles.buttonLogin} type="submit">
+              войти
+            </button>
+            <button className={styles.buttonRegister} type="submit">
+              регистрация
+            </button>
+          </div>
         </form>
       </div>
     );
