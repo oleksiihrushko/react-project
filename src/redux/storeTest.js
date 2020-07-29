@@ -1,6 +1,6 @@
 const storeTest = {
   auth: {
-    token: '',
+    token: 'asdasdasdasd',
     name: '',
     photo: '',
   },
