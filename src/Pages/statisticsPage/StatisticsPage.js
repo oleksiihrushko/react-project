@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import StatisticsHeader from '../../components/statisticsHeader/StatisticsHeader';
+import ExchangeRates from '../../components/exchangeRates/ExchangeRates';
 
 class StaticticsPage extends Component {
 
@@ -11,6 +12,7 @@ class StaticticsPage extends Component {
       <div>
         <h2>Statistics Page</h2>
         <StatisticsHeader balance={()=> {}} {...this.props}/>
+        <ExchangeRates/>
       </div>
     );
   }
