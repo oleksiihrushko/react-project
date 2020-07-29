@@ -16,7 +16,7 @@ const OneOperation = ({
         <p className={styles.date}>{date}</p>
       </div>
       <p className={styles.category}>{category}</p>
-      <p className={styles.price}>{price} грн</p>
+      <p className={styles.price}>-{price} грн</p>
       <button
         type="button"
         className={styles.btnDelete}

@@ -5,6 +5,7 @@ import PrivateRoute from "../services/PrivateRoute";
 import PublicRoute from "../services/PublicRoute";
 import Modal from "../components/modal/Modal";
 import OperationList from "./operationList/OperationList";
+import IncomeList from "../incomeList/IncomeList";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         </Switch> */}
       </Suspense>
       <OperationList/>
+      <IncomeList/>
     </BrowserRouter>
   );
 };
