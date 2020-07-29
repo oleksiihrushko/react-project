@@ -1,23 +1,29 @@
 .contactus_div_main {
     width: 300px;
+    margin: 0 auto;
 }
   
 .contactus_ul {
     list-style: none;
-    display: flex;
+    /* display: flex;
     flex-flow: wrap;
-    justify-content: center;
+    align-items: center; */
+    /* justify-content: center; */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+    grid-gap: 20px;
 }
   
 .contactus_li {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
+    /* display: flex;
+    flex-flow: column; */
+    /* align-items: center; */
     text-align: center;
     border-radius: 10px;
     width: 260px;
     background-color: rgba(255, 255, 255, 0.5);
     padding: 20px;
+    margin: 0 auto;
     margin: 10px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -35,7 +41,6 @@
 }
   
 .contactus_name_p {
-    color: var(--text-dark);
     font-weight: 700;
     font-size: 20px;
     padding: 10px 0;
@@ -60,14 +65,14 @@
   
     .contactus_ul {
       list-style: none;
-      display: flex;
+      /* display: flex;
       flex-flow: wrap;
-      justify-content: space-between;
+      justify-content: space-between; */
     }
   
     .contactus_li {
-      display: flex;
-      flex-flow: column;
+      /* display: flex;
+      flex-flow: column; */
       width: 320px;
       background-color: rgba(255, 255, 255, 0.5);
       padding: 20px;
@@ -78,6 +83,10 @@
   @media (min-width: 1280px) {
     .contactus_div_main {
       width: 1024px;
+      /* width: 1091px; */
+      /* display: flex;
+      flex-flow: wrap;
+      align-items: center; */
     }
   }
   
