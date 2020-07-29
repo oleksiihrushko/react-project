@@ -1,54 +1,37 @@
-import React from 'react';
+// import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Header = () => {
-  return (
-    <header>
-      <nav>
-        <ul>
-          <li>
-            <Link exact to="/">Home </Link>
-          </li>
+import React, { Component } from 'react';
 
-          <li>
-            <Link to="/statictics">Statictics</Link>
-          </li>
-        </ul>
-      </nav>
-    </header>
-  );
-};
-import React, { Component } from "react";
-
-import { MatchMediaHOC } from "react-match-media";
-import ReactDOM from "react-dom";
-import Exit from "./Exit";
-import ExitMobile from "./ExitMobile";
-import styles from "./style.module.css";
+// import { MatchMediaHOC } from 'react-match-media';
+// import ReactDOM from "react-dom";
+import Exit from './Exit';
+import ExitMobile from './ExitMobile';
+import styles from './style.module.css';
 class Header extends Component {
   state = {
     users: {
-      status: "success",
+      status: 'success',
       user: {
         userData: {
           name: {
-            fullName: "Petia Pupkin",
-            firstName: "Petia",
-            lastName: "Pupkin",
+            fullName: 'Petia Pupkin',
+            firstName: 'Petia',
+            lastName: 'Pupkin',
           },
-          email: "user@example.com",
-          photo: "",
+          email: 'user@example.com',
+          photo: '',
           userNew: true,
         },
         token:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZDNhMTM4NmIxZTg1NTdjZjIzNjY3ODEiLCJpYXQiOjE1NjQwODcxNzV9.jSdzHuBSf4yKS6t7zwt0AoQIchHlz73JDOjfHVdbTBk",
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZDNhMTM4NmIxZTg1NTdjZjIzNjY3ODEiLCJpYXQiOjE1NjQwODcxNzV9.jSdzHuBSf4yKS6t7zwt0AoQIchHlz73JDOjfHVdbTBk',
       },
     },
-    firstLetter: "",
+    firstLetter: '',
   };
 
   componentDidMount() {
-    if (this.state.users.user.userData.photo === "") {
+    if (this.state.users.user.userData.photo === '') {
       this.setState({
         firstLetter: this.state.users.user.userData.name.firstName.substr(0, 1),
       });
@@ -59,6 +42,19 @@ class Header extends Component {
     return (
       <>
         <div className={styles.container}>
+          <nav>
+            <ul>
+              <li>
+                <Link exact to="/">
+                  Home{' '}
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/statictics">Statictics</Link>
+              </li>
+            </ul>
+          </nav>
           <ul className={styles.headerUl}>
             <li>LOGO</li>
             <li>
@@ -66,13 +62,13 @@ class Header extends Component {
                 <li>
                   <span
                     style={{
-                      fontFamily: "roboto sans-serif",
-                      backgroundColor: "#f4f7fa",
+                      fontFamily: 'roboto sans-serif',
+                      backgroundColor: '#f4f7fa',
                       paddingBottom: 5,
                       paddingTop: 5,
                       paddingLeft: 10,
                       paddingRight: 10,
-                      borderRadius: "50%",
+                      borderRadius: '50%',
                       fontSize: 14,
                     }}
                   >
