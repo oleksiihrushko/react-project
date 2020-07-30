@@ -6,16 +6,14 @@ const Modal = ({ text, onTrue }) => {
     console.log(e.code);
 
     if (e.code === "Escape") {
-      onTrue();
-      closeModal();
+      // dispatch action на закрытие
     }
   };
 
   const handleClickModal = (e) => {
-    console.log(e.target);
-
-    if (e.target === modalRef.current) {
-      onTrue();
+    if (e.target === modalRef.current || e.target.nodeName === "BUTTON") {
+      console.log("dispatch action на закрытие");
+      // dispatch action на закрытие
     }
   };
 
@@ -31,28 +29,15 @@ const Modal = ({ text, onTrue }) => {
 
   const modalRef = createRef();
 
-  const onTrue = () => {
-    closeModal();
-  }
-
   return (
     <div ref={modalRef} className={styles.overlay}>
       <div className={styles.modalWindow}>
-        <p className={styles.modalDescription}>
-          Вы действительно хотите выйти?
-        </p>
+        <p className={styles.modalDescription}>{text}</p>
         <div className="borderBtn">
-          <button
-            className={styles.btnModal}
-            type="button"
-            onClick={onTrue}
-
-          >
+          <button className={styles.btnModal} type="button" onClick={onTrue}>
             ДA
           </button>
-          <button className={styles.btnModal} onClick={closeModal}>
-            НET
-          </button>
+          <button className={styles.btnModal}>НET</button>
         </div>
       </div>
     </div>
