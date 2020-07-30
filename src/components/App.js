@@ -1,16 +1,17 @@
 import React, { Suspense } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import routes from "../routes";
+    
 
 // import PrivateRoute from "../services/PrivateRoute";
 // import PublicRoute from "../services/PublicRoute";
 
 import Modal from "../components/modal/Modal";
 import OperationList from "./operationList/OperationList";
+import Header from "./header/Header";
+import ContactsPage from '../Pages/teamPage/TeamPage';
+import HomePage from '../Pages/homePage/HomePage'
 import IncomeList from "../incomeList/IncomeList";
-
-// import Header from "./header/Header";
-import ContactsPage from "../Pages/teamPage/TeamPage";
 
 import PrivateRoute from "../services/PrivateRoute";
 import PublicRoute from "../services/PublicRoute";
@@ -45,3 +46,6 @@ const App = () => {
 };
 
 export default App;
+
+
+
