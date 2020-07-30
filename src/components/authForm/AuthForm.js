@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 import googleIcon from "../../ui/google-icon.png";
 import styles from "./authForm.module.css";
+import { register, login, logOut } from '../../redux/operations/authOperations';
+import { useDispatch } from 'react-redux';
 
 const AuthForm = () => {
   const [firstName, setFirstName] = useState('');
@@ -9,22 +11,51 @@ const AuthForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [typeRegister, setTypeRegister] = useState(false);
+
+  const dispatch = useDispatch();
   
   const handleInputFirstName = (e) => {e.preventDefault(); setFirstName(e.target.value)}
   const handleInputLastName = (e) => {e.preventDefault(); setLastName(e.target.value)}
   const handleInputEmail = (e) => {e.preventDefault(); setEmail(e.target.value)}
   const handleInputPassword = (e) => {e.preventDefault(); setPassword(e.target.value)}
-  const handleTypeRegister = (e) => {e.preventDefault(); setTypeRegister(currentState=> {if(currentState){
+  const handleTypeRegister = () => {setTypeRegister(currentState=> {if(currentState){
     return false;
   } else {
     return true;
   }
 })}
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if(typeRegister) {
+      const setRegParams = (firstName, lastName, email, password) => (
+        {
+          email: email,
+          password: password,
+          name: {
+            fullName: `${firstName} ${lastName}`,
+            firstName: firstName,
+            lastName: lastName,
+          }
+         }
+        )
+        dispatch(register(setRegParams(firstName, lastName, email, password)));
+    } else {
+      const setLoginParams = (email, password) => (
+        {
+          email: email,
+          password: password,
+         }
+        )
+        dispatch(login(setLoginParams(email, password)));
+    }
+  } 
   
 
     return (
       <div className={styles.authWrapper}>
-       <form onSubmit={()=>{}}>
+       <form onSubmit={handleSubmit}>
   
   <p className={styles.googleDescr}>
     Вы можете авторизироваться с помощью Google account:
@@ -44,7 +75,7 @@ const AuthForm = () => {
 
   {typeRegister && 
   <>
-  <label className={styles.label} for="name">
+  <label className={styles.label} htmlFor="name">
     Имя
   </label>
 
@@ -58,7 +89,7 @@ const AuthForm = () => {
     onChange={handleInputFirstName}
   />
 
-  <label className={styles.label} for="lastName">
+  <label className={styles.label} htmlFor="lastName">
   Фамилия
   </label>
 
@@ -73,7 +104,7 @@ const AuthForm = () => {
   />
   </>}
 
-  <label className={styles.label} for="email">
+  <label className={styles.label} htmlFor="email">
     Электронная почта
   </label>
 
@@ -86,7 +117,7 @@ const AuthForm = () => {
     value={email}
     onChange={handleInputEmail}
   />
-  <label className={styles.label} for="password">
+  <label className={styles.label} htmlFor="password">
     Пароль
   </label>
 
@@ -102,11 +133,14 @@ const AuthForm = () => {
 
   <div className={styles.authBtnWrapper}>
     <button className={styles.buttonLogin} type="submit">
-      войти
+    {typeRegister ? 'создать' : 'войти'}
     </button>
-    <button className={styles.buttonRegister} type="submit" onClick={handleTypeRegister}>
+    <button className={styles.buttonRegister} type="button" onClick={handleTypeRegister}>
       {typeRegister ? 'логинизация' : 'регистрация'}
     </button>
+    {/* <button className={styles.buttonRegister} type="button" onClick={()=> dispatch(logOut())}>
+    logOut
+    </button> */}
   </div>
 
 </form>

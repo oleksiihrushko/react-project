@@ -1,10 +1,10 @@
 const storeTest = {
   isLoading: false,
-  apiError: null,
   auth: {
     token: '',
     name: '',
     photo: '',
+    error: '',
   },
   operations: {
     ballance: '',
