@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import loaderSlice from './loader/loaderSlice';
 
 // import operationsReducer from './operations/operationsReducer';
 // import statisticsReducer from './statistics/statisticsReducer';
@@ -15,6 +16,7 @@ const authPersistConfig = {
 
 export const store = configureStore({
   reducer: {
+    isLoading: loaderSlice.reducer,
     // operations: operationsReducer,
     auth: persistReducer(authPersistConfig, authReducer),
     // statistics: statisticsReducer,
