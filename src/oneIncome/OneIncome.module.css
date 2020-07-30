@@ -3,47 +3,35 @@
   margin-bottom: 15px;
 }
 
-.operation {
-  font-size: 12px;
-  line-height: 20px;
-  font-weight: bold;
-  width: 80px;
-}
-
-.operationProduct {
-  margin: 0;
-}
-
 .date {
-  margin: 0;
   font-size: 9px;
-  font-weight: normal;
   color: gray;
+  padding-top: 20px;
 }
 
 .category {
-  font-size: 9px;
-  margin-top: 25px;
-  color: gray;
+  font-size: 12px;
+  font-weight: bold;
   width: 50px;
+  position: absolute;
 }
 
 .price {
   font-size: 10px;
-  color: red;
   line-height: 40px;
   width: 60px;
   text-align: center;
   margin: 0;
+  margin-left: 86px;
 }
 
 .btnDelete {
-  margin-left: 20px;
   padding: 4px;
   border: none;
   width: 40px;
   height: 38px;
   background-color: white;
+  margin-left: 20px;
 }
 
 .btnDelete:hover,
@@ -69,27 +57,16 @@
     border-bottom: none;
   }
 
-  .operation {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: baseline;
-    margin-top: 18px;
-    width: 250px;
-  }
-
   .date {
     font-size: 13px;
     color: black;
     width: 180px;
   }
 
-  .operationProduct {
-    font-weight: normal;
-    font-size: 13px;
-    width: 180px;
-  }
-
   .category {
+    position: static;
+    font-weight: normal;
+    padding-top: 0;
     font-size: 13px;
     margin-top: 19px;
     text-align: center;
@@ -102,12 +79,13 @@
     font-size: 15px;
     padding-top: 16px;
     width: 80px;
+    margin-left: 0;
   }
 
   .btnDelete {
     width: 50px;
     height: 48px;
-    margin-left: 50px;
+    margin-left: 100px;
     position: relative;
   }
 
@@ -115,10 +93,9 @@
     margin-top: 2px;
     height: auto;
     width: 40px;
-    margin-left: 50px;
     position: absolute;
     top: 0;
-    left: -45px;
+    left: 5px;
     padding-top: 3px;
   }
 }
