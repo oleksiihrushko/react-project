@@ -3,12 +3,6 @@ import { BrowserRouter, Switch, Redirect } from 'react-router-dom';
 import routes from '../routes';
 import PrivateRoute from '../services/PrivateRoute';
 import PublicRoute from '../services/PublicRoute';
-import Modal from '../components/modal/Modal';
-import ModalPage from '../Pages/ModalPage/ModalPage';
-
-const onTrue = () => {
-  console.log('onTrue');
-}
 
 const App = () => {
   return (
@@ -28,7 +22,6 @@ const App = () => {
           })}
           <Redirect to="/login" />
         </Switch> */}
-        <Modal text={"Вы действительно хотите выйти?"} onTrue={onTrue} />
       </Suspense>
     </BrowserRouter>
   );
