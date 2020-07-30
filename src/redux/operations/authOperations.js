@@ -47,7 +47,7 @@ export const login = (credentials) => (dispatch) => {
       dispatch(authSlice.actions.loginSuccess(user.userData));
       dispatch(authSlice.actions.setErrorNull());
     })
-    .catch((error) => dispatch(authSlice.actions.registerError(error)))
+    .catch((error) => dispatch(authSlice.actions.loginError(error)))
     .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
 };
 
