@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import s from './TotalCostsSumAndIncomeSum.module.css';
 
-function TotalCostsSumAndIncomeSum({ costsSum, incomeSum }) {
+function TotalCostsSumAndIncomeSum({ costsSum = 0, incomeSum = 0 }) {
     return (
+      <div className={"container"}>
         <div className={s.wrapper}>
           <div className={s.column}>
             <p className={s.stat_title}>Расходы:</p>
@@ -15,6 +16,7 @@ function TotalCostsSumAndIncomeSum({ costsSum, incomeSum }) {
             <p className={s.stat_inc}>{incomeSum} грн</p>
           </div>
         </div>
+      </div>
     );
   }
 
@@ -23,4 +25,4 @@ function TotalCostsSumAndIncomeSum({ costsSum, incomeSum }) {
     incomeSum: PropTypes.number.isRequired,
   };
 
-  export default StatisticAmounts;
+  export default TotalCostsSumAndIncomeSum;
