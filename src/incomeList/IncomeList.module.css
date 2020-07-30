@@ -10,8 +10,7 @@
   .incomeList {
     width: 694px;
     padding: 0;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
+    border-radius: 25px;
     border: 2px solid rgb(244, 246, 251);
     margin: 0 auto;
   }
