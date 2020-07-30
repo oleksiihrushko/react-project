@@ -1,0 +1,15 @@
+.footer {
+    background-color: black;
+}
+.info {
+    color: white;
+}
+.linkInfoTeam {
+    color: white;
+}
+.linkInfoTeam:Hover{
+    color:white;
+}
+.infoP {
+    color: white;
+}

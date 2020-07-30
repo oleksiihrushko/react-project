@@ -16,6 +16,7 @@ import IncomeList from "../incomeList/IncomeList";
 import PrivateRoute from "../services/PrivateRoute";
 import PublicRoute from "../services/PublicRoute";
 
+import Footer from "./Footer/Footer";
 const App = () => {
   return (
     <BrowserRouter>
@@ -28,19 +29,20 @@ const App = () => {
           {routes.map(route => {
             return route.private ? (
               <PrivateRoute key={route.label} {...route} />
-            ) : (
-              <PublicRoute
+              ) : (
+                <PublicRoute
                 key={route.label}
                 {...route}
                 restricted={route.restricted}
-              />
-            );
-          })}
-          <Redirect to="/login" />
-        </Switch> */}
+                />
+                );
+              })}
+              <Redirect to="/login" />
+            </Switch> */}
       </Suspense>
       <OperationList />
       <IncomeList />
+<Footer />
     </BrowserRouter>
   );
 };
