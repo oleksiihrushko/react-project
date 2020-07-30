@@ -18,8 +18,8 @@ const App = () => {
       <Header />
       <Suspense fallback={<h1>Loading...</h1>}>
           <Switch>
-            
             <Route  path="/contacts" component={ContactsPage}/>
+
 </Switch>
         {/* <Switch>
           {routes.map(route => {
