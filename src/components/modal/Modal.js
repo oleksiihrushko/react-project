@@ -1,19 +1,18 @@
 import React, { createRef, useEffect } from "react";
+import { connect } from "react-redux";
+import modalSlice from "../../redux/modal/modalSlice";
 import styles from "./Modal.module.css";
 
-const Modal = ({ text, onTrue }) => {
+const Modal = ({ text, onTrue, closeModal }) => {
   const handleKeydown = (e) => {
-    console.log(e.code);
-
     if (e.code === "Escape") {
-      // dispatch action на закрытие
+      closeModal();
     }
   };
 
   const handleClickModal = (e) => {
     if (e.target === modalRef.current || e.target.nodeName === "BUTTON") {
-      console.log("dispatch action на закрытие");
-      // dispatch action на закрытие
+      closeModal();
     }
   };
 
@@ -44,4 +43,8 @@ const Modal = ({ text, onTrue }) => {
   );
 };
 
-export default Modal;
+const mapDispatchToProps = (dispatch) => ({
+  closeModal: () => dispatch(modalSlice.actions.setShowModalFalse()),
+});
+
+export default connect(null, mapDispatchToProps)(Modal);

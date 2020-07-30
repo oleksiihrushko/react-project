@@ -1,8 +1,8 @@
-import React, { Suspense } from 'react';
-import { BrowserRouter, Switch, Redirect } from 'react-router-dom';
-import routes from '../routes';
-import PrivateRoute from '../services/PrivateRoute';
-import PublicRoute from '../services/PublicRoute';
+import React, { Suspense } from "react";
+import { BrowserRouter, Switch, Redirect } from "react-router-dom";
+import routes from "../routes";
+import PrivateRoute from "../services/PrivateRoute";
+import PublicRoute from "../services/PublicRoute";
 
 const App = () => {
   return (

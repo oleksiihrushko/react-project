@@ -1,20 +1,22 @@
-import { configureStore } from '@reduxjs/toolkit';
-import thunk from 'redux-thunk';
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import { configureStore } from "@reduxjs/toolkit";
+import thunk from "redux-thunk";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 // import operationsReducer from './operations/operationsReducer';
 // import statisticsReducer from './statistics/statisticsReducer';
-import authReducer from './auth/authReducer';
+import authReducer from "./auth/authReducer";
+import modalSlice from "./modal/modalSlice";
 
 const authPersistConfig = {
-  key: 'auth',
+  key: "auth",
   storage,
-  whitelist: ['token'],
+  whitelist: ["token"],
 };
 
 export const store = configureStore({
   reducer: {
+    isShowModal: modalSlice.reducer,
     // operations: operationsReducer,
     auth: persistReducer(authPersistConfig, authReducer),
     // statistics: statisticsReducer,
