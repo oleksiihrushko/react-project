@@ -13,7 +13,16 @@ const loading = createReducer(false, {
     [exchangeRatesActions.fetchExhcangeRatesError]: ()=> false,
 })
 
+const exchangeCurrency = createReducer("UAH", {
+    [exchangeRatesActions.currentCurrencyUAH]: () => "UAH",
+    [exchangeRatesActions.currentCurrencyUSA]: () => "USD",
+    [exchangeRatesActions.currentCurrencyEUR]: () => "EUR",
+    [exchangeRatesActions.currentCurrencyBTC]: () => "BTC",
+}
+)
+
 export default combineReducers({
     exchangeRates,
     loading,
+    exchangeCurrency,
 })

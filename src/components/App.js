@@ -34,7 +34,7 @@ const App = () => {
           <Redirect to="/login" />
         </Switch> */}
       </Suspense>
-      <OperationList/>
+      {/* <OperationList/> */}
     </BrowserRouter>
   );
 };
