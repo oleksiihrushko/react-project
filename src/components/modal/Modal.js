@@ -1,19 +1,17 @@
 import React, { createRef, useEffect } from "react";
+import { connect } from "react-redux";
+import modalSlice from "../../redux/modal/modalSlice";
 import styles from "./Modal.module.css";
 
-const Modal = ({ closeModal }) => {
+const Modal = ({ text, onTrue, closeModal }) => {
   const handleKeydown = (e) => {
-    console.log(e.code);
-
     if (e.code === "Escape") {
       closeModal();
     }
   };
 
   const handleClickModal = (e) => {
-    console.log(e.target);
-
-    if (e.target === modalRef.current) {
+    if (e.target === modalRef.current || e.target.nodeName === "BUTTON") {
       closeModal();
     }
   };
@@ -30,32 +28,23 @@ const Modal = ({ closeModal }) => {
 
   const modalRef = createRef();
 
-  const logout = () => {
-    closeModal();
-  }
-
   return (
     <div ref={modalRef} className={styles.overlay}>
       <div className={styles.modalWindow}>
-        <p className={styles.modalDescription}>
-          Вы действительно хотите выйти?
-        </p>
+        <p className={styles.modalDescription}>{text}</p>
         <div className="borderBtn">
-          <button
-            className={styles.btnModal}
-            type="button"
-            onClick={logout}
-
-          >
+          <button className={styles.btnModal} type="button" onClick={onTrue}>
             ДA
           </button>
-          <button className={styles.btnModal} onClick={closeModal}>
-            НET
-          </button>
+          <button className={styles.btnModal}>НET</button>
         </div>
       </div>
     </div>
   );
 };
 
-export default Modal;
+const mapDispatchToProps = (dispatch) => ({
+  closeModal: () => dispatch(modalSlice.actions.setShowModalFalse()),
+});
+
+export default connect(null, mapDispatchToProps)(Modal);
