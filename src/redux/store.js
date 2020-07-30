@@ -6,19 +6,18 @@ import loaderSlice from './loader/loaderSlice';
 
 // import operationsReducer from './operations/operationsReducer';
 // import statisticsReducer from './statistics/statisticsReducer';
-import authReducer from './auth/authReducer';
+import authSlice from './auth/authSlice';
 
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
 };
 
 export const store = configureStore({
   reducer: {
     isLoading: loaderSlice.reducer,
     // operations: operationsReducer,
-    auth: persistReducer(authPersistConfig, authReducer),
+    auth: persistReducer(authPersistConfig, authSlice.reducer),
     // statistics: statisticsReducer,
   },
   middleware: [thunk],
