@@ -6,9 +6,10 @@ import { useSelector } from 'react-redux';
 
 
 function TotalCostsSumAndIncomeSum() {
-  // const costs = useSelector(state => state.operations.costs);
-  const income = useSelector(state => state);
-  console.log(income);
+  const costs = useSelector(state => state.operations.costs);
+  const income = useSelector(state => state.operations.income);
+  const month = useSelector(state => state.operations.month);
+  // console.log(costs);
 
     return (
       <div className={"container"}>

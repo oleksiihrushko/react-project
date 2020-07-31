@@ -15,14 +15,9 @@ const authPersistConfig = {
 
 export const store = configureStore({
   reducer: {
-<<<<<<< HEAD
-    operations: operationsReducer,
-    auth: persistReducer(authPersistConfig, authReducer),
-=======
     isLoading: loaderSlice.reducer,
     operations: operationsSlice.reducer,
     auth: persistReducer(authPersistConfig, authSlice.reducer),
->>>>>>> origin/operations
     // statistics: statisticsReducer,
   },
   middleware: [thunk],

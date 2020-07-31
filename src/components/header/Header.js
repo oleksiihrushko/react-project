@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 // import { MatchMediaHOC } from "react-match-media";
 import ReactDOM from "react-dom";
-import Exit from "./Exit";
+// import Exit from "./Exit";
 import ExitMobile from "./ExitMobile";
 import styles from "./style.module.css";
 class Header extends Component {
@@ -61,7 +61,7 @@ class Header extends Component {
                 </li>
                 <li>
                   <ExitMobile />
-                  <Exit name={this.state.users.user.userData.name.fullName} />
+                  {/* <Exit name={this.state.users.user.userData.name.fullName} /> */}
                 </li>
               </ul>
             </li>
