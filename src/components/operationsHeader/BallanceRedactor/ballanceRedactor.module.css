@@ -50,7 +50,6 @@
 }
 
 .ballanceWrap {
- 
   justify-content: space-evenly;
   height: 43px;
   background-color: #f4f6fb;
@@ -79,7 +78,7 @@
 
 .btn {
   justify-content: center;
-  
+
   border-style: none;
   opacity: 0.75;
   color: #52555f;
@@ -97,43 +96,36 @@
   border-bottom: 2px solid #ffffff;
   border-left: 1px solid #ffffff;
 }
-.btn:hover{
-
+.btn:hover {
   background-color: rgb(255, 129, 45);
 }
-
-
 
 @media (min-width: 768px) {
   .div {
     flex-direction: row;
     align-content: center;
-
   }
   .stats {
     flex-direction: row-reverse;
     margin-bottom: 0;
-    margin: 0 0 0  65px;
-
+    margin: 0 0 0 65px;
   }
   .stats svg {
     margin: 0 0 0 12px;
-
   }
   .bal_text {
-    margin: 0 25px 0 0 ;
+    margin: 0 25px 0 0;
   }
   .ballanceWrap {
     margin-bottom: 0;
   }
   .wrapper {
     flex-direction: row-reverse;
-    padding-bottom: 426px;
+    padding-bottom: 8px; /* padding-bottom: 426px; */
   }
 }
 
- @media (min-width: 1280px) {
- 
+@media (min-width: 1280px) {
   .stats {
     margin-left: 215px;
   }
@@ -142,4 +134,4 @@
     flex-direction: row-reverse;
     padding-bottom: 426px;
   } */
- } 
+}

@@ -15,6 +15,7 @@
 .btn {
   border-style: none;
   background-color: transparent;
+  display: block;
  }
 .ul {
   max-width: 600px;
@@ -92,7 +93,7 @@ li:not(:nth-child(3n)) {
     width: 688px;
     padding: 40px 54px 0 54px;
 
-    box-shadow: 7px 12px 65px rgba(179, 185, 200, 0.25);
+    box-shadow: 7px 12px 65px  rgba(179, 185, 200, 0.75);
     border-radius: 25px;
     background-color: #ffffff;
   }
