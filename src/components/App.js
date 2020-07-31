@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 import TotalCostsSumAndIncomeSum from './totalCostsSumAndIncomeSum/TotalCostsSumAndIncomeSum';
@@ -17,8 +17,15 @@ import IncomeList from "../incomeList/IncomeList";
 
 // import PrivateRoute from "../services/PrivateRoute";
 // import PublicRoute from "../services/PublicRoute";
-
 const App = () => {
+  useEffect(() => {
+    window.gapi.load('auth2', function () {
+      window.gapi.auth2.init({
+        client_id: '460326880610-0ski7kotqh77ijrc6cg9t0eusr3dfict',
+      });
+    });
+    return;
+  }, []);
   return (
     <BrowserRouter>
       {/* <Header /> */}
@@ -49,6 +56,3 @@ const App = () => {
 };
 
 export default App;
-
-
-
