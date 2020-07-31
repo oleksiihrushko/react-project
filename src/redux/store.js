@@ -15,7 +15,7 @@ const authPersistConfig = {
 
 export const store = configureStore({
   reducer: {
-    // operations: operationsReducer,
+    operations: operationsReducer,
     auth: persistReducer(authPersistConfig, authReducer),
     // statistics: statisticsReducer,
   },

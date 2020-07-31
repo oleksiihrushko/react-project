@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
-// import TotalCostsSumAndIncomeSum from './totalCostsSumAndIncomeSum/TotalCostsSumAndIncomeSum';
+import TotalCostsSumAndIncomeSum from './totalCostsSumAndIncomeSum/TotalCostsSumAndIncomeSum';
 // import routes from "../routes";
 
 // import PrivateRoute from "../services/PrivateRoute";
@@ -25,7 +25,7 @@ const App = () => {
       <Suspense fallback={<h1>Loading...</h1>}>
         <Switch>
           <Route path="/contacts" component={ContactsPage} />
-    {/* <Route  path="/TotalCostsSumAndIncomeSum" component={TotalCostsSumAndIncomeSum}/> */}
+    <Route  path="/TotalCostsSumAndIncomeSum" component={TotalCostsSumAndIncomeSum}/>
         </Switch>
         {/* <Switch>
           {routes.map(route => {
