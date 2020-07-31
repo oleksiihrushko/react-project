@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   token: "",
+  googleLogin: false,
   name: {
     fullName: "",
     firstName: "",
@@ -31,10 +32,12 @@ export default createSlice({
         photo: payload.photo
           ? payload.photo
           : payload.userData.name.firstName.slice(0, 1),
+        googleLogin: payload.googleLogin,
       };
     },
     loginError: (state, { payload }) => ({ ...state, error: payload }),
     logoutSuccess: (state) => initialState,
     logoutError: (state, { payload }) => ({ ...state, error: payload }),
+    logoutGoogleSuccess: (state) => initialState,
   },
 });

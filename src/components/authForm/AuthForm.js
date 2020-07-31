@@ -18,6 +18,7 @@ const AuthForm = () => {
 
   const token = useSelector((state) => authSelectors.token(state));
   const photo = useSelector((state) => authSelectors.getPhoto(state));
+  const googleUser = useSelector((state) => authSelectors.googleUser(state));
 
   const setGoogleUser = (googleUser) => {
     const user = {
@@ -30,6 +31,7 @@ const AuthForm = () => {
       },
       photo: googleUser.getBasicProfile().getImageUrl(),
       token: googleUser.wc.access_token,
+      googleLogin: true,
     };
     dispatch(authSlice.actions.loginSuccess(user));
   };
@@ -38,15 +40,31 @@ const AuthForm = () => {
     const GoogleAuth = window.gapi.auth2.getAuthInstance();
     GoogleAuth.signIn({
       scope: "profile email",
-    }).then((user) => setGoogleUser(user));
+    }).then(
+      (user) => setGoogleUser(user),
+      () => console.log("signIn ERROR")
+    );
   };
 
-  // const googleLogOut = () => {
-  //   const GoogleAuth = window.gapi.auth2.getAuthInstance();
-  //   GoogleAuth.signIn({
-  //     scope: "profile email",
-  //   }).then((user) => setGoogleUser(user));
-  // };
+  const signOut = (googleUser) => {
+    console.log("googleUser", googleUser);
+
+    if (googleUser) {
+      const googleSignOut = () => {
+        const GoogleAuth = window.gapi.auth2.getAuthInstance();
+        GoogleAuth.signOut({
+          scope: "profile email",
+        }).then(
+          () => console.log("signOut SUCCESS"),
+          () => console.log("signOut ERROR")
+        );
+      };
+      googleSignOut();
+      dispatch(authSlice.actions.logoutGoogleSuccess());
+    } else {
+      dispatch(logOut());
+    }
+  };
 
   useEffect(() => {
     window.gapi.load("auth2", function () {
@@ -207,12 +225,19 @@ const AuthForm = () => {
           >
             {typeRegister ? "логинизация" : "регистрация"}
           </button>
-          <button
+          {/* <button
             className={styles.buttonRegister}
             type="button"
             onClick={() => dispatch(logOut())}
           >
             logOut
+          </button> */}
+          <button
+            className={styles.buttonRegister}
+            type="button"
+            onClick={() => signOut(googleUser)}
+          >
+            logOut_g
           </button>
         </div>
       </form>

@@ -1,6 +1,6 @@
-import api from '../../services/api';
-import authSlice from '../auth/authSlice';
-import loaderSlice from '../loader/loaderSlice';
+import api from "../../services/api";
+import authSlice from "../auth/authSlice";
+import loaderSlice from "../loader/loaderSlice";
 
 export const register = (credentials) => (dispatch) => {
   dispatch(loaderSlice.actions.setLoadingTrue());
@@ -30,6 +30,7 @@ export const login = (credentials) => (dispatch) => {
 
 export const logOut = () => (dispatch) => {
   dispatch(loaderSlice.actions.setLoadingTrue());
+
   api
     .logout()
     .then(() => {
