@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Media from "react-media";
 import styles from "./addOperationForm.module.css";
+import Calc from "./calc/calc";
 import arrow from "./img/arrow.png";
 import calc from "./img/calculator.png";
 
@@ -10,6 +11,19 @@ const OperationForm = () => {
   const [description, setDescription] = useState("");
   const [total, setTotal] = useState("");
   const [modalMobile, setModalMobile] = useState(false);
+
+  const [displayValue, setDisplayValue] = useState("0");
+  const [isCalcOpen, setOpenCalc] = useState(false);
+
+  const changeTotalByCalc = () => {
+    setTotal(displayValue);
+    setOpenCalc(false);
+  };
+
+  const openCalc = () => {
+    setOpenCalc(!isCalcOpen);
+    setDisplayValue("0");
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -107,7 +121,7 @@ const OperationForm = () => {
                       <img
                         src={calc}
                         alt="calculator"
-                        onClick={() => console.log("hui")}
+                        onClick={() => openCalc()}
                       />
                     </div>
                   </div>
@@ -122,6 +136,14 @@ const OperationForm = () => {
                     </button>
                   </div>
                 </form>
+                {isCalcOpen && (
+                  <Calc
+                    displayValue={displayValue}
+                    setDisplayValue={setDisplayValue}
+                    changeTotalByCalc={changeTotalByCalc}
+                    setOpenCalc={setOpenCalc}
+                  />
+                )}
               </div>
             )
           ) : (
@@ -154,7 +176,7 @@ const OperationForm = () => {
                   className={styles.calculator}
                   src={calc}
                   alt="calculator"
-                  onClick={() => console.log("hui")}
+                  onClick={() => openCalc()}
                 />
                 <div className={styles.buttons}>
                   <button className={styles.submitButton}>ВВОД</button>
@@ -166,6 +188,13 @@ const OperationForm = () => {
                   </button>
                 </div>
               </form>
+              {isCalcOpen && (
+                <Calc
+                  displayValue={displayValue}
+                  setDisplayValue={setDisplayValue}
+                  changeTotalByCalc={changeTotalByCalc}
+                />
+              )}
             </div>
           )
         }
