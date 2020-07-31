@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { MatchMediaHOC } from "react-match-media";
+// import { MatchMediaHOC } from "react-match-media";
 import ReactDOM from "react-dom";
 import Exit from "./Exit";
 import ExitMobile from "./ExitMobile";

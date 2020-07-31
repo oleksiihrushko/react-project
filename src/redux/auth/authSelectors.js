@@ -1,5 +1,5 @@
-const isAuthenticated = state => state.auth.token;
+const isAuthenticated = state => state.auth.token ? true : false;
+const getUserName = state => state.auth.name;
+const getError = state => state.auth.error;
 
-const getUserName = state => state.auth.user.name;
-
-export default { isAuthenticated, getUserName };
+export default { isAuthenticated, getUserName, getError };
