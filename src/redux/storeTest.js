@@ -66,6 +66,6 @@ const storeTest = {
     costsCategories: [], //['', '', '']
   },
   statistics: {
-    mounth: '',
+    month: '',
   },
 };
