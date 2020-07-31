@@ -12,6 +12,7 @@ import ContactsPage from "../Pages/teamPage/TeamPage";
 import HomePage from "../Pages/homePage/HomePage";
 import IncomeList from "../incomeList/IncomeList";
 import OperationForm from "./addOperationForm/AddOperationForm";
+import Chart from "../components/chart/Chart";
 
 const App = () => {
   return (
@@ -40,6 +41,7 @@ const App = () => {
       <OperationForm />
       <OperationList />
       <IncomeList />
+      <Chart />
     </BrowserRouter>
   );
 };
