@@ -1,7 +1,6 @@
-import React, { Suspense } from "react";
-import { BrowserRouter, Switch, Redirect, Route } from "react-router-dom";
-import routes from "../routes";
-    
+import React, { Suspense, useEffect } from 'react';
+import { BrowserRouter, Switch, Redirect, Route } from 'react-router-dom';
+import routes from '../routes';
 
 // import PrivateRoute from "../services/PrivateRoute";
 // import PublicRoute from "../services/PublicRoute";
@@ -16,15 +15,22 @@ import HomePage from '../Pages/homePage/HomePage';
 // import PublicRoute from "../services/PublicRoute";
 
 const App = () => {
+  useEffect(() => {
+    window.gapi.load('auth2', function () {
+      window.gapi.auth2.init({
+        client_id: '460326880610-0ski7kotqh77ijrc6cg9t0eusr3dfict',
+      });
+    });
+    return;
+  }, []);
   return (
     <BrowserRouter>
       {/* <Header /> */}
       <Suspense fallback={<h1>Loading...</h1>}>
-          <Switch>
-            
-            {/* <Route  path="/contacts" component={ContactsPage}/> */}
-</Switch>
-            <Route  path="/" component={HomePage}/>
+        <Switch>
+          {/* <Route  path="/contacts" component={ContactsPage}/> */}
+        </Switch>
+        <Route path="/" component={HomePage} />
         {/* <Switch>
           {routes.map(route => {
             return route.private ? (
@@ -46,6 +52,3 @@ const App = () => {
 };
 
 export default App;
-
-
-

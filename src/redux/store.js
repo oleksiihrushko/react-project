@@ -4,8 +4,8 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import loaderSlice from './loader/loaderSlice';
 
-// import operationsReducer from './operations/operationsReducer';
 // import statisticsReducer from './statistics/statisticsReducer';
+import operationsSlice from './operations/operationsSlice';
 import authSlice from './auth/authSlice';
 
 const authPersistConfig = {
@@ -16,7 +16,7 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     isLoading: loaderSlice.reducer,
-    // operations: operationsReducer,
+    operations: operationsSlice.reducer,
     auth: persistReducer(authPersistConfig, authSlice.reducer),
     // statistics: statisticsReducer,
   },
