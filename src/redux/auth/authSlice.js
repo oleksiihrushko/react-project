@@ -2,7 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   token: "",
-  name: "",
+  name: {
+    fullName: "",
+    firstName: "",
+    lastName: "",
+  },
   photo: "",
   error: "",
 };
@@ -18,11 +22,17 @@ export default createSlice({
     }),
     registerError: (state, { payload }) => ({ ...state, error: payload }),
     clearError: (state) => ({ ...state, error: "" }),
-    loginSuccess: (state, { payload }) => ({
-      ...state,
-      name: payload.userData.name,
-      token: payload.token,
-    }),
+    loginSuccess: (state, { payload }) => {
+      console.log(payload);
+      return {
+        ...state,
+        name: payload.userData.name,
+        token: payload.token,
+        photo: payload.photo
+          ? payload.photo
+          : payload.userData.name.firstName.slice(0, 1),
+      };
+    },
     loginError: (state, { payload }) => ({ ...state, error: payload }),
     logoutSuccess: (state) => initialState,
     logoutError: (state, { payload }) => ({ ...state, error: payload }),

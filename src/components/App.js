@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter, Switch, Redirect, Route } from "react-router-dom";
 import routes from "../routes";
 
@@ -15,15 +15,6 @@ import HomePage from "../Pages/homePage/HomePage";
 // import PublicRoute from "../services/PublicRoute";
 
 const App = () => {
-  useEffect(() => {
-    window.gapi.load("auth2", function () {
-      window.gapi.auth2.init({
-        client_id: "460326880610-0ski7kotqh77ijrc6cg9t0eusr3dfict",
-      });
-    });
-    return;
-  }, []);
-
   return (
     <BrowserRouter>
       {/* <Header /> */}
