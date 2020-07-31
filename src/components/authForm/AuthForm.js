@@ -225,23 +225,18 @@ const AuthForm = () => {
           >
             {typeRegister ? "логинизация" : "регистрация"}
           </button>
-          {/* <button
-            className={styles.buttonRegister}
-            type="button"
-            onClick={() => dispatch(logOut())}
-          >
-            logOut
-          </button> */}
-          <button
-            className={styles.buttonRegister}
-            type="button"
-            onClick={() => signOut(googleUser)}
-          >
-            logOut_g
-          </button>
         </div>
       </form>
+
+      <br />
       <img src={photo} alt="img"></img>
+      <button
+        className={styles.buttonRegister}
+        type="button"
+        onClick={() => signOut(googleUser)}
+      >
+        logOut_g
+      </button>
     </div>
   );
 };
