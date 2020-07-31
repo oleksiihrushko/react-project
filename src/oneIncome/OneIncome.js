@@ -3,7 +3,7 @@ import cart from "../components/operationList/icons/delete.png";
 import styles from "./OneIncome.module.css";
 
 const OneIncome = ({ operation: { id, date, category, price } }) => {
-  const deleteOperation = (id) => {};
+  const deleteIncome = (id) => {};
   // console.log(id);
   return (
     <li className={styles.operationListItem}>
@@ -13,7 +13,7 @@ const OneIncome = ({ operation: { id, date, category, price } }) => {
       <button
         type="button"
         className={styles.btnDelete}
-        onClick={() => deleteOperation(id)}
+        onClick={() => deleteIncome(id)}
       >
         <img
           src={cart}

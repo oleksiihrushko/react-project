@@ -10,7 +10,7 @@ const testOperation = [
     date: "21.07.2020",
     category: "Transport",
     price: 8,
-    operation: "Metroззззззззззззззззззззiiiiiiiiiiiiiiiii",
+    operation: "Metroзppppppppppppppppppppppppppppppp55",
   },
 
   {
@@ -30,8 +30,7 @@ const testOperation = [
   },
 ];
 
-const OperationList = ({ deleteOperation }) => {
-  
+const OperationList = ({ deleteCosts }) => {
   return (
     <>
       <ul className={styles.operationList}>
@@ -49,7 +48,7 @@ const OperationList = ({ deleteOperation }) => {
                 <OneOperation
                   operation={operation}
                   key={operation.id}
-                  deleteOperation={deleteOperation}
+                  deleteCosts={deleteCosts}
                 />
               ))}
             </Fragment>

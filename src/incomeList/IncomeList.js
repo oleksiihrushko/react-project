@@ -27,7 +27,7 @@ const testIncome = [
   },
 ];
 
-const IncomeList = ({ deleteOperation }) => {
+const IncomeList = ({ deleteIncome }) => {
   return (
     <>
       <ul className={styles.incomeList}>
@@ -45,7 +45,7 @@ const IncomeList = ({ deleteOperation }) => {
                 <OneIncome
                   operation={operation}
                   key={operation.id}
-                  deleteOperation={deleteOperation}
+                  deleteIncome={deleteIncome}
                 />
               ))}
             </Fragment>
