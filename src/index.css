@@ -78,6 +78,7 @@ button:focus {
   width: 280px;
   margin: 0 auto;
 }
+
 @media (min-width: 768px) {
   .container {
     width: 688px;

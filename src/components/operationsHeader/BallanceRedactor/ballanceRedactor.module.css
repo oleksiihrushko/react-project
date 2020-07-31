@@ -1,7 +1,7 @@
 .flex {
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   align-content: center;
 }
@@ -13,20 +13,23 @@
 }
 .wrapper {
   flex-direction: column;
-  padding: 0;
-  margin: 0 auto;
-  max-width: 280px;
   border-radius: 0 0 0 120px;
   background-color: #f4f6fb;
+}
+
+.div {
+  flex-direction: column;
+  justify-content: center;
+}
+.secPad {
   padding-top: 36px;
 }
 
-.report {
+.reportBtn {
   padding: 0;
   margin: 0;
   opacity: 0.75;
   color: #52555f;
-  /* font-family: Roboto; */
   font-size: 13px;
   font-weight: 400;
   line-height: 45px;
@@ -40,17 +43,14 @@
   margin: 0;
   opacity: 0.75;
   color: #52555f;
-  /* font-family: Roboto; */
   font-size: 13px;
   font-weight: 500;
-  line-height: 45px;
   letter-spacing: 0.52px;
   margin-bottom: 15px;
 }
+
 .ballanceWrap {
-  max-width: 238px;
-  margin: 0;
-  padding: 0;
+ 
   justify-content: space-evenly;
   height: 43px;
   background-color: #f4f6fb;
@@ -59,12 +59,10 @@
 
 .value {
   display: flex;
-  align-items: center;
   justify-content: center;
 
   margin: 0;
   color: #000000;
-  /* font-family: Roboto; */
   font-size: 13px;
   font-weight: 700;
   line-height: 45px;
@@ -80,13 +78,12 @@
 }
 
 .btn {
-  margin: 0;
-  padding: 0;
+  justify-content: center;
+  
   border-style: none;
   opacity: 0.75;
   color: #52555f;
   background-color: transparent;
-  /* font-family: Roboto; */
   font-size: 11px;
   font-weight: 500;
   line-height: 45px;
@@ -94,9 +91,55 @@
   letter-spacing: 0.44px;
   width: 118px;
   border-radius: 0 19px 19px 0;
- 
+
   border-top: 2px solid #ffffff;
   border-right: 2px solid #ffffff;
   border-bottom: 2px solid #ffffff;
   border-left: 1px solid #ffffff;
 }
+.btn:hover{
+
+  background-color: rgb(255, 129, 45);
+}
+
+
+
+@media (min-width: 768px) {
+  .div {
+    flex-direction: row;
+    align-content: center;
+
+  }
+  .stats {
+    flex-direction: row-reverse;
+    margin-bottom: 0;
+    margin: 0 0 0  65px;
+
+  }
+  .stats svg {
+    margin: 0 0 0 12px;
+
+  }
+  .bal_text {
+    margin: 0 25px 0 0 ;
+  }
+  .ballanceWrap {
+    margin-bottom: 0;
+  }
+  .wrapper {
+    flex-direction: row-reverse;
+    padding-bottom: 426px;
+  }
+}
+
+ @media (min-width: 1280px) {
+ 
+  .stats {
+    margin-left: 215px;
+  }
+
+  /* .wrapper {
+    flex-direction: row-reverse;
+    padding-bottom: 426px;
+  } */
+ } 

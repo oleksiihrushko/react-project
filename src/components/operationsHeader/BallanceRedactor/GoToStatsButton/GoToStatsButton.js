@@ -12,7 +12,7 @@ const GoToStatsButton = () => (
       <path fill="none" d="M0 0h24v24H0z" />
     </svg>
 
-    <button className={`${styles.flex} ${styles.report}`} onClick={() => alert("сумы - короли!!!")}>
+    <button className={`${styles.flex} ${styles.reportBtn}`} onClick={() => alert("сумы - короли!!!")}>
       Перейти к отчетам
     </button>
   </div>
