@@ -1,18 +1,30 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import googleIcon from '../../ui/google-icon.png';
-import styles from './authForm.module.css';
-import { register, login, logOut } from '../../redux/auth/authOperations';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import googleIcon from "../../ui/google-icon.png";
+import styles from "./authForm.module.css";
+import { register, login, logOut } from "../../redux/auth/authOperations";
+import { useDispatch, useSelector } from "react-redux";
+import authSelectors from "../../redux/auth/authSelectors";
+import api from "../../services/api";
 
 const AuthForm = () => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [typeRegister, setTypeRegister] = useState(false);
 
   const dispatch = useDispatch();
+
+  const token = useSelector((state) => authSelectors.token(state));
+
+  useEffect(() => {
+    console.log("useEffect");
+    if (token) {
+      console.log("token", token);
+      api.token.set(token);
+    }
+  }, []);
 
   const handleInputFirstName = (e) => {
     e.preventDefault();
@@ -133,7 +145,7 @@ const AuthForm = () => {
 
         <input
           id="password"
-          className={styles.input + ' ' + styles.inputPassword}
+          className={styles.input + " " + styles.inputPassword}
           type="password"
           placeholder="Пароль"
           name="password"
@@ -143,18 +155,22 @@ const AuthForm = () => {
 
         <div className={styles.authBtnWrapper}>
           <button className={styles.buttonLogin} type="submit">
-            {typeRegister ? 'создать' : 'войти'}
+            {typeRegister ? "создать" : "войти"}
           </button>
           <button
             className={styles.buttonRegister}
             type="button"
             onClick={handleTypeRegister}
           >
-            {typeRegister ? 'логинизация' : 'регистрация'}
+            {typeRegister ? "логинизация" : "регистрация"}
           </button>
-          {/* <button className={styles.buttonRegister} type="button" onClick={()=> dispatch(logOut())}>
-    logOut
-    </button> */}
+          <button
+            className={styles.buttonRegister}
+            type="button"
+            onClick={() => dispatch(logOut())}
+          >
+            logOut
+          </button>
         </div>
       </form>
     </div>
