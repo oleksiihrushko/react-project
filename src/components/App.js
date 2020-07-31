@@ -1,19 +1,28 @@
 import React, { Suspense } from "react";
-import { BrowserRouter, Switch, Redirect } from "react-router-dom";
-import {} from "module";
-import routes from "../routes";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
-import PrivateRoute from "../services/PrivateRoute";
-import PublicRoute from "../services/PublicRoute";
-import OperationsHeader from "./operationsHeader/OperationsHeader";
-import CategoriesFilter from "./categoriesFilter/CategoriesFilter";
+// import PrivateRoute from "../services/PrivateRoute";
+// import PublicRoute from "../services/PublicRoute";
+
+// import TotalCostsSumAndIncomeSum from './totalCostsSumAndIncomeSum/TotalCostsSumAndIncomeSum';
+// import routes from "../routes";
+import OperationList from "./operationList/OperationList";
+import Header from "./header/Header";
+import ContactsPage from "../Pages/teamPage/TeamPage";
+import HomePage from "../Pages/homePage/HomePage";
+import IncomeList from "../incomeList/IncomeList";
+import OperationForm from "./addOperationForm/AddOperationForm";
+import Chart from "../components/chart/Chart";
 
 const App = () => {
   return (
     <BrowserRouter>
+      {/* <Header /> */}
       <Suspense fallback={<h1>Loading...</h1>}>
-        <OperationsHeader />
-        <CategoriesFilter />
+        <Switch>
+          <Route path="/contacts" component={ContactsPage} />
+          {/* <Route  path="/TotalCostsSumAndIncomeSum" component={TotalCostsSumAndIncomeSum}/> */}
+        </Switch>
         {/* <Switch>
           {routes.map(route => {
             return route.private ? (
@@ -29,6 +38,10 @@ const App = () => {
           <Redirect to="/login" />
         </Switch> */}
       </Suspense>
+      <OperationForm />
+      <OperationList />
+      <IncomeList />
+      <Chart />
     </BrowserRouter>
   );
 };
