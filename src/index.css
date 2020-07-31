@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: 'RobotoRegular', sans-serif;
 }
 
 code {
@@ -78,6 +78,7 @@ button:focus {
   width: 280px;
   margin: 0 auto;
 }
+
 @media (min-width: 768px) {
   .container {
     width: 688px;
