@@ -1,8 +1,10 @@
 const storeTest = {
+  isLoading: false,
   auth: {
     token: 'asdasdasdasd',
     name: '',
     photo: '',
+    error: '',
   },
   operations: {
     ballance: '',
@@ -12,6 +14,6 @@ const storeTest = {
     costsCategories: [], //['', '', '']
   },
   statistics: {
-    mounth: '',
+    month: '',
   },
 };

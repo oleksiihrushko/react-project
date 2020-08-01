@@ -1,5 +1,5 @@
 import React from "react";
-import { MatchMediaHOC } from "react-match-media";
+// import { MatchMediaHOC } from "react-match-media";
 
 const styles = {
   fontSize: "16px",
@@ -29,4 +29,4 @@ const Exit = ({ name }) => {
   );
 };
 
-export default MatchMediaHOC(Exit, "(min-width: 700px)");
+// export default MatchMediaHOC(Exit, "(min-width: 700px)");
