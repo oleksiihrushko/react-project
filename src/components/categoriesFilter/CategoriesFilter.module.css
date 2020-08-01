@@ -11,12 +11,13 @@
   margin: 0 auto;
   padding: 0;
   padding-top: 36px;
+  margin-bottom: 40px;
 }
 .btn {
   border-style: none;
   background-color: transparent;
   display: block;
- }
+}
 .ul {
   max-width: 600px;
   /* justify-content: space-evenly; */
@@ -74,7 +75,7 @@ li:not(:nth-child(3n)) {
 }
 
 @media (max-width: 767px) {
-  .li{
+  .li {
     position: relative;
   }
   .li::after {
@@ -84,7 +85,7 @@ li:not(:nth-child(3n)) {
     background-color: #232323;
     background-color: #f4f6fb;
     position: absolute;
-    top:134px
+    top: 134px;
   }
 }
 
@@ -93,9 +94,10 @@ li:not(:nth-child(3n)) {
     width: 688px;
     padding: 40px 54px 0 54px;
 
-    box-shadow: 7px 12px 65px  rgba(179, 185, 200, 0.75);
+    box-shadow: 7px 12px 65px rgba(179, 185, 200, 0.75);
     border-radius: 25px;
     background-color: #ffffff;
+    margin-bottom: 26px;
   }
   .li:not(:nth-child(6n)) {
     margin-right: 40px;
@@ -106,5 +108,6 @@ li:not(:nth-child(3n)) {
   .wrapper {
     width: 942px;
     padding: 50px 190px 0 190px;
+    margin-bottom: 30px;
   }
 }

@@ -1,8 +1,10 @@
 import React from "react";
 import styles from "./CategoriesFilter.module.css";
 import config from "./config";
+import * as count from "./services";
 
 const CategoriesFilter = () => {
+  console.log("count", count.default.countCar);
   return (
     <section className={`${styles.wrapper} container`}>
       <ul className={styles.ul} className={styles.flex}>
@@ -15,7 +17,7 @@ const CategoriesFilter = () => {
                 }}
                 className={styles.btn}
               >
-                <p className={`${styles.prise}`}>prise</p>
+                <p className={`${styles.prise}`}>total</p>
                 <div className={styles.svg}>{svg}</div>
                 <p className={styles.name}>{name}</p>
               </button>

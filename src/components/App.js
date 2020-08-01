@@ -41,7 +41,7 @@ const App = () => {
         </Switch> */}
       </Suspense>
       <BallanceRedactor/>
-      <OperationForm />
+      {/* <OperationForm /> */}
       <OperationList />
       <IncomeList />
       <CategoriesFilter/>
