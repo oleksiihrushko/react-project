@@ -38,9 +38,9 @@ const App = () => {
           <Redirect to="/login" />
         </Switch> */}
       </Suspense>
-      <OperationForm />
-      <OperationList />
-      <IncomeList />
+      {/* <OperationForm /> */}
+      {/* <OperationList />
+      <IncomeList /> */}
       <Chart />
     </BrowserRouter>
   );

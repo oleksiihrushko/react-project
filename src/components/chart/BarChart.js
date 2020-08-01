@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Bar } from "react-chartjs-2";
+import { Chart, Bar } from "react-chartjs-2";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { getCategoryData } from "./chartServices";
 import "./roundedBars";
 import styles from "./BarChart.module.css";
+
+Chart.defaults.global.legend.display = false;
 
 const backgroundColor = [
   "rgba(255, 129, 45, 0.8)",
@@ -22,7 +24,6 @@ const backgroundColor = [
 ];
 
 const options = {
-  cornerRadius: 8,
   responsive: true,
   maintainAspectRation: true,
   offset: false,
@@ -31,9 +32,11 @@ const options = {
       {
         ticks: {
           beginAtZero: true,
+          // display: false,
         },
         gridLines: {
           display: false,
+          drawBorder: false,
         },
       },
     ],
@@ -72,6 +75,11 @@ const options = {
       },
     },
   },
+  layout: {
+    padding: {
+      top: 20,
+    },
+  },
 };
 
 const BarChart = () => {
@@ -84,7 +92,6 @@ const BarChart = () => {
       labels: data && Object.keys(data),
       datasets: [
         {
-          label: "Расходы",
           data: data && Object.values(data),
           backgroundColor: backgroundColor,
           hoverBackgroundColor: "rgba(255, 179, 45, 0.8)",

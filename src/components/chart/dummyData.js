@@ -1,7 +1,6 @@
 import randomDate from "@js-random/date";
 
 const randomAmount = () => Math.round(Math.random() * 1000);
-const randomIncome = () => Math.round(Math.random() * 10000);
 
 const getDate = () => {
   return randomDate({
@@ -158,13 +157,7 @@ const random49 = getCategory();
 const random50 = getCategory();
 
 export const dummyData = {
-  income: [
-    {
-      date: getDate(),
-      amount: randomIncome(),
-    },
-  ],
-  costs: [
+  items: [
     {
       product: {
         category: {
