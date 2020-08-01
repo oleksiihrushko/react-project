@@ -1,14 +1,18 @@
 .footer {
-    background-color: black;
+}
+.footerInfo {
+    background-color: #F5F6FB;
+    
 }
 .info {
-    color: white;
+    color: black;
+    text-align: center;
 }
 .linkInfoTeam {
-    color: white;
+    color: black;
 }
 .linkInfoTeam:Hover{
-    color:white;
+    color:#FB7C2F;
 }
 .infoP {
     color: white;
