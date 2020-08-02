@@ -17,6 +17,7 @@ import IncomeList from "../incomeList/IncomeList";
 import OperationForm from "./addOperationForm/AddOperationForm";
 import Chart from "../components/chart/Chart";
 
+import Footer from "./Footer/Footer";
 const App = () => {
   useEffect(() => {
     window.gapi.load('auth2', function () {
@@ -39,20 +40,21 @@ const App = () => {
           {routes.map(route => {
             return route.private ? (
               <PrivateRoute key={route.label} {...route} />
-            ) : (
-              <PublicRoute
+              ) : (
+                <PublicRoute
                 key={route.label}
                 {...route}
                 restricted={route.restricted}
-              />
-            );
-          })}
-          <Redirect to="/login" />
-        </Switch> */}
+                />
+                );
+              })}
+              <Redirect to="/login" />
+            </Switch> */}
       </Suspense>
       <OperationForm />
       <OperationList />
       <IncomeList />
+      <Footer />
       <Chart />
     </BrowserRouter>
   );
