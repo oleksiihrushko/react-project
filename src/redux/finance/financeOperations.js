@@ -1,5 +1,5 @@
 import api from '../../services/api';
-import financeSlice from '../';
+import financeSlice from './financeSlice';
 import loaderSlice from '../loader/loaderSlice';
 
 export const getTransactions = () => (dispatch) => {
@@ -55,7 +55,7 @@ export const addIncome = (income) => (dispatch) => {
 export const deleteIncome = (id) => (dispatch) => {
   dispatch(loaderSlice.actions.setLoadingTrue());
   api
-    .deleteIncome()
+    .deleteIncome(id)
     .then(() => {
       dispatch(financeSlice.actions.deleteIncome(id));
       dispatch(financeSlice.actions.setErrorNull());
@@ -64,16 +64,32 @@ export const deleteIncome = (id) => (dispatch) => {
     .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
 };
 
-export const addCosts = (costs) => (dispatch) => {
+export const addCosts = (costDescription, categoryId, date, amount) => async (
+  dispatch
+) => {
   dispatch(loaderSlice.actions.setLoadingTrue());
-  api
-    .addCosts(costs)
-    .then(({ createdCosts }) => {
-      dispatch(financeSlice.actions.addCostsSuccess(createdCosts));
-      dispatch(financeSlice.actions.setErrorNull());
-    })
-    .catch((error) => dispatch(financeSlice.actions.addCostsError(error)))
-    .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
+  try {
+    const productResponse = await api.addProduct({
+      name: costDescription,
+      category: categoryId,
+    });
+    const products = await api.getProducts();
+    dispatch(financeSlice.actions.addProductSuccess(products));
+    const now = new Date();
+    const createdCosts = await api.addCosts({
+      date,
+      product: {
+        productId: productResponse.product._id,
+        amount,
+        date: now.toISOString(),
+      },
+    });
+    dispatch(financeSlice.actions.addCostsSuccess(createdCosts));
+    dispatch(financeSlice.actions.setErrorNull());
+  } catch (error) {
+    dispatch(financeSlice.actions.addCostsError(error));
+  }
+  dispatch(loaderSlice.actions.setLoadingFalse());
 };
 
 export const getCosts = (date) => (dispatch) => {
@@ -85,18 +101,6 @@ export const getCosts = (date) => (dispatch) => {
       dispatch(financeSlice.actions.setErrorNull());
     })
     .catch((error) => dispatch(financeSlice.actions.addCostsError(error)))
-    .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
-};
-
-export const deleteCosts = (data) => (dispatch) => {
-  dispatch(loaderSlice.actions.setLoadingTrue());
-  api
-    .deleteCosts(data)
-    .then(({ tasks }) => {
-      dispatch(financeSlice.actions.deleteCostsSuccess(tasks));
-      dispatch(financeSlice.actions.setErrorNull());
-    })
-    .catch((error) => dispatch(financeSlice.actions.deleteCostsError(error)))
     .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
 };
 
@@ -112,15 +116,15 @@ export const getCategories = () => (dispatch) => {
     .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
 };
 
-export const addCategories = (category) => (dispatch) => {
+export const addCategory = (category) => (dispatch) => {
   dispatch(loaderSlice.actions.setLoadingTrue());
   api
-    .addCategories(category)
+    .addCategory(category)
     .then((data) => {
-      dispatch(financeSlice.actions.addCategoriesSuccess(data));
+      dispatch(financeSlice.actions.addCategorySuccess(data.category));
       dispatch(financeSlice.actions.setErrorNull());
     })
-    .catch((error) => dispatch(financeSlice.actions.addCategoriesError(error)))
+    .catch((error) => dispatch(financeSlice.actions.addCategoryError(error)))
     .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
 };
 
@@ -136,14 +140,39 @@ export const deleteCategory = (id) => (dispatch) => {
     .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
 };
 
-export const patchCategory = (id, category) => (dispatch) => {
+export const patchCategory = (id, category) => async (dispatch) => {
+  dispatch(loaderSlice.actions.setLoadingTrue());
+  try {
+    await api.patchCategory(id, category);
+    const data = await api.getCategories();
+    dispatch(financeSlice.actions.patchCategorySuccess(data));
+    dispatch(financeSlice.actions.setErrorNull());
+  } catch (error) {
+    dispatch(financeSlice.actions.patchCategoryError(error));
+  }
+  dispatch(loaderSlice.actions.setLoadingFalse());
+};
+
+export const getProducts = () => (dispatch) => {
   dispatch(loaderSlice.actions.setLoadingTrue());
   api
-    .patchCategory(id, category)
-    .then(() => {
-      dispatch(financeSlice.actions.patchCategory(id, category));
+    .getProducts()
+    .then((data) => {
+      dispatch(financeSlice.actions.getProductsSuccess(data));
       dispatch(financeSlice.actions.setErrorNull());
     })
-    .catch((error) => dispatch(financeSlice.actions.patchCategoryError(error)))
+    .catch((error) => dispatch(financeSlice.actions.getProductsError(error)))
+    .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
+};
+
+export const deleteProduct = (id) => (dispatch) => {
+  dispatch(loaderSlice.actions.setLoadingTrue());
+  api
+    .deleteProduct()
+    .then(() => {
+      dispatch(financeSlice.actions.deleteProduct(id));
+      dispatch(financeSlice.actions.setErrorNull());
+    })
+    .catch((error) => dispatch(financeSlice.actions.deleteProductError(error)))
     .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
 };

@@ -1,45 +1,52 @@
-import axios from "axios";
+import axios from 'axios';
 
-axios.defaults.baseURL = "https://smart-finance.goit.co.ua/api/v1";
+axios.defaults.baseURL = 'https://smart-finance.goit.co.ua/api/v1';
 
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
   unset() {
-    axios.defaults.headers.common.Authorization = "";
+    axios.defaults.headers.common.Authorization = '';
   },
 };
 
-const login = (credentials) => axios.post("/auth/login", credentials);
+const login = (credentials) => axios.post('/auth/login', credentials);
 
-const logout = () => axios.post("/auth/logout");
+const logout = () => axios.post('/auth/logout');
 
-const register = (credentials) => axios.post("/auth/register", credentials);
+const register = (credentials) => axios.post('/auth/register', credentials);
 
-const getTransactions = () => axios.get("/transactions");
+const getTransactions = () => axios.get('/transactions');
 
-const getBalance = () => axios.get("/balance");
+const getBalance = () => axios.get('/balance');
 
-const addBalance = (balance) => axios.post("/balance", balance);
+const addBalance = (balance) => axios.post('/balance', balance);
 
-const addIncome = (income) => axios.post("/income", income);
+const addIncome = (income) => axios.post('/income', income);
 
 const deleteIncome = (id) => axios.delete(`/income/${id}`);
 
-const addCosts = (costs) => axios.post("/costs", costs);
+const addCosts = (costs) => axios.post('/costs', costs);
 
-const getCosts = (date) => axios.get("/costs", date);
+const getCosts = (date) => axios.get('/costs', date);
 
-const deleteCosts = (data) => axios.delete("/costs", data);
+const deleteCosts = (idDelete, id) => axios.delete(`/costs/${idDelete}/${id}`);
 
-const getCategories = () => axios.get("/categories");
+const getCategories = () => axios.get('/categories');
 
-const addCategories = (category) => axios.post("/categories", category);
+const addCategory = (category) => axios.post('/categories', category);
 
 const deleteCategory = (id) => axios.delete(`/categories/${id}`);
 
-const patchCategory = (id, category) => axios.patch(`/categories/${id}`);
+const patchCategory = (id, category) =>
+  axios.patch(`/categories/${id}`, category);
+
+const getProducts = () => axios.get('/products');
+
+const addProduct = (product) => axios.post('/products', product);
+
+const deleteProduct = (id) => axios.delete(`/products/${id}`);
 
 export default {
   token,
@@ -55,7 +62,10 @@ export default {
   getCosts,
   deleteCosts,
   getCategories,
-  addCategories,
+  addCategory,
   deleteCategory,
   patchCategory,
+  getProducts,
+  addProduct,
+  deleteProduct,
 };
