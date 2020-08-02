@@ -2,18 +2,40 @@ import api from '../../services/api';
 import financeSlice from './financeSlice';
 import loaderSlice from '../loader/loaderSlice';
 
-export const getTransactions = () => (dispatch) => {
+export const getDataOnInit = () => async (dispatch) => {
   dispatch(loaderSlice.actions.setLoadingTrue());
-  api
-    .getTransactions()
+  const getTransactionsPromise = () => api.getTransactions();
+  const getCategoriesPromise = () => api.getCategories();
+  const getProductsPromise = () => api.getProducts();
+  await Promise.all([
+    getTransactionsPromise(),
+    getCategoriesPromise(),
+    getProductsPromise(),
+  ])
     .then((data) => {
-      dispatch(financeSlice.actions.getTransactionsSuccess(data));
+      console.log('data :>> ', data);
+      dispatch(financeSlice.actions.getTransactionsSuccess(data[0].data));
+      dispatch(
+        financeSlice.actions.getCategoriesSuccess(data[1].data.categories)
+      );
+      dispatch(financeSlice.actions.getProductsSuccess(data[2].data.products));
       dispatch(financeSlice.actions.setErrorNull());
     })
-    .catch((error) =>
-      dispatch(financeSlice.actions.getTransactionsError(error))
-    )
-    .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
+    .catch((error) => dispatch(financeSlice.actions.getDataOnInitError(error)));
+  dispatch(loaderSlice.actions.setLoadingFalse());
+};
+
+export const getTransactions = () => async (dispatch) => {
+  dispatch(loaderSlice.actions.setLoadingTrue());
+  try {
+    const { data } = await api.getTransactions();
+    console.log('data :>> ', data);
+    dispatch(financeSlice.actions.getTransactionsSuccess(data));
+    dispatch(financeSlice.actions.setErrorNull());
+  } catch (error) {
+    dispatch(financeSlice.actions.getTransactionsError(error));
+  }
+  dispatch(loaderSlice.actions.setLoadingFalse());
 };
 
 export const getBalance = () => (dispatch) => {
@@ -104,16 +126,16 @@ export const getCosts = (date) => (dispatch) => {
     .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
 };
 
-export const getCategories = () => (dispatch) => {
+export const getCategories = () => async (dispatch) => {
   dispatch(loaderSlice.actions.setLoadingTrue());
-  api
-    .getCategories()
-    .then((data) => {
-      dispatch(financeSlice.actions.getCategoriesSuccess(data));
-      dispatch(financeSlice.actions.setErrorNull());
-    })
-    .catch((error) => dispatch(financeSlice.actions.getCategoriesError(error)))
-    .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
+  try {
+    const { data } = await api.getCategories();
+    dispatch(financeSlice.actions.getCategoriesSuccess(data.categories));
+    dispatch(financeSlice.actions.setErrorNull());
+  } catch (error) {
+    dispatch(financeSlice.actions.getCategoriesError(error));
+  }
+  dispatch(loaderSlice.actions.setLoadingFalse());
 };
 
 export const addCategory = (category) => (dispatch) => {
@@ -153,16 +175,16 @@ export const patchCategory = (id, category) => async (dispatch) => {
   dispatch(loaderSlice.actions.setLoadingFalse());
 };
 
-export const getProducts = () => (dispatch) => {
+export const getProducts = () => async (dispatch) => {
   dispatch(loaderSlice.actions.setLoadingTrue());
-  api
-    .getProducts()
-    .then((data) => {
-      dispatch(financeSlice.actions.getProductsSuccess(data));
-      dispatch(financeSlice.actions.setErrorNull());
-    })
-    .catch((error) => dispatch(financeSlice.actions.getProductsError(error)))
-    .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
+  try {
+    const { data } = await api.getProducts();
+    dispatch(financeSlice.actions.getProductsSuccess(data.products));
+    dispatch(financeSlice.actions.setErrorNull());
+  } catch (error) {
+    dispatch(financeSlice.actions.getProductsError(error));
+  }
+  dispatch(loaderSlice.actions.setLoadingFalse());
 };
 
 export const deleteProduct = (id) => (dispatch) => {

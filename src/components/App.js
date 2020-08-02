@@ -1,6 +1,6 @@
-import React, { Suspense } from "react";
-import { BrowserRouter, Switch, Redirect, Route } from "react-router-dom";
-import routes from "../routes";
+import React, { Suspense, useEffect } from 'react';
+import { BrowserRouter, Switch, Redirect, Route } from 'react-router-dom';
+import routes from '../routes';
 
 // import PrivateRoute from "../services/PrivateRoute";
 // import PublicRoute from "../services/PublicRoute";
@@ -9,12 +9,21 @@ import routes from "../routes";
 // import OperationList from "./operationList/OperationList";
 // import Header from "./header/Header";
 // import ContactsPage from '../Pages/teamPage/TeamPage';
-import HomePage from "../Pages/homePage/HomePage";
+import HomePage from '../Pages/homePage/HomePage';
+import { useDispatch } from 'react-redux';
+import { getDataOnInit } from '../redux/finance/financeOperations';
 
 // import PrivateRoute from "../services/PrivateRoute";
 // import PublicRoute from "../services/PublicRoute";
 
 const App = () => {
+  // !!вставить в страницу operationsPage, только после авторизации!!
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getDataOnInit());
+    return;
+  }, []);
+
   return (
     <BrowserRouter>
       {/* <Header /> */}

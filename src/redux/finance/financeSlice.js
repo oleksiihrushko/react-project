@@ -70,6 +70,13 @@ export default createSlice({
   name: 'operations',
   initialState,
   reducers: {
+    setErrorNull: (state) => ({ ...state, error: '' }),
+
+    getDataOnInitError: (state, { payload }) => ({
+      ...state,
+      error: payload.error,
+    }),
+
     getTransactionsSuccess: (state, { payload }) => ({
       ...state,
       income: payload.income,
@@ -138,7 +145,7 @@ export default createSlice({
 
     getCategoriesSuccess: (state, { payload }) => ({
       ...state,
-      categories: payload.categories,
+      categories: payload,
     }),
 
     getCategoriesError: (state, { payload }) => ({
@@ -168,7 +175,7 @@ export default createSlice({
 
     getProductsSuccess: (state, { payload }) => ({
       ...state,
-      products: payload.products,
+      products: payload,
     }),
 
     getProductsError: (state, { payload }) => ({
