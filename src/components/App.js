@@ -12,8 +12,8 @@ import routes from '../routes';
 import PrivateRoute from '../services/PrivateRoute';
 import PublicRoute from '../services/PublicRoute';
 
-import { useDispatch } from "react-redux";
-import { getDataOnInit } from "../redux/finance/financeOperations";
+import { useDispatch } from 'react-redux';
+import { getDataOnInit } from '../redux/finance/financeOperations';
 
 import Header from './header/Header';
 // import Modal from "../components/modal/Modal";
@@ -53,7 +53,7 @@ const App = () => {
               />
             );
           })}
-          <Redirect to="/login" />
+          <Redirect to="/" />
         </Switch>
       </Suspense>
       {/* <BallanceRedactor/>
