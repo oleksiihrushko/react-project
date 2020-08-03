@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import Modal from "../modal/Modal";
-import { MatchMediaHOC } from "react-match-media";
-import ReactDOM from "react-dom";
+import React, { Component } from 'react';
+import Modal from '../modal/Modal';
+import { MatchMediaHOC } from 'react-match-media';
+import ReactDOM from 'react-dom';
 // import Exit from "./Exit";
-import ExitMobile from "./ExitMobile";
-import styles from "./style.module.css";
-import {Link} from "react-router-dom"
+import ExitMobile from './ExitMobile';
+import styles from './style.module.css';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
   state = {
@@ -55,8 +55,8 @@ class Header extends Component {
                 <li>
                   <span
                     style={{
-                      fontFamily: "RobotoRegular",
-                      backgroundColor: "#f4f7fa",
+                      fontFamily: 'RobotoRegular',
+                      backgroundColor: '#f4f7fa',
                       paddingBottom: 5,
                       paddingTop: 5,
                       paddingLeft: 10,
