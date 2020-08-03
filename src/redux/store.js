@@ -7,6 +7,7 @@ import loaderSlice from './loader/loaderSlice';
 import statisticsSlice from './statistics/statisticsSlice';
 import financeSlice from './finance/financeSlice';
 import authSlice from './auth/authSlice';
+import exchangeRatesReducer from "./exchange/exchangeRatesReducer"
 
 const authPersistConfig = {
   key: 'auth',
@@ -16,6 +17,7 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     isLoading: loaderSlice.reducer,
+    exchangeRatesRoot: exchangeRatesReducer,
     operations: financeSlice.reducer,
     auth: persistReducer(authPersistConfig, authSlice.reducer),
     statistics: statisticsSlice.reducer,
