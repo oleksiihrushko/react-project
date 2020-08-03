@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import styles from "./ballanceRedactor.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import Form from "./Form";
+// import { useDispatch, useSelector } from "react-redux";
+import BallanceRedactorForm from "./BallanceRedactorForm";
 import GoToStatsButton from "./GoToStatsButton/GoToStatsButton";
+import GoToMono from "../../categoriesFilter/monoBank/GoToMono";
 
 const TEMP = {
   status: "string",
@@ -33,32 +34,41 @@ const BallanceRedactor = () => {
   // const { ballance } = stateBal;
   // const [isFirstTransaction, setTransactions] = useState(localState);
   const [state, setstate] = useState(TEMP);
-  const {operations: { income, costs, amount }} = state;
+  const {
+    operations: { income, costs, amount },
+  } = state;
 
   if (income.length !== 0 && costs.length !== 0 && amount !== null) {
     // dispatch(localState.isFirstTransaction("true"));
     localState.isFirstTransaction = true;
   }
   return (
-    <section className={ `${styles.flex} ${styles.wrapper}  ${styles.secPad}  container` }>
-    
-    <GoToStatsButton/>
+    <section
+      className={`${styles.flex} ${styles.wrapper}  ${styles.secPad}  container`}
+    >
+      <GoToStatsButton />
 
-
-    {/* <div className={`${styles.flex} ${styles.wrapper} `}> */}
-    <div className={`${styles.flex} ${styles.div} `}>
-
-      <p className={`${styles.bal_text}  `}>Баланс:</p>
-      <div className={`${styles.flex} ${styles.ballanceWrap}`} >
-        {isEditing ? (
-          <Form isEditing={isEditing} setEditing={setEditing} amount={amount} />) : (<p className={styles.value}>{amount} ₴</p>)}
-        <button
-          className={ `${styles.flex} ${styles.btn}` }
-          onClick={() => setEditing(!isEditing)}>
-          {isEditing ? "подтвердить" : "изменить"}
-        </button>
+      {/* <div className={`${styles.flex} ${styles.wrapper} `}> */}
+      <div className={`${styles.flex} ${styles.div} `}>
+        <p className={`${styles.bal_text}  `}>Баланс:</p>
+        <div className={`${styles.flex} ${styles.ballanceWrap}`}>
+          {isEditing ? (
+            <BallanceRedactorForm
+              isEditing={isEditing}
+              setEditing={setEditing}
+              amount={amount}
+            />
+          ) : (
+            <p className={styles.value}>{amount} ₴</p>
+          )}
+          <button
+            className={`${styles.flex} ${styles.btn}`}
+            onClick={() => setEditing(!isEditing)}
+          >
+            {isEditing ? "подтвердить" : "изменить"}
+          </button>
+        </div>
       </div>
-    </div>
     </section>
   );
 };
