@@ -6,14 +6,14 @@ import CategoriesFilter from '../../components/categoriesFilter/CategoriesFilter
 import Chart from '../../components/chart/Chart';
 
 const StatistcsPage = () => {
-    return (
-        <>
-        <StatistcsHeader />
-        <TotalCostsSumAndIncomeSum />
-        <CategoriesFilter />
-        <Chart />
-        </>
-    )
-}
+  return (
+    <>
+      <StatistcsHeader/>
+      <TotalCostsSumAndIncomeSum />
+      <CategoriesFilter />
+      <Chart />
+    </>
+  );
+};
 
 export default StatistcsPage;

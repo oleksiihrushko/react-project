@@ -15,7 +15,6 @@ import PublicRoute from '../services/PublicRoute';
 import { useDispatch } from 'react-redux';
 import { getDataOnInit } from '../redux/finance/financeOperations';
 
-import Footer from './Footer/Footer';
 import Header from './header/Header';
 // import Modal from "../components/modal/Modal";
 // import TotalCostsSumAndIncomeSum from './totalCostsSumAndIncomeSum/TotalCostsSumAndIncomeSum';
@@ -29,6 +28,7 @@ import Header from './header/Header';
 // import CategoriesFilter from "./categoriesFilter/CategoriesFilter";
 // import Chart from '../components/chart/Chart';
 // import GoToMono from './categoriesFilter/monoBank/GoToMono';
+import Footer from './Footer/Footer';
 
 const App = () => {
   // !!вставить в страницу operationsPage, только после авторизации!!

@@ -6,6 +6,7 @@ import { ReactComponent as ArrowBack } from './arrowBack/back.svg';
 import { ReactComponent as PrevMonth } from './arrowBack/leftArrow.svg';
 import { ReactComponent as NextMonth } from './arrowBack/rightArrow.svg';
 import { ReactComponent as Exchange } from './img/exchange.svg';
+import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import exchangeRatesSelectors from '../../redux/exchange/exchangeRatesSelectors';
@@ -18,7 +19,6 @@ import Media from 'react-media';
 class StatisticsHeader extends Component {
   state = {
     date: '',
-
   };
 
   componentDidMount() {
@@ -28,10 +28,6 @@ class StatisticsHeader extends Component {
       //   currentDate: currentTime,
     });
   }
-
-  handleGoBack = () => {
-    this.props.history.push('/');
-  };
 
   handleChangeMonth = ({ target }) => {
     const { name } = target;
@@ -56,28 +52,38 @@ class StatisticsHeader extends Component {
       <div className={`${styles.statisticsHeaderWrapper} container`}>
         <div className={styles.leftBar}>
           <div className={styles.buttonGoBack}>
-            <button
-              className={styles.button}
-              type="button"
-              onClick={this.handleGoBack}
-            >
+            <Link to="/">
               <ArrowBack />
-            </button>
+            </Link>
             <Media query="(min-width: 768px)">
-              {matches => (matches ? <p className={styles.buttonText}>На главную</p> : <p></p>)}
+              {matches =>
+                matches ? (
+                  <p className={styles.buttonText}>На главную</p>
+                ) : (
+                  <p></p>
+                )
+              }
             </Media>
           </div>
           <div className={styles.currencyBar}>
             <CurrencyBar />
             <Media query="(min-width: 768px)">
-              {matches => (matches ? <p className={styles.buttonText}>Валюта</p> : <p></p>)}
+              {matches =>
+                matches ? <p className={styles.buttonText}>Валюта</p> : <p></p>
+              }
             </Media>
           </div>
         </div>
         <div className={styles.rightBar}>
           <div className={styles.calendarWrapper}>
             <Media query="(min-width: 768px)">
-              {matches => (matches ? <p className={styles.buttonText}>Текущий период</p> : <p></p>)}
+              {matches =>
+                matches ? (
+                  <p className={styles.buttonText}>Текущий период</p>
+                ) : (
+                  <p></p>
+                )
+              }
             </Media>
 
             <div className={styles.calendarContainer}>
@@ -102,8 +108,8 @@ class StatisticsHeader extends Component {
               </button>
             </div>
           </div>
-          <div >
-            <div >
+          <div>
+            <div>
               <p className={styles.balance}>
                 Баланс на <span>{date && moment(date).format('L')}:</span>
               </p>
