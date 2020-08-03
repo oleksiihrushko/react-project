@@ -1,7 +1,7 @@
 const storeTest = {
   isLoading: false,
   auth: {
-    token: '',
+    token: 'asdasdasdasd',
     name: '',
     photo: '',
     error: '',
