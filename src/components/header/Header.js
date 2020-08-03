@@ -74,7 +74,7 @@ class Header extends Component {
                       closeModal={this.closeModal}
                     />
                   )}
-                  <ExitMobile />
+                  <ExitMobile open={this.openModal} />
                   <Exit
                     open={this.openModal}
                     name={this.state.users.user.userData.name.fullName}
