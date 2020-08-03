@@ -1,27 +1,27 @@
-import React, { Suspense, useEffect } from 'react';
-import { BrowserRouter, Switch, Redirect, Route } from 'react-router-dom';
-import routes from '../routes';
+import React, { Suspense, useEffect } from "react";
+import { BrowserRouter, Switch, Redirect, Route } from "react-router-dom";
+import routes from "../routes";
 
-import PrivateRoute from '../services/PrivateRoute';
-import PublicRoute from '../services/PublicRoute';
+import PrivateRoute from "../services/PrivateRoute";
+import PublicRoute from "../services/PublicRoute";
 
-import TotalCostsSumAndIncomeSum from './totalCostsSumAndIncomeSum/TotalCostsSumAndIncomeSum';
+import TotalCostsSumAndIncomeSum from "./totalCostsSumAndIncomeSum/TotalCostsSumAndIncomeSum";
 // import routes from "../routes";
 // import Modal from "../components/modal/Modal";
-import OperationList from './operationList/OperationList';
-import Header from './header/Header';
-import ContactsPage from '../Pages/teamPage/TeamPage';
-import HomePage from '../Pages/homePage/HomePage';
-import IncomeList from '../incomeList/IncomeList';
-import OperationForm from './addOperationForm/AddOperationForm';
-import Chart from '../components/chart/Chart';
+import OperationList from "./operationList/OperationList";
+import Header from "./header/Header";
+import ContactsPage from "../Pages/teamPage/TeamPage";
+import HomePage from "../Pages/homePage/HomePage";
+import IncomeList from "../incomeList/IncomeList";
+import OperationForm from "./addOperationForm/AddOperationForm";
+import Chart from "../components/chart/Chart";
 
-import Footer from './Footer/Footer';
+import Footer from "./Footer/Footer";
 const App = () => {
   useEffect(() => {
-    window.gapi.load('auth2', function () {
+    window.gapi.load("auth2", function () {
       window.gapi.auth2.init({
-        client_id: '460326880610-0ski7kotqh77ijrc6cg9t0eusr3dfict',
+        client_id: "460326880610-0ski7kotqh77ijrc6cg9t0eusr3dfict",
       });
     });
     return;
@@ -32,7 +32,7 @@ const App = () => {
       <Suspense fallback={<h1>Loading...</h1>}>
         <TotalCostsSumAndIncomeSum />
         <Switch>
-          {routes.map(route => {
+          {routes.map((route) => {
             return route.private ? (
               <PrivateRoute key={route.label} {...route} />
             ) : (
@@ -49,7 +49,7 @@ const App = () => {
       <OperationForm />
       <OperationList />
       <IncomeList />
-      {/* <Chart /> */}
+      <Chart />
       <Footer />
     </BrowserRouter>
   );
