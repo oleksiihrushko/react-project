@@ -226,7 +226,7 @@ const AuthForm = () => {
         </div>
       </form>
 
-      {/* <br />
+      <br />
       <img src={photo} alt="img"></img>
       <button
         className={styles.buttonRegister}
@@ -234,7 +234,7 @@ const AuthForm = () => {
         onClick={() => signOut(googleUser)}
       >
         logOut_g
-      </button> */}
+      </button>
     </div>
   );
 };
