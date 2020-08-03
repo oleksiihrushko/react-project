@@ -6,12 +6,12 @@ import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 // import TotalCostsSumAndIncomeSum from './totalCostsSumAndIncomeSum/TotalCostsSumAndIncomeSum';
 // import routes from "../routes";
-import OperationList from "./operationList/OperationList";
-import Header from "./header/Header";
-import ContactsPage from "../Pages/teamPage/TeamPage";
-import HomePage from "../Pages/homePage/HomePage";
-import IncomeList from "../incomeList/IncomeList";
-import OperationForm from "./addOperationForm/AddOperationForm";
+// import OperationList from "./operationList/OperationList";
+// import Header from "./header/Header";
+// import ContactsPage from "../Pages/teamPage/TeamPage";
+// import HomePage from "../Pages/homePage/HomePage";
+// import IncomeList from "../incomeList/IncomeList";
+// import OperationForm from "./addOperationForm/AddOperationForm";
 import Chart from "../components/chart/Chart";
 
 const App = () => {
@@ -20,7 +20,7 @@ const App = () => {
       {/* <Header /> */}
       <Suspense fallback={<h1>Loading...</h1>}>
         <Switch>
-          <Route path="/contacts" component={ContactsPage} />
+          {/* <Route path="/contacts" component={ContactsPage} /> */}
           {/* <Route  path="/TotalCostsSumAndIncomeSum" component={TotalCostsSumAndIncomeSum}/> */}
         </Switch>
         {/* <Switch>

@@ -91,7 +91,7 @@ Chart.elements.Rectangle.prototype.draw = function () {
   for (var i = 1; i < 4; i++) {
     corner = cornerAt(i);
     nextCornerId = i + 1;
-    if (nextCornerId == 4) {
+    if (nextCornerId === 4) {
       nextCornerId = 0;
     }
 

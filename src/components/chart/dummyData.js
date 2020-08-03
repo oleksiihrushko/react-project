@@ -9,7 +9,7 @@ const getDate = () => {
   });
 };
 
-const categories = [
+const categoriesLabels = [
   "Продукты",
   "Алкоголь",
   "Развлечения",
@@ -21,6 +21,20 @@ const categories = [
   "Спорт, хобби",
   "Образование",
   "Прочее",
+];
+
+const categories = [
+  "products",
+  "alcohol",
+  "leisure",
+  "health",
+  "transport",
+  "housing",
+  "electronics",
+  "utilityPayments",
+  "sports",
+  "studying",
+  "other",
 ];
 
 const getCategory = () => {
@@ -56,47 +70,47 @@ const otherArray = other.split(" ");
 const randomSubCategory = (category) => {
   let index;
   switch (category) {
-    case "Продукты":
+    case "products":
       index = Math.round(Math.random() * productsArray.length);
       return productsArray[index];
 
-    case "Алкоголь":
+    case "alcohol":
       index = Math.round(Math.random() * alcoholArray.length);
       return alcoholArray[index];
 
-    case "Развлечения":
+    case "leisure":
       index = Math.round(Math.random() * leisureArray.length);
       return leisureArray[index];
 
-    case "Здоровье":
+    case "health":
       index = Math.round(Math.random() * healthArray.length);
       return healthArray[index];
 
-    case "Транспорт":
+    case "transport":
       index = Math.round(Math.random() * transportArray.length);
       return transportArray[index];
 
-    case "Все для дома":
+    case "housing":
       index = Math.round(Math.random() * housingArray.length);
       return housingArray[index];
 
-    case "Техника":
+    case "electronics":
       index = Math.round(Math.random() * electronicsArray.length);
       return electronicsArray[index];
 
-    case "Коммуналка, связь":
+    case "utilityPayments":
       index = Math.round(Math.random() * utilityPaymentsArray.length);
       return utilityPaymentsArray[index];
 
-    case "Спорт, хобби":
+    case "sports":
       index = Math.round(Math.random() * sportsArray.length);
       return sportsArray[index];
 
-    case "Образование":
+    case "studying":
       index = Math.round(Math.random() * studyingArray.length);
       return studyingArray[index];
 
-    case "Прочее":
+    case "other":
       index = Math.round(Math.random() * otherArray.length);
       return otherArray[index];
 

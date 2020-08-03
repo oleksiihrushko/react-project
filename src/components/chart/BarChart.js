@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Chart, Bar } from "react-chartjs-2";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-import { getCategoryData } from "./chartServices";
+import { getData } from "./chartServices";
 import "./roundedBars";
 import styles from "./BarChart.module.css";
 
@@ -24,9 +24,11 @@ const backgroundColor = [
 ];
 
 const options = {
-  responsive: true,
-  maintainAspectRation: true,
-  offset: false,
+  // responsive: true,
+  // offset: false,
+  legend: {
+    position: "bottom",
+  },
   scales: {
     xAxes: [
       {
@@ -61,7 +63,7 @@ const options = {
     yPadding: 10,
     callbacks: {
       label: (tooltipItem, data) => {
-        return `${tooltipItem.value} грн.`;
+        return `₴ ${tooltipItem.value}`;
       },
     },
   },
@@ -71,13 +73,13 @@ const options = {
       align: "top",
       anchor: "end",
       formatter: (data) => {
-        return `${data} грн`;
+        return `₴ ${data}`;
       },
     },
   },
   layout: {
     padding: {
-      top: 20,
+      top: 30,
     },
   },
 };
@@ -85,17 +87,36 @@ const options = {
 const BarChart = () => {
   const [chartData, setChartData] = useState({});
 
+  const category = "products";
+
   const chart = () => {
-    const data = getCategoryData("Продукты", 6, 2020);
+    const data = getData(category, 6, 2020);
 
     setChartData({
-      labels: data && Object.keys(data),
+      labels:
+        category === "all"
+          ? [
+              "Продукты",
+              "Алкоголь",
+              "Развлечения",
+              "Здоровье",
+              "Транспорт",
+              "Все для дома",
+              "Техника",
+              "Коммуналка, связь",
+              "Спорт, хобби",
+              "Образование",
+              "Прочее",
+            ]
+          : data && Object.keys(data),
+      // labels: data && Object.keys(data),
       datasets: [
         {
+          label: "Расходы",
           data: data && Object.values(data),
           backgroundColor: backgroundColor,
           hoverBackgroundColor: "rgba(255, 179, 45, 0.8)",
-          barThickness: 28,
+          barThickness: category === "all" ? 20 : 30,
         },
       ],
       plugins: [ChartDataLabels],
