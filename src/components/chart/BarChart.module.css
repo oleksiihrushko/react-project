@@ -13,3 +13,13 @@
     padding: 20px 14px;
   }
 }
+
+.horizontalChartContainer {
+  max-width: 278px;
+  margin: 30px auto;
+  padding: 14px 26px;
+}
+
+.pieChartContainer {
+  /* max-width: 278px; */
+}
