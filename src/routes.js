@@ -1,12 +1,11 @@
 import { lazy } from 'react';
 
-// };
 export default [
   {
     path: '/',
     label: 'HomePage',
     exact: true,
-    // component: lazy(() => import('./components/homePage/HomePage')),
+    component: lazy(() => import('./Pages/homePage/HomePage')),
     private: false,
     restricted: true,
   },
@@ -14,7 +13,7 @@ export default [
     path: '/operations',
     label: 'Operations',
     exact: false,
-    // component: lazy(() => import('./components/operations/Operations')),
+    component: lazy(() => import('./Pages/operationsPage/OperationsPage')),
     private: true,
     restricted: false,
   },
@@ -22,7 +21,7 @@ export default [
     path: '/statistic',
     label: 'Statistic',
     exact: false,
-    // component: lazy(() => import('./components/statistic/Statistic')),
+    component: lazy(() => import('./Pages/statisticsPage/StatisticsPage')),
     private: true,
     restricted: false,
   },
@@ -30,7 +29,7 @@ export default [
     path: '/team',
     label: 'Team',
     exact: false,
-    // component: lazy(() => import('./components/operations/Operations')),
+    component: lazy(() => import('./Pages/teamPage/TeamPage')),
     private: false,
     restricted: false,
   },

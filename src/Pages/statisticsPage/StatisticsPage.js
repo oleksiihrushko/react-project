@@ -1,17 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
+import StatistcsHeader from '../../components/statisticsHeader';
+import TotalCostsSumAndIncomeSum from '../../components/totalCostsSumAndIncomeSum/TotalCostsSumAndIncomeSum';
+import CategoriesFilter from '../../components/categoriesFilter/CategoriesFilter';
+import Chart from '../../components/chart/Chart';
 
-import StatisticsHeader from '../../components/statisticsHeader/StatisticsHeader';
-import ExchangeRates from '../../components/exchangeRates/ExchangeRates';
 
-class StaticticsPage extends Component {
-  render() {
-    //   console.log(this.props)
+const StatistcsPage = () => {
     return (
-      <div>
-        <StatisticsHeader balance={() => {}} {...this.props} />
-        <ExchangeRates />
-      </div>
-    );
-  }
+        <StatistcsHeader {...this.props}/>
+        <TotalCostsSumAndIncomeSum />
+        <CategoriesFilter />
+        <Chart />
+    )
 }
-export default StaticticsPage;
+export default StatistcsPage();

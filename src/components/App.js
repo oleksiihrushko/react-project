@@ -1,12 +1,22 @@
-import React, { Suspense } from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import React, { Suspense, useEffect } from 'react';
+import {
+  BrowserRouter,
+  Switch,
+  Redirect,
+  // Route,
+  // Link,
+  // NavLink,
+} from 'react-router-dom';
+import routes from '../routes';
 
+import PrivateRoute from '../services/PrivateRoute';
+import PublicRoute from '../services/PublicRoute';
 
+import { useDispatch } from 'react-redux';
+import { getDataOnInit } from '../redux/finance/financeOperations';
 
-import ContactsPage from '../Pages/teamPage/TeamPage';
-// import PrivateRoute from "../services/PrivateRoute";
-// import PublicRoute from "../services/PublicRoute";
-
+import Header from './header/Header';
+// import Modal from "../components/modal/Modal";
 // import TotalCostsSumAndIncomeSum from './totalCostsSumAndIncomeSum/TotalCostsSumAndIncomeSum';
 // import routes from "../routes";
 import OperationList from './operationList/OperationList';
@@ -18,19 +28,40 @@ import StaticticsPage from '../Pages/statisticsPage/StatisticsPage';
 import Header from './header/Header';
 import HomePage from '../Pages/homePage/HomePage';
 const App = () => {
+  // !!вставить в страницу operationsPage, только после авторизации!!
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getDataOnInit());
+    return;
+  }, []);
+
   return (
     <BrowserRouter>
+      <Header />
       <Suspense fallback={<h1>Loading...</h1>}>
-        <Header />
+        {/* <TotalCostsSumAndIncomeSum /> */}
         <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/statictics" component={StaticticsPage} />
-          <Route path="/contacts" component={ContactsPage} />
+          {routes.map(route => {
+            return route.private ? (
+              <PrivateRoute key={route.label} {...route} />
+            ) : (
+              <PublicRoute
+                key={route.label}
+                {...route}
+                restricted={route.restricted}
+              />
+            );
+          })}
+          <Redirect to="/login" />
         </Switch>
       </Suspense>
+      {/* <BallanceRedactor/>
       <OperationForm />
       <OperationList />
       <IncomeList />
+      <CategoriesFilter/>
+      <Chart /> */}
+      <Footer />
     </BrowserRouter>
   );
 };

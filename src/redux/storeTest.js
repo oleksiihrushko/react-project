@@ -1,17 +1,25 @@
 const storeTest = {
+  isLoading: false,
   auth: {
     token: '',
-    name: '',
+    googleLogin: false,
+    name: {
+      fullName: '',
+      firstName: '',
+      lastName: '',
+    },
+
     photo: '',
+    error: '',
   },
   operations: {
     ballance: '',
     income: [], //[{}, {}]
     costs: [], //[{}, {}]
-    incomeCategories: [], //['', '', '']
-    costsCategories: [], //['', '', '']
+    categories: [], //['', '', '']
+    products: [],
   },
   statistics: {
-    mounth: '',
+    month: '',
   },
 };
