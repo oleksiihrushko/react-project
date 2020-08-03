@@ -9,7 +9,6 @@ import routes from '../routes';
 // import OperationList from "./operationList/OperationList";
 // import Header from "./header/Header";
 // import ContactsPage from '../Pages/teamPage/TeamPage';
-import HomePage from '../Pages/homePage/HomePage';
 import { useDispatch } from 'react-redux';
 import { getDataOnInit } from '../redux/finance/financeOperations';
 
