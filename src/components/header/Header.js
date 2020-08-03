@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-
+import Modal from "../modal/Modal";
 import { MatchMediaHOC } from "react-match-media";
 import ReactDOM from "react-dom";
 import Exit from "./Exit";
 import ExitMobile from "./ExitMobile";
 import styles from "./style.module.css";
+
 class Header extends Component {
   state = {
+    isShowModal: false,
     users: {
       status: "success",
       user: {
@@ -34,6 +36,12 @@ class Header extends Component {
       });
     }
   }
+  closeModal = () => {
+    this.setState({ isShowModal: false });
+  };
+  openModal = () => {
+    this.setState({ isShowModal: true });
+  };
 
   render() {
     return (
@@ -60,8 +68,17 @@ class Header extends Component {
                   </span>
                 </li>
                 <li>
+                  {this.state.isShowModal && (
+                    <Modal
+                      text="Вы действительно хотите выйты?"
+                      closeModal={this.closeModal}
+                    />
+                  )}
                   <ExitMobile />
-                  <Exit name={this.state.users.user.userData.name.fullName} />
+                  <Exit
+                    open={this.openModal}
+                    name={this.state.users.user.userData.name.fullName}
+                  />
                 </li>
               </ul>
             </li>

@@ -16,7 +16,7 @@ import OperationForm from "./addOperationForm/AddOperationForm";
 const App = () => {
   return (
     <BrowserRouter>
-      {/* <Header /> */}
+      <Header />
       <Suspense fallback={<h1>Loading...</h1>}>
         <Switch>
           <Route path="/contacts" component={ContactsPage} />

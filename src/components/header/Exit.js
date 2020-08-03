@@ -9,9 +9,10 @@ const styles = {
   paddingLeft: 10,
   textDecoration: "underline",
   fontFamily: "roboto sans-serif",
+  cursor: "pointer",
 };
 
-const Exit = ({ name }) => {
+const Exit = ({ name, open }) => {
   console.log(name);
   return (
     <>
@@ -22,7 +23,9 @@ const Exit = ({ name }) => {
           </div>
         </li>
         <li>
-          <div style={styles}>Выйти</div>
+          <div style={styles} onClick={open}>
+            Выйти
+          </div>
         </li>
       </ul>
     </>
