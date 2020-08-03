@@ -13,7 +13,7 @@
   width: 124px;
   border: 0;
   margin-right: 22px;
-  font-family: "RobotoBlack";
+  font-family: 'RobotoBlack';
   font-size: 13px;
   color: #52555f;
 }
@@ -26,13 +26,13 @@
   border-top-left-radius: 16px;
   padding-left: 18px;
   font-size: 13px;
-  font-family: "RobotoRegular";
+  font-family: 'RobotoRegular';
   font-size: 13px;
 }
 
 .desctiptionInput::placeholder,
 .totalInput::placeholder {
-  color: #c7ccdc
+  color: #c7ccdc;
 }
 
 .totalInput {
@@ -45,7 +45,7 @@
   padding-left: 26px;
   padding-right: 35px;
   font-size: 13px;
-  font-family: "RobotoRegular";
+  font-family: 'RobotoRegular';
   font-size: 13px;
 }
 
@@ -53,7 +53,7 @@
   display: flex;
   justify-content: center;
   margin-top: 26px;
-  font-family: "RobotoBold";
+  font-family: 'RobotoBold';
   font-size: 11px;
 }
 
@@ -80,7 +80,7 @@
   line-height: 44px;
 }
 
-.credit{
+.credit {
   position: absolute;
   width: 140px;
   height: 40px;
@@ -90,7 +90,7 @@
   border-top-right-radius: 18px;
   top: -40px;
   left: 99px;
-  font-family: "RobotoBlack";
+  font-family: 'RobotoBlack';
   font-size: 11px;
   line-height: 40px;
 }
@@ -105,15 +105,13 @@
   border-top-right-radius: 18px;
   top: -40px;
   left: 238px;
-  font-family: "RobotoBlack";
+  font-family: 'RobotoBlack';
   font-size: 11px;
   line-height: 40px;
 }
 
-
-
 @media (max-width: 767px) {
-  .credit{
+  .credit {
     border-radius: 0;
     top: inherit;
     left: 0;
@@ -122,8 +120,8 @@
     width: 50vw;
     border-right: 1px solid #fff;
   }
-  
-  .debit{
+
+  .debit {
     border-radius: 0;
     top: inherit;
     right: 0;
@@ -151,7 +149,7 @@
     margin-bottom: 20px;
     border-radius: 6px;
     padding: 5px 10px;
-    font-family: "RobotoBlack";
+    font-family: 'RobotoBlack';
     font-size: 13px;
     color: #52555f;
   }
@@ -177,7 +175,7 @@
     padding-top: 14px;
     background-color: inherit;
     margin-bottom: 28px;
-    font-family: "RobotoRegular";
+    font-family: 'RobotoRegular';
     font-size: 13px;
   }
 
@@ -191,7 +189,7 @@
     justify-content: center;
     height: 44px;
   }
-  
+
   .totalModalInput {
     width: 114px;
     height: 44px;
@@ -200,12 +198,12 @@
     border-top-left-radius: 18px;
     border-bottom-left-radius: 18px;
     background-color: inherit;
-    font-family: "RobotoBold";
+    font-family: 'RobotoBold';
     line-height: 39px;
     font-size: 15px;
     line-height: 40px;
   }
-  
+
   .totalModalInput::placeholder {
     color: #000;
   }
@@ -226,10 +224,10 @@
     display: flex;
     justify-content: center;
     margin-top: 80px;
-    font-family: "RobotoBold";
+    font-family: 'RobotoBold';
     font-size: 11px;
   }
-  
+
   .submitModalButton {
     width: 125px;
     height: 45px;
@@ -239,7 +237,7 @@
     margin-right: 14px;
     color: #fff;
   }
-  
+
   .clearModalButton {
     width: 125px;
     height: 45px;
@@ -296,4 +294,3 @@
     top: 71px;
   }
 }
-
