@@ -1,18 +1,91 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import googleIcon from '../../ui/google-icon.png';
-import styles from './authForm.module.css';
-import { register, login, logOut } from '../../redux/auth/authOperations';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import googleIcon from "../../ui/google-icon.png";
+import styles from "./authForm.module.css";
+import { register, login, logOut } from "../../redux/auth/authOperations";
+import { useDispatch, useSelector } from "react-redux";
+import authSelectors from "../../redux/auth/authSelectors";
+import api from "../../services/api";
+import authSlice from "../../redux/auth/authSlice";
 
 const AuthForm = () => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [typeRegister, setTypeRegister] = useState(false);
 
   const dispatch = useDispatch();
+
+  const token = useSelector((state) => authSelectors.token(state));
+  const photo = useSelector((state) => authSelectors.getPhoto(state));
+  const googleUser = useSelector((state) => authSelectors.googleUser(state));
+
+  const setGoogleUser = (googleUser) => {
+    const user = {
+      userData: {
+        name: {
+          fullName: googleUser.getBasicProfile().getName(),
+          firstName: googleUser.getBasicProfile().getGivenName(),
+          lastName: googleUser.getBasicProfile().getFamilyName(),
+        },
+      },
+      photo: googleUser.getBasicProfile().getImageUrl(),
+      token: googleUser.wc.access_token,
+      googleLogin: true,
+    };
+    dispatch(authSlice.actions.loginSuccess(user));
+  };
+
+  const googleSignIn = () => {
+    const GoogleAuth = window.gapi.auth2.getAuthInstance();
+    GoogleAuth.signIn({
+      scope: "profile email",
+    }).then(
+      (user) => setGoogleUser(user),
+      () => console.log("signIn ERROR")
+    );
+  };
+
+  const signOut = (googleUser) => {
+    console.log("googleUser", googleUser);
+
+    if (googleUser) {
+      const googleSignOut = () => {
+        const GoogleAuth = window.gapi.auth2.getAuthInstance();
+        GoogleAuth.signOut({
+          scope: "profile email",
+        }).then(
+          () => console.log("signOut SUCCESS"),
+          () => console.log("signOut ERROR")
+        );
+      };
+      googleSignOut();
+      dispatch(authSlice.actions.logoutGoogleSuccess());
+    } else {
+      dispatch(logOut());
+    }
+  };
+
+  useEffect(() => {
+    window.gapi.load("auth2", function () {
+      window.gapi.auth2
+        .init({
+          // client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+          client_id: "460326880610-0ski7kotqh77ijrc6cg9t0eusr3dfict",
+        })
+        .then(
+          () => console.log("SUCCESS"),
+          () => console.log("ERROR")
+        );
+    });
+    return;
+  }, []);
+
+  useEffect(() => {
+    if (token) {
+      api.token.set(token);
+    }
+  }, []);
 
   const handleInputFirstName = (e) => {
     e.preventDefault();
@@ -69,14 +142,14 @@ const AuthForm = () => {
         <p className={styles.googleDescr}>
           Вы можете авторизироваться с помощью Google account:
         </p>
-        <Link className={styles.google} href="#">
+        <button type="button" onClick={googleSignIn} className={styles.google}>
           <img
             className={styles.googleIcon}
             src={googleIcon}
             alt="google-icon"
           />
           Google
-        </Link>
+        </button>
         <p className={styles.authDescr}>
           Или зайти в приложение с помощью имейла и пароля, сперва
           зарегистрировавшись:
@@ -133,7 +206,7 @@ const AuthForm = () => {
 
         <input
           id="password"
-          className={styles.input + ' ' + styles.inputPassword}
+          className={styles.input + " " + styles.inputPassword}
           type="password"
           placeholder="Пароль"
           name="password"
@@ -143,20 +216,27 @@ const AuthForm = () => {
 
         <div className={styles.authBtnWrapper}>
           <button className={styles.buttonLogin} type="submit">
-            {typeRegister ? 'создать' : 'войти'}
+            {typeRegister ? "создать" : "войти"}
           </button>
           <button
             className={styles.buttonRegister}
             type="button"
             onClick={handleTypeRegister}
           >
-            {typeRegister ? 'логинизация' : 'регистрация'}
+            {typeRegister ? "логинизация" : "регистрация"}
           </button>
-          {/* <button className={styles.buttonRegister} type="button" onClick={()=> dispatch(logOut())}>
-    logOut
-    </button> */}
         </div>
       </form>
+
+      <br />
+      <img src={photo} alt="img"></img>
+      <button
+        className={styles.buttonRegister}
+        type="button"
+        onClick={() => signOut(googleUser)}
+      >
+        logOut_g
+      </button>
     </div>
   );
 };
