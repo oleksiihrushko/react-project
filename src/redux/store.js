@@ -7,6 +7,7 @@ import loaderSlice from './loader/loaderSlice';
 import statisticsSlice from './statistics/statisticsSlice';
 import financeSlice from './finance/financeSlice';
 import authSlice from './auth/authSlice';
+import exchangeRatesReducer from "./exchange/exchangeRatesReducer"
 
 
 const authPersistConfig = {

@@ -15,6 +15,7 @@ import PublicRoute from '../services/PublicRoute';
 import { useDispatch } from 'react-redux';
 import { getDataOnInit } from '../redux/finance/financeOperations';
 
+import Footer from "./Footer/Footer"
 import Header from './header/Header';
 // import Modal from "../components/modal/Modal";
 // import TotalCostsSumAndIncomeSum from './totalCostsSumAndIncomeSum/TotalCostsSumAndIncomeSum';
@@ -25,7 +26,7 @@ import IncomeList from '../incomeList/IncomeList';
 import OperationForm from './addOperationForm/AddOperationForm';
 
 import StaticticsPage from '../Pages/statisticsPage/StatisticsPage';
-import Header from './header/Header';
+
 import HomePage from '../Pages/homePage/HomePage';
 const App = () => {
   // !!вставить в страницу operationsPage, только после авторизации!!
@@ -52,7 +53,7 @@ const App = () => {
               />
             );
           })}
-          <Redirect to="/login" />
+          <Redirect to="/" />
         </Switch>
       </Suspense>
       {/* <BallanceRedactor/>
