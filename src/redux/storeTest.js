@@ -8,6 +8,7 @@ const storeTest = {
       firstName: '',
       lastName: '',
     },
+
     photo: '',
     error: '',
   },
