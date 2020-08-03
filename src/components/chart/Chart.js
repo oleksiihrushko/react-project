@@ -1,6 +1,6 @@
 import React from "react";
 import BarChart from "./BarChart";
-import HorizontalChart from "./HorizontalChart";
+import HorizontalChart from "./horizontalChart";
 import { useWindowWidth } from "./hooks";
 
 const Chart = () => {
