@@ -1,0 +1,28 @@
+.titlesList {
+  display: flex;
+  font-size: 11px;
+  margin-top: 20px;
+  background-color: rgb(244, 246, 251);
+  height: 40px;
+  line-height: 40px;
+  width: 692px;
+  margin: 0 auto;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
+.titleDate {
+  padding-left: 60px;
+  padding-right: 148px;
+}
+
+.titleCategory {
+  padding-right: 88px;
+}
+
+@media (min-width: 1024px) {
+  .titlesList {
+    margin: 0;
+    /* padding-top: 20px; */
+  }
+}

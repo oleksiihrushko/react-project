@@ -1,0 +1,296 @@
+.operationForm {
+  position: relative;
+  border: 1px solid #000000;
+  width: 688px;
+  margin: 100px;
+  padding: 32px;
+}
+
+.dateInput {
+  /* width: 102px;
+  border: 0;
+  margin-right: 27px; */
+  width: 124px;
+  border: 0;
+  margin-right: 22px;
+  font-family: 'RobotoBlack';
+  font-size: 13px;
+  color: #52555f;
+}
+
+.desctiptionInput {
+  height: 45px;
+  width: 379px;
+  width: 356px;
+  border: 2px solid rgb(244, 246, 251);
+  border-top-left-radius: 16px;
+  padding-left: 18px;
+  font-size: 13px;
+  font-family: 'RobotoRegular';
+  font-size: 13px;
+}
+
+.desctiptionInput::placeholder,
+.totalInput::placeholder {
+  color: #c7ccdc;
+}
+
+.totalInput {
+  height: 45px;
+  width: 114px;
+  border: 2px solid rgb(244, 246, 251);
+  border-left: 0;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+  padding-left: 26px;
+  padding-right: 35px;
+  font-size: 13px;
+  font-family: 'RobotoRegular';
+  font-size: 13px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 26px;
+  font-family: 'RobotoBold';
+  font-size: 11px;
+}
+
+.submitButton {
+  /* font-family: "RobotoBold"; */
+  height: 44px;
+  width: 127px;
+  color: #fff;
+  background-color: #fb812d;
+  border: 0;
+  border-radius: 16px;
+  margin-right: 16px;
+  font-size: 11px;
+  line-height: 44px;
+}
+
+.clearButton {
+  height: 44px;
+  width: 124px;
+  background-color: rgb(255, 255, 255);
+  border: 2px solid rgb(244, 246, 251);
+  border-radius: 16px;
+  font-size: 11px;
+  line-height: 44px;
+}
+
+.credit {
+  position: absolute;
+  width: 140px;
+  height: 40px;
+  background-color: #fbfbfe;
+  border: 0;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  top: -40px;
+  left: 99px;
+  font-family: 'RobotoBlack';
+  font-size: 11px;
+  line-height: 40px;
+}
+
+.debit {
+  position: absolute;
+  width: 140px;
+  height: 40px;
+  background-color: #fbfbfe;
+  border: 0;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  top: -40px;
+  left: 238px;
+  font-family: 'RobotoBlack';
+  font-size: 11px;
+  line-height: 40px;
+}
+
+@media (max-width: 767px) {
+  .credit {
+    border-radius: 0;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+    background-color: #f4f6fb;
+    width: 50vw;
+    border-right: 1px solid #fff;
+  }
+
+  .debit {
+    border-radius: 0;
+    top: inherit;
+    right: 0;
+    bottom: 0;
+    background-color: #f4f6fb;
+    width: 50vw;
+    left: inherit;
+    border-left: 1px solid #fff;
+  }
+
+  .modalBackground {
+    position: absolute;
+    z-index: -100;
+    width: 100vw;
+    height: 50vh;
+    background-color: #f4f6fb;
+    border-bottom-left-radius: 116px;
+  }
+
+  .dateModalInput {
+    display: block;
+    margin: 0 auto;
+    border: 0;
+    margin-top: 46px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-family: 'RobotoBlack';
+    font-size: 13px;
+    color: #52555f;
+  }
+
+  .operationFormModal {
+    position: fixed;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background-color: gray;
+  }
+
+  .desctiptionModalInput {
+    display: block;
+    margin: 0 auto;
+    width: 278px;
+    height: 74px;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 18px;
+    border-bottom-left-radius: 0;
+    resize: none;
+    padding: 16px;
+    padding-top: 14px;
+    background-color: inherit;
+    margin-bottom: 28px;
+    font-family: 'RobotoRegular';
+    font-size: 13px;
+  }
+
+  .desctiptionModalInput::placeholder {
+    font-size: 13px;
+    line-height: 22px;
+  }
+
+  .modalTotal {
+    display: flex;
+    justify-content: center;
+    height: 44px;
+  }
+
+  .totalModalInput {
+    width: 114px;
+    height: 44px;
+    padding-left: 56px;
+    border: 2px solid #fff;
+    border-top-left-radius: 18px;
+    border-bottom-left-radius: 18px;
+    background-color: inherit;
+    font-family: 'RobotoBold';
+    line-height: 39px;
+    font-size: 15px;
+    line-height: 40px;
+  }
+
+  .totalModalInput::placeholder {
+    color: #000;
+  }
+
+  .modalCalc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 65px;
+    height: 44px;
+    border: 2px solid #fff;
+    border-left: 0;
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+  }
+
+  .modalButtons {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+    font-family: 'RobotoBold';
+    font-size: 11px;
+  }
+
+  .submitModalButton {
+    width: 125px;
+    height: 45px;
+    border: 0;
+    border-radius: 18px;
+    background-color: #ff7f31;
+    margin-right: 14px;
+    color: #fff;
+  }
+
+  .clearModalButton {
+    width: 125px;
+    height: 45px;
+    border: 0;
+    border-radius: 18px;
+    background-color: #f4f6fb;
+    color: #52555f;
+  }
+
+  .backButton {
+    position: absolute;
+    left: 20px;
+    top: 23px;
+  }
+}
+
+@media (min-width: 768px) {
+  .operationContainer {
+    position: relative;
+  }
+
+  .calculator {
+    position: absolute;
+    right: 54px;
+    top: 45px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .operationForm {
+    width: 1091px;
+  }
+
+  .desctiptionInput {
+    width: 475px;
+  }
+
+  .totalInput {
+    width: 124px;
+  }
+
+  .buttons {
+    display: inline-block;
+  }
+
+  .submitButton {
+    /* margin-left: 30px; */
+    margin-left: 13px;
+  }
+
+  .calculator {
+    position: absolute;
+    right: 327px;
+    top: 71px;
+  }
+}
