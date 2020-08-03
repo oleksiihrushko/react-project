@@ -87,7 +87,8 @@ const options = {
 const BarChart = () => {
   const [chartData, setChartData] = useState({});
 
-  const category = "products";
+  const category = "all";
+  // const category = "products";
 
   const chart = () => {
     const data = getData(category, 6, 2020);
