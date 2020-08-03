@@ -47,8 +47,6 @@ const AuthForm = () => {
   };
 
   const signOut = (googleUser) => {
-    console.log("googleUser", googleUser);
-
     if (googleUser) {
       const googleSignOut = () => {
         const GoogleAuth = window.gapi.auth2.getAuthInstance();
@@ -223,7 +221,7 @@ const AuthForm = () => {
             type="button"
             onClick={handleTypeRegister}
           >
-            {typeRegister ? "логинизация" : "регистрация"}
+            {typeRegister ? "аккаунт" : "регистрация"}
           </button>
         </div>
       </form>
