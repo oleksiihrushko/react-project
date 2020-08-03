@@ -17,14 +17,14 @@ export default [
     private: true,
     restricted: false,
   },
-  {
-    path: '/statistic',
-    label: 'Statistic',
-    exact: false,
-    component: lazy(() => import('./Pages/statisticsPage/StatisticsPage')),
-    private: true,
-    restricted: false,
-  },
+  // {
+  //   path: '/statistic',
+  //   label: 'Statistic',
+  //   exact: false,
+  //   component: lazy(() => import('./Pages/statisticsPage/StatisticsPage')),
+  //   private: true,
+  //   restricted: false,
+  // },
   {
     path: '/team',
     label: 'Team',
