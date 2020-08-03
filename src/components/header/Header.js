@@ -54,7 +54,7 @@ class Header extends Component {
                 <li>
                   <span
                     style={{
-                      fontFamily: "roboto sans-serif",
+                      fontFamily: "RobotoRegular",
                       backgroundColor: "#f4f7fa",
                       paddingBottom: 5,
                       paddingTop: 5,
