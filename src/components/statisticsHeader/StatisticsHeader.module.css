@@ -1,27 +1,17 @@
 .calendarContainer {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
-.buttonContainer {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 120px;
-  margin-bottom: 20px;
-  font-family: 'RobotoRegular';
-  font-weight: 500;
-  text-transform: uppercase;
-  opacity: 0.75;
-  color: #52555f;
-}
-
 
 .calendarWrapper {
   text-align: center;
-  margin-bottom: 36px;
+
 }
 
+
 .calendarText {
+  margin: 0;
   width: 120px;
   font-family: 'RobotoBlack';
   text-transform: uppercase;
@@ -32,35 +22,37 @@
 .button {
   border: none;
   background-color: transparent;
+  margin-right: 10px;
 }
 
-.statisticsHeader {
-  font-size: 13px;
-  padding-top: 44px;
+.statisticsHeaderWrapper {
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
+  font-size: 13px;
+  padding-top: 44px;
   margin: 0 auto;
   flex-wrap: wrap;
   background-color: #f4f6fb;
+
 }
 
 .statisticsHeaderBalance {
   display: flex;
   justify-content: center;
+  margin: 0;
   align-items: center;
   width: 150px;
   height: 43px;
   border-radius: 19px;
   border: 2px solid #ffffff;
   background-color: #f4f6fb;
-  margin-bottom: 32px;
 }
 
 .balance {
   text-align: center;
-  margin-bottom: 16px;
+  margin: 0;
   font-family: 'RobotoRegular';
   font-weight: 500;
   text-transform: uppercase;
@@ -68,18 +60,75 @@
   color: #52555f;
 }
 
+@media (max-width: 767px) {
+  .statisticsHeaderBalance {
+    margin-bottom: 36px;
+  }
+  .buttonGoBack {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 120px;
+    margin-bottom: 20px;
+    font-family: 'RobotoRegular';
+    font-weight: 500;
+    text-transform: uppercase;
+    opacity: 0.75;
+    color: #52555f;
+  }
+  .currencyBar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  .statisticsHeaderWrapper {
+    margin-bottom: 36px;
+    /* height: 220px; */
+  }
+
+  .calendarWrapper {
+    margin-bottom: 36px;
+  }
+}
+
 @media (min-width: 768px) {
-  .statisticsHeader {
+  .statisticsHeaderWrapper {
+
+    height: 160px;
+  }
+  .buttonText {
+    display: inline-block;
+    /* text-align: center; */
+    margin: 0;
+    font-family: 'RobotoRegular';
+    font-weight: 500;
+    text-transform: uppercase;
+    opacity: 0.75;
+    color: #52555f;
+  }
+  .buttonGoBack {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 140px;
+  }
+
+  .currencyBar {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 120px;
+  }
+  .statisticsHeaderWrapper {
     padding: 0 20px;
     position: relative;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
+    
   }
-  .miniContainer {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-  }
+
   .buttonContainer {
     margin-bottom: 0px;
     position: relative;
@@ -89,19 +138,30 @@
     justify-content: space-between;
     align-items: baseline;
   }
-  .balanceContainer {
+
+
+  .leftBar {
     display: flex;
-    justify-content: start;
-    align-items: baseline;
-    width: 320px;
+    align-items: center;
+    justify-content: space-around;
+    width: 40%;
   }
-  .statisticsHeaderBalance {
-    width: 150px;
+  
+  .rightBar {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 40px;
+    width: 50%;
+  }
+  .calendarWrapper {
+    justify-content: center;
+    align-items: center;
   }
 }
 
-@media (min-width: 1280px) {
-  .miniContainer {
-    width: 66%;
-  }
+@media (min-width: 1100px) {
+  
 }
+

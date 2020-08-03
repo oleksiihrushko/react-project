@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
-import OperationList from './operationList/OperationList';
+
 
 import ContactsPage from '../Pages/teamPage/TeamPage';
 // import PrivateRoute from "../services/PrivateRoute";
@@ -10,9 +10,7 @@ import ContactsPage from '../Pages/teamPage/TeamPage';
 // import TotalCostsSumAndIncomeSum from './totalCostsSumAndIncomeSum/TotalCostsSumAndIncomeSum';
 // import routes from "../routes";
 import OperationList from './operationList/OperationList';
-import Header from './header/Header';
 
-import HomePage from '../Pages/homePage/HomePage';
 import IncomeList from '../incomeList/IncomeList';
 import OperationForm from './addOperationForm/AddOperationForm';
 
