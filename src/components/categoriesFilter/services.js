@@ -2,6 +2,7 @@ import config from "./config";
 import * as base from "./responses/transactions.json";
 
 // console.log("base", base.default);
+// const data = base.default.costs;
 const data = base.default.costs;
 // console.log("data", data);
 // console.log('config.name', config.name)

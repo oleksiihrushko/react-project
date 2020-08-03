@@ -1,5 +1,6 @@
 const storeTest = {
   isLoading: false,
+  
   auth: {
     token: 'asdasdasdasd',
     name: '',

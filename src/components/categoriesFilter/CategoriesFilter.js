@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./CategoriesFilter.module.css";
 import config from "./config";
 import * as count from "./services";
+// import GoToMono from "./monoBank/GoToMono";
 
 const CategoriesFilter = () => {
   console.log("count", count.default.countCar);

@@ -18,6 +18,7 @@ import OperationForm from "./addOperationForm/AddOperationForm";
 import Chart from "../components/chart/Chart";
 import CategoriesFilter from "./categoriesFilter/CategoriesFilter";
 import BallanceRedactor from "./operationsHeader/BallanceRedactor/BallanceRedactor";
+import GoToMono from './categoriesFilter/monoBank/GoToMono';
 
 const App = () => {
   useEffect(() => {
@@ -53,9 +54,10 @@ const App = () => {
         </Switch> */}
       </Suspense>
       <BallanceRedactor/>
+      <GoToMono />
       {/* <OperationForm /> */}
       <OperationList />
-      <IncomeList />
+      {/* <IncomeList /> */}
       <CategoriesFilter/>
       <Chart />
     </BrowserRouter>
