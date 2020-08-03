@@ -5,23 +5,20 @@ import routes from "../routes";
 import PrivateRoute from "../services/PrivateRoute";
 import PublicRoute from "../services/PublicRoute";
 
-import { useDispatch } from 'react-redux';
-import { getDataOnInit } from '../redux/finance/financeOperations';
+import { useDispatch } from "react-redux";
+import { getDataOnInit } from "../redux/finance/financeOperations";
 
 // import Modal from "../components/modal/Modal";
-// import TotalCostsSumAndIncomeSum from './totalCostsSumAndIncomeSum/TotalCostsSumAndIncomeSum';
-import OperationList from './operationList/OperationList';
-import Header from './header/Header';
-import ContactsPage from '../Pages/teamPage/TeamPage';
-import HomePage from '../Pages/homePage/HomePage';
-import IncomeList from '../incomeList/IncomeList';
-import OperationForm from './addOperationForm/AddOperationForm';
+import TotalCostsSumAndIncomeSum from "./totalCostsSumAndIncomeSum/TotalCostsSumAndIncomeSum";
+import OperationList from "./operationList/OperationList";
+import Header from "./header/Header";
+import ContactsPage from "../Pages/teamPage/TeamPage";
+import HomePage from "../Pages/homePage/HomePage";
+import IncomeList from "../incomeList/IncomeList";
+import OperationForm from "./addOperationForm/AddOperationForm";
 import BallanceRedactor from "./operationsHeader/BallanceRedactor/BallanceRedactor";
 import CategoriesFilter from "./categoriesFilter/CategoriesFilter";
-import Chart from '../components/chart/Chart';
-
-
-
+import Chart from "../components/chart/Chart";
 
 import Footer from "./Footer/Footer";
 const App = () => {
@@ -52,11 +49,11 @@ const App = () => {
           <Redirect to="/login" />
         </Switch>
       </Suspense>
-      <BallanceRedactor/>
+      <BallanceRedactor />
       <OperationForm />
       <OperationList />
       <IncomeList />
-      <CategoriesFilter/>
+      <CategoriesFilter />
       <Chart />
       <Footer />
     </BrowserRouter>
