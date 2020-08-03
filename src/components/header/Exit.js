@@ -1,23 +1,23 @@
-import React from "react";
-// import { MatchMediaHOC } from "react-match-media";
+import React from 'react';
+import { MatchMediaHOC } from 'react-match-media';
 
 const styles = {
-  fontSize: "16px",
-  textAlign: "center",
-  marginLeft: "10px",
-  borderLeft: "1px solid #222",
+  fontSize: '16px',
+  textAlign: 'center',
+  marginLeft: '10px',
+  borderLeft: '1px solid #222',
   paddingLeft: 10,
-  textDecoration: "underline",
-  fontFamily: "roboto sans-serif",
+  textDecoration: 'underline',
+  fontFamily: 'roboto sans-serif',
 };
 
 const Exit = ({ name }) => {
   console.log(name);
   return (
     <>
-      <ul style={{ display: "flex", paddingLeft: 10 }}>
+      <ul style={{ display: 'flex', paddingLeft: 10 }}>
         <li>
-          <div style={{ width: "100px", fontFamily: "roboto sans-serif" }}>
+          <div style={{ width: '100px', fontFamily: 'roboto sans-serif' }}>
             {name}
           </div>
         </li>
@@ -29,4 +29,4 @@ const Exit = ({ name }) => {
   );
 };
 
-// export default MatchMediaHOC(Exit, "(min-width: 700px)");
+export default MatchMediaHOC(Exit, '(min-width: 700px)');
