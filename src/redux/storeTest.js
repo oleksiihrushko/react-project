@@ -12,7 +12,7 @@ const storeTest = {
     error: '',
   },
   operations: {
-    ballance: '',
+    balance: '',
     income: [], //[{}, {}]
     costs: [], //[{}, {}]
     categories: [], //['', '', '']

@@ -7,10 +7,12 @@ export const getDataOnInit = () => async (dispatch) => {
   const getTransactionsPromise = () => api.getTransactions();
   const getCategoriesPromise = () => api.getCategories();
   const getProductsPromise = () => api.getProducts();
+  const getBalancePromise = () => api.getBalance();
   await Promise.all([
     getTransactionsPromise(),
     getCategoriesPromise(),
     getProductsPromise(),
+    getBalancePromise(),
   ])
     .then((data) => {
       console.log('data :>> ', data);
@@ -19,6 +21,7 @@ export const getDataOnInit = () => async (dispatch) => {
         financeSlice.actions.getCategoriesSuccess(data[1].data.categories)
       );
       dispatch(financeSlice.actions.getProductsSuccess(data[2].data.products));
+      dispatch(financeSlice.actions.getBalanceSuccess(data[3].data.balance));
       dispatch(financeSlice.actions.setErrorNull());
     })
     .catch((error) => dispatch(financeSlice.actions.getDataOnInitError(error)));
