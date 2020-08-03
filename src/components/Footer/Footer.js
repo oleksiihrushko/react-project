@@ -7,7 +7,7 @@ const Footer = () => {
         <div className={s.info}>
             <p className={s.infoSpan}>
             All Rights Reserved | © 2020 | 
-            <a href="#contacts" className={s.linkInfoTeam}> development team</a>
+            <a href="/team" className={s.linkInfoTeam}> development team</a>
             </p>
         </div>
     </footer>    
