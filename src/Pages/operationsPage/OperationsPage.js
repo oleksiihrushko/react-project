@@ -1,3 +1,15 @@
-//Ballance
-//Buttons для смены типа операций
-//в зависимости от типа операций форма, список, сводка
+import React from "react";
+import OpreationsHeader from "../../components/operationsHeader/OperationsHeader";
+import AddOperationForm from "../../components/addOperationForm/AddOperationForm";
+import OperationList from "../../components/operationList/OperationList";
+const OperationsPage = () => {
+  return (
+    <div>
+      <OpreationsHeader />
+      <AddOperationForm />
+      <OperationList />
+    </div>
+  );
+};
+
+export default OperationsPage;

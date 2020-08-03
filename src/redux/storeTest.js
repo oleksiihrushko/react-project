@@ -2,8 +2,14 @@ const storeTest = {
   isLoading: false,
   
   auth: {
-    token: 'asdasdasdasd',
-    name: '',
+    token: '',
+    googleLogin: false,
+    name: {
+      fullName: '',
+      firstName: '',
+      lastName: '',
+    },
+
     photo: '',
     error: '',
   },
@@ -11,8 +17,8 @@ const storeTest = {
     ballance: '',
     income: [], //[{}, {}]
     costs: [], //[{}, {}]
-    incomeCategories: [], //['', '', '']
-    costsCategories: [], //['', '', '']
+    categories: [], //['', '', '']
+    products: [],
   },
   statistics: {
     month: '',

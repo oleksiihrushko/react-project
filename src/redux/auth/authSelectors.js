@@ -1,11 +1,15 @@
-const isAuthenticated = (state) => state.auth.token;
+const isAuthenticated = (state) => Boolean(state.auth.token);
+const token = (state) => state.auth.token;
+const googleUser = (state) => state.auth.googleLogin;
+const getPhoto = (state) => state.auth.photo;
+const getUserName = (state) => state.auth.name;
+const getError = (state) => state.auth.error;
 
-const getUserName = (state) => state.auth.user.name;
-// const getUserBallance = (state) => state.operations.ballance;
-
-export { isAuthenticated, getUserName };
-const isAuthenticated = state => state.auth.token ? true : false;
-const getUserName = state => state.auth.name;
-const getError = state => state.auth.error;
-
-export default { isAuthenticated, getUserName, getError };
+export default {
+  isAuthenticated,
+  getUserName,
+  getError,
+  token,
+  getPhoto,
+  googleUser,
+};

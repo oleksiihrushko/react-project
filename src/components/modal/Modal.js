@@ -1,6 +1,4 @@
 import React, { createRef, useEffect } from "react";
-import { connect } from "react-redux";
-import modalSlice from "../../redux/modal/modalSlice";
 import styles from "./Modal.module.css";
 
 const Modal = ({ text, onTrue, closeModal }) => {
@@ -43,8 +41,4 @@ const Modal = ({ text, onTrue, closeModal }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  closeModal: () => dispatch(modalSlice.actions.setShowModalFalse()),
-});
-
-export default connect(null, mapDispatchToProps)(Modal);
+export default Modal;

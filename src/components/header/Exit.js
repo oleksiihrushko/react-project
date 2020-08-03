@@ -1,5 +1,5 @@
 import React from "react";
-// import { MatchMediaHOC } from "react-match-media";
+import { MatchMediaHOC } from "react-match-media";
 
 const styles = {
   fontSize: "16px",
@@ -8,25 +8,28 @@ const styles = {
   borderLeft: "1px solid #222",
   paddingLeft: 10,
   textDecoration: "underline",
-  fontFamily: "roboto sans-serif",
+  fontFamily: "RobotoRegular",
+  cursor: "pointer",
 };
 
-const Exit = ({ name }) => {
+const Exit = ({ name, open }) => {
   console.log(name);
   return (
     <>
       <ul style={{ display: "flex", paddingLeft: 10 }}>
         <li>
-          <div style={{ width: "100px", fontFamily: "roboto sans-serif" }}>
+          <div style={{ width: "100px", fontFamily: "RobotoRegular" }}>
             {name}
           </div>
         </li>
         <li>
-          <div style={styles}>Выйти</div>
+          <div style={styles} onClick={open}>
+            Выйти
+          </div>
         </li>
       </ul>
     </>
   );
 };
 
-// export default MatchMediaHOC(Exit, "(min-width: 700px)");
+export default MatchMediaHOC(Exit, "(min-width: 700px)");
