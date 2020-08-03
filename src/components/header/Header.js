@@ -48,19 +48,6 @@ class Header extends Component {
     return (
       <>
         <div className={styles.container}>
-          <nav>
-            <ul>
-              <li>
-                <Link exact to="/">
-                  Home{' '}
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/statictics">Statictics</Link>
-              </li>
-            </ul>
-          </nav>
           <ul className={styles.headerUl}>
             <li>LOGO</li>
             <li>

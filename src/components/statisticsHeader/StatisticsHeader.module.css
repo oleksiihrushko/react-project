@@ -110,8 +110,9 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     width: 140px;
+    margin-right: 10px;
   }
 
   .currencyBar {
@@ -152,8 +153,8 @@
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
-    margin-right: 40px;
-    width: 50%;
+    
+    width: 55%;
   }
   .calendarWrapper {
     justify-content: center;
