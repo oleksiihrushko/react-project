@@ -1,0 +1,168 @@
+.calendarContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendarWrapper {
+  text-align: center;
+
+}
+
+
+.calendarText {
+  margin: 0;
+  width: 120px;
+  font-family: 'RobotoBlack';
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.52px;
+}
+
+.button {
+  border: none;
+  background-color: transparent;
+  margin-right: 10px;
+}
+
+.statisticsHeaderWrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 13px;
+  padding-top: 44px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  background-color: #f4f6fb;
+
+}
+
+.statisticsHeaderBalance {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  align-items: center;
+  width: 150px;
+  height: 43px;
+  border-radius: 19px;
+  border: 2px solid #ffffff;
+  background-color: #f4f6fb;
+}
+
+.balance {
+  text-align: center;
+  margin: 0;
+  font-family: 'RobotoRegular';
+  font-weight: 500;
+  text-transform: uppercase;
+  opacity: 0.75;
+  color: #52555f;
+}
+
+@media (max-width: 767px) {
+  .statisticsHeaderBalance {
+    margin-bottom: 36px;
+  }
+  .buttonGoBack {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 120px;
+    margin-bottom: 20px;
+    font-family: 'RobotoRegular';
+    font-weight: 500;
+    text-transform: uppercase;
+    opacity: 0.75;
+    color: #52555f;
+  }
+  .currencyBar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  .statisticsHeaderWrapper {
+    margin-bottom: 36px;
+    /* height: 220px; */
+  }
+
+  .calendarWrapper {
+    margin-bottom: 36px;
+  }
+}
+
+@media (min-width: 768px) {
+  .statisticsHeaderWrapper {
+
+    height: 160px;
+  }
+  .buttonText {
+    display: inline-block;
+    /* text-align: center; */
+    margin: 0;
+    font-family: 'RobotoRegular';
+    font-weight: 500;
+    text-transform: uppercase;
+    opacity: 0.75;
+    color: #52555f;
+  }
+  .buttonGoBack {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 140px;
+    margin-right: 10px;
+  }
+
+  .currencyBar {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 120px;
+  }
+  .statisticsHeaderWrapper {
+    padding: 0 20px;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    
+  }
+
+  .buttonContainer {
+    margin-bottom: 0px;
+    position: relative;
+    top: 15px;
+    left: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+
+  .leftBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 40%;
+  }
+  
+  .rightBar {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    
+    width: 55%;
+  }
+  .calendarWrapper {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (min-width: 1100px) {
+  
+}
+

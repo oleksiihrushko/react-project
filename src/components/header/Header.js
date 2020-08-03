@@ -5,32 +5,33 @@ import ReactDOM from "react-dom";
 // import Exit from "./Exit";
 import ExitMobile from "./ExitMobile";
 import styles from "./style.module.css";
+import {Link} from "react-router-dom"
 
 class Header extends Component {
   state = {
     isShowModal: false,
     users: {
-      status: "success",
+      status: 'success',
       user: {
         userData: {
           name: {
-            fullName: "Petia Pupkin",
-            firstName: "Petia",
-            lastName: "Pupkin",
+            fullName: 'Petia Pupkin',
+            firstName: 'Petia',
+            lastName: 'Pupkin',
           },
-          email: "user@example.com",
-          photo: "",
+          email: 'user@example.com',
+          photo: '',
           userNew: true,
         },
         token:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZDNhMTM4NmIxZTg1NTdjZjIzNjY3ODEiLCJpYXQiOjE1NjQwODcxNzV9.jSdzHuBSf4yKS6t7zwt0AoQIchHlz73JDOjfHVdbTBk",
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZDNhMTM4NmIxZTg1NTdjZjIzNjY3ODEiLCJpYXQiOjE1NjQwODcxNzV9.jSdzHuBSf4yKS6t7zwt0AoQIchHlz73JDOjfHVdbTBk',
       },
     },
-    firstLetter: "",
+    firstLetter: '',
   };
 
   componentDidMount() {
-    if (this.state.users.user.userData.photo === "") {
+    if (this.state.users.user.userData.photo === '') {
       this.setState({
         firstLetter: this.state.users.user.userData.name.firstName.substr(0, 1),
       });
@@ -60,7 +61,7 @@ class Header extends Component {
                       paddingTop: 5,
                       paddingLeft: 10,
                       paddingRight: 10,
-                      borderRadius: "50%",
+                      borderRadius: '50%',
                       fontSize: 14,
                     }}
                   >

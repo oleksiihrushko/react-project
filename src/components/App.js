@@ -15,9 +15,11 @@ import PublicRoute from '../services/PublicRoute';
 import { useDispatch } from 'react-redux';
 import { getDataOnInit } from '../redux/finance/financeOperations';
 
+import Footer from "./Footer/Footer"
 import Header from './header/Header';
 // import Modal from "../components/modal/Modal";
 // import TotalCostsSumAndIncomeSum from './totalCostsSumAndIncomeSum/TotalCostsSumAndIncomeSum';
+
 // import OperationList from './operationList/OperationList';
 // import ContactsPage from '../Pages/teamPage/TeamPage';
 // import HomePage from '../Pages/homePage/HomePage';
@@ -29,6 +31,12 @@ import BallanceRedactor from "./operationsHeader/BallanceRedactor/BallanceRedact
 import Footer from './Footer/Footer';
 import GoToMono from './categoriesFilter/monoBank/GoToMono';
 
+import IncomeList from '../incomeList/IncomeList';
+import OperationForm from './addOperationForm/AddOperationForm';
+
+import StaticticsPage from '../Pages/statisticsPage/StatisticsPage';
+
+import HomePage from '../Pages/homePage/HomePage';
 const App = () => {
   // !!вставить в страницу operationsPage, только после авторизации!!
   const dispatch = useDispatch();
