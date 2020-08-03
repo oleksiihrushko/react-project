@@ -15,7 +15,6 @@ import PublicRoute from '../services/PublicRoute';
 import { useDispatch } from 'react-redux';
 import { getDataOnInit } from '../redux/finance/financeOperations';
 
-import Footer from "./Footer/Footer"
 import Header from './header/Header';
 // import Modal from "../components/modal/Modal";
 // import TotalCostsSumAndIncomeSum from './totalCostsSumAndIncomeSum/TotalCostsSumAndIncomeSum';
