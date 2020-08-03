@@ -12,8 +12,8 @@ import routes from '../routes';
 import PrivateRoute from '../services/PrivateRoute';
 import PublicRoute from '../services/PublicRoute';
 
-import { useDispatch } from 'react-redux';
-import { getDataOnInit } from '../redux/finance/financeOperations';
+import { useDispatch } from "react-redux";
+import { getDataOnInit } from "../redux/finance/financeOperations";
 
 import Footer from "./Footer/Footer"
 import Header from './header/Header';

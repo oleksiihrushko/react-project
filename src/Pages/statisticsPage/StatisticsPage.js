@@ -7,7 +7,7 @@ import Chart from '../../components/chart/Chart';
 
 const StatistcsPage = () => {
     return (
-      <>
+        <>
         <StatistcsHeader />
         <TotalCostsSumAndIncomeSum />
         <CategoriesFilter />
@@ -15,4 +15,4 @@ const StatistcsPage = () => {
         </>
     )
 }
-export default StatistcsPage();
+export default StatistcsPage;
