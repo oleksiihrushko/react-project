@@ -1,7 +1,11 @@
 import React, { createRef, useEffect } from 'react';
-import styles from './Modal.module.css';
+import styles from './ModalExchangeRates.module.css';
+import ExchangeRates from '../exchangeRates/ExchangeRates';
 
-const Modal = ({ text, onTrue, closeModal }) => {
+
+
+
+const ModalExchangeRates = ({ closeModal }) => {
   const handleKeydown = e => {
     if (e.code === 'Escape') {
       closeModal();
@@ -9,36 +13,45 @@ const Modal = ({ text, onTrue, closeModal }) => {
   };
 
   const handleClickModal = e => {
+    console.log(e.target);
     if (e.target === modalRef.current || e.target.nodeName === 'BUTTON') {
       closeModal();
     }
   };
 
+  const modalRef = createRef();
+
   useEffect(() => {
     window.addEventListener('keydown', handleKeydown);
+    // modalRef.current.addEventListener('click', handleClickModal);
     modalRef.current.addEventListener('click', handleClickModal);
 
     return () => {
       window.removeEventListener('keydown', handleKeydown);
-      modalRef.current.removeEventListener('click', handleClickModal);
+      //! не снят слушатель с окна 
+    //   modalRef.current.removeEventListener('click', handleClickModal);
     };
   }, []);
-
-  const modalRef = createRef();
 
   return (
     <div ref={modalRef} className={styles.overlay}>
       <div className={styles.modalWindow}>
-        <p className={styles.modalDescription}>{text}</p>
+        <ExchangeRates />
         <div className="borderBtn">
-          <button className={styles.btnModal} type="button" onClick={onTrue}>
-            ДA
+          <button
+            className={styles.btnModal}
+            type="button"
+            onClick={closeModal}
+          >
+            X
           </button>
-          <button className={styles.btnModal}>НET</button>
         </div>
       </div>
     </div>
   );
 };
 
-export default Modal;
+export default ModalExchangeRates;
+
+
+

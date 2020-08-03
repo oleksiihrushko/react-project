@@ -7,6 +7,7 @@ import exchangeRatesActions from '../../redux/exchange/exchangeRatesActions';
 import moment from 'moment';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
+import styles from "./ExchangeRates.module.css"
 
 class ExchangeRates extends Component {
   state = {
@@ -29,7 +30,7 @@ class ExchangeRates extends Component {
 
     return (
       <>
-        <div className={`container`}>
+        <div className={`${styles.ExchangeRatesWrapper} container`}>
           <h6>курс валют на: {date && moment(date).format('L')}</h6>
           <Table responsive striped bordered hover variant="light">
             <caption className="text-danger">

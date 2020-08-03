@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import 'moment/locale/ru';
+import ModalExchangeRates from '../modal/ModalExchangeRates';
 
 import { ReactComponent as ArrowBack } from './arrowBack/back.svg';
 import { ReactComponent as PrevMonth } from './arrowBack/leftArrow.svg';
@@ -19,6 +20,7 @@ import Media from 'react-media';
 class StatisticsHeader extends Component {
   state = {
     date: '',
+    isShowModal: false,
   };
 
   componentDidMount() {
@@ -44,9 +46,17 @@ class StatisticsHeader extends Component {
     }
   };
 
+  closeModal = () => {
+    this.setState({ isShowModal: false });
+  };
+
+  openModal = () => {
+    this.setState({ isShowModal: true });
+  };
+
   render() {
-    const { exchangeCurrency } = this.props;
-    console.log(exchangeCurrency);
+    // const { exchangeCurrency } = this.props;
+    // console.log(exchangeCurrency);
     const { date } = this.state;
     return (
       <div className={`${styles.statisticsHeaderWrapper} container`}>
@@ -65,11 +75,30 @@ class StatisticsHeader extends Component {
               }
             </Media>
           </div>
+
           <div className={styles.currencyBar}>
             <CurrencyBar />
             <Media query="(min-width: 768px)">
               {matches =>
                 matches ? <p className={styles.buttonText}>Валюта</p> : <p></p>
+              }
+            </Media>
+          </div>
+
+          <div className={styles.exchangeRates}>
+            {this.state.isShowModal && (
+              <ModalExchangeRates closeModal={this.closeModal} />
+            )}
+            <button
+              className={styles.button}
+              type="button"
+              onClick={this.openModal}
+            >
+              <Exchange />
+            </button>
+            <Media query="(min-width: 768px)">
+              {matches =>
+                matches ? <p className={styles.buttonText}>Курс</p> : <p></p>
               }
             </Media>
           </div>
@@ -108,6 +137,7 @@ class StatisticsHeader extends Component {
               </button>
             </div>
           </div>
+
           <div>
             <div>
               <p className={styles.balance}>
