@@ -29,7 +29,7 @@
   margin-bottom: 50px;
 }
 
-li:not(:nth-child(3n)) {
+.li:not(:nth-child(3n)) {
   margin-right: 20px;
 }
 

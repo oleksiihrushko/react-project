@@ -29,7 +29,7 @@ export const getUserTransactions = () =>
   axios
     .get(`/personal/statement/0/${dateFrom}/`, config)
     // .then((response) => console.log("object", response.data))
-    .then((response) => console.log("object", response))
+    .then((response) => console.log("object", response.data))
     .catch((error) => {
       console.log(error);
     });

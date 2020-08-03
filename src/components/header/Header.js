@@ -75,10 +75,10 @@ class Header extends Component {
                     />
                   )}
                   <ExitMobile />
-                  <Exit
+                  {/* <Exit
                     open={this.openModal}
                     name={this.state.users.user.userData.name.fullName}
-                  />
+                  /> */}
                 </li>
               </ul>
             </li>
