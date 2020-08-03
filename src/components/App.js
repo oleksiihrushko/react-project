@@ -15,6 +15,8 @@ import HomePage from "../Pages/homePage/HomePage";
 import IncomeList from "../incomeList/IncomeList";
 import OperationForm from "./addOperationForm/AddOperationForm";
 import Chart from "../components/chart/Chart";
+import CategoriesFilter from "./categoriesFilter/CategoriesFilter";
+import BallanceRedactor from "./operationsHeader/BallanceRedactor/BallanceRedactor";
 
 import Footer from "./Footer/Footer";
 const App = () => {
@@ -46,9 +48,11 @@ const App = () => {
           <Redirect to="/login" />
         </Switch>
       </Suspense>
+      <BallanceRedactor/>
       <OperationForm />
       <OperationList />
       <IncomeList />
+      <CategoriesFilter/>
       <Chart />
       <Footer />
     </BrowserRouter>
