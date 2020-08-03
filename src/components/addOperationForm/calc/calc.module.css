@@ -1,0 +1,284 @@
+@media (max-width: 767px) {
+  .container {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+  }
+
+  .result {
+    height: 20vh;
+    line-height: 20vh;
+    padding: 0 20px;
+    font-size: 48px;
+  }
+
+  .closeCalc {
+    display: block;
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    font-size: 58px;
+    color: rgb(194, 0, 0);
+  }
+
+  .clear,
+  .apply,
+  .split,
+  .seven,
+  .eight,
+  .nine,
+  .multiply,
+  .four,
+  .five,
+  .six,
+  .minus,
+  .one,
+  .two,
+  .three,
+  .plus,
+  .zero,
+  .dot,
+  .outcome {
+    height: 16vh;
+    line-height: 16vh;
+    font-size: 32px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 150px;
+    height: 200px;
+    position: absolute;
+    top: 69px;
+    right: 80px;
+    z-index: 10;
+    box-shadow: 0px 0px 15px -4px rgba(0,0,0,0.75);
+  }
+  
+  .clear,
+  .apply,
+  .split,
+  .seven,
+  .eight,
+  .nine,
+  .multiply,
+  .four,
+  .five,
+  .six,
+  .minus,
+  .one,
+  .two,
+  .three,
+  .plus,
+  .zero,
+  .dot,
+  .outcome {
+    height: 32px;
+    line-height: 32px;
+  }
+
+  .result {
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    font-size: 21px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    width: 220px;
+    height: 300px;
+    position: absolute;
+    top: 95px;
+    right: 351px;
+    z-index: 10;
+  }
+
+  .result {
+    height: 58px;
+    line-height: 58px;
+    font-size: 31px;
+  }
+
+  .clear,
+  .apply,
+  .split,
+  .seven,
+  .eight,
+  .nine,
+  .multiply,
+  .four,
+  .five,
+  .six,
+  .minus,
+  .one,
+  .two,
+  .three,
+  .plus,
+  .zero,
+  .dot,
+  .outcome {
+    height: 48.5px;
+    line-height: 48.5px;
+    font-size: 20px;
+  }
+}
+
+.result {
+  width: 100%;
+  background-color: #1c191c;
+  color: #fff;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  overflow: hidden;
+}
+
+.keys {
+  height: 80%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.clear,
+.apply,
+.split,
+.seven,
+.eight,
+.nine,
+.multiply,
+.four,
+.five,
+.six,
+.minus,
+.one,
+.two,
+.three,
+.plus,
+.zero,
+.dot,
+.outcome {
+  width: 25%;
+  background-color: rgba(158, 0, 0, 0.849);
+  color: #000;
+  text-align: center;
+  font-family: "Roboto";
+  font-weight: 100;
+}
+
+.clear {
+  background-color: #c5c3cc;
+  border: 1px solid #666666;
+  border-left: 1px solid #c5c3cc;
+}
+
+.apply {
+  width: 50%;
+  border: 1px solid #666666;
+  border-left: none;
+  background-color: #ee6934;
+}
+
+.one,
+.two,
+.three,
+.four,
+.five,
+.six,
+.seven,
+.eight,
+.nine,
+.zero,
+.dot {
+  background-color: #e0e0e7;
+}
+
+.split,
+.multiply,
+.minus,
+.plus,
+.outcome
+ {
+  background-color: #fb9717;
+}
+
+.split {
+  border: 1px  solid #666666;
+  border-right: none;
+  border-left: none;
+}
+
+.seven {
+  border-right: 1px solid #666666;
+  border-bottom: 1px solid #666666; 
+  border-left: 1px solid #e0e0e7;
+}
+
+.eight {
+  border-right: 1px solid #666666;
+  border-bottom: 1px solid #666666; 
+}
+
+.nine {
+  border-right: 1px solid #666666;
+  border-bottom: 1px solid #666666; 
+}
+
+.multiply {
+  border-bottom: 1px solid #666666; 
+}
+
+.four {
+  border-right: 1px solid #666666;
+  border-bottom: 1px solid #666666; 
+  border-left: 1px solid #e0e0e7;
+}
+
+.five {
+  border-right: 1px solid #666666;
+  border-bottom: 1px solid #666666; 
+}
+
+.six {
+  border-right: 1px solid #666666;
+  border-bottom: 1px solid #666666; 
+}
+
+.minus {
+  border-bottom: 1px solid #666666; 
+}
+
+.one {
+  border-right: 1px solid #666666;
+  border-bottom: 1px solid #666666; 
+  border-left: 1px solid #e0e0e7;
+}
+
+.two {
+  border-right: 1px solid #666666;
+  border-bottom: 1px solid #666666; 
+}
+
+.three {
+  border-right: 1px solid #666666;
+  border-bottom: 1px solid #666666; 
+}
+
+.plus {
+  border-bottom: 1px solid #666666; 
+}
+
+.zero {
+  border-right: 1px solid #666666;
+  width: 50%;
+}
+
+.dot {
+  border-right: 1px solid #666666;
+}
+
+.outcome {
+  border-bottom-right-radius: 3px;
+}
