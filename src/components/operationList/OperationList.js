@@ -10,7 +10,7 @@ const testOperation = [
     date: "21.07.2020",
     category: "Transport",
     price: 8,
-    operation: "Metro",
+    operation: "Metroззззззззззззззззззззiiiiiiiiiiiiiiiii",
   },
 
   {
@@ -31,6 +31,7 @@ const testOperation = [
 ];
 
 const OperationList = ({ deleteOperation }) => {
+  
   return (
     <>
       <ul className={styles.operationList}>
