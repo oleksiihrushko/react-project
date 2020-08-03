@@ -1,6 +1,5 @@
 import { lazy } from 'react';
 
-// };
 export default [
   {
     path: '/',
@@ -14,7 +13,7 @@ export default [
     path: '/operations',
     label: 'Operations',
     exact: false,
-    // component: lazy(() => import('./Pages/Operations')),
+    component: lazy(() => import('./Pages/operationsPage/OperationsPage')),
     private: true,
     restricted: false,
   },
@@ -22,7 +21,7 @@ export default [
     path: '/statistic',
     label: 'Statistic',
     exact: false,
-    // component: lazy(() => import('./Pages/Statistic')),
+    component: lazy(() => import('./Pages/statisticsPage/StatisticsPage')),
     private: true,
     restricted: false,
   },
