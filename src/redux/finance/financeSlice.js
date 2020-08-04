@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import financeSelectors from './financeSelectors';
 
 const initialState = {
-  ballance: '',
+  balance: '',
   income: [],
   costs: [],
   categories: [],
