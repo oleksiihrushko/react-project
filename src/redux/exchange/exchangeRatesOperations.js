@@ -4,7 +4,7 @@ import axios from 'axios';
 const privat = 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5';
 
 const fetchCurrentExchangeRates = () => dispatch => {
-  console.log('fetch');
+
   dispatch(exchangeRatesActions.fetchExhcangeRatesRequest());
 
   axios
