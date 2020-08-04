@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense } from "react";
 import {
   BrowserRouter,
   Switch,
@@ -6,21 +6,21 @@ import {
   // Route,
   // Link,
   // NavLink,
-} from 'react-router-dom';
-import routes from '../routes';
-import PrivateRoute from '../services/PrivateRoute';
-import PublicRoute from '../services/PublicRoute';
-import Header from './header/Header';
-import Footer from './Footer/Footer';
+} from "react-router-dom";
+import routes from "../routes";
+import PrivateRoute from "../services/PrivateRoute";
+import PublicRoute from "../services/PublicRoute";
+import Header from "./header/Header";
+import Footer from "./Footer/Footer";
 
 const App = () => {
   return (
     <BrowserRouter>
-      {/* <Header />
+      {/* <Header /> */}
       <Suspense fallback={<h1>Loading...</h1>}>
         {/* <TotalCostsSumAndIncomeSum /> */}
         <Switch>
-          {routes.map(route => {
+          {routes.map((route) => {
             return route.private ? (
               <PrivateRoute key={route.label} {...route} />
             ) : (
@@ -34,13 +34,6 @@ const App = () => {
           <Redirect to="/" />
         </Switch>
       </Suspense>
-<<<<<<< HEAD
-      <OperationForm />
-      <OperationList />
-      <IncomeList /> */}
-      <Chart />
-=======
->>>>>>> dev
       <Footer />
     </BrowserRouter>
   );

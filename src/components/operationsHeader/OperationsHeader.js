@@ -5,7 +5,7 @@ import BallanceRedactor from "./BallanceRedactor/BallanceRedactor";
 const OperationsHeader = () => {
   return (
     <>
-      <BallanceRedactor/>
+      <BallanceRedactor />
     </>
   );
 };
