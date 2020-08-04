@@ -59,7 +59,7 @@ const BallanceRedactor = () => {
       className={`${styles.flex} ${styles.wrapper}  ${styles.secPad}  container`}
     >
       <GoToStatsButton />
-      {/* <div className={`${styles.flex} ${styles.div} `}> */}
+      <div className={`${styles.flex} ${styles.div} `}>
       <p className={`${styles.bal_text}  `}>Баланс:</p>
       <div className={`${styles.flex} ${styles.ballanceWrap}`}>
         {isEditing ? (
@@ -88,7 +88,7 @@ const BallanceRedactor = () => {
           </div>
         )}
       </div>
-      {/* </div> */}
+      </div>
     </section>
   );
 };
