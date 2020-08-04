@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import exchangeRatesSelectors from '../../redux/exchange/exchangeRatesSelectors';
 import exchangeRatesActions from '../../redux/exchange/exchangeRatesActions';
+import Media from 'react-media';
 
 import styles from './CurrencyBar.module.css';
 
@@ -46,8 +47,15 @@ class currencyBar extends Component {
   render() {
     return (
       <>
-        <div className={styles.currencyButton} onClick={this.handleClickOpen}>
+        <div className={styles.currencyBar} onClick={this.handleClickOpen}>
+          <div className={styles.currencyButton}>
           <Currency />
+          </div>
+          <Media query="(min-width: 768px)">
+              {matches =>
+                matches ? <p className={styles.buttonText} >Валюта</p> : <p></p>
+              }
+            </Media>
 
           {this.state.open && (
             <ul className={styles.popover}>

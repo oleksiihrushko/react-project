@@ -36,6 +36,7 @@ const ModalExchangeRates = ({ closeModal }) => {
   return (
     <div ref={modalRef} className={styles.overlay}>
       <div className={styles.modalWindow}>
+
         <ExchangeRates />
         <div className="borderBtn">
           <button

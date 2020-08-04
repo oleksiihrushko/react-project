@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import 'moment/locale/ru';
 import ModalExchangeRates from '../modal/ModalExchangeRates';
+import { useSelector } from 'react-redux';
 
 import { ReactComponent as ArrowBack } from './arrowBack/back.svg';
 import { ReactComponent as PrevMonth } from './arrowBack/leftArrow.svg';
@@ -11,7 +12,7 @@ import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import exchangeRatesSelectors from '../../redux/exchange/exchangeRatesSelectors';
-import exchangeRatesActions from '../../redux/exchange/exchangeRatesActions';
+import financeSelectors from "../../redux/finance/financeSelectors"
 import CurrencyBar from '../currencyBar/CurrencyBar';
 
 import styles from './StatisticsHeader.module.css';
@@ -29,6 +30,7 @@ class StatisticsHeader extends Component {
       date: currentTime,
       //   currentDate: currentTime,
     });
+    const balance = useSelector;
   }
 
   handleChangeMonth = ({ target }) => {
@@ -55,8 +57,8 @@ class StatisticsHeader extends Component {
   };
 
   render() {
-    // const { exchangeCurrency } = this.props;
-    // console.log(exchangeCurrency);
+    const { exchangeCurrency, balance } = this.props;
+    console.log(balance);
     const { date } = this.state;
     return (
       <div className={`${styles.statisticsHeaderWrapper} container`}>
@@ -64,43 +66,40 @@ class StatisticsHeader extends Component {
           <div className={styles.buttonGoBack}>
             <Link to="/">
               <ArrowBack />
+              <Media query="(min-width: 768px)">
+                {matches =>
+                  matches ? (
+                    <p className={styles.buttonText}>На главную</p>
+                  ) : (
+                    <p></p>
+                  )
+                }
+              </Media>
             </Link>
-            <Media query="(min-width: 768px)">
-              {matches =>
-                matches ? (
-                  <p className={styles.buttonText}>На главную</p>
-                ) : (
-                  <p></p>
-                )
-              }
-            </Media>
           </div>
 
           <div className={styles.currencyBar}>
             <CurrencyBar />
-            <Media query="(min-width: 768px)">
-              {matches =>
-                matches ? <p className={styles.buttonText}>Валюта</p> : <p></p>
-              }
-            </Media>
           </div>
 
           <div className={styles.exchangeRates}>
             {this.state.isShowModal && (
               <ModalExchangeRates closeModal={this.closeModal} />
             )}
-            <button
-              className={styles.button}
-              type="button"
-              onClick={this.openModal}
-            >
-              <Exchange />
-            </button>
-            <Media query="(min-width: 768px)">
-              {matches =>
-                matches ? <p className={styles.buttonText}>Курс</p> : <p></p>
-              }
-            </Media>
+            <label>
+              <button
+                className={styles.button}
+                type="button"
+                onClick={this.openModal}
+              >
+                <Exchange />
+              </button>
+              <Media query="(min-width: 768px)">
+                {matches =>
+                  matches ? <p className={styles.buttonText}>Курс</p> : <p></p>
+                }
+              </Media>
+            </label>
           </div>
         </div>
         <div className={styles.rightBar}>
@@ -157,62 +156,12 @@ class StatisticsHeader extends Component {
 const mapStateToProps = state => {
   return {
     exchangeCurrency: exchangeRatesSelectors.getCurrentCurrency(state),
-  };
+    balance: financeSelectors.getBalance(state),
+  }
 };
 
-const mapDispatchToProps = dispatch => ({
-  onShowUSA: () => dispatch(exchangeRatesActions.currentCurrencyUSA()),
-  onShowUAH: () => dispatch(exchangeRatesActions.currentCurrencyUAH()),
-  onShowEUR: () => dispatch(exchangeRatesActions.currentCurrencyEUR()),
-  onShowBTC: () => dispatch(exchangeRatesActions.currentCurrencyBTC()),
-});
+// const mapDispatchToProps = dispatch => ({
+//   onShowBalance: () => dispatch(financeOperations.getBalance()),
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(StatisticsHeader);
-
-{
-  /* <div className={styles.buttonContainer}>
-          <button
-            className={styles.button}
-            type="button"
-            onClick={this.handleGoBack}
-          >
-            <ArrowBack />
-          </button>
-          <Media query="(min-width: 768px)">
-            {matches => (matches ? <p>На главную</p> : <p></p>)}
-          </Media>
-        </div> */
-}
-
-{
-  /* <div className={styles.buttonContainer}>
-
-              <CurrencyBar /> */
-}
-
-{
-  /* <Media query="(min-width: 768px) and (max-width: 1100px)">
-              {matches => (matches ? <p>Курс валют</p> : <p></p>)}
-            </Media> */
-}
-{
-  /* <Media query="(max-width: 1100px)">
-              <button className={styles.button} type="button">
-                <Exchange />
-              </button>
-            </Media> */
-}
-{
-  /* </div> */
-}
-
-{
-  /* <div className={styles.balanceContainer}>
-            <p className={styles.balance}>
-              Баланс на <span>{date && moment(date).format('L')}:</span>
-            </p>
-            <div className={styles.statisticsHeaderBalance}>
-              <span className={styles.statisticsSpan}>1111 UAH</span>
-            </div>
-          </div> */
-}
+export default connect(mapStateToProps)(StatisticsHeader);

@@ -98,8 +98,14 @@
 
 @media (min-width: 768px) {
   .statisticsHeaderWrapper {
-
     height: 160px;
+  }
+
+  .exchangeRates:hover {
+    background-color: rgba(82, 85, 95, 0.5);
+  }
+  .exchangeRates {
+    cursor: pointer;
   }
   .buttonText {
     display: inline-block;
@@ -110,7 +116,9 @@
     text-transform: uppercase;
     opacity: 0.75;
     color: #52555f;
+    cursor: pointer;
   }
+
   .buttonGoBack {
     display: flex;
     flex-wrap: nowrap;
@@ -118,6 +126,11 @@
     align-items: center;
     /* width: 140px; */
     margin-right: 10px;
+  }
+
+
+  .buttonGoBack:hover {
+    background-color: rgba(82, 85, 95, 0.5);
   }
 
   .currencyBar {
