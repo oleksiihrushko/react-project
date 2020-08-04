@@ -10,7 +10,6 @@ const Header = () => {
       <div className={styles.container}>
         <ul className={styles.headerUl}>
           <li>LOGO</li>
-<<<<<<< HEAD
           <li>
             {state.auth.token && (
               <ul className={styles.headerUlUl}>
@@ -37,9 +36,6 @@ const Header = () => {
               </ul>
             )}
           </li>
-=======
-          <li>{state.auth.token && <UserMenu />}</li>
->>>>>>> 8faca2ded02bc4ec6db9d79f55f2aa42fb061f99
         </ul>
       </div>
     </>
