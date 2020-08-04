@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 // import StatistcsHeader from '../../components/statisticsHeader';
 import TotalCostsSumAndIncomeSum from '../../components/totalCostsSumAndIncomeSum/TotalCostsSumAndIncomeSum';
 import CategoriesFilter from '../../components/categoriesFilter/CategoriesFilter';
@@ -6,12 +6,13 @@ import Chart from '../../components/chart/Chart';
 
 
 const StatistcsPage = () => {
+    const [currentCategory, setCurrentCategory] = useState('All');
     return (
         <>
         {/* <StatistcsHeader /> */}
         <TotalCostsSumAndIncomeSum />
-        <CategoriesFilter />
-        <Chart />
+        <CategoriesFilter currentCategory={currentCategory} setCurrentCategory={setCurrentCategory}/>
+        <Chart currentCategory={currentCategory}/>
         </>
     )
 }
