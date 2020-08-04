@@ -10,6 +10,7 @@ function TotalCostsSumAndIncomeSum() {
   const income = useSelector(state => state.operations.income);
   const month = useSelector(state => state.statistics.month);
   console.log(month);
+<<<<<<< HEAD
   // const {
   //   date,
   //   selectedCategory,
@@ -53,6 +54,51 @@ function TotalCostsSumAndIncomeSum() {
   //         id: category.name,
   //       }));
   //     }
+=======
+  const {
+    date,
+    selectedCategory,
+    categoriesList,
+  } = this.state;
+  let chartData = null;
+  let categoryList = [];
+  let costsSum = 0;
+  if (costs && costs.length > 0) {
+    costsSum = costs
+        .filter(
+          item =>
+            moment(item.date).format('MMMM YYYY') ===
+            moment(date).format('MMMM YYYY'),
+        )
+        .reduce((acc, el) => acc + el.amount, 0);
+    }
+    
+    let incomeSum = 0;
+    if (income && income.length > 0) {
+      incomeSum = income
+      .filter(
+        item =>
+        moment(item.date).format('MMMM YYYY') ===
+        moment(date).format('MMMM YYYY'),
+        )
+        .reduce((acc, el) => acc + el.amount, 0);
+      }
+      
+      if (costs && costs.length > 0) {
+        categoryList = this.costs;
+        if (selectedCategory === '') {
+          chartData = this.categoryList;
+        } else {
+          chartData = this.costs;
+        }
+      } else if (categoriesList && categoriesList.length > 0) {
+        categoryList = categoriesList.map(category => ({
+          category: category.name,
+          amount: 0,
+          id: category.name,
+        }));
+      }
+>>>>>>> 7dbcfff2fe7c30d0838972590f41da6fd788ec0f
       
       return (
         <div className={"container"}>
