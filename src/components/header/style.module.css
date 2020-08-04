@@ -1,10 +1,10 @@
 body {
   margin: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
@@ -92,7 +92,7 @@ button:focus {
 
 .headerUl {
   padding: 0;
-  font-family: "RobotoRegular";
+  font-family: 'RobotoRegular';
   display: flex;
   height: 40px;
   align-items: center;
@@ -101,6 +101,6 @@ button:focus {
 }
 .headerUlUl {
   display: flex;
-  width: 60px;
+  /* width: 60px; */
   justify-content: space-between;
 }
