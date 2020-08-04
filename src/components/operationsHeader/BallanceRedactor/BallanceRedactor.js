@@ -38,7 +38,7 @@ const BallanceRedactor = () => {
   };
 
   // if (income.length !== 0 && costs.length !== 0 && balance !== 0) {
-  //   isFirstTransaction = false;
+  //   setisFirstTransaction(false);
   // }
 
   const handleSubmit = (event) => {
