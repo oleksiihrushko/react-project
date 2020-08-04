@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 import { connect } from 'react-redux';
 import exchangeRatesOperations from '../../redux/exchange/exchangeRatesOperations';
 import exchangeRatesSelectors from '../../redux/exchange/exchangeRatesSelectors';
@@ -7,6 +8,7 @@ import exchangeRatesActions from '../../redux/exchange/exchangeRatesActions';
 import moment from 'moment';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
+import styles from "./ExchangeRates.module.css"
 
 class ExchangeRates extends Component {
   state = {
@@ -14,7 +16,6 @@ class ExchangeRates extends Component {
   };
 
   componentDidMount() {
-    this.props.onFetchEchangeRates();
     const currentTime = moment().format();
     this.setState({
       date: currentTime,
@@ -29,7 +30,7 @@ class ExchangeRates extends Component {
 
     return (
       <>
-        <div className={`container`}>
+        <div className={`${styles.ExchangeRatesWrapper} container`}>
           <h6>курс валют на: {date && moment(date).format('L')}</h6>
           <Table responsive striped bordered hover variant="light">
             <caption className="text-danger">
@@ -65,9 +66,5 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  onFetchEchangeRates: () =>
-    dispatch(exchangeRatesOperations.fetchCurrentExchangeRates()),
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(ExchangeRates);
+export default connect(mapStateToProps)(ExchangeRates);
