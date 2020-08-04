@@ -6,6 +6,12 @@ import * as count from "./services";
 
 const CategoriesFilter = () => {
   console.log("count", count.default.countCar);
+
+
+
+
+
+  
   return (
     <section className={`${styles.wrapper} container`}>
       <ul className={styles.ul} className={styles.flex}>
@@ -14,7 +20,7 @@ const CategoriesFilter = () => {
             <li key={name} className={`${styles.flex} ${styles.li}`}>
               <button
                 onClick={() => {
-                  console.log("123", 123);
+                  console.log("123", 123); //куда
                 }}
                 className={styles.btn}
               >
