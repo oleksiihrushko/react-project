@@ -14,13 +14,6 @@ const storeTest = {
     error: '',
   },
   operations: {
-<<<<<<< HEAD
-    balance: '',
-    income: [], //[{}, {}]
-    costs: [], //[{}, {}]
-    categories: [], //['', '', '']
-    products: [],
-=======
     ballance: '',
     income: [{
       date: "2019-12-01T16:37:41.000Z",
@@ -78,7 +71,6 @@ const storeTest = {
 ], //[{}, {}]
     incomeCategories: [], //['', '', '']
     costsCategories: [], //['', '', '']
->>>>>>> 7dbcfff2fe7c30d0838972590f41da6fd788ec0f
   },
   statistics: {
     month: '',
