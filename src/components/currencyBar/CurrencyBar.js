@@ -45,6 +45,7 @@ class currencyBar extends Component {
   };
 
   render() {
+    console.log(this.props.exchangeCurrency)
     return (
       <>
         <div className={styles.currencyBar} onClick={this.handleClickOpen}>
@@ -106,6 +107,7 @@ class currencyBar extends Component {
 const mapStateToProps = state => {
   return {
     exchangeCurrency: exchangeRatesSelectors.getCurrentCurrency(state),
+
   };
 };
 

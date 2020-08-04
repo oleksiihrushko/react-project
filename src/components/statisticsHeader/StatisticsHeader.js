@@ -30,7 +30,7 @@ class StatisticsHeader extends Component {
       date: currentTime,
       //   currentDate: currentTime,
     });
-    const balance = useSelector;
+  
   }
 
   handleChangeMonth = ({ target }) => {
@@ -58,7 +58,8 @@ class StatisticsHeader extends Component {
 
   render() {
     const { exchangeCurrency, balance } = this.props;
-    console.log(balance);
+    // console.log(balance);
+    // console.log(exchangeCurrency)
     const { date } = this.state;
     return (
       <div className={`${styles.statisticsHeaderWrapper} container`}>
@@ -140,7 +141,7 @@ class StatisticsHeader extends Component {
           <div>
             <div>
               <p className={styles.balance}>
-                Баланс на <span>{date && moment(date).format('L')}:</span>
+                Баланс на <span>{moment().format('L')}:</span>
               </p>
               <div className={styles.statisticsHeaderBalance}>
                 <span className={styles.statisticsSpan}>1111 UAH</span>

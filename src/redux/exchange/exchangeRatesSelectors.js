@@ -15,7 +15,6 @@ const getCurrentCurrency = createSelector(
 );
 
 export default {
-
   getExchangeRates,
   getCurrentCurrency,
 };
