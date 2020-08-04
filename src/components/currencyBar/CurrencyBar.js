@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import exchangeRatesSelectors from '../../redux/exchange/exchangeRatesSelectors';
 import exchangeRatesActions from '../../redux/exchange/exchangeRatesActions';
+import Media from 'react-media';
 
 import styles from './CurrencyBar.module.css';
 
@@ -10,7 +11,7 @@ import { ReactComponent as Currency } from './img/currency.svg';
 import { ReactComponent as Uah } from './img/hryvnia.svg';
 import { ReactComponent as Usd } from './img/dollar.svg';
 import { ReactComponent as Eur } from './img/euro.svg';
-import { ReactComponent as Btc } from './img/bitcoin.svg';
+// import { ReactComponent as Btc } from './img/bitcoin.svg';
 
 class currencyBar extends Component {
   state = {
@@ -39,15 +40,23 @@ class currencyBar extends Component {
     this.props.onShowEUR();
   };
 
-  handleChangeBTC = () => {
-    this.props.onShowBTC();
-  };
+  // handleChangeBTC = () => {
+  //   this.props.onShowBTC();
+  // };
 
   render() {
+    // console.log(this.props.exchangeCurrency)
     return (
       <>
-        <div className={styles.currencyButton} onClick={this.handleClickOpen}>
+        <div className={styles.currencyBar} onClick={this.handleClickOpen}>
+          <div className={styles.currencyButton}>
           <Currency />
+          </div>
+          <Media query="(min-width: 768px)">
+              {matches =>
+                matches ? <p className={styles.buttonText} >Валюта</p> : <p></p>
+              }
+            </Media>
 
           {this.state.open && (
             <ul className={styles.popover}>
@@ -78,7 +87,7 @@ class currencyBar extends Component {
                   <Eur />
                 </button>
               </li>
-              <li className={styles.menuItem}>
+              {/* <li className={styles.menuItem}>
                 <button
                   className={styles.button}
                   type="button"
@@ -86,7 +95,7 @@ class currencyBar extends Component {
                 >
                   <Btc />
                 </button>
-              </li>
+              </li> */}
             </ul>
           )}
         </div>

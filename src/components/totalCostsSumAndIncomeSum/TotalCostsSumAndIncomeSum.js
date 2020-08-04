@@ -9,7 +9,10 @@ function TotalCostsSumAndIncomeSum() {
   const costs = useSelector(state => state.operations.costs);
   const income = useSelector(state => state.operations.income);
   const month = useSelector(state => state.statistics.month);
+  console.log(costs);
   console.log(month);
+  console.log(income);
+
   // const {
   //   date,
   //   selectedCategory,

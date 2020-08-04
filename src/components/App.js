@@ -12,6 +12,7 @@ import PrivateRoute from '../services/PrivateRoute';
 import PublicRoute from '../services/PublicRoute';
 import Header from './header/Header';
 import Footer from './Footer/Footer';
+// import TotalCostsSumAndIncomeSum from './totalCostsSumAndIncomeSum/TotalCostsSumAndIncomeSum';
 
 const App = () => {
   return (
