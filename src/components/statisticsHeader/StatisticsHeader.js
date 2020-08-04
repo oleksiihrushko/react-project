@@ -58,11 +58,10 @@ class StatisticsHeader extends Component {
     // if (this.props.exchangeCurrency[0])
     if (this.props.exchangeCurrency[0]?.ccy === 'USD') {
       return this.props.balance / this.props.exchangeCurrency[0].buy;
-    } 
+    }
     if (this.props.exchangeCurrency[0]?.ccy === 'EUR') {
       return this.props.balance / this.props.exchangeCurrency[0].buy;
-    }
-    else {
+    } else {
       return this.props.balance;
     }
   };
@@ -79,9 +78,10 @@ class StatisticsHeader extends Component {
     const { exchangeCurrency, balance } = this.props;
     // console.log(exchangeCurrency[0] ? exchangeCurrency[0].ccy : "UAH");
     console.log(exchangeCurrency);
-    console.log("balance", balance)
+    console.log('balance', balance);
 
     const { date } = this.state;
+    // console.log(this.props.onFetchEchangeRates())
     return (
       <div className={`${styles.statisticsHeaderWrapper} container`}>
         <div className={styles.leftBar}>
@@ -125,8 +125,6 @@ class StatisticsHeader extends Component {
           </div>
         </div>
         <div className={styles.rightBar}>
-          
-
           <div>
             <div>
               <p className={styles.balance}>
@@ -134,7 +132,7 @@ class StatisticsHeader extends Component {
               </p>
               <div className={styles.statisticsHeaderBalance}>
                 <span className={styles.statisticsSpan}>
-                  {this.exchangeBalancePerCurrentCurrency()}{' '}
+                  {Math.round(this.exchangeBalancePerCurrentCurrency())}{' '}
                   {exchangeCurrency[0] ? exchangeCurrency[0].ccy : 'UAH'}
                 </span>
               </div>

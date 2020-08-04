@@ -12,7 +12,7 @@ const data = base.default.costs;
 
 const countCar = data
   .filter((cat) => {
-    return cat.product.category.name === "транспорт";  // сделать через вычисляемые свойства обекта [транспорт]
+    return cat.product.category.name === "транспорт"; // сделать через вычисляемые свойства обекта [транспорт]
     // return cat.product.category.name === config.name;
   })
   .reduce((acc, item) => acc + item.amount, 0);
