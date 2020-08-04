@@ -11,11 +11,11 @@ const CategoriesFilter = () => {
   // const costs = useSelector((state) => 
   // console.log(state.operations.costs))
   // .operations.costs.product.name 
-  // const costs = useSelector(state => {console.log('state', state.operations.costs)
+  const costs = useSelector(state => {console.log('state', state.operations.costs)
   // state.operations
-  // })
+  })
 
-  // console.log("costs", costs);
+  console.log("costs", costs);
 
   return (
     <section className={`${styles.wrapper} container`}>
