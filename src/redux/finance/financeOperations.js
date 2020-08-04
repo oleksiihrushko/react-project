@@ -15,7 +15,6 @@ export const getDataOnInit = () => async (dispatch) => {
     getBalancePromise(),
   ])
     .then((data) => {
-      console.log('data :>> ', data);
       dispatch(financeSlice.actions.getTransactionsSuccess(data[0].data));
       dispatch(
         financeSlice.actions.getCategoriesSuccess(data[1].data.categories)

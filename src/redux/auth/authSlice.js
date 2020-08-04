@@ -1,19 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  token: "",
+  token: '',
   googleLogin: false,
   name: {
-    fullName: "",
-    firstName: "",
-    lastName: "",
+    fullName: '',
+    firstName: '',
+    lastName: '',
   },
-  photo: "",
-  error: "",
+  photo: '',
+  error: '',
 };
 
 export default createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
   reducers: {
     registerSuccess: (state, { payload }) => ({
@@ -22,9 +22,8 @@ export default createSlice({
       token: payload.token,
     }),
     registerError: (state, { payload }) => ({ ...state, error: payload }),
-    clearError: (state) => ({ ...state, error: "" }),
+    clearError: (state) => ({ ...state, error: '' }),
     loginSuccess: (state, { payload }) => {
-      console.log(payload);
       return {
         ...state,
         name: payload.userData.name,
