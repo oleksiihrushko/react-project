@@ -2,13 +2,13 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-const PrivateRoute = ({ component: Component, restricted, ...routeProps }) => {
-  const isAuthenticated = useSelector(state => state.auth.token);
+const PublicRoute = ({ component: Component, ...routeProps }) => {
+  const isAuthenticated = useSelector((state) => state.auth.token);
   return (
     <Route
       {...routeProps}
-      render={props =>
-        isAuthenticated && restricted ? (
+      render={(props) =>
+        isAuthenticated && routeProps.restricted ? (
           <Redirect to="/operations" />
         ) : (
           <Component {...props} />
@@ -18,4 +18,4 @@ const PrivateRoute = ({ component: Component, restricted, ...routeProps }) => {
   );
 };
 
-export default PrivateRoute;
+export default PublicRoute;

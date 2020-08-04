@@ -13,7 +13,6 @@ const styles = {
 };
 
 const Exit = ({ name, open }) => {
-  console.log(name);
   return (
     <>
       <ul style={{ display: 'flex', paddingLeft: 10 }}>

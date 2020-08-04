@@ -9,7 +9,7 @@ const Modal = ({ text, onTrue, closeModal }) => {
   };
 
   const handleClickModal = e => {
-    if (e.target === modalRef.current || e.target.nodeName === 'BUTTON') {
+    if (e.target === modalRef.current || e.target.dataset.type === '1') {
       closeModal();
     }
   };
@@ -34,7 +34,9 @@ const Modal = ({ text, onTrue, closeModal }) => {
           <button className={styles.btnModal} type="button" onClick={onTrue}>
             ДA
           </button>
-          <button className={styles.btnModal}>НET</button>
+          <button data-type="1" className={styles.btnModal}>
+            НET
+          </button>
         </div>
       </div>
     </div>
