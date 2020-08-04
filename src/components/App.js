@@ -1,29 +1,25 @@
-import React, { Suspense } from "react";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-// import TotalCostsSumAndIncomeSum from './totalCostsSumAndIncomeSum/TotalCostsSumAndIncomeSum';
-// import routes from "../routes";
-
-
-
-// import Modal from "../components/modal/Modal";
-import OperationList from "./operationList/OperationList";
-import Header from "./header/Header";
-import ContactsPage from '../Pages/teamPage/TeamPage';
-
-// import PrivateRoute from "../services/PrivateRoute";
-// import PublicRoute from "../services/PublicRoute";
+import React, { Suspense } from 'react';
+import {
+  BrowserRouter,
+  Switch,
+  Redirect,
+  // Route,
+  // Link,
+  // NavLink,
+} from 'react-router-dom';
+import routes from '../routes';
+import PrivateRoute from '../services/PrivateRoute';
+import PublicRoute from '../services/PublicRoute';
+import Header from './header/Header';
+import Footer from './Footer/Footer';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Header />
       <Suspense fallback={<h1>Loading...</h1>}>
-          <Switch>
-            <Route  path="/contacts" component={ContactsPage}/>
-            {/* <Route  path="/TotalCostsSumAndIncomeSum" component={TotalCostsSumAndIncomeSum}/> */}
-
-</Switch>
-        {/* <Switch>
+        {/* <TotalCostsSumAndIncomeSum /> */}
+        <Switch>
           {routes.map(route => {
             return route.private ? (
               <PrivateRoute key={route.label} {...route} />
@@ -35,10 +31,10 @@ const App = () => {
               />
             );
           })}
-          <Redirect to="/login" />
-        </Switch> */}
+          <Redirect to="/" />
+        </Switch>
       </Suspense>
-      <OperationList/>
+      <Footer />
     </BrowserRouter>
   );
 };

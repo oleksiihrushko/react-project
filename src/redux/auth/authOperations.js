@@ -1,69 +1,43 @@
-import axios from 'axios';
-import authActions from './authActions';
+import api from "../../services/api";
+import authSlice from "../auth/authSlice";
+import loaderSlice from "../loader/loaderSlice";
 
-axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com/';
-
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
-  },
-};
-
-const register = credentials => dispatch => {
-  dispatch(authActions.registerRequest());
-
-  axios
-    .post('/users/signup', credentials)
-    .then(response => {
-      token.set(response.data.token);
-      dispatch(authActions.registerSuccess(response.data));
+export const register = (credentials) => (dispatch) => {
+  dispatch(loaderSlice.actions.setLoadingTrue());
+  api
+    .register(credentials)
+    .then(({ data }) => {
+      api.token.set(data.user.token);
+      dispatch(authSlice.actions.registerSuccess(data.user));
+      dispatch(authSlice.actions.clearError());
     })
-    .catch(error => dispatch(authActions.registerError(error)));
+    .catch((error) => dispatch(authSlice.actions.registerError(error)))
+    .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
 };
 
-const logIn = credentials => dispatch => {
-  dispatch(authActions.logInRequest());
-
-  axios
-    .post('/users/logIn', credentials)
-    .then(response => {
-      token.set(response.data.token);
-      dispatch(authActions.logInSuccess(response.data));
+export const login = (credentials) => (dispatch) => {
+  dispatch(loaderSlice.actions.setLoadingTrue());
+  api
+    .login(credentials)
+    .then(({ data }) => {
+      api.token.set(data.user.token);
+      dispatch(authSlice.actions.loginSuccess(data.user));
+      dispatch(authSlice.actions.clearError());
     })
-    .catch(error => dispatch(authActions.logInError(error)));
+    .catch((error) => dispatch(authSlice.actions.loginError(error)))
+    .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
 };
 
-const getCurrentUser = () => (dispatch, getState) => {
-  const {
-    auth: { token: persistedToken },
-  } = getState();
+export const logOut = () => (dispatch) => {
+  dispatch(loaderSlice.actions.setLoadingTrue());
 
-  if (!persistedToken) {
-    return;
-  }
-
-  token.set(persistedToken);
-  dispatch(authActions.getCurrentUserRequest());
-
-  axios
-    .get('/users/current')
-    .then(({ data }) => dispatch(authActions.getCurrentUserSuccess(data)))
-    .catch(error => authActions.getCurrentUserError(error));
-};
-
-const logOut = () => dispatch => {
-  dispatch(authActions.logoutRequest());
-
-  axios
-    .post('/users/logout')
+  api
+    .logout()
     .then(() => {
-      token.unset();
-      dispatch(authActions.logoutSuccess());
+      api.token.unset();
+      dispatch(authSlice.actions.logoutSuccess());
+      dispatch(authSlice.actions.clearError());
     })
-    .catch(error => dispatch(authActions.logoutError(error)));
+    .catch((error) => dispatch(authSlice.actions.logoutError(error)))
+    .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
 };
-
-export default { register, logOut, logIn, getCurrentUser };

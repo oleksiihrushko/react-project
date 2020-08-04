@@ -10,49 +10,49 @@ function TotalCostsSumAndIncomeSum() {
   const income = useSelector(state => state.operations.income);
   const month = useSelector(state => state.statistics.month);
   console.log(month);
-  const {
-    date,
-    selectedCategory,
-    categoriesList,
-  } = this.state;
-  let chartData = null;
-  let categoryList = [];
-  let costsSum = 0;
-  if (costs && costs.length > 0) {
-    costsSum = costs
-        .filter(
-          item =>
-            moment(item.date).format('MMMM YYYY') ===
-            moment(date).format('MMMM YYYY'),
-        )
-        .reduce((acc, el) => acc + el.amount, 0);
-    }
+  // const {
+  //   date,
+  //   selectedCategory,
+  //   categoriesList,
+  // } = this.state;
+  // let chartData = null;
+  // let categoryList = [];
+  // let costsSum = 0;
+  // if (costs && costs.length > 0) {
+  //   costsSum = costs
+  //       .filter(
+  //         item =>
+  //           moment(item.date).format('MMMM YYYY') ===
+  //           moment(date).format('MMMM YYYY'),
+  //       )
+  //       .reduce((acc, el) => acc + el.amount, 0);
+  //   }
     
-    let incomeSum = 0;
-    if (income && income.length > 0) {
-      incomeSum = income
-      .filter(
-        item =>
-        moment(item.date).format('MMMM YYYY') ===
-        moment(date).format('MMMM YYYY'),
-        )
-        .reduce((acc, el) => acc + el.amount, 0);
-      }
+  //   let incomeSum = 0;
+  //   if (income && income.length > 0) {
+  //     incomeSum = income
+  //     .filter(
+  //       item =>
+  //       moment(item.date).format('MMMM YYYY') ===
+  //       moment(date).format('MMMM YYYY'),
+  //       )
+  //       .reduce((acc, el) => acc + el.amount, 0);
+  //     }
       
-      if (costs && costs.length > 0) {
-        categoryList = this.costs;
-        if (selectedCategory === '') {
-          chartData = this.categoryList;
-        } else {
-          chartData = this.costs;
-        }
-      } else if (categoriesList && categoriesList.length > 0) {
-        categoryList = categoriesList.map(category => ({
-          category: category.name,
-          amount: 0,
-          id: category.name,
-        }));
-      }
+  //     if (costs && costs.length > 0) {
+  //       categoryList = this.costs;
+  //       if (selectedCategory === '') {
+  //         chartData = this.categoryList;
+  //       } else {
+  //         chartData = this.costs;
+  //       }
+  //     } else if (categoriesList && categoriesList.length > 0) {
+  //       categoryList = categoriesList.map(category => ({
+  //         category: category.name,
+  //         amount: 0,
+  //         id: category.name,
+  //       }));
+  //     }
       
       return (
         <div className={"container"}>
