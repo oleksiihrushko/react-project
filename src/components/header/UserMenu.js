@@ -64,7 +64,7 @@ const UserMenu = () => {
           />
         )}
         <ExitMobile open={openModal} photo={state.auth.photo} />
-        <Exit open={openModal} name={state.auth.name.fullName} />
+        <Exit open={openModal} name={state.auth.name.firstName} />
       </li>
     </ul>
   );
