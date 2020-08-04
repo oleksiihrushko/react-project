@@ -32,14 +32,14 @@ const BallanceRedactor = () => {
 
   const handleChange = ({ target: { value } }) => {
     if (value.indexOf(".") != "-1") {
-      value = value.substring(0, value.indexOf(".") + 3);
+      value = value.substring(0, value.indexOf(".") + 0);
     }
     !isNaN(value) && setValue(value);
   };
 
-  if (income.length !== 0 && costs.length !== 0 && balance !== 0) {
-    isFirstTransaction = false;
-  }
+  // if (income.length !== 0 && costs.length !== 0 && balance !== 0) {
+  //   setisFirstTransaction(false);
+  // }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -56,8 +56,7 @@ const BallanceRedactor = () => {
   };
   return (
     <section
-      className={`${styles.flex} ${styles.wrapper}  ${styles.secPad}  container`}
-    >
+      className={`${styles.flex} ${styles.wrapper}  ${styles.secPad}  container`}>
       <GoToStatsButton />
       <div className={`${styles.flex} ${styles.div} `}>
       <p className={`${styles.bal_text}  `}>Баланс:</p>
