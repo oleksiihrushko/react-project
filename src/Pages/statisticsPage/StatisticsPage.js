@@ -6,14 +6,14 @@ import CategoriesFilter from '../../components/categoriesFilter/CategoriesFilter
 import Chart from '../../components/chart/Chart';
 
 const StatistcsPage = () => {
-  return (
-    <>
-      <StatistcsHeader/>
-      <TotalCostsSumAndIncomeSum />
-      <CategoriesFilter />
-      <Chart />
-    </>
-  );
-};
-
+    const [currentCategory, setCurrentCategory] = useState('All');
+    return (
+        <>
+        {/* <StatistcsHeader /> */}
+        <TotalCostsSumAndIncomeSum />
+        <CategoriesFilter currentCategory={currentCategory} setCurrentCategory={setCurrentCategory}/>
+        <Chart currentCategory={currentCategory}/>
+        </>
+    )
+}
 export default StatistcsPage;

@@ -7,10 +7,16 @@ import { ReactComponent as ArrowBackHome } from './btnBackPageContact/back.svg';
 const TeamPage = () => {
     // const history = useHistory;
     // const location = useLocation;
-    // const isContacts = location.pathname.split('/')[1] === 'contacts';
-    // const handleClickBack = () => {
+    // const Contacts = location.pathname.split('/')[1] === 'team';
+    // const ClickBack = () => {
     //     history.push('/');
-
+{/* <Link
+  to={{
+    pathname: '/team',
+    state: { from: 'useHistory' },
+  }}
+/> */}
+// console.log(this.props);
         return (
             <div className={s.contacts_div_main}>
                 {(
@@ -18,9 +24,9 @@ const TeamPage = () => {
                     <button
                     className={s.arrowBtn}
                     type="button"
-                    // onClick={handleClickBack}
+                    // onClick={ClickBack}
                     ><ArrowBackHome />
-                    <p className={s.textBackBtn}></p>
+                    <p className={s.textBackBtn}>Назад</p>
                     </button>
                     </>
                 )}
