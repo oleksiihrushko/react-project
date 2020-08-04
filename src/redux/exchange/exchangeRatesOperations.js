@@ -1,14 +1,14 @@
 import exchangeRatesActions from './exchangeRatesActions';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://api.privatbank.ua/';
+const privat = 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5';
 
 const fetchCurrentExchangeRates = () => dispatch => {
   console.log('fetch');
   dispatch(exchangeRatesActions.fetchExhcangeRatesRequest());
 
   axios
-    .get('/p24api/pubinfo?json&exchange&coursid=5')
+    .get(privat)
     .then(({ data }) =>
       dispatch(exchangeRatesActions.fetchExhcangeRatesSuccess(data)),
     )
