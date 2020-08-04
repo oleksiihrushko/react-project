@@ -1,5 +1,6 @@
 const storeTest = {
   isLoading: false,
+  
   auth: {
     token: '',
     googleLogin: false,
@@ -13,7 +14,7 @@ const storeTest = {
     error: '',
   },
   operations: {
-    ballance: '',
+    balance: '',
     income: [], //[{}, {}]
     costs: [], //[{}, {}]
     categories: [], //['', '', '']

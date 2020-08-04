@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-// import StatistcsHeader from '../../components/statisticsHeader';
+import React from 'react';
+
+import StatistcsHeader from '../../components/statisticsHeader/StatisticsHeader';
 import TotalCostsSumAndIncomeSum from '../../components/totalCostsSumAndIncomeSum/TotalCostsSumAndIncomeSum';
 import CategoriesFilter from '../../components/categoriesFilter/CategoriesFilter';
 import Chart from '../../components/chart/Chart';
-
 
 const StatistcsPage = () => {
     const [currentCategory, setCurrentCategory] = useState('All');
