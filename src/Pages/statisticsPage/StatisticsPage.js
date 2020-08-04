@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import StatistcsHeader from '../../components/statisticsHeader/StatisticsHeader';
 import TotalCostsSumAndIncomeSum from '../../components/totalCostsSumAndIncomeSum/TotalCostsSumAndIncomeSum';
