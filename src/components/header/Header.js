@@ -5,7 +5,7 @@ import ExitMobile from './ExitMobile';
 import styles from './style.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import authSlice from '../../redux/auth/authSlice';
-import api from '../../services/api';
+import { logOut } from '../../redux/auth/authOperations';
 
 const Header = () => {
   const [localState, setLocalState] = useState(false);
@@ -32,7 +32,7 @@ const Header = () => {
       googleSignOut();
       dispatch(authSlice.actions.logoutGoogleSuccess());
     } else {
-      dispatch(api.logout());
+      dispatch(logOut());
     }
     closeModal();
   };
