@@ -8,21 +8,23 @@ const styles = {
   borderLeft: '1px solid #222',
   paddingLeft: 10,
   textDecoration: 'underline',
-  fontFamily: 'roboto sans-serif',
+  fontFamily: 'RobotoRegular',
+  cursor: 'pointer',
 };
 
-const Exit = ({ name }) => {
-  console.log(name);
+const Exit = ({ name, open }) => {
   return (
     <>
       <ul style={{ display: 'flex', paddingLeft: 10 }}>
         <li>
-          <div style={{ width: '100px', fontFamily: 'roboto sans-serif' }}>
+          <div style={{ width: '100px', fontFamily: 'RobotoRegular' }}>
             {name}
           </div>
         </li>
         <li>
-          <div style={styles}>Выйти</div>
+          <div style={styles} onClick={open}>
+            Выйти
+          </div>
         </li>
       </ul>
     </>

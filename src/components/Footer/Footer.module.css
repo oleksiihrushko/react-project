@@ -1,7 +1,12 @@
-.footer {
+footer {
+    padding: 10px 0;
 }
 .footerInfo {
     background-color: #F5F6FB;
+    width: 100%;
+    /* position: fixed; */
+    /* z-index: -1; */
+    /* bottom: 0; */
     
 }
 .info {
@@ -11,7 +16,7 @@
 .linkInfoTeam {
     color: black;
 }
-.linkInfoTeam:Hover{
+.linkInfoTeam:hover{
     color:#FB7C2F;
 }
 .infoP {

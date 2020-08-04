@@ -31,15 +31,22 @@ const addCosts = (costs) => axios.post('/costs', costs);
 
 const getCosts = (date) => axios.get('/costs', date);
 
-const deleteCosts = (data) => axios.delete('/costs', data);
+const deleteCosts = (idDelete, id) => axios.delete(`/costs/${idDelete}/${id}`);
 
 const getCategories = () => axios.get('/categories');
 
-const addCategories = (category) => axios.post('/categories', category);
+const addCategory = (category) => axios.post('/categories', category);
 
 const deleteCategory = (id) => axios.delete(`/categories/${id}`);
 
-const patchCategory = (id, category) => axios.patch(`/categories/${id}`);
+const patchCategory = (id, category) =>
+  axios.patch(`/categories/${id}`, category);
+
+const getProducts = () => axios.get('/products');
+
+const addProduct = (product) => axios.post('/products', product);
+
+const deleteProduct = (id) => axios.delete(`/products/${id}`);
 
 export default {
   token,
@@ -55,7 +62,10 @@ export default {
   getCosts,
   deleteCosts,
   getCategories,
-  addCategories,
+  addCategory,
   deleteCategory,
   patchCategory,
+  getProducts,
+  addProduct,
+  deleteProduct,
 };
