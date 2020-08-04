@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import financeSelectors from './financeSelectors';
 
 const initialState = {
-  ballance: '',
+  balance: '1000',
   income: [
     {
       date: '2019-12-01T16:37:41.000Z',

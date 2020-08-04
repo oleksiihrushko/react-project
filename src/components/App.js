@@ -24,7 +24,7 @@ import Header from './header/Header';
 // import IncomeList from '../incomeList/IncomeList';
 // import OperationForm from './addOperationForm/AddOperationForm';
 import BallanceRedactor from "./operationsHeader/BallanceRedactor/BallanceRedactor";
-// import CategoriesFilter from "./categoriesFilter/CategoriesFilter";
+import CategoriesFilter from "./categoriesFilter/CategoriesFilter";
 // import Chart from '../components/chart/Chart';
 import Footer from './Footer/Footer';
 import GoToMono from './categoriesFilter/monoBank/GoToMono';
@@ -60,11 +60,10 @@ const App = () => {
       <BallanceRedactor/>
       <GoToMono />
       {/* <OperationForm /> */}
-      {/* <BallanceRedactor/>
-      <OperationForm />
-      <OperationList />
+      {/* <OperationForm /> */}
+      {/* <OperationList /> */}
       {/* <IncomeList /> */}
-      {/* <CategoriesFilter/> */}
+      <CategoriesFilter/>
       {/* <Chart /> */}
       {/* <Footer /> */}
     </BrowserRouter>
