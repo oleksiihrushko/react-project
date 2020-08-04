@@ -12,7 +12,7 @@ import routes from '../routes';
 import PrivateRoute from '../services/PrivateRoute';
 import PublicRoute from '../services/PublicRoute';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getDataOnInit } from '../redux/finance/financeOperations';
 
 import Header from './header/Header';
@@ -29,11 +29,17 @@ import Header from './header/Header';
 // import Chart from '../components/chart/Chart';
 // import GoToMono from './categoriesFilter/monoBank/GoToMono';
 import Footer from './Footer/Footer';
+import authSelectors from '../redux/auth/authSelectors';
+import api from '../services/api';
 
 const App = () => {
+  const token = useSelector((state) => authSelectors.token(state));
   // !!вставить в страницу operationsPage, только после авторизации!!
   const dispatch = useDispatch();
   useEffect(() => {
+    if (token) {
+      api.token.set(token);
+    }
     dispatch(getDataOnInit());
     return;
   }, []);
@@ -44,7 +50,7 @@ const App = () => {
       <Suspense fallback={<h1>Loading...</h1>}>
         {/* <TotalCostsSumAndIncomeSum /> */}
         <Switch>
-          {routes.map(route => {
+          {routes.map((route) => {
             return route.private ? (
               <PrivateRoute key={route.label} {...route} />
             ) : (
