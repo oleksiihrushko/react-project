@@ -1,92 +1,84 @@
-import React, { Component } from "react";
-import Modal from "../modal/Modal";
-import { MatchMediaHOC } from "react-match-media";
-import ReactDOM from "react-dom";
-// import Exit from "./Exit";
-import ExitMobile from "./ExitMobile";
-import styles from "./style.module.css";
+import React, { useState } from 'react';
+import Modal from '../modal/Modal';
+import Exit from './Exit';
+import ExitMobile from './ExitMobile';
+import styles from './style.module.css';
+import { useSelector, useDispatch } from 'react-redux';
+import authSlice from '../../redux/auth/authSlice';
+import { logOut } from '../../redux/auth/authOperations';
 
-class Header extends Component {
-  state = {
-    isShowModal: false,
-    users: {
-      status: "success",
-      user: {
-        userData: {
-          name: {
-            fullName: "Petia Pupkin",
-            firstName: "Petia",
-            lastName: "Pupkin",
-          },
-          email: "user@example.com",
-          photo: "",
-          userNew: true,
-        },
-        token:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZDNhMTM4NmIxZTg1NTdjZjIzNjY3ODEiLCJpYXQiOjE1NjQwODcxNzV9.jSdzHuBSf4yKS6t7zwt0AoQIchHlz73JDOjfHVdbTBk",
-      },
-    },
-    firstLetter: "",
+const Header = () => {
+  const [localState, setLocalState] = useState(false);
+  const dispatch = useDispatch();
+
+  const state = useSelector(state => state);
+
+  const closeModal = () => {
+    setLocalState(false);
+  };
+  const openModal = () => {
+    setLocalState(true);
   };
 
-  componentDidMount() {
-    if (this.state.users.user.userData.photo === "") {
-      this.setState({
-        firstLetter: this.state.users.user.userData.name.firstName.substr(0, 1),
-      });
+  const signOut = () => {
+    console.log('state.auth.googleLogin', state.auth.googleLogin);
+    if (state.auth.googleLogin) {
+      const googleSignOut = () => {
+        const GoogleAuth = window.gapi.auth2.getAuthInstance();
+        GoogleAuth.signOut({
+          scope: 'profile email',
+        }).then(() => console.log('signOut SUCCESS'));
+      };
+      googleSignOut();
+      dispatch(authSlice.actions.logoutGoogleSuccess());
+    } else {
+      dispatch(logOut());
     }
-  }
-  closeModal = () => {
-    this.setState({ isShowModal: false });
-  };
-  openModal = () => {
-    this.setState({ isShowModal: true });
+    closeModal();
   };
 
-  render() {
-    return (
-      <>
-        <div className={styles.container}>
-          <ul className={styles.headerUl}>
-            <li>LOGO</li>
-            <li>
+  return (
+    <>
+      <div className={styles.container}>
+        <ul className={styles.headerUl}>
+          <li>LOGO</li>
+          <li>
+            {state.auth.token && (
               <ul className={styles.headerUlUl}>
                 <li>
                   <span
                     style={{
-                      fontFamily: "RobotoRegular",
-                      backgroundColor: "#f4f7fa",
+                      fontFamily: 'RobotoRegular',
+                      backgroundColor: '#f4f7fa',
                       paddingBottom: 5,
                       paddingTop: 5,
                       paddingLeft: 10,
                       paddingRight: 10,
-                      borderRadius: "50%",
+                      borderRadius: '50%',
                       fontSize: 14,
                     }}
                   >
-                    {this.state.firstLetter}
+                    {state.firstLetter}
                   </span>
                 </li>
                 <li>
-                  {this.state.isShowModal && (
+                  {localState && (
                     <Modal
                       text="Вы действительно хотите выйты?"
-                      closeModal={this.closeModal}
+                      onTrue={signOut}
+                      closeModal={closeModal}
                     />
                   )}
-                  <ExitMobile />
-                  {/* <Exit
-                    open={this.openModal}
-                    name={this.state.users.user.userData.name.fullName}
-                  /> */}
+                  <ExitMobile open={openModal} photo={state.auth.photo} />
+                  <Exit open={openModal} name={state.auth.name.fullName} />
                 </li>
               </ul>
-            </li>
-          </ul>
-        </div>
-      </>
-    );
-  }
-}
+            )}
+          </li>
+        </ul>
+      </div>
+    </>
+  );
+};
 
 export default Header;
