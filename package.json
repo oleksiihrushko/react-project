@@ -11,6 +11,7 @@
     "axios": "^0.19.2",
     "chart.js": "^2.9.3",
     "chartjs-plugin-datalabels": "^0.7.0",
+    "chartjs-plugin-labels": "^1.1.0",
     "formik": "^2.1.5",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",

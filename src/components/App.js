@@ -28,7 +28,7 @@ const App = () => {
   }, []);
   return (
     <BrowserRouter>
-      <Header />
+      {/* <Header />
       <Suspense fallback={<h1>Loading...</h1>}>
         <TotalCostsSumAndIncomeSum />
         <Switch>
@@ -48,7 +48,7 @@ const App = () => {
       </Suspense>
       <OperationForm />
       <OperationList />
-      <IncomeList />
+      <IncomeList /> */}
       <Chart />
       <Footer />
     </BrowserRouter>
