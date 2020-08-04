@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import 'moment/locale/ru';
 import ModalExchangeRates from '../modal/ModalExchangeRates';
-import { useSelector } from 'react-redux';
 
 import { ReactComponent as ArrowBack } from './arrowBack/back.svg';
 import { ReactComponent as PrevMonth } from './arrowBack/leftArrow.svg';
@@ -26,9 +25,7 @@ class StatisticsHeader extends Component {
   };
 
   componentDidMount() {
-    // this.props.onFetchEchangeRates();
     const getRates = currentRates => {
-      console.log('object', currentRates);
       if (currentRates.length === 0) {
         return this.props.onFetchEchangeRates();
       } else {
@@ -36,13 +33,9 @@ class StatisticsHeader extends Component {
       }
     };
     const rates = getRates(this.props.exchangeRates);
-
-    console.log('rates', rates);
     const currentTime = moment().format();
     this.setState({
       date: currentTime,
-
-      //   currentDate: currentTime,
     });
   }
 
@@ -61,6 +54,19 @@ class StatisticsHeader extends Component {
     }
   };
 
+  exchangeBalancePerCurrentCurrency = () => {
+    // if (this.props.exchangeCurrency[0])
+    if (this.props.exchangeCurrency[0]?.ccy === 'USD') {
+      return this.props.balance / this.props.exchangeCurrency[0].buy;
+    } 
+    if (this.props.exchangeCurrency[0]?.ccy === 'EUR') {
+      return this.props.balance / this.props.exchangeCurrency[0].buy;
+    }
+    else {
+      return this.props.balance;
+    }
+  };
+
   closeModal = () => {
     this.setState({ isShowModal: false });
   };
@@ -70,9 +76,10 @@ class StatisticsHeader extends Component {
   };
 
   render() {
-    const { exchangeCurrency, balance, exchangeRates } = this.props;
+    const { exchangeCurrency, balance } = this.props;
+    // console.log(exchangeCurrency[0] ? exchangeCurrency[0].ccy : "UAH");
     console.log(exchangeCurrency);
-    // console.log(exchangeRates)
+    console.log("balance", balance)
 
     const { date } = this.state;
     return (
@@ -118,6 +125,21 @@ class StatisticsHeader extends Component {
           </div>
         </div>
         <div className={styles.rightBar}>
+          
+
+          <div>
+            <div>
+              <p className={styles.balance}>
+                Баланс на <span>{moment().format('L')}:</span>
+              </p>
+              <div className={styles.statisticsHeaderBalance}>
+                <span className={styles.statisticsSpan}>
+                  {this.exchangeBalancePerCurrentCurrency()}{' '}
+                  {exchangeCurrency[0] ? exchangeCurrency[0].ccy : 'UAH'}
+                </span>
+              </div>
+            </div>
+          </div>
           <div className={styles.calendarWrapper}>
             <Media query="(min-width: 768px)">
               {matches =>
@@ -149,17 +171,6 @@ class StatisticsHeader extends Component {
               >
                 <NextMonth />
               </button>
-            </div>
-          </div>
-
-          <div>
-            <div>
-              <p className={styles.balance}>
-                Баланс на <span>{moment().format('L')}:</span>
-              </p>
-              <div className={styles.statisticsHeaderBalance}>
-                <span className={styles.statisticsSpan}>{balance} </span>
-              </div>
             </div>
           </div>
         </div>

@@ -11,7 +11,7 @@ import { ReactComponent as Currency } from './img/currency.svg';
 import { ReactComponent as Uah } from './img/hryvnia.svg';
 import { ReactComponent as Usd } from './img/dollar.svg';
 import { ReactComponent as Eur } from './img/euro.svg';
-import { ReactComponent as Btc } from './img/bitcoin.svg';
+// import { ReactComponent as Btc } from './img/bitcoin.svg';
 
 class currencyBar extends Component {
   state = {
@@ -40,9 +40,9 @@ class currencyBar extends Component {
     this.props.onShowEUR();
   };
 
-  handleChangeBTC = () => {
-    this.props.onShowBTC();
-  };
+  // handleChangeBTC = () => {
+  //   this.props.onShowBTC();
+  // };
 
   render() {
     // console.log(this.props.exchangeCurrency)
@@ -87,7 +87,7 @@ class currencyBar extends Component {
                   <Eur />
                 </button>
               </li>
-              <li className={styles.menuItem}>
+              {/* <li className={styles.menuItem}>
                 <button
                   className={styles.button}
                   type="button"
@@ -95,7 +95,7 @@ class currencyBar extends Component {
                 >
                   <Btc />
                 </button>
-              </li>
+              </li> */}
             </ul>
           )}
         </div>
