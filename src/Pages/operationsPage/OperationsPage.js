@@ -21,9 +21,9 @@ const OperationsPage = () => {
 
   return (
     <div>
-      <OpreationsHeader />
-      <AddOperationForm />
-      <OperationList />
+      <OperationsHeader />
+      <AddOperationForm type={operationType} setOperation={setOperation} />
+      <OperationList type={operationType} />
     </div>
   );
 };

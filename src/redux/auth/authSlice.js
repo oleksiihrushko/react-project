@@ -35,8 +35,8 @@ export default createSlice({
       };
     },
     loginError: (state, { payload }) => ({ ...state, error: payload }),
-    logoutSuccess: (state) => initialState,
+    logoutSuccess: state => initialState,
     logoutError: (state, { payload }) => ({ ...state, error: payload }),
-    logoutGoogleSuccess: (state) => initialState,
+    logoutGoogleSuccess: state => initialState,
   },
 });

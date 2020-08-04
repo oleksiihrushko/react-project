@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import Media from "react-media";
-import styles from "./addOperationForm.module.css";
-import Calc from "./calc/calc";
-import arrow from "./img/arrow.png";
-import calc from "./img/calculator.png";
+import React, { useState } from 'react';
+import Media from 'react-media';
+import styles from './addOperationForm.module.css';
+import Calc from './calc/calc';
+import arrow from './img/arrow.png';
+import calc from './img/calculator.png';
 
 const OperationForm = () => {
-  const [operationType, setOperation] = useState("credit");
-  const [date, setDate] = useState("");
-  const [description, setDescription] = useState("");
-  const [total, setTotal] = useState("");
+  const [operationType, setOperation] = useState('credit');
+  const [date, setDate] = useState('');
+  const [description, setDescription] = useState('');
+  const [total, setTotal] = useState('');
   const [modalMobile, setModalMobile] = useState(false);
 
-  const [displayValue, setDisplayValue] = useState("0");
+  const [displayValue, setDisplayValue] = useState('0');
   const [isCalcOpen, setOpenCalc] = useState(false);
 
   const changeTotalByCalc = () => {
@@ -22,17 +22,17 @@ const OperationForm = () => {
 
   const openCalc = () => {
     setOpenCalc(!isCalcOpen);
-    setDisplayValue("0");
+    setDisplayValue('0');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
   };
 
   const handleClear = () => {
-    setDate("");
-    setDescription("");
-    setTotal("");
+    setDate('');
+    setDescription('');
+    setTotal('');
   };
 
   const openModal = () => {
@@ -46,13 +46,13 @@ const OperationForm = () => {
         className={styles.credit}
         style={
           window.screen.width >= 767
-            ? operationType === "credit"
-              ? { backgroundColor: "#fefefe", color: "#fb812d", zIndex: 10 }
+            ? operationType === 'credit'
+              ? { backgroundColor: '#fefefe', color: '#fb812d', zIndex: 10 }
               : null
             : null
         }
         name="credit"
-        onClick={(e) => {
+        onClick={e => {
           setOperation(e.target.name);
           openModal();
         }}
@@ -63,13 +63,13 @@ const OperationForm = () => {
         className={styles.debit}
         style={
           window.screen.width >= 767
-            ? operationType === "debit"
-              ? { backgroundColor: "#fefefe", color: "#fb812d", zIndex: 10 }
+            ? operationType === 'debit'
+              ? { backgroundColor: '#fefefe', color: '#fb812d', zIndex: 10 }
               : null
             : null
         }
         name="debit"
-        onClick={(e) => {
+        onClick={e => {
           setOperation(e.target.name);
           openModal();
         }}
@@ -78,10 +78,10 @@ const OperationForm = () => {
       </button>
       <Media
         queries={{
-          small: "(max-width: 767px)",
+          small: '(max-width: 767px)',
         }}
       >
-        {(matches) =>
+        {matches =>
           matches.small ? (
             modalMobile && (
               <div className={styles.operationFormModal}>
