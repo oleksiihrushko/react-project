@@ -12,8 +12,9 @@ import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import exchangeRatesSelectors from '../../redux/exchange/exchangeRatesSelectors';
-import financeSelectors from "../../redux/finance/financeSelectors"
+import financeSelectors from '../../redux/finance/financeSelectors';
 import CurrencyBar from '../currencyBar/CurrencyBar';
+import exchangeRatesOperations from '../../redux/exchange/exchangeRatesOperations';
 
 import styles from './StatisticsHeader.module.css';
 import Media from 'react-media';
@@ -25,12 +26,24 @@ class StatisticsHeader extends Component {
   };
 
   componentDidMount() {
+    // this.props.onFetchEchangeRates();
+    const getRates = currentRates => {
+      console.log('object', currentRates);
+      if (currentRates.length === 0) {
+        return this.props.onFetchEchangeRates();
+      } else {
+        return currentRates;
+      }
+    };
+    const rates = getRates(this.props.exchangeRates);
+
+    console.log('rates', rates);
     const currentTime = moment().format();
     this.setState({
       date: currentTime,
+
       //   currentDate: currentTime,
     });
-  
   }
 
   handleChangeMonth = ({ target }) => {
@@ -57,9 +70,10 @@ class StatisticsHeader extends Component {
   };
 
   render() {
-    const { exchangeCurrency, balance } = this.props;
-    // console.log(balance);
-    // console.log(exchangeCurrency)
+    const { exchangeCurrency, balance, exchangeRates } = this.props;
+    console.log(exchangeCurrency);
+    // console.log(exchangeRates)
+
     const { date } = this.state;
     return (
       <div className={`${styles.statisticsHeaderWrapper} container`}>
@@ -144,7 +158,7 @@ class StatisticsHeader extends Component {
                 Баланс на <span>{moment().format('L')}:</span>
               </p>
               <div className={styles.statisticsHeaderBalance}>
-                <span className={styles.statisticsSpan}>1111 UAH</span>
+                <span className={styles.statisticsSpan}>{balance} </span>
               </div>
             </div>
           </div>
@@ -156,13 +170,16 @@ class StatisticsHeader extends Component {
 
 const mapStateToProps = state => {
   return {
+    exchangeRates: exchangeRatesSelectors.getExchangeRates(state),
+    isLoadingExhangeRates: exchangeRatesSelectors.getLoading(state),
     exchangeCurrency: exchangeRatesSelectors.getCurrentCurrency(state),
     balance: financeSelectors.getBalance(state),
-  }
+  };
 };
 
-// const mapDispatchToProps = dispatch => ({
-//   onShowBalance: () => dispatch(financeOperations.getBalance()),
-// });
+const mapDispatchToProps = dispatch => ({
+  onFetchEchangeRates: () =>
+    dispatch(exchangeRatesOperations.fetchCurrentExchangeRates()),
+});
 
-export default connect(mapStateToProps)(StatisticsHeader);
+export default connect(mapStateToProps, mapDispatchToProps)(StatisticsHeader);

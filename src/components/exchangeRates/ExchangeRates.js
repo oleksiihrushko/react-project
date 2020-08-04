@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 import { connect } from 'react-redux';
 import exchangeRatesOperations from '../../redux/exchange/exchangeRatesOperations';
 import exchangeRatesSelectors from '../../redux/exchange/exchangeRatesSelectors';
@@ -15,7 +16,6 @@ class ExchangeRates extends Component {
   };
 
   componentDidMount() {
-    this.props.onFetchEchangeRates();
     const currentTime = moment().format();
     this.setState({
       date: currentTime,
@@ -66,9 +66,5 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  onFetchEchangeRates: () =>
-    dispatch(exchangeRatesOperations.fetchCurrentExchangeRates()),
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(ExchangeRates);
+export default connect(mapStateToProps)(ExchangeRates);
