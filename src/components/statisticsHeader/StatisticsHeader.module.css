@@ -6,7 +6,6 @@
 
 .calendarWrapper {
   text-align: center;
-
 }
 
 
@@ -43,7 +42,7 @@
   justify-content: center;
   margin: 0;
   align-items: center;
-  width: 150px;
+  /* width: 150px; */
   height: 43px;
   border-radius: 19px;
   border: 2px solid #ffffff;
@@ -81,6 +80,12 @@
     top: 10px;
     right: 10px;
   }
+
+  .exchangeRates {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
   .statisticsHeaderWrapper {
     margin-bottom: 36px;
     /* height: 220px; */
@@ -93,8 +98,14 @@
 
 @media (min-width: 768px) {
   .statisticsHeaderWrapper {
-
     height: 160px;
+  }
+
+  .exchangeRates:hover {
+    background-color: rgba(82, 85, 95, 0.5);
+  }
+  .exchangeRates {
+    cursor: pointer;
   }
   .buttonText {
     display: inline-block;
@@ -105,14 +116,21 @@
     text-transform: uppercase;
     opacity: 0.75;
     color: #52555f;
+    cursor: pointer;
   }
+
   .buttonGoBack {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    width: 140px;
+    /* width: 140px; */
     margin-right: 10px;
+  }
+
+
+  .buttonGoBack:hover {
+    background-color: rgba(82, 85, 95, 0.5);
   }
 
   .currencyBar {
@@ -120,7 +138,7 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    width: 120px;
+    /* width: 120px; */
   }
   .statisticsHeaderWrapper {
     padding: 0 20px;
@@ -145,16 +163,15 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 40%;
+    width: 50%;
   }
   
   .rightBar {
     display: flex;
-    flex-direction: row-reverse;
+    /* flex-direction: row-reverse; */
     justify-content: space-between;
     align-items: center;
-    
-    width: 55%;
+    width: 50%;
   }
   .calendarWrapper {
     justify-content: center;
