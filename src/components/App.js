@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense } from 'react';
 import {
   BrowserRouter,
   Switch,
@@ -8,17 +8,13 @@ import {
   // NavLink,
 } from 'react-router-dom';
 import routes from '../routes';
-
 import PrivateRoute from '../services/PrivateRoute';
 import PublicRoute from '../services/PublicRoute';
-
-import { useDispatch } from 'react-redux';
-import { getDataOnInit } from '../redux/finance/financeOperations';
-
 import Header from './header/Header';
+import Footer from './Footer/Footer';
+
 // import Modal from "../components/modal/Modal";
 // import TotalCostsSumAndIncomeSum from './totalCostsSumAndIncomeSum/TotalCostsSumAndIncomeSum';
-
 // import OperationList from './operationList/OperationList';
 // import ContactsPage from '../Pages/teamPage/TeamPage';
 // import HomePage from '../Pages/homePage/HomePage';
@@ -28,23 +24,15 @@ import Header from './header/Header';
 // import CategoriesFilter from "./categoriesFilter/CategoriesFilter";
 // import Chart from '../components/chart/Chart';
 // import GoToMono from './categoriesFilter/monoBank/GoToMono';
-import Footer from './Footer/Footer';
 
 const App = () => {
-  // !!вставить в страницу operationsPage, только после авторизации!!
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getDataOnInit());
-    return;
-  }, []);
-
   return (
     <BrowserRouter>
       <Header />
       <Suspense fallback={<h1>Loading...</h1>}>
         {/* <TotalCostsSumAndIncomeSum /> */}
         <Switch>
-          {routes.map(route => {
+          {routes.map((route) => {
             return route.private ? (
               <PrivateRoute key={route.label} {...route} />
             ) : (

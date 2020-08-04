@@ -22,9 +22,8 @@ export default createSlice({
       token: payload.token,
     }),
     registerError: (state, { payload }) => ({ ...state, error: payload }),
-    clearError: state => ({ ...state, error: '' }),
+    clearError: (state) => ({ ...state, error: '' }),
     loginSuccess: (state, { payload }) => {
-      console.log('loginSuccess', payload);
       return {
         ...state,
         name: payload.userData.name,
