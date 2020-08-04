@@ -7,14 +7,13 @@
 }
 
 .button {
-    border: none;
-    background-color: transparent;
-  }
+  border: none;
+  background-color: transparent;
+}
 
 .active {
-    background-color: #fff;
+  background-color: #fff;
 }
-  
 
 .popover {
   position: absolute;
@@ -40,18 +39,45 @@
   border-radius: 50%;
   /* background-color: #fff; */
   color: #fff;
-  cursor: pointer;
+
 }
 
-
-.currencyButton:hover {
-    background-color: rgba(82, 85, 95, 0.5);
-}
+/* .currencyButton:hover {
+  background-color: rgba(82, 85, 95, 0.5);
+} */
 
 .menuItem:not(:last-child) {
   border-bottom: 1px solid rgba(64, 80, 108, 0.1);
 }
 
 .menuItem:hover {
+  background-color: rgba(82, 85, 95, 0.5);
+}
+
+@media (min-width: 768px) {
+
+  .currencyBar {
+    position: relative;
+    width: 100px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .currencyBar:hover {
     background-color: rgba(82, 85, 95, 0.5);
+  }
+
+  .buttonText {
+    display: inline-block;
+    /* text-align: center; */
+    margin: 0;
+    font-family: 'RobotoRegular';
+    font-weight: 500;
+    text-transform: uppercase;
+    opacity: 0.75;
+    color: #52555f;
+  }
 }
