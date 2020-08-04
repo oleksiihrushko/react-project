@@ -1,38 +1,38 @@
 import React, { useState, useEffect } from "react";
-
-// import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./ballanceRedactor.module.css";
-// import { getBalance } from "../../../redux/operations/financeOperations";
+import { addBalance } from "../../../redux/finance/financeOperations";
 
 const BallanceRedactorForm = (props) => {
+  const balance = useSelector((state) => state.operations.ballance);
+
   useEffect(() => {
-    // getBalance()
-    // console.log('object',  getBalance())
     window.addEventListener("keydown", escListener);
     return () => {
       window.removeEventListener("keydown", escListener);
     };
   }, []);
-  const [value, setValue] = useState(props.amount);
-  // const dispatch = useDispatch();
+
+  const [value, setValue] = useState(balance);
+  console.log('value', value)
+  const dispatch = useDispatch();
 
   const handleChange = ({ target: { value } }) => {
     if (value.indexOf(".") != "-1") {
-      value = value.substring(0, value.indexOf(".") + 3);
-    }
-    !isNaN(value) && setValue(value);
-  };
+      value = value.substring(0, value.indexOf(".") + 3)}
+    !isNaN(value) && setValue(value)};
 
   const closeEdit = () => props.setEditing(!props.isEditing);
   const escListener = (event) => event.keyCode == 27 && closeEdit();
 
   const handleSubmit = (event) => {
+    console.log('1111', 1111)
     event.preventDefault();
     if (value !== 0) {
-      //   dispatch(operations.addContact(value));   //записать в стейт новое значение балланса
+      dispatch(addBalance({amount: value}));
+      setValue("");
+      closeEdit();
     }
-    setValue("");
-    closeEdit();
   };
 
   return (
