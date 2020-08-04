@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Chart, HorizontalBar } from "react-chartjs-2";
 import ChartDataLabels from "chartjs-plugin-datalabels";
+import { connect } from "react-redux";
 import { getData } from "./chartServices";
 import "./roundedBars";
 import styles from "./BarChart.module.css";
@@ -122,18 +123,18 @@ const HorizontalChart = () => {
       labels:
         category === "all"
           ? [
-            "Продукты",
-            "Алкоголь",
-            "Развлечения",
-            "Здоровье",
-            "Транспорт",
-            "Все для дома",
-            "Техника",
-            "Коммуналка, связь",
-            "Спорт, хобби",
-            "Образование",
-            "Прочее",
-          ]
+              "Продукты",
+              "Алкоголь",
+              "Развлечения",
+              "Здоровье",
+              "Транспорт",
+              "Все для дома",
+              "Техника",
+              "Коммуналка, связь",
+              "Спорт, хобби",
+              "Образование",
+              "Прочее",
+            ]
           : data && Object.keys(data),
       // labels: data && Object.keys(data),
       datasets: [
@@ -167,8 +168,12 @@ const HorizontalChart = () => {
       <HorizontalBar data={chartData} options={options} height={height} />
     </div>
   ) : (
-      <></>
-    );
+    <></>
+  );
 };
 
-export default HorizontalChart;
+const mapStateToProps = (state) => {
+  console.log(state);
+};
+
+export default connect(mapStateToProps)(HorizontalChart);
