@@ -5,8 +5,7 @@ import Calc from './calc/calc';
 import arrow from './img/arrow.png';
 import calc from './img/calculator.png';
 
-const OperationForm = () => {
-  const [operationType, setOperation] = useState('credit');
+const OperationForm = ({ operationType, setOperation }) => {
   const [date, setDate] = useState('');
   const [description, setDescription] = useState('');
   const [total, setTotal] = useState('');
