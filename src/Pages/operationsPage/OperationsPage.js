@@ -1,13 +1,14 @@
-import React from "react";
-import OpreationsHeader from "../../components/operationsHeader/OperationsHeader";
-import AddOperationForm from "../../components/addOperationForm/AddOperationForm";
-import OperationList from "../../components/operationList/OperationList";
+import React, { useState } from 'react';
+import OperationsHeader from '../../components/operationsHeader/OperationsHeader';
+import AddOperationForm from '../../components/addOperationForm/AddOperationForm';
+import OperationList from '../../components/operationList/OperationList';
 const OperationsPage = () => {
+  const [operationType, setOperation] = useState('credit');
   return (
     <div>
-      <OpreationsHeader />
-      <AddOperationForm />
-      <OperationList />
+      <OperationsHeader />
+      <AddOperationForm type={operationType} setOperation={setOperation} />
+      <OperationList type={operationType} />
     </div>
   );
 };
