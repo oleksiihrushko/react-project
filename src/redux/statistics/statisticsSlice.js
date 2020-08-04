@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+
 const initialState = {
-  month: 'August',
+  month: '',
+  error: '',
 };
 
 export default createSlice({
@@ -13,5 +15,15 @@ export default createSlice({
       name: payload.userData.name,
       token: payload.token,
     }),
+
+    setSelectedMonthSuccess: (state, {payload}) => ({
+      ...state,
+      month: payload,
+    }),
+
+    setSelectedMonthError: (state, {payload}) => ({
+      ...state,
+      error: payload.error,
+    })
   },
 });

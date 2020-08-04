@@ -14,6 +14,7 @@ import exchangeRatesSelectors from '../../redux/exchange/exchangeRatesSelectors'
 import financeSelectors from '../../redux/finance/financeSelectors';
 import CurrencyBar from '../currencyBar/CurrencyBar';
 import exchangeRatesOperations from '../../redux/exchange/exchangeRatesOperations';
+import statisticsSlice from "../../redux/statistics/statisticsSlice"
 
 import styles from './StatisticsHeader.module.css';
 import Media from 'react-media';
@@ -22,6 +23,7 @@ class StatisticsHeader extends Component {
   state = {
     date: '',
     isShowModal: false,
+
   };
 
   componentDidMount() {
@@ -37,20 +39,35 @@ class StatisticsHeader extends Component {
     this.setState({
       date: currentTime,
     });
+    const {setSelectedMonth} = this.props
+    const {date} = this.state
+    setSelectedMonth(date)
+    console.log(moment(currentTime).format('L'))
+  }
+
+  componentDidUpdate () {
+    const {setSelectedMonth} = this.props
+    const {date} = this.state
+    setSelectedMonth(date)
+    console.log(moment(date).format('L'))
   }
 
   handleChangeMonth = ({ target }) => {
     const { name } = target;
     const { date } = this.state;
+    const {getSelectedMonth} = this.props
     if (name === 'prevMonthBtn') {
       this.setState({
         date: moment(date).add(-1, 'month').format(),
       });
+      // getSelectedMonth(moment(date).format('L'))
     }
     if (name === 'nextMonthBtn') {
       this.setState({
         date: moment(date).add(1, 'month').format(),
       });
+      // getSelectedMonth(moment(date).format('L'))
+      // console.log(moment(date).format('L'))
     }
   };
 
@@ -187,6 +204,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
+  setSelectedMonth: (data) => dispatch(statisticsSlice.actions.setSelectedMonthSuccess(moment(data).format('L'))),
   onFetchEchangeRates: () =>
     dispatch(exchangeRatesOperations.fetchCurrentExchangeRates()),
 });
