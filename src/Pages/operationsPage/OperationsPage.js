@@ -12,8 +12,9 @@ import IncomeList from "../../incomeList/IncomeList";
 import MobileList from "../../components/mobileList/MobileList";
 
 const OperationsPage = () => {
+  const [operationType, setOperation] = useState('credit');
+  const [operationsData, setOperationsData] = useState([]);
   const token = useSelector((state) => authSelectors.token(state));
-  const [operationType, setOperation] = useState("credit");
   const dispatch = useDispatch();
   const costs = useSelector((state) => state.operations.costs);
   const income = useSelector((state) => state.operations.income);
@@ -46,7 +47,6 @@ const OperationsPage = () => {
     dispatch(getDataOnInit());
     return;
   }, []);
-
   return (
     <div>
       <OperationsHeader />
@@ -54,7 +54,6 @@ const OperationsPage = () => {
         operationType={operationType}
         setOperation={setOperation}
       />
-
       <Media
         queries={{
           small: "(min-width: 320px) and (max-width: 767px)",
@@ -74,8 +73,10 @@ const OperationsPage = () => {
           </Fragment>
         )}
       </Media>
-
-      <OperationSummaryContainer operationType={operationType} />
+      <OperationSummaryContainer
+        type={operationType}
+        setOperationsData={setOperationsData}
+      />
     </div>
   );
 };

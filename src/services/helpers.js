@@ -27,6 +27,7 @@ export const makeSummary = (costs) => {
         currentYear,
         currentMonth - i,
         getCostsSum(filteredCosts),
+        filteredCosts,
       ]);
     } else {
       const filteredCosts = filterCosts(costs, currentYear, currentMonth, i);
@@ -34,6 +35,7 @@ export const makeSummary = (costs) => {
         currentYear - 1,
         12 - (i - currentMonth),
         getCostsSum(filteredCosts),
+        filteredCosts,
       ]);
     }
   }

@@ -3,14 +3,12 @@ import OperationSummary from './OperationSummary';
 import { useSelector } from 'react-redux';
 import { makeSummary } from '../../services/helpers';
 
-const OperationSummaryContainer = ({ operationsType }) => {
+const OperationSummaryContainer = ({ type, setOperationsData }) => {
   const [summary, setSummary] = useState([]);
+
   const costs = useSelector((state) => state.operations.costs);
   const income = useSelector((state) => state.operations.income);
-  const operations = operationsType ? costs : income;
-  console.log('income :>> ', income);
-  console.log('costs :>> ', costs);
-  console.log('operationsType :>> ', operationsType);
+  const operations = type === 'credit' ? costs : income;
 
   useEffect(() => {
     if (operations.length > 0) {
@@ -20,7 +18,9 @@ const OperationSummaryContainer = ({ operationsType }) => {
   }, [operations]);
 
   console.log('summary :>> ', summary);
-  return <OperationSummary data={summary} />;
+  return (
+    <OperationSummary data={summary} setOperationsData={setOperationsData} />
+  );
 };
 
 export default OperationSummaryContainer;
