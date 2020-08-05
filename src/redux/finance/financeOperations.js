@@ -56,8 +56,8 @@ export const addBalance = (balance) => (dispatch) => {
   dispatch(loaderSlice.actions.setLoadingTrue());
   api
     .addBalance(balance)
-    .then(({ amount }) => {
-      dispatch(financeSlice.actions.addBalanceSuccess(amount));
+    .then(({data}) => {
+      dispatch(financeSlice.actions.addBalanceSuccess(data));
       dispatch(financeSlice.actions.setErrorNull());
     })
     .catch((error) => dispatch(financeSlice.actions.addBalanceError(error)))

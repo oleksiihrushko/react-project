@@ -20,7 +20,7 @@ const App = () => {
       <Suspense fallback={<h1>Loading...</h1>}>
         {/* <TotalCostsSumAndIncomeSum /> */}
         <Switch>
-          {routes.map((route) => {
+          {routes.map(route => {
             return route.private ? (
               <PrivateRoute key={route.label} {...route} />
             ) : (

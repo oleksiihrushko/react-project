@@ -14,7 +14,7 @@ export default createSlice({
   name: 'operations',
   initialState,
   reducers: {
-    setErrorNull: (state) => ({ ...state, error: '' }),
+    setErrorNull: state => ({ ...state, error: '' }),
 
     getDataOnInitError: (state, { payload }) => ({
       ...state,
