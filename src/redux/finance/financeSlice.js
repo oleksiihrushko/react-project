@@ -84,7 +84,7 @@ export default createSlice({
 
     deleteCostsSuccess: (state, { payload }) => ({
       ...state,
-      costs: financeSelectors.deleteCosts(state, payload.id),
+      costs: state.costs.filter(item => item.costsId !== payload),
     }),
 
     getCategoriesSuccess: (state, { payload }) => ({
