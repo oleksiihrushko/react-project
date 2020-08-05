@@ -1,9 +1,9 @@
-import React, { Fragment } from "react";
-import { connect } from "react-redux";
-import Media from "react-media";
-import Title from "../oneOperation/title/Title";
-import OneOperation from "../oneOperation/OneOperation";
-import styles from "./OperationList.module.css";
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+import Media from 'react-media';
+import Title from '../oneOperation/title/Title';
+import OneOperation from '../oneOperation/OneOperation';
+import styles from './OperationList.module.css';
 
 const OperationList = ({ costs, deleteCosts }) => {
   // console.log("OperationList");
@@ -12,18 +12,18 @@ const OperationList = ({ costs, deleteCosts }) => {
       <ul className={styles.operationList}>
         <Media
           queries={{
-            medium: "(min-width: 768px) and (max-width: 1023px)",
-            large: "(min-width: 1024px)",
+            medium: '(min-width: 768px) and (max-width: 1023px)',
+            large: '(min-width: 1024px)',
           }}
         >
-          {(matches) => (
+          {matches => (
             <Fragment>
               {matches.medium && <Title />}
               {matches.large && <Title />}
               {costs.length === 0 ? (
                 <p className={styles.noOperations}>No operations</p>
               ) : (
-                costs.map((operation) => (
+                costs.map(operation => (
                   <OneOperation
                     operation={operation}
                     key={operation.costsId}
@@ -39,7 +39,7 @@ const OperationList = ({ costs, deleteCosts }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   state,
   costs: state.operations.costs,
 });
