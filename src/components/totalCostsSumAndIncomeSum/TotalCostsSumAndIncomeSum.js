@@ -58,7 +58,8 @@ function TotalCostsSumAndIncomeSum() {
   //     }
       
       return (
-        <div className={"container"}>
+      <div className={"container"}>
+        <div className={s.fon}>
         <div className={s.wrapper}>
           <div className={s.column}>
             <p className={s.stat_title}>Расходы:</p>
@@ -69,6 +70,7 @@ function TotalCostsSumAndIncomeSum() {
             <p className={s.stat_title}>Доходы:</p>
             <p className={s.stat_inc}>{0} грн</p>
           </div>
+        </div>
         </div>
       </div>
     );
