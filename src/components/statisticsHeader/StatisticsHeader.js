@@ -14,6 +14,7 @@ import exchangeRatesSelectors from '../../redux/exchange/exchangeRatesSelectors'
 import financeSelectors from '../../redux/finance/financeSelectors';
 import CurrencyBar from '../currencyBar/CurrencyBar';
 import exchangeRatesOperations from '../../redux/exchange/exchangeRatesOperations';
+import statisticsSlice from "../../redux/statistics/statisticsSlice"
 
 import styles from './StatisticsHeader.module.css';
 import Media from 'react-media';
@@ -22,6 +23,7 @@ class StatisticsHeader extends Component {
   state = {
     date: '',
     isShowModal: false,
+
   };
 
   componentDidMount() {
@@ -37,20 +39,35 @@ class StatisticsHeader extends Component {
     this.setState({
       date: currentTime,
     });
+    const {setSelectedMonth} = this.props
+    const {date} = this.state
+    setSelectedMonth(date)
+    console.log(moment(currentTime).format('L'))
+  }
+
+  componentDidUpdate () {
+    const {setSelectedMonth} = this.props
+    const {date} = this.state
+    setSelectedMonth(date)
+    console.log(moment(date).format('L'))
   }
 
   handleChangeMonth = ({ target }) => {
     const { name } = target;
     const { date } = this.state;
+    const {getSelectedMonth} = this.props
     if (name === 'prevMonthBtn') {
       this.setState({
         date: moment(date).add(-1, 'month').format(),
       });
+      // getSelectedMonth(moment(date).format('L'))
     }
     if (name === 'nextMonthBtn') {
       this.setState({
         date: moment(date).add(1, 'month').format(),
       });
+      // getSelectedMonth(moment(date).format('L'))
+      // console.log(moment(date).format('L'))
     }
   };
 
@@ -58,11 +75,10 @@ class StatisticsHeader extends Component {
     // if (this.props.exchangeCurrency[0])
     if (this.props.exchangeCurrency[0]?.ccy === 'USD') {
       return this.props.balance / this.props.exchangeCurrency[0].buy;
-    } 
+    }
     if (this.props.exchangeCurrency[0]?.ccy === 'EUR') {
       return this.props.balance / this.props.exchangeCurrency[0].buy;
-    }
-    else {
+    } else {
       return this.props.balance;
     }
   };
@@ -78,10 +94,11 @@ class StatisticsHeader extends Component {
   render() {
     const { exchangeCurrency, balance } = this.props;
     // console.log(exchangeCurrency[0] ? exchangeCurrency[0].ccy : "UAH");
-    console.log(exchangeCurrency);
-    console.log("balance", balance)
+    // console.log(exchangeCurrency);
+    // console.log('balance', balance);
 
     const { date } = this.state;
+    // console.log(this.props.onFetchEchangeRates())
     return (
       <div className={`${styles.statisticsHeaderWrapper} container`}>
         <div className={styles.leftBar}>
@@ -125,8 +142,6 @@ class StatisticsHeader extends Component {
           </div>
         </div>
         <div className={styles.rightBar}>
-          
-
           <div>
             <div>
               <p className={styles.balance}>
@@ -134,7 +149,7 @@ class StatisticsHeader extends Component {
               </p>
               <div className={styles.statisticsHeaderBalance}>
                 <span className={styles.statisticsSpan}>
-                  {this.exchangeBalancePerCurrentCurrency()}{' '}
+                  {Math.round(this.exchangeBalancePerCurrentCurrency())}{' '}
                   {exchangeCurrency[0] ? exchangeCurrency[0].ccy : 'UAH'}
                 </span>
               </div>
@@ -189,6 +204,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
+  setSelectedMonth: (data) => dispatch(statisticsSlice.actions.setSelectedMonthSuccess(moment(data).format('L'))),
   onFetchEchangeRates: () =>
     dispatch(exchangeRatesOperations.fetchCurrentExchangeRates()),
 });

@@ -6,8 +6,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import authSelectors from '../../redux/auth/authSelectors';
 import { getDataOnInit } from '../../redux/finance/financeOperations';
 import api from '../../services/api';
+import OperationSummaryContainer from '../../components/operationsSummary/OperationsSummaryContainer.js';
 
 const OperationsPage = () => {
+
   const token = useSelector(state => authSelectors.token(state));
   const [operationType, setOperation] = useState('credit');
   const dispatch = useDispatch();
@@ -28,6 +30,7 @@ const OperationsPage = () => {
         setOperation={setOperation}
       />
       <OperationList type={operationType} />
+      <OperationSummaryContainer operationType={operationType} />
     </div>
   );
 };
