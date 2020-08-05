@@ -10,8 +10,7 @@ const ContactUs = () => {
                 return (
                     <li className={s.bgamecard}>
                         <div className={s.bgamecard__cover}>
-                            {/* <img src = {contact.image ? contact.photo : noImage} */}
-                            < img src={require(contact.photo)}
+                            <img src = {contact.photo ? contact.photo : noImage}
                             alt="us"
                             width = "300"
                            />

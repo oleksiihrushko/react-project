@@ -1,17 +1,18 @@
-// import photo from './pageContactUs/photo1.jpg';
+import photo from './pageContactUs/photo1.jpg';
+import photo2 from './pageContactUs/photo2.jpg';
 
 const teamList = [{
     firstName: 'Александр',
     lastName: 'Завадский',
     email: 'Zavadskiyweb@gmail.com',
-    photo: './pageContactUs/photo1.jpg',
+    photo: photo,
     linkedIn: '',
 },
 {
     firstName: 'Дмитрий',
     lastName: 'Смаковский',
     email: 'dmsmakovskyi@gmail.com',
-    photo: '',
+    photo: photo2,
     linkedIn: '',
 },
 {
