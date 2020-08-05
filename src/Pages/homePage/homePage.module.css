@@ -1,6 +1,8 @@
 .sectionHomePage {
-  height: calc(100vh - 60px);
-  padding-bottom: 66px;
+  min-height: calc(100vh - 85px);
+  /* padding-bottom: 66px; */
+  /* min-height: 100vh; */
+  margin-bottom: 150px;
 }
 
 .wrapper {
@@ -71,8 +73,9 @@
 
 @media (min-width: 768px) {
   .sectionHomePage {
-    height: calc(100vh - 60px);
-    padding-bottom: 180px;
+    min-height: calc(100vh - 85px);
+    /* padding-bottom: 180px; */
+    margin-bottom: 300px;
   }
 
   .wrapper {
@@ -117,8 +120,8 @@
 
 @media (min-width: 1280px) {
   .sectionHomePage {
-    height: calc(100vh - 60px);
-    padding-bottom: 142px;
+    min-height: calc(100vh - 85px);
+    /* padding-bottom: 142px; */
   }
 
   .wrapper {

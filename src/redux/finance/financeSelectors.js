@@ -7,8 +7,11 @@ const deleteCosts = (state, id) =>
 const deleteProducts = (state, id) =>
   state.products.filter((item) => item._id !== id);
 
+const getBalance = state => state.operations.balance
+
 export default {
   deleteIncome,
   deleteCosts,
   deleteProducts,
+  getBalance,
 };
