@@ -2,22 +2,41 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import s from './TotalCostsSumAndIncomeSum.module.css';
 import { useSelector } from 'react-redux';
-import moment from 'moment';
+// import React, { useState, useEffect } from 'react';
+
+// const costs = useSelector((state) => state.operations.costs);
+// const income = useSelector((state) => state.operations.income);
+
+const filterCosts = (array, year, month) => {
+  return array.filter((item) => {
+    const startMonth = new Date(year, month , 1, 0, 0);
+    const endMonth = new Date(year, month + 1, 1, 0, 0);
+    const res =
+      item.date > startMonth.toISOString() &&
+      item.date < endMonth.toISOString();
+    return res;
+  });
+};
+const getCostsSum = (array) =>
+  array.reduce((acc, item) => {
+    return acc + item.amount;
+  }, 0);
+console.log(getCostsSum);
+console.log(filterCosts)
 
 
 function TotalCostsSumAndIncomeSum() {
   const costs = useSelector(state => state.operations.costs);
   const income = useSelector(state => state.operations.income);
   const month = useSelector(state => state.statistics.month);
-  console.log(costs);
-  console.log(month);
-  console.log(income);
+  
+  
+  // console.log(costs);
+  // console.log(month);
+  // console.log(income);
 
-  // const {
-  //   date,
-  //   selectedCategory,
-  //   categoriesList,
-  // } = this.state;
+  
+ 
   // let chartData = null;
   // let categoryList = [];
   // let costsSum = 0;

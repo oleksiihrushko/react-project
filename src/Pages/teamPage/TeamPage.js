@@ -23,8 +23,7 @@ const history = useHistory();
                     </div>
                     </>
                 )}
-                <ContactUs />
-                
+                <ContactUs />               
             </div>
         );
 }
