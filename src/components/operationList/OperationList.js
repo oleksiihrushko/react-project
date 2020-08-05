@@ -1,37 +1,12 @@
 import React, { Fragment } from "react";
+import { connect } from "react-redux";
 import Media from "react-media";
 import Title from "../oneOperation/title/Title";
 import OneOperation from "../oneOperation/OneOperation";
 import styles from "./OperationList.module.css";
 
-const testOperation = [
-  {
-    id: 1,
-    date: "21.07.2020",
-    category: "Transport",
-    price: 8,
-    operation: "Metroззззззззззззззззззззiiiiiiiiiiiiiiiii",
-  },
-
-  {
-    id: 2,
-    date: "25.07.2020",
-    category: "Products",
-    price: 550,
-    operation: "Kiwi",
-  },
-
-  {
-    id: 3,
-    date: "28.07.2020",
-    category: "Transport",
-    price: 10,
-    operation: "Train",
-  },
-];
-
-const OperationList = ({ deleteOperation }) => {
-  
+const OperationList = ({ costs, deleteCosts }) => {
+  // console.log("OperationList");
   return (
     <>
       <ul className={styles.operationList}>
@@ -45,13 +20,17 @@ const OperationList = ({ deleteOperation }) => {
             <Fragment>
               {matches.medium && <Title />}
               {matches.large && <Title />}
-              {testOperation.map((operation) => (
-                <OneOperation
-                  operation={operation}
-                  key={operation.id}
-                  deleteOperation={deleteOperation}
-                />
-              ))}
+              {costs.length === 0 ? (
+                <p className={styles.noOperations}>No operations</p>
+              ) : (
+                costs.map((operation) => (
+                  <OneOperation
+                    operation={operation}
+                    key={operation.costsId}
+                    deleteCosts={deleteCosts}
+                  />
+                ))
+              )}
             </Fragment>
           )}
         </Media>
@@ -60,4 +39,9 @@ const OperationList = ({ deleteOperation }) => {
   );
 };
 
-export default OperationList;
+const mapStateToProps = (state) => ({
+  state,
+  costs: state.operations.costs,
+});
+
+export default connect(mapStateToProps)(OperationList);
