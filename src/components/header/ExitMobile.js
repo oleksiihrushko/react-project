@@ -1,15 +1,8 @@
-import React from 'react';
-import { MatchMediaHOC } from 'react-match-media';
-import logout from './img/logout.png';
+import React from "react";
+import { MatchMediaHOC } from "react-match-media";
+import logout from "./img/logout.png";
 
-// const styles = {
-//   backgroundColor: '#ccc',
-//   color: 'red',
-//   fontSize: '16px',
-//   textAlign: 'center',
-// };
-
-const ExitMobile = ({ photo, open }) => {
+const ExitMobile = ({ firstLetter, open }) => {
   return (
     <>
       <div>
@@ -20,4 +13,4 @@ const ExitMobile = ({ photo, open }) => {
   );
 };
 
-export default MatchMediaHOC(ExitMobile, '(max-width: 699px)');
+export default MatchMediaHOC(ExitMobile, "(max-width: 766px)");
