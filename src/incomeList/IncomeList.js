@@ -5,7 +5,8 @@ import Titles from '../oneIncome/titles/Titles';
 import OneIncome from '../oneIncome/OneIncome';
 import styles from './IncomeList.module.css';
 
-const IncomeList = ({ state, income, deleteIncome }) => {
+const IncomeList = ({ operations, deleteIncome, setIsMobile }) => {
+  setIsMobile(false);
   // console.log("IncomeList");
   return (
     <>
@@ -20,10 +21,10 @@ const IncomeList = ({ state, income, deleteIncome }) => {
             <Fragment>
               {matches.medium && <Titles />}
               {matches.large && <Titles />}
-              {income.length === 0 ? (
+              {operations.length === 0 ? (
                 <p className={styles.noIncome}>No income</p>
               ) : (
-                income.map(operation => (
+                operations.map(operation => (
                   <OneIncome
                     operation={operation}
                     key={operation.incomeId}
@@ -39,9 +40,4 @@ const IncomeList = ({ state, income, deleteIncome }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  state,
-  income: state.operations.income,
-});
-
-export default connect(mapStateToProps)(IncomeList);
+export default IncomeList;

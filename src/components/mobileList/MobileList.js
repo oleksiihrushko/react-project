@@ -8,11 +8,12 @@ import {
 } from '../../redux/finance/financeOperations';
 import styles from './MobileList.module.css';
 
-const MobileList = ({ operations }) => {
+const MobileList = ({ operations, setIsMobile }) => {
+  setIsMobile(true);
   const [isShowDeleteModal, setIsShowDeleteModal] = useState(false);
   const [id, setId] = useState([]);
   const dispatch = useDispatch();
-  console.log('operations', operations);
+  // console.log('operations', operations)
 
   const deleteOperation = () => {
     if (id[0] === 'cost') {

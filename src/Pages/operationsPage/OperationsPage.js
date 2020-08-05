@@ -14,6 +14,7 @@ import MobileList from '../../components/mobileList/MobileList';
 const OperationsPage = () => {
   const [operationType, setOperation] = useState('credit');
   const [operationsData, setOperationsData] = useState([]);
+  const [isMobile, setIsMobile] = useState(false);
   const token = useSelector(state => authSelectors.token(state));
   const dispatch = useDispatch();
   const costs = useSelector(state => state.operations.costs);
@@ -41,7 +42,6 @@ const OperationsPage = () => {
     });
 
   const mobileOperations = sortedOperations([...costs, ...income]);
-  console.log('mobileOperations', mobileOperations);
   const costsOperations = sortedOperations([...costs]);
   const incomeOperations = sortedOperations([...income]);
 
@@ -56,13 +56,20 @@ const OperationsPage = () => {
 
       setOperationsData(mobileOperations);
     } else {
+      console.log('not mobile');
       operationType === 'credit'
         ? setOperationsData(costsOperations)
         : setOperationsData(incomeOperations);
     }
 
     return;
-  }, []);
+  }, [isMobile]);
+
+  useEffect(() => {
+    operationType === 'credit'
+      ? setOperationsData(costsOperations)
+      : setOperationsData(incomeOperations);
+  }, [operationType]);
 
   return (
     <div>
@@ -79,11 +86,20 @@ const OperationsPage = () => {
         {matches => (
           <Fragment>
             {matches.small ? (
-              <MobileList operations={operationsData} />
+              <MobileList
+                operations={operationsData}
+                setIsMobile={setIsMobile}
+              />
             ) : operationType === 'credit' ? (
-              <OperationList operations={operationsData} />
+              <OperationList
+                operations={operationsData}
+                setIsMobile={setIsMobile}
+              />
             ) : (
-              <IncomeList operations={operationsData} />
+              <IncomeList
+                operations={operationsData}
+                setIsMobile={setIsMobile}
+              />
             )}
           </Fragment>
         )}
