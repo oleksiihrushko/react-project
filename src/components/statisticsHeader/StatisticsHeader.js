@@ -94,8 +94,8 @@ class StatisticsHeader extends Component {
   render() {
     const { exchangeCurrency, balance } = this.props;
     // console.log(exchangeCurrency[0] ? exchangeCurrency[0].ccy : "UAH");
-    console.log(exchangeCurrency);
-    console.log('balance', balance);
+    // console.log(exchangeCurrency);
+    // console.log('balance', balance);
 
     const { date } = this.state;
     // console.log(this.props.onFetchEchangeRates())
