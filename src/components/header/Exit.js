@@ -31,4 +31,4 @@ const Exit = ({ name, open }) => {
   );
 };
 
-export default MatchMediaHOC(Exit, '(min-width: 700px)');
+export default MatchMediaHOC(Exit, "(min-width: 768px)");

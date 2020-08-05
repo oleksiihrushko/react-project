@@ -14,7 +14,7 @@ const config = {
 // GET /personal/statement/{account}/{from}/{to}
 export const clientData = () =>
   axios
-    .get(`${clientInfo}`, config)
+    .get(`${BASE_URL}${clientInfo}`, config)
     // .then(console.log)
     .then((data) => console.log('data', JSON.parse(data)))
     .catch((error) => {

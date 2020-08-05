@@ -24,7 +24,10 @@ const OperationsPage = () => {
   return (
     <div>
       <OperationsHeader />
-      <AddOperationForm type={operationType} setOperation={setOperation} />
+      <AddOperationForm
+        operationType={operationType}
+        setOperation={setOperation}
+      />
       <OperationList type={operationType} />
       <OperationSummaryContainer
         type={operationType}

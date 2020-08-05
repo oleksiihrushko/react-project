@@ -14,10 +14,15 @@ const authPersistConfig = {
   storage,
 };
 
+const exchangePersist = {
+  key: 'exchange',
+  storage,
+};
+
 export const store = configureStore({
   reducer: {
     isLoading: loaderSlice.reducer,
-    exchangeRatesRoot: exchangeRatesReducer,
+    exchangeRatesRoot: persistReducer(exchangePersist, exchangeRatesReducer),
     operations: financeSlice.reducer,
     auth: persistReducer(authPersistConfig, authSlice.reducer),
     statistics: statisticsSlice.reducer,
