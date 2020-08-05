@@ -1,19 +1,19 @@
-import React, { useEffect, useState, useMemo } from "react";
-import { Chart, Bar } from "react-chartjs-2";
-import ChartDataLabels from "chartjs-plugin-datalabels";
-import { useSelector } from "react-redux";
-import { getData } from "./chartServices";
-import { monthNameToNum, getCurrency, backgroundColor } from "./helpers";
-import "./roundedBars";
-import styles from "./BarChart.module.css";
+import React, { useEffect, useState, useMemo } from 'react';
+import { Chart, Bar } from 'react-chartjs-2';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { useSelector } from 'react-redux';
+import { getData } from './chartServices';
+import { monthNameToNum, getCurrency, backgroundColor } from './helpers';
+import './roundedBars';
+import styles from './BarChart.module.css';
 
 Chart.defaults.global.legend.display = false;
 Chart.defaults.global.defaultFontSize = 11;
 
-const getOptions = (currency) => {
+const getOptions = currency => {
   return {
     legend: {
-      position: "bottom",
+      position: 'bottom',
     },
     scales: {
       xAxes: [
@@ -36,7 +36,7 @@ const getOptions = (currency) => {
           },
           gridLines: {
             drawBorder: false,
-            color: "rgb(241, 244, 251)",
+            color: 'rgb(241, 244, 251)',
           },
         },
       ],
@@ -55,14 +55,14 @@ const getOptions = (currency) => {
     },
     plugins: {
       datalabels: {
-        color: "#333",
-        align: "top",
-        anchor: "end",
-        formatter: (data) => {
+        color: '#333',
+        align: 'top',
+        anchor: 'end',
+        formatter: data => {
           return `${currency} ${data}`;
         },
         font: {
-          weight: "normal",
+          weight: 'normal',
           size: 11,
         },
       },
@@ -78,23 +78,23 @@ const getOptions = (currency) => {
 const BarChart = () => {
   const [chartData, setChartData] = useState({});
 
-  const date = useSelector((state) => state.statistics.month);
-  const month = date ? Array.from(date).splice(3, 2).join("") - 1 : "";
-  const year = date ? Array.from(date).splice(6, 4).join("") : "";
+  const date = useSelector(state => state.statistics.month);
+  const month = date && Array.from(date).splice(3, 2).join('') - 1;
+  const year = date && Array.from(date).splice(6, 4).join('');
 
-  const currency = useSelector((state) =>
-    getCurrency(state.exchangeRatesRoot.exchangeCurrency)
+  const currency = useSelector(state =>
+    getCurrency(state.exchangeRatesRoot.exchangeCurrency),
   );
 
-  const categories = useSelector((state) => state.operations.categories);
+  const categories = useSelector(state => state.operations.categories);
 
   const categoriesNames = useMemo(
-    () => categories.map((category) => category.name),
-    [categories]
+    () => categories.map(category => category.name),
+    [categories],
   );
 
   const chart = () => {
-    const data = getData("all", Number(month), Number(year));
+    const data = getData('all', Number(month), Number(year));
 
     setChartData({
       labels: categoriesNames,
@@ -102,7 +102,7 @@ const BarChart = () => {
         {
           data: data && Object.values(data),
           backgroundColor: backgroundColor,
-          hoverBackgroundColor: "rgba(255, 179, 45, 0.8)",
+          hoverBackgroundColor: 'rgba(255, 179, 45, 0.8)',
           barThickness: 20,
         },
       ],
@@ -112,7 +112,7 @@ const BarChart = () => {
 
   useEffect(() => {
     chart();
-  }, [categoriesNames]);
+  }, [categoriesNames, date]);
 
   return (
     <div className={styles.chartContainer}>

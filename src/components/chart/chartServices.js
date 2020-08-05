@@ -1,4 +1,4 @@
-import { dummyData } from "./dummyData";
+import { dummyData } from './dummyData';
 
 const expenses = dummyData.items;
 
@@ -6,7 +6,7 @@ const categorise = (selectedMonth, selectedYear) => {
   console.log(selectedYear);
   let categoryData = {};
 
-  expenses.forEach((exp) => {
+  expenses.forEach(exp => {
     const categoryName = exp.product.category.name;
     const categoryItem = exp.product.name;
     const amount = exp.amount;
@@ -25,7 +25,7 @@ const categorise = (selectedMonth, selectedYear) => {
   return categoryData;
 };
 
-const getCategoryDetails = (data) => {
+const getCategoryDetails = data => {
   return data.reduce((acc, item) => {
     const title = Object.keys(item)[0];
     const amount = Object.values(item)[0];
@@ -54,7 +54,7 @@ const getSubcategoryData = (selectedCategory, selectedMonth, selectedYear) => {
 const getExpensesByAllCategories = (selectedMonth, selectedYear) => {
   let categoryData = {};
 
-  expenses.forEach((exp) => {
+  expenses.forEach(exp => {
     const categoryName = exp.product.category.name;
     const amount = exp.amount;
     const month = exp.date.getMonth();
@@ -73,9 +73,9 @@ const getExpensesByAllCategories = (selectedMonth, selectedYear) => {
 export const getData = (
   selectedCategory,
   selectedMonth = new Date().getMonth(),
-  selectedYear = new Date().getFullYear()
+  selectedYear = new Date().getFullYear(),
 ) => {
-  if (selectedCategory === "all") {
+  if (selectedCategory === 'all') {
     return getExpensesByAllCategories(selectedMonth, selectedYear);
   } else {
     return getSubcategoryData(selectedCategory, selectedMonth, selectedYear);
