@@ -12,6 +12,7 @@ const MobileList = ({ operations }) => {
   const [isShowDeleteModal, setIsShowDeleteModal] = useState(false);
   const [id, setId] = useState([]);
   const dispatch = useDispatch();
+  console.log('operations', operations)
 
   const deleteOperation = () => {
     if (id[0] === "cost") {
@@ -30,7 +31,7 @@ const MobileList = ({ operations }) => {
           operations.map((operation) => (
             <OneMobileOperation
               operation={operation}
-              key={operation.id}
+              key={operation.date}
               setId={setId}
               openModal={() => setIsShowDeleteModal(true)}
             />
