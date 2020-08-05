@@ -25,7 +25,6 @@ const OneOperation = ({
       return operation;
     }
   };
-  // console.log(lengthOneOperation());
 
   return (
     <li className={styles.operationListItem}>

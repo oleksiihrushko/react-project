@@ -1,3 +1,35 @@
-//Ballance
-//Buttons для смены типа операций
-//в зависимости от типа операций форма, список, сводка
+import React, { useEffect, useState } from 'react';
+import OperationsHeader from '../../components/operationsHeader/OperationsHeader';
+import AddOperationForm from '../../components/addOperationForm/AddOperationForm';
+import OperationList from '../../components/operationList/OperationList';
+import { useSelector, useDispatch } from 'react-redux';
+import authSelectors from '../../redux/auth/authSelectors';
+import { getDataOnInit } from '../../redux/finance/financeOperations';
+import api from '../../services/api';
+
+const OperationsPage = () => {
+  const token = useSelector(state => authSelectors.token(state));
+  const [operationType, setOperation] = useState('credit');
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (token) {
+      api.token.set(token);
+    }
+    dispatch(getDataOnInit());
+    return;
+  }, []);
+
+  return (
+    <div>
+      <OperationsHeader />
+      <AddOperationForm
+        operationType={operationType}
+        setOperation={setOperation}
+      />
+      <OperationList type={operationType} />
+    </div>
+  );
+};
+
+export default OperationsPage;
