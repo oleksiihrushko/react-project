@@ -5,6 +5,7 @@ import ReactDOM from "react-dom";
 import Exit from "./Exit";
 import ExitMobile from "./ExitMobile";
 import styles from "./style.module.css";
+import logo from "./img/logoreact.png";
 
 class Header extends Component {
   state = {
@@ -48,7 +49,9 @@ class Header extends Component {
       <>
         <div className={styles.container}>
           <ul className={styles.headerUl}>
-            <li>LOGO</li>
+            <li>
+              <img style={{ width: 100, height: 40 }} src={logo} alt="logo" />
+            </li>
             <li>
               <ul className={styles.headerUlUl}>
                 <li>
