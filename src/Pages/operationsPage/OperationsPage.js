@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import authSelectors from '../../redux/auth/authSelectors';
 import { getDataOnInit } from '../../redux/finance/financeOperations';
 import api from '../../services/api';
+import OperationSummaryContainer from '../../components/operationsSummary/OperationsSummaryContainer.js';
 
 const OperationsPage = () => {
   const [operationType, setOperation] = useState('credit');
@@ -25,6 +26,7 @@ const OperationsPage = () => {
       <OperationsHeader />
       <AddOperationForm type={operationType} setOperation={setOperation} />
       <OperationList type={operationType} />
+      <OperationSummaryContainer />
     </div>
   );
 };
