@@ -17,12 +17,12 @@ const OneMobileOperation = ({ operation, setId, openModal }) => {
     <li className={styles.operationListItem}>
       <p className={styles.date}>{operation.date.slice(0, 10)}</p>
       <p className={styles.category}>
-        {operation.costsId ? operation.product.category.name : "Доход"}
+        {operation.costsId ? operation.product.name : "Доход"}
       </p>
       {operation.costsId ? (
-        <p className={styles.price}>-{operation.amount} грн</p>
+        <p className={styles.priceCost}>-{operation.amount} грн</p>
       ) : (
-        <p className={styles.price}>{operation.amount} грн</p>
+        <p className={styles.priceIncome}>{operation.amount} грн</p>
       )}
 
       <button
