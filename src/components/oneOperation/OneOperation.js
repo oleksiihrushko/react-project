@@ -4,28 +4,26 @@ import cart from "../operationList/icons/delete.png";
 import styles from "./OneOperation.module.css";
 
 const OneOperation = ({
-  operation: { id, date, category, operation, price },
+  operation: { amount, date, product, forDeleteId },
 }) => {
   const deleteCosts = (id) => {};
-  // console.log(id);
 
   const lengthOneOperationSmall = () => {
-    if (operation.length > 8) {
-      return operation.slice(0, 8) + "...";
+    if (product.name.length > 8) {
+      return product.name.slice(0, 8) + "...";
     } else {
-      return operation;
+      return product.name;
     }
   };
 
   const lengthOneOperation = () => {
-    // console.log(operation.length);
-    if (operation.length > 22) {
-      return operation.slice(0, 22) + "...";
+    if (product.name.length > 22) {
+      return product.name.slice(0, 22) + "...";
     } else {
-      return operation;
+      return product.name;
     }
   };
-
+  // console.log(product);
   return (
     <li className={styles.operationListItem}>
       <div className={styles.operation}>
@@ -48,14 +46,16 @@ const OneOperation = ({
             </Media>
           }
         </p>
-        <p className={styles.date}>{date}</p>
+        <p className={styles.date}>
+          {date.slice(0, 10)}
+        </p>
       </div>
-      <p className={styles.category}>{category}</p>
-      <p className={styles.price}>-{price} грн</p>
+      <p className={styles.category}>{product.category.name}</p>
+      <p className={styles.price}>-{amount} грн</p>
       <button
         type="button"
         className={styles.btnDelete}
-        onClick={() => deleteCosts(id)}
+        onClick={() => deleteCosts(forDeleteId)}
       >
         <img
           src={cart}
