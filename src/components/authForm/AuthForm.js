@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { register, login } from '../../redux/auth/authOperations';
+import { createGoogleUser } from '../../services/helpers';
+import authSlice from '../../redux/auth/authSlice';
 import googleIcon from '../../ui/google-icon.png';
 import styles from './authForm.module.css';
-import { register, login, logOut } from '../../redux/auth/authOperations';
-import { useDispatch, useSelector } from 'react-redux';
-import authSelectors from '../../redux/auth/authSelectors';
-import authSlice from '../../redux/auth/authSlice';
 
 const AuthForm = () => {
   const [firstName, setFirstName] = useState('');
@@ -15,23 +15,8 @@ const AuthForm = () => {
 
   const dispatch = useDispatch();
 
-  const token = useSelector((state) => authSelectors.token(state));
-  const photo = useSelector((state) => authSelectors.getPhoto(state));
-  const googleUser = useSelector((state) => authSelectors.googleUser(state));
-
   const setGoogleUser = (googleUser) => {
-    const user = {
-      userData: {
-        name: {
-          fullName: googleUser.getBasicProfile().getName(),
-          firstName: googleUser.getBasicProfile().getGivenName(),
-          lastName: googleUser.getBasicProfile().getFamilyName(),
-        },
-      },
-      photo: googleUser.getBasicProfile().getImageUrl(),
-      token: googleUser.wc.access_token,
-      googleLogin: true,
-    };
+   const user = createGoogleUser(googleUser);
     dispatch(authSlice.actions.loginSuccess(user));
   };
 
@@ -41,20 +26,20 @@ const AuthForm = () => {
       scope: 'profile email',
     }).then(
       (user) => setGoogleUser(user),
-      () => console.log('signIn ERROR')
+      (error) => dispatch(authSlice.actions.loginError(error)),
     );
   };
 
   useEffect(() => {
-    window.gapi.load('auth2', function () {
+    window.gapi.load('auth2', function() {
       window.gapi.auth2
         .init({
           // client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
           client_id: '460326880610-0ski7kotqh77ijrc6cg9t0eusr3dfict',
         })
         .then(
-          () => console.log('SUCCESS'),
-          () => console.log('ERROR')
+          () => console.log('Google init Success'),
+          (error) => dispatch(authSlice.actions.loginError(error)),
         );
     });
     return;
@@ -112,9 +97,13 @@ const AuthForm = () => {
   return (
     <div className={styles.authWrapper}>
       <form onSubmit={handleSubmit}>
+        {/* --------- form start --------- */}
+        
         <p className={styles.googleDescr}>
           Вы можете авторизироваться с помощью Google account:
         </p>
+
+        {/* --------- google button--------- */}
         <button type="button" onClick={googleSignIn} className={styles.google}>
           <img
             className={styles.googleIcon}
@@ -130,6 +119,7 @@ const AuthForm = () => {
 
         {typeRegister && (
           <>
+          {/* --------- first name input --------- */}
             <label className={styles.label} htmlFor="name">
               Имя
             </label>
@@ -142,8 +132,11 @@ const AuthForm = () => {
               name="firstName"
               value={firstName}
               onChange={handleInputFirstName}
+              required
+              autoFocus
             />
 
+          {/* --------- last name input --------- */}
             <label className={styles.label} htmlFor="lastName">
               Фамилия
             </label>
@@ -156,10 +149,12 @@ const AuthForm = () => {
               name="lastName"
               value={lastName}
               onChange={handleInputLastName}
+              required
             />
           </>
         )}
 
+          {/* --------- email input --------- */}
         <label className={styles.label} htmlFor="email">
           Электронная почта
         </label>
@@ -172,7 +167,11 @@ const AuthForm = () => {
           name="email"
           value={email}
           onChange={handleInputEmail}
+          required
+          autoFocus
         />
+
+          {/* --------- password input --------- */}
         <label className={styles.label} htmlFor="password">
           Пароль
         </label>
@@ -185,8 +184,12 @@ const AuthForm = () => {
           name="password"
           value={password}
           onChange={handleInputPassword}
+          minLength="5"
+          maxLength="15"
+          required
         />
 
+        {/* --------- buttons login/register --------- */}
         <div className={styles.authBtnWrapper}>
           <button className={styles.buttonLogin} type="submit">
             {typeRegister ? 'создать' : 'войти'}
@@ -199,6 +202,8 @@ const AuthForm = () => {
             {typeRegister ? 'аккаунт' : 'регистрация'}
           </button>
         </div>
+        
+        {/* --------- /form end --------- */}
       </form>
     </div>
   );
