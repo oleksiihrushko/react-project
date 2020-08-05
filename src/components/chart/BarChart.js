@@ -8,6 +8,7 @@ import "./roundedBars";
 import styles from "./BarChart.module.css";
 
 Chart.defaults.global.legend.display = false;
+Chart.defaults.global.defaultFontSize = 11;
 
 const getOptions = (currency) => {
   return {
@@ -42,8 +43,8 @@ const getOptions = (currency) => {
     },
     tooltips: {
       displayColors: false,
-      titleFontSize: 16,
-      bodyFontSize: 14,
+      titleFontSize: 12,
+      bodyFontSize: 11,
       xPadding: 10,
       yPadding: 10,
       callbacks: {
@@ -59,6 +60,10 @@ const getOptions = (currency) => {
         anchor: "end",
         formatter: (data) => {
           return `${currency} ${data}`;
+        },
+        font: {
+          weight: "normal",
+          size: 11,
         },
       },
     },

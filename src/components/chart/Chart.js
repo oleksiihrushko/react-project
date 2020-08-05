@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import BarChart from "./BarChart";
 import HorizontalChart from "./horizontalChart";
-import { useWindowWidth } from "./hooks";
+
+const useWindowWidth = () => {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
+
+  return width;
+};
 
 const Chart = () => {
   const width = useWindowWidth();

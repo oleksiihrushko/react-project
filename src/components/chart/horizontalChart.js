@@ -31,8 +31,12 @@ const getOptions = (currency) => {
       yAxes: [
         {
           ticks: {
+            mirror: true,
             beginAtZero: true,
             display: false,
+            // callback: function (value, index, values) {
+            //   return value;
+            // },
           },
           gridLines: {
             display: false,
@@ -56,6 +60,10 @@ const getOptions = (currency) => {
       datalabels: {
         labels: {
           title: {
+            font: {
+              size: "11",
+              weight: "normal",
+            },
             color: "#333",
 
             align: "top",
@@ -73,6 +81,10 @@ const getOptions = (currency) => {
             color: "#333",
             align: "end",
             anchor: "end",
+            font: {
+              size: "11",
+              weight: "normal",
+            },
 
             formatter: function (value, context) {
               return `${currency} ${value}`;
