@@ -2,18 +2,20 @@ import React from "react";
 import cart from "../components/operationList/icons/delete.png";
 import styles from "./OneIncome.module.css";
 
-const OneIncome = ({ operation: { id, date, category, price } }) => {
-  const deleteOperation = (id) => {};
+const OneIncome = ({ operation: { date, amount, incomeId } }) => {
+  const deleteIncome = (id) => {};
   // console.log(id);
   return (
     <li className={styles.operationListItem}>
-      <p className={styles.date}>{date}</p>
-      <p className={styles.category}>{category}</p>
-      <p className={styles.price}>{price} грн</p>
+      <p className={styles.date}>
+        {date.slice(0, 10) + " " + date.slice(11, 19)}
+      </p>
+      <p className={styles.category}>Income</p>
+      <p className={styles.price}>{amount} грн</p>
       <button
         type="button"
         className={styles.btnDelete}
-        onClick={() => deleteOperation(id)}
+        onClick={() => deleteIncome(incomeId)}
       >
         <img
           src={cart}
