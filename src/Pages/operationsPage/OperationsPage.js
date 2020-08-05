@@ -1,19 +1,19 @@
-import React, { useEffect, useState, Fragment } from 'react';
-import OperationsHeader from '../../components/operationsHeader/OperationsHeader';
-import AddOperationForm from '../../components/addOperationForm/AddOperationForm';
-import OperationList from '../../components/operationList/OperationList';
-import { useSelector, useDispatch } from 'react-redux';
-import authSelectors from '../../redux/auth/authSelectors';
-import { getDataOnInit } from '../../redux/finance/financeOperations';
-import api from '../../services/api';
-import OperationSummaryContainer from '../../components/operationsSummary/OperationsSummaryContainer.js';
+import React, { useEffect, useState, Fragment } from "react";
+import Media from "react-media";
+import OperationsHeader from "../../components/operationsHeader/OperationsHeader";
+import AddOperationForm from "../../components/addOperationForm/AddOperationForm";
+import OperationList from "../../components/operationList/OperationList";
+import { useSelector, useDispatch } from "react-redux";
+import authSelectors from "../../redux/auth/authSelectors";
+import { getDataOnInit } from "../../redux/finance/financeOperations";
+import api from "../../services/api";
+import OperationSummaryContainer from "../../components/operationsSummary/OperationsSummaryContainer.js";
 import IncomeList from "../../incomeList/IncomeList";
 import MobileList from "../../components/mobileList/MobileList";
 
 const OperationsPage = () => {
-
-  const token = useSelector(state => authSelectors.token(state));
-  const [operationType, setOperation] = useState('credit');
+  const token = useSelector((state) => authSelectors.token(state));
+  const [operationType, setOperation] = useState("credit");
   const dispatch = useDispatch();
   const costs = useSelector((state) => state.operations.costs);
   const income = useSelector((state) => state.operations.income);
@@ -76,7 +76,6 @@ const OperationsPage = () => {
       </Media>
 
       <OperationSummaryContainer operationType={operationType} />
-
     </div>
   );
 };
