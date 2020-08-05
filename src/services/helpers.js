@@ -1,3 +1,16 @@
+export const createGoogleUser = (googleUser) => ({
+  userData: {
+    name: {
+      fullName: googleUser.getBasicProfile().getName(),
+      firstName: googleUser.getBasicProfile().getGivenName(),
+      lastName: googleUser.getBasicProfile().getFamilyName(),
+    },
+  },
+  photo: googleUser.getBasicProfile().getImageUrl(),
+  token: googleUser.wc.access_token,
+  googleLogin: true,
+});
+
 const filterCosts = (array, year, month, i) => {
   return array.filter((item) => {
     const startMonth = new Date(year, month - i, 1, 0, 0);
