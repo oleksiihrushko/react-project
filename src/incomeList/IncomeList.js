@@ -6,8 +6,7 @@ import OneIncome from "../oneIncome/OneIncome";
 import styles from "./IncomeList.module.css";
 
 const IncomeList = ({ state, income, deleteIncome }) => {
-  // console.log("state", state);
-  // console.log("income", income);
+  // console.log("IncomeList");
   return (
     <>
       <ul className={styles.incomeList}>

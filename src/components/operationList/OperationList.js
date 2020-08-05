@@ -6,7 +6,7 @@ import OneOperation from "../oneOperation/OneOperation";
 import styles from "./OperationList.module.css";
 
 const OperationList = ({ costs, deleteCosts }) => {
-  // console.log("costs", costs);
+  // console.log("OperationList");
   return (
     <>
       <ul className={styles.operationList}>

@@ -1,0 +1,46 @@
+.operationListItem {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.date {
+  width: 100px;
+  font-size: 9px;
+  color: gray;
+  padding-top: 20px;
+}
+
+.category {
+  font-size: 12px;
+  font-weight: bold;
+  width: 50px;
+  position: absolute;
+}
+
+.price {
+  font-size: 10px;
+  line-height: 40px;
+  width: 180px;
+  text-align: center;
+  margin: 0;
+  margin-left: 26px;
+}
+
+.btnDelete {
+  padding: 4px;
+  border: none;
+  width: 60px;
+  height: 38px;
+  background-color: white;
+  margin-left: 20px;
+}
+
+.btnDelete:hover,
+.btnDelete:focus {
+  background-color: rgb(244, 246, 251);
+  border-radius: 25px;
+}
+
+.imgOperation {
+  max-width: 100%;
+}
