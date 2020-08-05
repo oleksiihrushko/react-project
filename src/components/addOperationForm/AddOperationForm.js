@@ -55,17 +55,21 @@ const OperationForm = () => {
   //? addCosts = (costDescription, categoryId, date, amount)
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (date === "" || description === "" || total === "" || category === "") return
-
+    
     if (operationType === "credit") {
+      if (date === "" || total === "") return
       dispatch(addIncome({
         amount: Number(total),
         date: new Date(date).toISOString()
       }))
+      handleClear()
+      // dispatch(addIncome(Number(total)))
     } else {
-
+      if (date === "" || description === "" || total === "" || category === "") return
       dispatch(addCosts(description, categoryID, new Date(date).toISOString(), Number(total)))
+      handleClear()
     }
+
   };
 
   const handleClear = () => {
@@ -95,6 +99,7 @@ const OperationForm = () => {
         name="credit"
         onClick={(e) => {
           setOperation(e.target.name);
+          handleClear();
           openModal();
         }}
       >
@@ -112,6 +117,7 @@ const OperationForm = () => {
         name="debit"
         onClick={(e) => {
           setOperation(e.target.name);
+          handleClear();
           openModal();
         }}
       >
