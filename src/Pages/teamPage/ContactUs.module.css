@@ -1,133 +1,116 @@
 
-/* .contactus_ul {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
-    grid-gap: 20px;
+.teamPage{
+  background-color: #f4f6fb;
 }
-  
-.contactus_li {
-    text-align: center;
-    border-radius: 10px;
-    width: 260px;
-    background-color: rgba(255, 255, 255, 0.5);
-    padding: 20px;
-    margin: 0 auto;
-    margin: 10px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+/* .textP{
+  text-align: center;
+} */
+.typewriter{
+  position: absolute;
+ bottom: 5px;
+ left: 50%;
+ transform: translateX(-50%);
+  /* z-index: 1000; */
 }
-  
-.contactus_li:hover {
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-  
-.contactus_img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-  
-.contactus_name_p {
-    font-weight: 700;
-    font-size: 20px;
-    padding: 10px 0;
-}
-  
-.contactus_title_p {
-    padding: 0 0 5px 0;
-    font-weight: 600;
-    font-size: 16px;
-}
-  
-.contactus_email_p {
-    padding: 5px 0 10px 0;
-    font-weight: 500;
-    font-style: italic;
-}
-  
-@media (min-width: 768px) {
-    .contactus_div_main {
-      width: 688px;
-    }
-  
-    .contactus_ul {
-      list-style: none;
-    }
-  
-    .contactus_li {
-      width: 320px;
-      background-color: rgba(255, 255, 255, 0.5);
-      padding: 20px;
-      margin: 10px;
-    }
-  }
-  
-  @media (min-width: 1280px) {
-    .contactus_div_main {
-      width: 1024px;
-    }
-  }
-   */
 
-.contactus_div_main {
-  max-width: 1000px;
-  margin: 100px auto;
+.lcontainer {
+  /* display: grid; */
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  flex-flow: wrap;
+  justify-content: space-between;
+  /* grid-template-columns: repeat(4, 1fr); */
+  /* grid-gap: 30px; */
+  /* width: 100%; */
+  /* max-width: 1200px; */
+  padding: 30px;
 }
- .card {
-  position: relative;
-  margin: 20px 0;
-  width: 300px;
-  height: 400px;
-  background: #fff;
-  transform-style: preserve-3d;
-  transform: perspective(2000px);
-  transition: 1s;
-  box-shadow: inset 300px 0 50px rgba(0,0,0,.5);
-}
-.card:hover {
-  z-index: 1000;
-  transform: perspective(2000px) rotate(-10deg);
-  box-shadow: inset 20px 0 50px rgba(0,0,0,.5);
-
+@media screen and (max-width: 760px) {
+  .lcontainer {
+    display: block;
+    
+    /* grid-template-columns: repeat(2, 1fr); */
+  }
 }
 
-.card .imgBox {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border: 1px solid #000;
-  box-sizing: border-box;
-  transform-origin: left;
-  z-index: 1;
-  transition: 2s;
-}
-.card:hover .imgBox {
-  transform: rotateY(-135deg);
-} 
-.card .imgBox .img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.card .text {
-  position: absolute;
-  top: 0;
-  left: 0;
-  box-sizing: border-box;
-  padding: 20px;
-} 
-
-.contactus_img {
+.bgamecard {
   display: block;
+  position: relative;
+  z-index: 1;
+  width: 300px;
+  /* padding-bottom: 150%; */
+  padding-bottom:400px;
+  perspective: 1000px;
+  margin-bottom: 30px;
+  
+}
+.bgamecard__cover {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden;
+  background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+  background-size: cover;
+  perspective-origin: 50% 50%;
+  transform-style: preserve-3d;
+  transform-origin: top center;
+  will-change: transform;
+  transform: skewX(0.001deg);
+  transition: transform 0.35s ease-in-out;
   object-fit: cover;
 }
+.bgamecard__cover::after {
+  display: block;
+  content: "";
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  background: linear-gradient(226deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.2) 42%, rgba(255, 255, 255, 0) 60%);
+  transform: translateY(-20%);
+  will-change: transform;
+  transition: transform 0.65s cubic-bezier(0.18, 0.9, 0.58, 1);
+  
+}
+.bgamecard:hover .bgamecard__cover {
+  transform: rotateX(7deg) translateY(-6px);
+}
+.bgamecard:hover .bgamecard__cover::after {
+  transform: translateY(0%);
+}
+.bgamecard::before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 6px 12px 12px rgba(0, 0, 0, 0.4);
+  will-change: opacity;
+  transform-origin: top center;
+  transform: skewX(0.001deg);
+  transition: transform 0.35s ease-in-out, opacity 0.5s ease-in-out;
+  
+}
+.bgamecard:hover::before {
+  opacity: 0.6;
+  transform: rotateX(7deg) translateY(-6px) scale(1.05);
+  
+}
+
+.imgContact {
+  height: 400px;
+  object-fit: cover;
+  width: 100%;
+  z-index: 300;
+}
+.typewriter {
+  z-index: 400;
+}
+
