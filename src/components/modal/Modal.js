@@ -1,40 +1,44 @@
-import React, { createRef, useEffect } from 'react';
-import styles from './Modal.module.css';
+import React, { useEffect } from "react";
+import styles from "./Modal.module.css";
 
 const Modal = ({ text, onTrue, closeModal }) => {
-  const handleKeydown = e => {
-    if (e.code === 'Escape') {
+  const handleKeydown = (e) => {
+    if (e.code === "Escape") {
       closeModal();
     }
   };
 
-  const handleClickModal = e => {
-    if (e.target === modalRef.current || e.target.dataset.type === '1') {
+  const handleClickModal = (e) => {
+    if (
+      e.target.dataset.type === "div" ||
+      e.target.dataset.type === "no" ||
+      e.target.dataset.type === "yes"
+    ) {
+
+      if (e.target.dataset.type === "yes") {
+        onTrue();
+      }
       closeModal();
     }
   };
 
   useEffect(() => {
-    window.addEventListener('keydown', handleKeydown);
-    modalRef.current.addEventListener('click', handleClickModal);
+    window.addEventListener("keydown", handleKeydown);
 
     return () => {
-      window.removeEventListener('keydown', handleKeydown);
-      modalRef.current.removeEventListener('click', handleClickModal);
+      window.removeEventListener("keydown", handleKeydown);
     };
   }, []);
 
-  const modalRef = createRef();
-
   return (
-    <div ref={modalRef} className={styles.overlay}>
+    <div onClick={handleClickModal} data-type="div" className={styles.overlay}>
       <div className={styles.modalWindow}>
         <p className={styles.modalDescription}>{text}</p>
         <div className="borderBtn">
-          <button className={styles.btnModal} type="button" onClick={onTrue}>
+          <button className={styles.btnModal} type="button" data-type="yes">
             ДA
           </button>
-          <button data-type="1" className={styles.btnModal}>
+          <button data-type="no" className={styles.btnModal}>
             НET
           </button>
         </div>

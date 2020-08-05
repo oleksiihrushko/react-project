@@ -1,33 +1,12 @@
 import React, { Fragment } from "react";
+import { connect } from "react-redux";
 import Media from "react-media";
 import Titles from "../oneIncome/titles/Titles";
 import OneIncome from "../oneIncome/OneIncome";
 import styles from "./IncomeList.module.css";
 
-const testIncome = [
-  {
-    id: 4,
-    date: "29.07.2020",
-    category: "Income",
-    price: 800,
-  },
-
-  {
-    id: 5,
-    date: "30.07.2020",
-    category: "Income",
-    price: 500,
-  },
-
-  {
-    id: 6,
-    date: "31.07.2020",
-    category: "Income",
-    price: 10,
-  },
-];
-
-const IncomeList = ({ deleteOperation }) => {
+const IncomeList = ({ state, income, deleteIncome }) => {
+  // console.log("IncomeList");
   return (
     <>
       <ul className={styles.incomeList}>
@@ -41,13 +20,17 @@ const IncomeList = ({ deleteOperation }) => {
             <Fragment>
               {matches.medium && <Titles />}
               {matches.large && <Titles />}
-              {testIncome.map((operation) => (
-                <OneIncome
-                  operation={operation}
-                  key={operation.id}
-                  deleteOperation={deleteOperation}
-                />
-              ))}
+              {income.length === 0 ? (
+                <p className={styles.noIncome}>No income</p>
+              ) : (
+                income.map((operation) => (
+                  <OneIncome
+                    operation={operation}
+                    key={operation.incomeId}
+                    deleteIncome={deleteIncome}
+                  />
+                ))
+              )}
             </Fragment>
           )}
         </Media>
@@ -56,4 +39,9 @@ const IncomeList = ({ deleteOperation }) => {
   );
 };
 
-export default IncomeList;
+const mapStateToProps = (state) => ({
+  state,
+  income: state.operations.income,
+});
+
+export default connect(mapStateToProps)(IncomeList);
