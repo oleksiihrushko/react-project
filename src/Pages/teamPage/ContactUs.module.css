@@ -28,7 +28,7 @@
 .lcontainer {
   display: flex;
   flex-flow: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 30px;
 }
 @media screen and (max-width: 760px) {
