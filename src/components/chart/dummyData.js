@@ -4,8 +4,8 @@ const randomAmount = () => Math.round(Math.random() * 1000);
 
 const getDate = () => {
   return randomDate({
-    from: new Date(2020, 6, 1),
-    to: new Date(2020, 6, 31),
+    from: new Date(2020, 7, 1),
+    to: new Date(2020, 7, 31),
   });
 };
 
