@@ -1,8 +1,8 @@
-import React from "react";
-import { MatchMediaHOC } from "react-match-media";
-import logout from "./img/logout.png";
+import React from 'react';
+import { MatchMediaHOC } from 'react-match-media';
+import logout from './img/logout.png';
 
-const ExitMobile = ({ firstLetter, open }) => {
+const ExitMobile = ({ photo, open }) => {
   return (
     <>
       <div>
@@ -13,4 +13,4 @@ const ExitMobile = ({ firstLetter, open }) => {
   );
 };
 
-export default MatchMediaHOC(ExitMobile, "(max-width: 766px)");
+export default MatchMediaHOC(ExitMobile, '(max-width: 766px)');
