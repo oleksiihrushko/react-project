@@ -5,6 +5,9 @@ import teamList from '../teamPage/teamList';
 import Typewriter from 'typewriter-effect';
 
 const ContactUs = () => {
+
+    // Typewriter.typeString
+
     return (
     <section className={s.teamPage}>
       <div className='container'>
@@ -12,6 +15,7 @@ const ContactUs = () => {
             {teamList.map(contact => {
                 return (
                     <li>
+                        {console.log(contact)}
                            
                     <div className={s.bgamecard}>
                         <div className={s.bgamecard__cover}>
@@ -20,12 +24,29 @@ const ContactUs = () => {
                             />
                         </div>  
                         <div className={s.typewriter}>
-                                <Typewriter className={s.typewriter}
+                                {/* <Typewriter className={s.typewriter}
                                 options={{
-                                    strings: ['Hello', 'World'],
+                                    strings: [contact.firstName, ],
                                     autoStart: true,
                                     loop: true,
+                                    deleteAll: 0,
+                                    delay : 300,
+                                    loop : false,
                                    }}
+                                /> */}
+                                <Typewriter className={s.typewriter}
+                                onInit={(typewriter) => {
+                                typewriter.typeString(`${contact.firstName} ${contact.lastName} ${contact.email}` )
+                                .callFunction(() => {
+                                console.log('String typed out!');
+                                })
+                                .pauseFor(2500)
+                                .deleteAll(1000000000)
+                                .callFunction(() => {
+                                console.log('All strings were deleted');
+                                })
+                                .start();
+                                }}
                                 />
                         </div>
                     </div>
