@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { connect } from 'react-redux';
 import Media from 'react-media';
 import Title from '../oneOperation/title/Title';
 import OneOperation from '../oneOperation/OneOperation';
@@ -22,7 +21,7 @@ const OperationList = ({ deleteCosts, operations, setIsMobile }) => {
               {matches.medium && <Title />}
               {matches.large && <Title />}
               {operations.length === 0 ? (
-                <p className={styles.noOperations}>No operations</p>
+                <p className={styles.noOperations}>Нет операций</p>
               ) : (
                 operations.map(operation => (
                   <OneOperation
