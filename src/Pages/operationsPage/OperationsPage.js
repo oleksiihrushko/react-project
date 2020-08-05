@@ -1,9 +1,9 @@
 import React, { useEffect, useState, Fragment } from "react";
 import Media from "react-media";
+import { useSelector, useDispatch } from "react-redux";
 import OperationsHeader from "../../components/operationsHeader/OperationsHeader";
 import AddOperationForm from "../../components/addOperationForm/AddOperationForm";
 import OperationList from "../../components/operationList/OperationList";
-import { useSelector, useDispatch } from "react-redux";
 import authSelectors from "../../redux/auth/authSelectors";
 import { getDataOnInit } from "../../redux/finance/financeOperations";
 import api from "../../services/api";

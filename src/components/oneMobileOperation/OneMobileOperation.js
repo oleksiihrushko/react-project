@@ -20,9 +20,9 @@ const OneMobileOperation = ({ operation, setId, openModal }) => {
         {operation.costsId ? operation.product.category.name : "Доход"}
       </p>
       {operation.costsId ? (
-        <p className={styles.price}>-{operation.amount} грн</p>
+        <p className={styles.priceCost}>-{operation.amount} грн</p>
       ) : (
-        <p className={styles.price}>{operation.amount} грн</p>
+        <p className={styles.priceIncome}>{operation.amount} грн</p>
       )}
 
       <button
