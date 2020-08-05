@@ -1,12 +1,14 @@
 import React from 'react';
 
 const SummaryItem = ({ data }) => {
-  const item = Object.entries(data);
+  const date = new Date(data[0], data[1], 1);
+  const monthLocale = date.toLocaleString('en-us', { month: 'long' });
+
   return (
     <>
       <li className="summaryListItem">
-        <p className="summaryListItemMonth">{item[0]}</p>
-        <p className="summaryListItemSum">{item[1]}</p>
+        <p className="summaryListItemMonth">{monthLocale}</p>
+        <p className="summaryListItemSum">{data[2]}</p>
       </li>
     </>
   );

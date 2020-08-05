@@ -1,30 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import OperationSummary from './OperationSummary';
 import { useSelector } from 'react-redux';
+import { makeSummary } from '../../services/helpers';
 
 const OperationSummaryContainer = () => {
-  const [summary, setSummary] = useState([
-    { март: 100 },
-    { арель: 56 },
-    { май: 33 },
-    { июнь: 11 },
-    { июль: 42 },
-    { август: 98 },
-  ]);
-
-  const now = new Date();
-  const periodMs = 6 * 30 * 24 * 60 * 60 * 1000;
-  const pastMs = Date.parse(now) - periodMs;
-  const past = new Date(pastMs);
+  const [summary, setSummary] = useState([]);
   const costs = useSelector((state) => state.operations.costs);
-  const filteredCosts = costs.filter((item) => {
-    // console.log('item :>> ', item.date);
-    // console.log('past :>> ', past.toISOString());
-    return item.date > past.toISOString();
-  });
-  // console.log('costs :>> ', costs);
-  console.log('filteredCosts :>> ', filteredCosts);
 
+  useEffect(() => {
+    if (costs.length > 0) {
+      const data = makeSummary(costs);
+      setSummary(data);
+    }
+  }, [costs]);
+
+  console.log('summary :>> ', summary);
   return <OperationSummary data={summary} />;
 };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import shortid from 'shortid';
 import SummaryItem from './SummaryItem';
 
 const OperationSummary = ({ data }) => {
@@ -7,7 +8,7 @@ const OperationSummary = ({ data }) => {
       <p className="summaryListHeading">Сводка</p>
       <ul className="summaryList">
         {data.map((item) => (
-          <SummaryItem data={item} />
+          <SummaryItem key={shortid.generate()} data={item} />
         ))}
       </ul>
     </div>

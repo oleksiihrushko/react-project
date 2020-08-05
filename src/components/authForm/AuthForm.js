@@ -4,7 +4,6 @@ import styles from './authForm.module.css';
 import { register, login, logOut } from '../../redux/auth/authOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import authSelectors from '../../redux/auth/authSelectors';
-import api from '../../services/api';
 import authSlice from '../../redux/auth/authSlice';
 
 const AuthForm = () => {
@@ -44,24 +43,6 @@ const AuthForm = () => {
       (user) => setGoogleUser(user),
       () => console.log('signIn ERROR')
     );
-  };
-
-  const signOut = (googleUser) => {
-    if (googleUser) {
-      const googleSignOut = () => {
-        const GoogleAuth = window.gapi.auth2.getAuthInstance();
-        GoogleAuth.signOut({
-          scope: 'profile email',
-        }).then(
-          () => console.log('signOut SUCCESS'),
-          () => console.log('signOut ERROR')
-        );
-      };
-      googleSignOut();
-      dispatch(authSlice.actions.logoutGoogleSuccess());
-    } else {
-      dispatch(logOut());
-    }
   };
 
   useEffect(() => {
