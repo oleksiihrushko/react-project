@@ -2,10 +2,8 @@ import { dummyData } from "./dummyData";
 
 const expenses = dummyData.items;
 
-const categorise = (
-  selectedMonth = new Date().getMonth(),
-  selectedYear = new Date().getFullYear()
-) => {
+const categorise = (selectedMonth, selectedYear) => {
+  console.log(selectedYear);
   let categoryData = {};
 
   expenses.forEach((exp) => {

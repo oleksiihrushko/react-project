@@ -78,7 +78,9 @@ const getOptions = (currency) => {
 const BarChart = () => {
   const [chartData, setChartData] = useState({});
 
-  const month = useSelector((state) => monthNameToNum(state.statistics.month));
+  const date = useSelector((state) => state.statistics.month);
+  const month = date ? Array.from(date).splice(3, 2).join("") - 1 : "";
+  const year = date ? Array.from(date).splice(6, 4).join("") : "";
 
   const currency = useSelector((state) =>
     getCurrency(state.exchangeRatesRoot.exchangeCurrency)
@@ -92,7 +94,7 @@ const BarChart = () => {
   );
 
   const chart = () => {
-    const data = getData("all", month, 2020);
+    const data = getData("all", Number(month), Number(year));
 
     setChartData({
       labels: categoriesNames,

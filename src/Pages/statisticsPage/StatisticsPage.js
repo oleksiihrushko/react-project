@@ -8,12 +8,10 @@ import api from "../../services/api";
 import { getDataOnInit } from "../../redux/finance/financeOperations";
 import authSelectors from "../../redux/auth/authSelectors";
 
-
-
 const StatistcsPage = () => {
-    const token = useSelector(state => authSelectors.token(state));
-    const dispatch = useDispatch();
-  
+  const token = useSelector((state) => authSelectors.token(state));
+  const dispatch = useDispatch();
+
   useEffect(() => {
     if (token) {
       api.token.set(token);
