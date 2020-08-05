@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import financeSelectors from './financeSelectors';
 
 const initialState = {
   balance: '',
@@ -64,7 +63,7 @@ export default createSlice({
 
     deleteIncomeSuccess: (state, { payload }) => ({
       ...state,
-      income: financeSelectors.deleteIncome(state, payload.id),
+      income: state.income.filter(item => item.incomeId !== payload),
     }),
 
     deleteIncomeError: (state, { payload }) => ({
@@ -139,7 +138,7 @@ export default createSlice({
 
     deleteProductSuccess: (state, { payload }) => ({
       ...state,
-      products: financeSelectors.deleteProducts(state, payload.id),
+      products: state.products.filter(item => item._id !== payload),
     }),
 
     deleteProductError: (state, { payload }) => ({
