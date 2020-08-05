@@ -88,6 +88,18 @@ export const deleteIncome = (id) => (dispatch) => {
     .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
 };
 
+export const deleteCosts = (idDelete, id) => (dispatch) => {
+  dispatch(loaderSlice.actions.setLoadingTrue());
+  api
+    .deleteCosts(idDelete, id)
+    .then(() => {
+      dispatch(financeSlice.actions.deleteCostsSuccess(id));
+      dispatch(financeSlice.actions.setErrorNull());
+    })
+    .catch((error) => dispatch(financeSlice.actions.deleteCostsError(error)))
+    .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
+};
+
 export const addCosts = (costDescription, categoryId, date, amount) => async (
   dispatch
 ) => {
