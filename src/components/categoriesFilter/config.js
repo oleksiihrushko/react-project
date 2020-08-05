@@ -16,7 +16,21 @@ import { useSelector } from "react-redux";
 
 export const TotalCountsCosts = () => {
   const allCosts = useSelector((state) => state.operations.costs);
-  const totalCategoryCost = allCosts.reduce(
+  // const monthToFind = useSelector((state) =>11111111);
+  console.log("allCosts", allCosts);
+
+  const monthToFind = 5; // взять у юры в стейте
+
+  const getFilteredDate = allCosts.filter((costs) => {
+    const allDates = costs.date;
+    const dataTarcsaction = new Date(allDates);
+    const currentMonth = dataTarcsaction.getMonth() + 1;
+
+    if (currentMonth === monthToFind) {
+      return true;
+    }
+  });
+  const totalCategoryCost = getFilteredDate.reduce(
     (acc, costs) => {
       acc[costs.product.category.name] =
         acc[costs.product.category.name] + costs.amount;
@@ -36,6 +50,7 @@ export const TotalCountsCosts = () => {
       Прочее: 0,
     }
   );
+  // console.log("totalCategoryCost", totalCategoryCost);
 
   const configs = [
     {
@@ -46,17 +61,17 @@ export const TotalCountsCosts = () => {
     {
       name: "Aлкоголь",
       svg: <Alcohol />,
-      total: totalCategoryCost["Продукты"],
+      total: totalCategoryCost["Aлкоголь"],
     },
     {
       name: "Pазвлечение",
       svg: <Party />,
-      total: totalCategoryCost["Продукты"],
+      total: totalCategoryCost["Pазвлечение"],
     },
     {
       name: "Здоровье",
       svg: <Health />,
-      total: totalCategoryCost["Продукты"],
+      total: totalCategoryCost["Здоровье"],
     },
     {
       name: "Транспорт",
@@ -66,50 +81,55 @@ export const TotalCountsCosts = () => {
     {
       name: "Все для дома",
       svg: <Home />,
-      total: totalCategoryCost["Продукты"],
+      total: totalCategoryCost["Все для дома"],
     },
     {
       name: "Техника",
       svg: <Tools />,
-      total: totalCategoryCost["Продукты"],
+      total: totalCategoryCost["Техника"],
     },
     {
       name: "Коммуналка, связь",
       svg: <Comunal />,
-      total: totalCategoryCost["Продукты"],
+      total: totalCategoryCost["Коммуналка, связь"],
     },
     {
       name: "Хобби",
       svg: <Sport />,
-      total: totalCategoryCost["Продукты"],
+      total: totalCategoryCost["Хобби"],
     },
     {
       name: "Образование",
       svg: <Learn />,
-      total: totalCategoryCost["Продукты"],
+      total: totalCategoryCost["Образование"],
     },
     {
       name: "Прочее",
       svg: <Else />,
-      total: totalCategoryCost["Продукты"],
+      total: totalCategoryCost["Прочее"],
     },
   ];
   return (
-    <ul className={styles.ul} className={styles.flex} style={{paddingLeft:0}}>
+    <ul
+      className={styles.ul}
+      className={styles.flex}
+      style={{ paddingLeft: 0 }}
+    >
       {configs.map(({ name, svg, total }) => {
         return (
-          <li key={name} className={`${styles.flex} ${styles.li}`}>
-            <button
-              onClick={() => {
-                console.log("123", 123); //куда
-              }}
-              className={styles.btn}
-            >
-              <p className={`${styles.prise}`}>{total}</p>
-              <div className={styles.svg}>{svg}</div>
-              <p className={styles.name}>{name}</p>
-            </button>
-          </li>
+          total > 0 && (
+            <li key={name} className={`${styles.flex} ${styles.li}`}>
+              <button
+                // onClick={(props = { name, total })}    //ЖЕНЯ
+                className={styles.btn}
+              >
+                <p className={`${styles.prise}`}>{total}</p>
+                <div className={styles.svg}>{svg}</div>
+                <p className={styles.name}>{name}</p>
+              </button>
+            </li>
+          )
+          // )
         );
       })}
     </ul>
