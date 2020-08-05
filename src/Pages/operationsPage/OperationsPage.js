@@ -9,9 +9,9 @@ import api from '../../services/api';
 import OperationSummaryContainer from '../../components/operationsSummary/OperationsSummaryContainer.js';
 
 const OperationsPage = () => {
-
-  const token = useSelector(state => authSelectors.token(state));
   const [operationType, setOperation] = useState('credit');
+  const [operationsData, setOperationsData] = useState([]);
+  const token = useSelector((state) => authSelectors.token(state));
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,7 +21,6 @@ const OperationsPage = () => {
     dispatch(getDataOnInit());
     return;
   }, []);
-
   return (
     <div>
       <OperationsHeader />
@@ -30,7 +29,10 @@ const OperationsPage = () => {
         setOperation={setOperation}
       />
       <OperationList type={operationType} />
-      <OperationSummaryContainer operationType={operationType} />
+      <OperationSummaryContainer
+        type={operationType}
+        setOperationsData={setOperationsData}
+      />
     </div>
   );
 };
