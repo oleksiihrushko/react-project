@@ -1,6 +1,7 @@
 import React from 'react';
 import shortid from 'shortid';
 import SummaryItem from './SummaryItem';
+// import s from './Summory.module.css';
 
 const OperationSummary = ({ data, setOperationsData }) => {
   return (
