@@ -14,9 +14,7 @@ const ContactUs = () => {
         <ul className={s.lcontainer}>
             {teamList.map(contact => {
                 return (
-                    <li>
-                        {console.log(contact)}
-                           
+                    <li>                         
                     <div className={s.bgamecard}>
                         <div className={s.bgamecard__cover}>
                             <img className={s.imgContact} src = {contact.photo ? contact.photo : noImage}
