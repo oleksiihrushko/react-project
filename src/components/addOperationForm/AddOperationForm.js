@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
-import Media from "react-media";
-import styles from "./addOperationForm.module.css";
-import Calc from "./calc/calc";
-import arrow from "./img/arrow.png";
-import calc from "./img/calculator.png";
-import { useDispatch, useSelector } from "react-redux";
-import { categoriesSelector } from "../../redux/finance/financeSelectors";
+import React, { useState, useEffect } from 'react';
+import Media from 'react-media';
+import styles from './addOperationForm.module.css';
+import Calc from './calc/calc';
+import arrow from './img/arrow.png';
+import calc from './img/calculator.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { categoriesSelector } from '../../redux/finance/financeSelectors';
 import {
   getCategories,
   addIncome,
   addCosts,
-} from "../../redux/finance/financeOperations";
+} from '../../redux/finance/financeOperations';
 
-const OperationForm = ({operationType, setOperation}) => {
+const OperationForm = ({ operationType, setOperation }) => {
   // const [operationType, setOperation] = useState("credit");
-  const [date, setDate] = useState("");
-  const [description, setDescription] = useState("");
-  const [total, setTotal] = useState("");
+  const [date, setDate] = useState('');
+  const [description, setDescription] = useState('');
+  const [total, setTotal] = useState('');
   const [modalMobile, setModalMobile] = useState(false);
   const [category, setCategory] = useState("");
   const [categoryID, setCategoryID] = useState("");
@@ -28,10 +28,10 @@ const OperationForm = ({operationType, setOperation}) => {
   const dispatch = useDispatch();
   const categoryList = useSelector(categoriesSelector);
 
-  useEffect(() => {
-    dispatch(getCategories());
-  }, []);
- 
+  // useEffect(() => {
+  //   dispatch(getCategories());
+  // }, []);
+
   const changeTotalByCalc = () => {
     setTotal(displayValue);
     setOpenCalc(false);
@@ -57,20 +57,20 @@ const OperationForm = ({operationType, setOperation}) => {
     setCategory(e.target.value)
     let id = ""; 
     e.target.childNodes.forEach(element => {
-      console.log(element.id)
+      // console.log(element.id);
       if (element.value === e.target.value) {
-        id = element.id
+        id = element.id;
       }
     });
-    setCategoryID(id)
-  }
+    setCategoryID(id);
+  };
 
   const openCalc = () => {
     setOpenCalc(!isCalcOpen);
-    setDisplayValue("0");
+    setDisplayValue('0');
   };
   //? addCosts = (costDescription, categoryId, date, amount)
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     formAlert()
     
@@ -88,14 +88,15 @@ const OperationForm = ({operationType, setOperation}) => {
       dispatch(addCosts(description, categoryID, new Date(date).toISOString(), Number(total)))
       handleClear()
       setModalMobile(false)
+
     }
   };
 
   const handleClear = () => {
-    setDate("");
-    setDescription("");
-    setTotal("");
-    setCategory("")
+    setDate('');
+    setDescription('');
+    setTotal('');
+    setCategory('');
   };
 
   const openModal = () => {
@@ -111,13 +112,13 @@ const OperationForm = ({operationType, setOperation}) => {
         className={styles.debit}
         style={
           window.screen.width >= 767
-            ? operationType === "debit"
-              ? { backgroundColor: "#fefefe", color: "#fb812d", zIndex: 10 }
+            ? operationType === 'debit'
+              ? { backgroundColor: '#fefefe', color: '#fb812d', zIndex: 10 }
               : null
             : null
         }
         name="debit"
-        onClick={(e) => {
+        onClick={e => {
           setOperation(e.target.name);
           handleClear();
           openModal();
@@ -129,13 +130,13 @@ const OperationForm = ({operationType, setOperation}) => {
         className={styles.credit}
         style={
           window.screen.width >= 767
-            ? operationType === "credit"
-              ? { backgroundColor: "#fefefe", color: "#fb812d", zIndex: 10 }
+            ? operationType === 'credit'
+              ? { backgroundColor: '#fefefe', color: '#fb812d', zIndex: 10 }
               : null
             : null
         }
         name="credit"
-        onClick={(e) => {
+        onClick={e => {
           setOperation(e.target.name);
           handleClear();
           openModal();
@@ -145,10 +146,10 @@ const OperationForm = ({operationType, setOperation}) => {
       </button>
       <Media
         queries={{
-          small: "(max-width: 767px)",
+          small: '(max-width: 767px)',
         }}
       >
-        {(matches) =>
+        {matches =>
           matches.small ? (
             modalMobile && (
               <div className={styles.operationFormModal}>
@@ -167,8 +168,13 @@ const OperationForm = ({operationType, setOperation}) => {
                     value={date}
                     onChange={({ target }) => setDate(target.value)}
                   />
-                  <select className={styles.categoryForm} value={category} onChange={handleChangeCategory} disabled={operationType === "credit" ? "disabled" : null}>
-                    {operationType === "credit" ? (
+                  <select
+                    className={styles.categoryForm}
+                    value={category}
+                    onChange={handleChangeCategory}
+                    disabled={operationType === 'credit' ? 'disabled' : null}
+                  >
+                    {operationType === 'credit' ? (
                       <option value="" disabled selected hidden>
                         Доход
                       </option>
@@ -177,22 +183,24 @@ const OperationForm = ({operationType, setOperation}) => {
                         Категория
                       </option>
                     )}
-                    {categoryList.map((categ) => <option id={categ._id}>{categ.name}</option>)}
+                    {categoryList.map(categ => (
+                      <option id={categ._id}>{categ.name}</option>
+                    ))}
                   </select>
-                  
+
                   <textarea
                     type="text"
                     className={styles.desctiptionModalInput}
                     name="description"
                     placeholder={
-                      operationType === "credit"
-                        ? "Внесите ваш доход в следующее поле"
-                        : "Здесь ты будешь вносить на что ты тратишь деньги"
+                      operationType === 'credit'
+                        ? 'Внесите ваш доход в следующее поле'
+                        : 'Здесь ты будешь вносить на что ты тратишь деньги'
                     }
-                    value={operationType === "credit" ? "" : description}
+                    value={operationType === 'credit' ? '' : description}
                     onChange={({ target }) => setDescription(target.value)}
-                    readOnly={operationType === "credit" && "readOnly"}
-                    />
+                    readOnly={operationType === 'credit' && 'readOnly'}
+                  />
                   <div className={styles.modalTotal}>
                     <input
                       type="number"
@@ -201,7 +209,7 @@ const OperationForm = ({operationType, setOperation}) => {
                       placeholder="00.00"
                       value={total}
                       onChange={({ target }) => setTotal(target.value)}
-                      />
+                    />
                     <div className={styles.modalCalc}>
                       <img
                         src={calc}
@@ -216,7 +224,7 @@ const OperationForm = ({operationType, setOperation}) => {
                     <button
                       onClick={() => handleClear()}
                       className={styles.clearModalButton}
-                      >
+                    >
                       ОЧИСТИТЬ
                     </button>
                   </div>
@@ -227,12 +235,12 @@ const OperationForm = ({operationType, setOperation}) => {
                     setDisplayValue={setDisplayValue}
                     changeTotalByCalc={changeTotalByCalc}
                     setOpenCalc={setOpenCalc}
-                    />
-                    )}
+                  />
+                )}
               </div>
             )
-            ) : (
-              <div className={styles.operationForm}>
+          ) : (
+            <div className={styles.operationForm}>
               <form onSubmit={handleSubmit}>
                 <input
                   className={styles.dateInput}
@@ -240,26 +248,31 @@ const OperationForm = ({operationType, setOperation}) => {
                   name="date"
                   value={date}
                   onChange={({ target }) => setDate(target.value)}
-                  />
+                />
                 <input
                   type="text"
                   className={styles.desctiptionInput}
                   name="description"
                   placeholder={
                     window.screen.width >= 767 && window.screen.width <= 1279
-                    ? operationType === "credit"
-                    ? "Внесите ваш доход далее"
-                    : "На что вы тратите деньги"
-                    : operationType === "credit"
-                    ? "Внесите ваш доход в следующее поле"
-                    : "Здесь ты будешь вносить на что ты тратишь деньги"
+                      ? operationType === 'credit'
+                        ? 'Внесите ваш доход далее'
+                        : 'На что вы тратите деньги'
+                      : operationType === 'credit'
+                      ? 'Внесите ваш доход в следующее поле'
+                      : 'Здесь ты будешь вносить на что ты тратишь деньги'
                   }
-                  value={operationType === "credit" ? "" : description}
+                  value={operationType === 'credit' ? '' : description}
                   onChange={({ target }) => setDescription(target.value)}
-                  readOnly={operationType === "credit" && "readOnly"}
+                  readOnly={operationType === 'credit' && 'readOnly'}
                 />
-                <select className={styles.categoryInput}  value={category} onChange={handleChangeCategory} disabled={operationType === "credit" ? "disabled" : null}>
-                  {operationType === "credit" ? (
+                <select
+                  className={styles.categoryInput}
+                  value={category}
+                  onChange={handleChangeCategory}
+                  disabled={operationType === 'credit' ? 'disabled' : null}
+                >
+                  {operationType === 'credit' ? (
                     <option value="" disabled selected hidden>
                       Доход
                     </option>
@@ -268,7 +281,9 @@ const OperationForm = ({operationType, setOperation}) => {
                       Категория
                     </option>
                   )}
-                  {categoryList.map((categ) => <option id={categ._id}>{categ.name}</option>)}
+                  {categoryList.map(categ => (
+                    <option id={categ._id}>{categ.name}</option>
+                  ))}
                 </select>
                 <input
                   type="number"

@@ -1,10 +1,10 @@
 import React, { Fragment, useState } from 'react';
 import Media from 'react-media';
 import { useDispatch } from 'react-redux';
-import Title from '../oneOperation/title/Title';
+import Title from './oneOperation/title/Title';
 import Modal from '../modal/Modal';
 import { deleteCosts } from '../../redux/finance/financeOperations';
-import OneOperation from '../oneOperation/OneOperation';
+import OneOperation from './oneOperation/OneOperation';
 import styles from './OperationList.module.css';
 
 const OperationList = ({ operations, setIsMobile }) => {

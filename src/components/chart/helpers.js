@@ -1,3 +1,22 @@
+import { useState, useEffect } from 'react';
+
+export const useWindowWidth = () => {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  });
+
+  return width;
+};
+
 export const backgroundColor = [
   'rgba(255, 129, 45, 0.8)',
   'rgba(255, 129, 45, 0.3)',
@@ -16,27 +35,7 @@ export const backgroundColor = [
   'rgba(255, 129, 45, 0.3)',
 ];
 
-export const monthNameToNum = monthName => {
-  const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-
-  const month = months.indexOf(monthName);
-  return month ? month : 0;
-};
-
-export const getCurrency = currency => {
+export const getCurrencySign = currency => {
   switch (currency) {
     case 'UAH':
       return '₴';
@@ -55,7 +54,6 @@ export const getCurrency = currency => {
 export const getRate = (rates, currency) =>
   rates.filter(rate => {
     if (rate.ccy === currency) {
-      // console.log(rate.buy);
       return rate.buy;
     }
   });
@@ -65,5 +63,5 @@ export const calculateHeight = chartData => {
 
   let length = chartData.labels ? chartData.labels.length : 0;
 
-  return length * 80;
+  return length * 60;
 };

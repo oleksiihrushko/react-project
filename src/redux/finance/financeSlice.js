@@ -43,7 +43,7 @@ export default createSlice({
 
     addBalanceSuccess: (state, { payload }) => ({
       ...state,
-      balance: payload.balance,
+      balance: payload,
     }),
 
     addBalanceError: (state, { payload }) => ({
@@ -61,10 +61,13 @@ export default createSlice({
       error: payload.error,
     }),
 
-    deleteIncomeSuccess: (state, { payload }) => ({
-      ...state,
-      income: state.income.filter(item => item.incomeId !== payload),
-    }),
+    deleteIncomeSuccess: (state, { payload }) => {
+      console.log('payload :>> ', payload);
+      return {
+        ...state,
+        income: state.income.filter(item => item.incomeId !== payload),
+      };
+    },
 
     deleteIncomeError: (state, { payload }) => ({
       ...state,
