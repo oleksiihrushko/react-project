@@ -10,6 +10,7 @@ import api from '../../services/api';
 import OperationSummaryContainer from '../../components/operationsSummary/OperationsSummaryContainer.js';
 import IncomeList from '../../incomeList/IncomeList';
 import MobileList from '../../components/mobileList/MobileList';
+import styles from './OperationPage.module.css';
 
 const OperationsPage = () => {
   const [operationType, setOperation] = useState('debit');
@@ -75,42 +76,52 @@ const OperationsPage = () => {
   }, [operationType]);
 
   return (
-    <div>
+    <div className={`container`}>
       <OperationsHeader />
-      <AddOperationForm
-        operationType={operationType}
-        setOperation={setOperation}
-      />
-      <Media
-        queries={{
-          small: '(max-width: 767px)',
-        }}
-      >
-        {matches => (
-          <Fragment>
-            {matches.small ? (
-              <MobileList
-                operations={operationsData}
-                setIsMobile={setIsMobile}
-              />
-            ) : operationType === 'debit' ? (
-              <OperationList
-                operations={operationsData}
-                setIsMobile={setIsMobile}
-              />
-            ) : (
-              <IncomeList
-                operations={operationsData}
-                setIsMobile={setIsMobile}
+      <div>
+        <AddOperationForm
+          operationType={operationType}
+          setOperation={setOperation}
+        />
+        <div className={styles.operationListWrapper}>
+
+            <Media
+              queries={{
+                small: '(max-width: 767px)',
+              }}
+            >
+              {matches => (
+                <Fragment>
+                  {matches.small ? (
+                    <MobileList
+                      operations={operationsData}
+                      setIsMobile={setIsMobile}
+                    />
+                  ) : operationType === 'debit' ? (
+                    <OperationList
+                      operations={operationsData}
+                      setIsMobile={setIsMobile}
+                    />
+                  ) : (
+                    <IncomeList
+                      operations={operationsData}
+                      setIsMobile={setIsMobile}
+                    />
+                  )}
+                </Fragment>
+              )}
+            </Media>
+
+         
+            {!window.matchMedia('(max-width: 767px)').matches && (
+              <OperationSummaryContainer
+                type={operationType}
+                setOperationsData={setOperationsData}
               />
             )}
-          </Fragment>
-        )}
-      </Media>
-      {!(window.matchMedia('(max-width: 767px)').matches)&&<OperationSummaryContainer
-        type={operationType}
-        setOperationsData={setOperationsData}
-      />}
+
+        </div>
+      </div>
     </div>
   );
 };
