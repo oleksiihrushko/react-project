@@ -48,7 +48,6 @@ class StatisticsHeader extends Component {
     const { setSelectedMonth } = this.props;
     const { date } = this.state;
     setSelectedMonth(date);
-
   }
 
   handleChangeMonth = ({ target }) => {
@@ -92,14 +91,13 @@ class StatisticsHeader extends Component {
   render() {
     const { exchangeCurrency, balance } = this.props;
 
-
     const { date } = this.state;
     return (
       <div className={`${styles.statisticsHeaderWrapper} container`}>
         <div className={styles.leftBar}>
           <div className={styles.buttonGoBack}>
             <Link to="/">
-              <ArrowBack className={styles.changeColorSvg}/>
+              <ArrowBack className={styles.changeColorSvg} />
               <Media query="(min-width: 768px)">
                 {matches =>
                   matches ? (
@@ -113,21 +111,15 @@ class StatisticsHeader extends Component {
           </div>
 
           <div className={styles.currencyBar}>
-            <CurrencyBar className={styles.changeColorSvg}/>
+            <CurrencyBar className={styles.changeColorSvg} />
           </div>
           <div className={styles.exchangeRates} onClick={this.openModal}>
             {this.state.isShowModal && (
-              <ModalExchangeRates  closeModal={this.closeModal} />
+              <ModalExchangeRates closeModal={this.closeModal} />
             )}
             <label>
-              {/* <button
-              
-                className={styles.button}
-                type="button"
-                onClick={this.openModal}
-              > */}
-                <Exchange className={styles.changeColorSvg}/>
-              {/* </button> */}
+              <Exchange className={styles.changeColorSvg} />
+
               <Media query="(min-width: 768px)">
                 {matches =>
                   matches ? <p className={styles.buttonText}>Курс</p> : <p></p>
