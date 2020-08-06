@@ -50,6 +50,13 @@ const OperationsPage = () => {
       api.token.set(token);
     }
     dispatch(getDataOnInit());
+  }, []);
+
+  useEffect(() => {
+    // if (token) {
+    //   api.token.set(token);
+    // }
+    // dispatch(getDataOnInit());
 
     if (window.matchMedia('(max-width: 767px)').matches) {
       console.log('mobile');
@@ -63,7 +70,7 @@ const OperationsPage = () => {
     }
 
     return;
-  }, [isMobile]);
+  }, [isMobile, costs, income]);
 
   useEffect(() => {
     operationType === 'debit'
@@ -104,10 +111,10 @@ const OperationsPage = () => {
           </Fragment>
         )}
       </Media>
-      <OperationSummaryContainer
+      {!(window.matchMedia('(max-width: 767px)').matches)&&<OperationSummaryContainer
         type={operationType}
         setOperationsData={setOperationsData}
-      />
+      />}
     </div>
   );
 };

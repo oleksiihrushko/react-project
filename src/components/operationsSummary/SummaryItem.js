@@ -1,4 +1,5 @@
 import React from 'react';
+import s from './Summary.module.css';
 
 const SummaryItem = ({ data, setOperationsData }) => {
   const date = new Date(data[0], data[1], 1);
@@ -7,14 +8,14 @@ const SummaryItem = ({ data, setOperationsData }) => {
   return (
     <>
       <li
-        className="summaryListItem"
+        className={s.summaryListItem}
         onClick={() => {
           console.log('data[3] :>> ', data[3]);
           setOperationsData(data[3]);
         }}
       >
-        <p className="summaryListItemMonth">{monthLocale}</p>
-        <p className="summaryListItemSum">{data[2]}</p>
+        <p className={s.summaryListItemMonth}>{monthLocale}</p>
+        <p className={s.summaryListItemSum}>{data[2]}</p>
       </li>
     </>
   );

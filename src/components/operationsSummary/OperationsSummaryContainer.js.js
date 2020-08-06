@@ -8,7 +8,7 @@ const OperationSummaryContainer = ({ type, setOperationsData }) => {
 
   const costs = useSelector((state) => state.operations.costs);
   const income = useSelector((state) => state.operations.income);
-  const operations = type === 'credit' ? costs : income;
+  const operations = type === 'debit' ? costs : income;
 
   useEffect(() => {
     if (operations.length > 0) {

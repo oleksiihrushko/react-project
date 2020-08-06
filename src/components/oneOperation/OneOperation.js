@@ -4,16 +4,13 @@ import cart from '../operationList/icons/delete.png';
 import styles from './OneOperation.module.css';
 
 const OneOperation = ({
-  operation: { amount, date, product, forDeleteId },
+  operation: { amount, date, product, forDeleteId, costsId },
+  setId,
+  openModal,
 }) => {
-  const deleteCosts = id => {};
-
-  const lengthOneOperationSmall = () => {
-    if (product?.name.length > 8) {
-      return product?.name.slice(0, 8) + '...';
-    } else {
-      return product?.name;
-    }
+  const deleteCosts = (id, xId) => {
+    setId([id, xId]);
+    openModal();
   };
 
   const lengthOneOperation = () => {
@@ -23,7 +20,7 @@ const OneOperation = ({
       return product?.name;
     }
   };
-  // console.log(product);
+
   return (
     <li className={styles.operationListItem}>
       <div className={styles.operation}>
@@ -31,14 +28,12 @@ const OneOperation = ({
           {
             <Media
               queries={{
-                small: '(max-width: 767px)',
                 medium: '(min-width: 768px) and (max-width: 1023px)',
                 large: '(min-width: 1024px)',
               }}
             >
               {matches => (
                 <Fragment>
-                  {matches.small && lengthOneOperationSmall()}
                   {matches.medium && lengthOneOperation()}
                   {matches.large && lengthOneOperation()}
                 </Fragment>
@@ -53,7 +48,7 @@ const OneOperation = ({
       <button
         type="button"
         className={styles.btnDelete}
-        onClick={() => deleteCosts(forDeleteId)}
+        onClick={() => deleteCosts(forDeleteId, costsId)}
       >
         <img
           src={cart}
