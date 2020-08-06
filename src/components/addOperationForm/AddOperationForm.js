@@ -12,8 +12,8 @@ import {
   addCosts,
 } from "../../redux/finance/financeOperations";
 
-const OperationForm = () => {
-  const [operationType, setOperation] = useState("credit");
+const OperationForm = ({operationType, setOperation}) => {
+  // const [operationType, setOperation] = useState("credit");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
   const [total, setTotal] = useState("");
@@ -88,24 +88,6 @@ const OperationForm = () => {
     <div className={styles.operationContainer}>
       {/* <button onClick={() => console.log(categoryList)}>TEST</button> */}
       <button
-        className={styles.credit}
-        style={
-          window.screen.width >= 767
-            ? operationType === "credit"
-              ? { backgroundColor: "#fefefe", color: "#fb812d", zIndex: 10 }
-              : null
-            : null
-        }
-        name="credit"
-        onClick={(e) => {
-          setOperation(e.target.name);
-          handleClear();
-          openModal();
-        }}
-      >
-        ДОХОД
-      </button>
-      <button
         className={styles.debit}
         style={
           window.screen.width >= 767
@@ -122,6 +104,24 @@ const OperationForm = () => {
         }}
       >
         РАСХОД
+      </button>
+      <button
+        className={styles.credit}
+        style={
+          window.screen.width >= 767
+            ? operationType === "credit"
+              ? { backgroundColor: "#fefefe", color: "#fb812d", zIndex: 10 }
+              : null
+            : null
+        }
+        name="credit"
+        onClick={(e) => {
+          setOperation(e.target.name);
+          handleClear();
+          openModal();
+        }}
+      >
+        ДОХОД
       </button>
       <Media
         queries={{
