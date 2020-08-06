@@ -29,13 +29,9 @@ const getFilteredDate = (allCosts, monthToFilter) =>
       return true;
     }
   });
-<<<<<<< HEAD
-    const totalCategoryCost = getFilteredDate.reduce(
-=======
 
 const totalCategoryCost = data =>
   data.reduce(
->>>>>>> dev
     (acc, costs) => {
       acc[costs.product.category.name] =
         acc[costs.product.category.name] + costs.amount;
