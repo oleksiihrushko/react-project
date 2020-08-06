@@ -16,17 +16,21 @@ import { useSelector } from "react-redux";
 
 export const TotalCountsCosts = () => {
   const allCosts = useSelector((state) => state.operations.costs);
-  // const monthToFind = useSelector((state) =>11111111);
-  console.log("allCosts", allCosts);
-
-  const monthToFind = 5; // взять у юры в стейте
-
+  const monthToFilter = useSelector((state) => state.statistics.month); //+
+  // console.log("allCosts", monthToFilter);
   const getFilteredDate = allCosts.filter((costs) => {
     const allDates = costs.date;
     const dataTarcsaction = new Date(allDates);
     const currentMonth = dataTarcsaction.getMonth() + 1;
+    // const currentMonth = dataTarcsaction.getDate();
 
-    if (currentMonth === monthToFind) {
+    const monthToFindSearsh = new Date(monthToFilter);
+    const getMonthToSearch = monthToFindSearsh.getDate();
+    // const getMonthToSearch = monthToFindSearsh.getMonth() + 1;
+
+    console.log("getMonthToSearch ", getMonthToSearch);
+
+    if (currentMonth === getMonthToSearch) {
       return true;
     }
   });
@@ -50,8 +54,6 @@ export const TotalCountsCosts = () => {
       Прочее: 0,
     }
   );
-  // console.log("totalCategoryCost", totalCategoryCost);
-
   const configs = [
     {
       name: "Продукты",
