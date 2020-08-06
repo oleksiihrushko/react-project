@@ -98,8 +98,19 @@
 }
 .btn:hover {
   background-color: rgb(255, 129, 45);
+  color: #fff;
 }
+.btnToSubmit{
+  background-color: rgb(255, 129, 45);
+  color: #fff;
 
+}
+.btnToSubmit:hover{
+  background-color: transparent;
+  color: #52555f;
+
+
+}
 @media (min-width: 768px) {
   .div {
     flex-direction: row;
