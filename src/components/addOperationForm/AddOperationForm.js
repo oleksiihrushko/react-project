@@ -38,16 +38,19 @@ const OperationForm = ({operationType, setOperation}) => {
   };
 
   const formAlert = () => {
-    if (operationType === "debit" && date === "" || description === "" || category === "" || total === "") {
+    if (operationType === "debit") {
+      if (date === "" || description === "" || category === "" || total === "") {
         setAlertModal(true)
-    } else if (operationType === "credit" && date === "" || total === "") {
-      setAlertModal(true)
-    }
+      }
+    }  else if (operationType === "credit") {
+      if (date === "" || total === "") {
+        setAlertModal(true)
+      }
+    } 
 
     setTimeout(() => {
       setAlertModal(false)
     }, 2000);
-
   }
 
   const handleChangeCategory = (e) => {
@@ -77,14 +80,15 @@ const OperationForm = ({operationType, setOperation}) => {
         amount: Number(total),
         date: new Date(date).toISOString()
       }))
+      setModalMobile(false)
       handleClear()
       // dispatch(addIncome(Number(total)))
     } else {
       if (date === "" || description === "" || total === "" || category === "") return
       dispatch(addCosts(description, categoryID, new Date(date).toISOString(), Number(total)))
       handleClear()
+      setModalMobile(false)
     }
-
   };
 
   const handleClear = () => {
