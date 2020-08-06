@@ -27,7 +27,7 @@ const MobileList = ({ operations, setIsMobile }) => {
     <>
       <ul className={styles.mobileList}>
         {operations.length === 0 ? (
-          <p className={styles.noOperationsList}>No operations</p>
+          <p className={styles.noOperationsList}>Нет операций</p>
         ) : (
           operations.map(operation => (
             <OneMobileOperation

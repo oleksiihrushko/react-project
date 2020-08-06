@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { connect } from 'react-redux';
 import Media from 'react-media';
 import Titles from '../oneIncome/titles/Titles';
 import OneIncome from '../oneIncome/OneIncome';
