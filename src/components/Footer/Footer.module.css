@@ -1,5 +1,6 @@
 footer {
     padding: 10px 0;
+    margin-top: auto;
 }
 .footerInfo {
     background-color: #F5F6FB;
@@ -14,7 +15,7 @@ footer {
     text-align: center;
 }
 .linkInfoTeam {
-    color: black;
+    color: #52555f;
 }
 .linkInfoTeam:hover{
     color:#FB7C2F;

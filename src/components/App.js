@@ -12,12 +12,14 @@ import PrivateRoute from '../services/PrivateRoute';
 import PublicRoute from '../services/PublicRoute';
 import Header from './header/Header';
 import Footer from './Footer/Footer';
+import { CommonLoading } from 'react-loadingg';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Header />
-      <Suspense fallback={<h1>Loading...</h1>}>
+      <Suspense fallback={<CommonLoading color='orange' size='large' />}>
+      {/* <Suspense fallback={<h1>Loading...</h1>}> */}
         {/* <TotalCostsSumAndIncomeSum /> */}
         <Switch>
           {routes.map(route => {
@@ -33,8 +35,8 @@ const App = () => {
           })}
           <Redirect to="/" />
         </Switch>
-      </Suspense>
       <Footer />
+      </Suspense>
     </BrowserRouter>
   );
 };

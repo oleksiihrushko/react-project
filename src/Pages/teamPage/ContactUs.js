@@ -1,9 +1,10 @@
 import React from 'react';
-import s from './ContactUs.module.css';
-import noImage from './pageContactUs/noFace.jpg';
 import teamList from '../teamPage/teamList';
 import Typewriter from 'typewriter-effect';
-// import { getRandomInteger } from '../../services/helpers';
+import noImage from '../teamPage/teamPhotos/noFace.jpg';
+import s from './ContactUs.module.css';
+import { ReactComponent as LinkedIn } from "../../ui/homePage/linkedinIcon.svg";
+
 
 const ContactUs = () => {
   return (
@@ -13,7 +14,10 @@ const ContactUs = () => {
           {teamList.map(contact => {
             console.log(contact.timer);
             return (
-              <li>
+              <li className={s.listItem}>
+                  <a className={s.linkedIn} href={contact.linkedIn} target="_blank">
+                    <LinkedIn className={s.linkedInSvg}/>
+                  </a>
                 <div className={s.bgamecard}>
                   <div className={s.bgamecard__cover}>
                     <img
@@ -23,6 +27,7 @@ const ContactUs = () => {
                     />
                   </div>
                   <div className={s.typewriter}>
+                  
                     <Typewriter
                       options={{
                         delay: contact.timer,

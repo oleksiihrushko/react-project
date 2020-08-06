@@ -2,28 +2,45 @@
   background-color: #f4f6fb;
 }
 
+.listItem { 
+  position: relative;
+}
+
+.linkedIn{
+  position: absolute;
+  width: 27px;
+  height: 27px;
+  z-index: 5555555;
+  top: 10px;
+  right: 10px;
+}
+
+.linkedInSvg {
+  width: 100%;
+  height: auto;
+  opacity: 0.6;
+}
+
+.linkedIn:hover .linkedInSvg {
+  opacity: 1;
+  transition: all .2s ease-in-out;
+  transform: scale(1.1);
+}
+
 .typewriter {
   position: absolute;
   bottom: 5px;
   left: 50%;
   transform: translateX(-50%);
-  color: #ffd000;
-  /* color: rgba(0, 0, 0, 0.6); */
-  text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2),
-    0px -5px 35px rgba(255, 255, 255, 0.3);
+  color: #f4f6fb;
+  text-shadow: 5px 8px 6px rgba(0, 0, 0, 0.2),
+    5px -5px 35px rgba(0, 0, 0, 0.3);
   font-family: 'RobotoBold', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
+  z-index: 100;
 }
-/* .typewriter:hover  {
-  transform: rotateX(7deg) translateY(-6px);
-  transform: translateY(0%);
-} */
-/* .typewriter:hover::before {
-  opacity: 0.6;
-  transform: rotateX(7deg) translateY(-6px) scale(1.05);
-} */
 
 .lcontainer {
   display: flex;
@@ -115,7 +132,4 @@
   object-fit: cover;
   width: 100%;
   z-index: 300;
-}
-.typewriter {
-  z-index: 400;
 }

@@ -16,7 +16,7 @@ const TeamPage = () => {
               type="button"
               onClick={() => history.goBack()}
             >
-              <ArrowBackHome />
+              <ArrowBackHome className={s.btnSvg}/>
               <p className={s.textBackBtn}>Назад</p>
             </button>
           </div>
