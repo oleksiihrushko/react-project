@@ -71,11 +71,11 @@
     border: none;
     border-radius: 17px;
     box-shadow: 1px 2px 3px rgba(170, 178, 197, 0.29);
-    background-color: #f5f7fa;
+    background-color: #fff;
   }
   .currencyBar {
     position: relative;
-    width: 110px;
+    width: 100px;
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-around;
@@ -87,15 +87,15 @@
     border: none;
     border-radius: 17px;
     box-shadow: 1px 2px 3px rgba(170, 178, 197, 0.29);
-    background-color: #f5f7fa;
+    background-color: #fff;
     font-family: 'RobotoRegular';
     font-weight: 500;
     text-transform: uppercase;
     color: #52555f;
-    opacity: 0.75;
+    /* opacity: 0.75; */
   }
 
-  
+
 
   .currencyBar:hover .changeColorSvg {
     transition: 0.3s ease-in-out;
