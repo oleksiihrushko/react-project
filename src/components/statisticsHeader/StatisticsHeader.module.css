@@ -8,7 +8,6 @@
   text-align: center;
 }
 
-
 .calendarText {
   margin: 0;
   width: 120px;
@@ -25,6 +24,7 @@
 }
 
 .statisticsHeaderWrapper {
+  width: 100%;
   position: relative;
   display: flex;
   justify-content: center;
@@ -34,7 +34,8 @@
   margin: 0 auto;
   flex-wrap: wrap;
   background-color: #f4f6fb;
-
+  color: #52555f;
+  border-radius: 20px;
 }
 
 .statisticsHeaderBalance {
@@ -42,7 +43,6 @@
   justify-content: center;
   margin: 0;
   align-items: center;
-  /* width: 150px; */
   height: 43px;
   border-radius: 19px;
   border: 2px solid #ffffff;
@@ -59,21 +59,24 @@
   color: #52555f;
 }
 
+
+.changeColorSvg {
+  fill:#ff6b08;
+
+  opacity: 0.75;
+}
+
 @media (max-width: 767px) {
   .statisticsHeaderBalance {
     margin-bottom: 36px;
   }
+
   .buttonGoBack {
     position: absolute;
     top: 10px;
     left: 10px;
     width: 120px;
     margin-bottom: 20px;
-    font-family: 'RobotoRegular';
-    font-weight: 500;
-    text-transform: uppercase;
-    opacity: 0.75;
-    color: #52555f;
   }
   .currencyBar {
     position: absolute;
@@ -85,6 +88,7 @@
     position: absolute;
     bottom: 10px;
     right: 10px;
+
   }
   .statisticsHeaderWrapper {
     margin-bottom: 36px;
@@ -97,26 +101,64 @@
 }
 
 @media (min-width: 768px) {
-  .statisticsHeaderWrapper {
-    height: 160px;
+
+
+  .changeColorSvg {
+    margin-right: 10px;
+  }
+
+  .exchangeRates {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px 10px;
+
+    width: 100px;
+    height: 45px;
+    border: none;
+    background-color: #fff;
+    border-radius: 17px;
+    box-shadow: 1px 2px 3px rgba(170, 178, 197, 0.29);
+    /* background-color: #f5f7fa; */
+    font-family: 'RobotoRegular';
+    font-weight: 500;
+   
+   
+  }
+
+  .exchangeRates:hover .changeColorSvg  {
+    transition: 0.3s ease-in-out;
+    fill: #fff;
+    opacity: 0.75;
+  }
+
+  .exchangeRates:hover p  {
+    transition: 0.3s ease-in-out;
+    opacity: 0.75;
+    color: #fff;
   }
 
   .exchangeRates:hover {
-    background-color: rgba(82, 85, 95, 0.5);
+    transition: 0.3s ease-in-out;
+    
+    background-color: rgba(255, 108, 10, 0.8);
   }
-  .exchangeRates {
-    cursor: pointer;
-  }
+
   .buttonText {
     display: inline-block;
-    /* text-align: center; */
-    margin: 0;
-    font-family: 'RobotoRegular';
-    font-weight: 500;
     text-transform: uppercase;
-    opacity: 0.75;
+    font-size: 13px;
     color: #52555f;
-    cursor: pointer;
+    opacity: 0.75;
+    margin: 0;
+  }
+
+
+  .buttonGoBack p {
+    margin: 0 auto;
+
   }
 
   .buttonGoBack {
@@ -124,14 +166,40 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    /* width: 140px; */
-    margin-right: 10px;
+    padding: 10px 10px;
+    margin-right: 7px;
+    width: 170px;
+    height: 45px;
+    border: none;
+    background-color: #fff;
+    border-radius: 17px;
+    box-shadow: 1px 2px 3px rgba(170, 178, 197, 0.29);
+    /* background-color: #f5f7fa; */
+    font-family: 'RobotoRegular';
+    font-weight: 500;
+    /* opacity: 0.75; */
+    cursor: pointer;
   }
 
+
+  .buttonGoBack:hover .changeColorSvg  {
+    opacity: 0.75;
+    transition: 0.3s ease-in-out;
+    fill: #fff;
+  }
+
+  .buttonGoBack:hover p  {
+    transition: 0.3s ease-in-out;
+    opacity: 0.75;
+    color: #fff;
+  }
 
   .buttonGoBack:hover {
-    background-color: rgba(82, 85, 95, 0.5);
+    transition: 0.3s ease-in-out;
+    opacity: 0.75;
+    background-color: rgba(255, 108, 10, 0.8);
   }
+  
 
   .currencyBar {
     display: flex;
@@ -140,38 +208,30 @@
     align-items: center;
     /* width: 120px; */
   }
-  .statisticsHeaderWrapper {
-    padding: 0 20px;
+
+   .statisticsHeaderWrapper {
+    height: 160px;
+    padding: 0 10px;
     position: relative;
     justify-content: space-between;
     align-items: center;
-    
   }
 
-  .buttonContainer {
-    margin-bottom: 0px;
-    position: relative;
-    top: 15px;
-    left: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-  }
 
 
   .leftBar {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 50%;
+    width: 54%;
   }
-  
+
   .rightBar {
     display: flex;
     /* flex-direction: row-reverse; */
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    width: 50%;
+    width: 46%;
   }
   .calendarWrapper {
     justify-content: center;
@@ -180,6 +240,4 @@
 }
 
 @media (min-width: 1100px) {
-  
 }
-

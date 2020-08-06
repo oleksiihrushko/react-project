@@ -14,7 +14,7 @@ import exchangeRatesSelectors from '../../redux/exchange/exchangeRatesSelectors'
 import financeSelectors from '../../redux/finance/financeSelectors';
 import CurrencyBar from '../currencyBar/CurrencyBar';
 import exchangeRatesOperations from '../../redux/exchange/exchangeRatesOperations';
-import statisticsSlice from "../../redux/statistics/statisticsSlice"
+import statisticsSlice from '../../redux/statistics/statisticsSlice';
 
 import styles from './StatisticsHeader.module.css';
 import Media from 'react-media';
@@ -23,7 +23,6 @@ class StatisticsHeader extends Component {
   state = {
     date: '',
     isShowModal: false,
-
   };
 
   componentDidMount() {
@@ -39,23 +38,22 @@ class StatisticsHeader extends Component {
     this.setState({
       date: currentTime,
     });
-    const {setSelectedMonth} = this.props
-    const {date} = this.state
-    setSelectedMonth(date)
-    console.log(moment(currentTime).format('L'))
+    const { setSelectedMonth } = this.props;
+    const { date } = this.state;
+    setSelectedMonth(date);
+
   }
 
-  componentDidUpdate () {
-    const {setSelectedMonth} = this.props
-    const {date} = this.state
-    setSelectedMonth(date)
-    console.log(moment(date).format('L'))
+  componentDidUpdate() {
+    const { setSelectedMonth } = this.props;
+    const { date } = this.state;
+    setSelectedMonth(date);
   }
 
   handleChangeMonth = ({ target }) => {
     const { name } = target;
     const { date } = this.state;
-    const {getSelectedMonth} = this.props
+    const { getSelectedMonth } = this.props;
     if (name === 'prevMonthBtn') {
       this.setState({
         date: moment(date).add(-1, 'month').format(),
@@ -72,7 +70,6 @@ class StatisticsHeader extends Component {
   };
 
   exchangeBalancePerCurrentCurrency = () => {
-    // if (this.props.exchangeCurrency[0])
     if (this.props.exchangeCurrency[0]?.ccy === 'USD') {
       return this.props.balance / this.props.exchangeCurrency[0].buy;
     }
@@ -93,18 +90,14 @@ class StatisticsHeader extends Component {
 
   render() {
     const { exchangeCurrency, balance } = this.props;
-    // console.log(exchangeCurrency[0] ? exchangeCurrency[0].ccy : "UAH");
-    // console.log(exchangeCurrency);
-    // console.log('balance', balance);
 
     const { date } = this.state;
-    // console.log(this.props.onFetchEchangeRates())
     return (
       <div className={`${styles.statisticsHeaderWrapper} container`}>
         <div className={styles.leftBar}>
           <div className={styles.buttonGoBack}>
             <Link to="/">
-              <ArrowBack />
+              <ArrowBack className={styles.changeColorSvg} />
               <Media query="(min-width: 768px)">
                 {matches =>
                   matches ? (
@@ -118,21 +111,15 @@ class StatisticsHeader extends Component {
           </div>
 
           <div className={styles.currencyBar}>
-            <CurrencyBar />
+            <CurrencyBar className={styles.changeColorSvg} />
           </div>
-
-          <div className={styles.exchangeRates}>
+          <div className={styles.exchangeRates} onClick={this.openModal}>
             {this.state.isShowModal && (
               <ModalExchangeRates closeModal={this.closeModal} />
             )}
             <label>
-              <button
-                className={styles.button}
-                type="button"
-                onClick={this.openModal}
-              >
-                <Exchange />
-              </button>
+              <Exchange className={styles.changeColorSvg} />
+
               <Media query="(min-width: 768px)">
                 {matches =>
                   matches ? <p className={styles.buttonText}>Курс</p> : <p></p>
@@ -204,7 +191,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  setSelectedMonth: (data) => dispatch(statisticsSlice.actions.setSelectedMonthSuccess(moment(data).format('L'))),
+  setSelectedMonth: data =>
+    dispatch(
+      statisticsSlice.actions.setSelectedMonthSuccess(moment(data).format('L')),
+    ),
   onFetchEchangeRates: () =>
     dispatch(exchangeRatesOperations.fetchCurrentExchangeRates()),
 });

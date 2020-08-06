@@ -12,9 +12,9 @@
   line-height: 20px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1279px){
   .incomeList {
-    width: 694px;
+    width: 100%;
     padding: 0;
     border-radius: 25px;
     border: 2px solid rgb(244, 246, 251);
@@ -32,7 +32,7 @@
 @media (min-width: 1024px) {
   .incomeList {
     margin: 0;
-    margin-left: 34px;
+
     margin-bottom: 20px;
   }
 }

@@ -1,13 +1,23 @@
-import React, { Fragment } from 'react';
-import { connect } from 'react-redux';
+import React, { useState, Fragment } from 'react';
 import Media from 'react-media';
+import { useDispatch } from 'react-redux';
 import Titles from '../oneIncome/titles/Titles';
+import Modal from '../components/modal/Modal';
 import OneIncome from '../oneIncome/OneIncome';
+import { deleteIncome } from '../redux/finance/financeOperations';
 import styles from './IncomeList.module.css';
 
-const IncomeList = ({ operations, deleteIncome, setIsMobile }) => {
+const IncomeList = ({ operations, setIsMobile }) => {
   setIsMobile(false);
-  // console.log("IncomeList");
+
+  const [isShowDeleteModal, setIsShowDeleteModal] = useState(false);
+  const dispatch = useDispatch();
+  const [id, setId] = useState('');
+
+  const deleteOperation = () => {
+      dispatch(deleteIncome(id));
+  };
+
   return (
     <>
       <ul className={styles.incomeList}>
@@ -28,13 +38,21 @@ const IncomeList = ({ operations, deleteIncome, setIsMobile }) => {
                   <OneIncome
                     operation={operation}
                     key={operation.incomeId}
-                    deleteIncome={deleteIncome}
+                    setId={setId}
+                    openModal={() => setIsShowDeleteModal(true)}
                   />
                 ))
               )}
             </Fragment>
           )}
         </Media>
+        {isShowDeleteModal && (
+          <Modal
+            text="Вы уверены?"
+            onTrue={deleteOperation}
+            closeModal={() => setIsShowDeleteModal(false)}
+          />
+        )}
       </ul>
     </>
   );
