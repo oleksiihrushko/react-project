@@ -3,11 +3,11 @@ import styles from "./CategoriesFilter.module.css";
 import { TotalCountsCosts } from "./config";
 // import GoToMono from "./monoBank/GoToMono";
 
-const CategoriesFilter = () => {
-  
+const CategoriesFilter = ({setCurrentCategory}) => {
+  // console.log('props', props)
   return (
     <section className={`${styles.wrapper} container`}>
-      <TotalCountsCosts />
+      <TotalCountsCosts  setCurrentCategory={setCurrentCategory}/>
     </section>
   );
 };
