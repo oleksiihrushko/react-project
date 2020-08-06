@@ -1,33 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { Chart, Bar } from "react-chartjs-2";
-import ChartDataLabels from "chartjs-plugin-datalabels";
-import { getData } from "./chartServices";
-import "./roundedBars";
-import styles from "./BarChart.module.css";
+import React, { useEffect, useState } from 'react';
+import { Chart, Bar } from 'react-chartjs-2';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { useSelector } from 'react-redux';
+import { getData } from './chartServices';
+import { backgroundColor, getCurrency } from './helpers';
+import './roundedBars';
+import styles from './BarChart.module.css';
 
 Chart.defaults.global.legend.display = false;
-
-const backgroundColor = [
-  "rgba(255, 129, 45, 0.8)",
-  "rgba(255, 129, 45, 0.3)",
-  "rgba(255, 129, 45, 0.3)",
-  "rgba(255, 129, 45, 0.8)",
-  "rgba(255, 129, 45, 0.3)",
-  "rgba(255, 129, 45, 0.3)",
-  "rgba(255, 129, 45, 0.8)",
-  "rgba(255, 129, 45, 0.3)",
-  "rgba(255, 129, 45, 0.3)",
-  "rgba(255, 129, 45, 0.8)",
-  "rgba(255, 129, 45, 0.3)",
-  "rgba(255, 129, 45, 0.3)",
-  "rgba(255, 129, 45, 0.8)",
-];
 
 const options = {
   // responsive: true,
   // offset: false,
   legend: {
-    position: "bottom",
+    position: 'bottom',
   },
   scales: {
     xAxes: [
@@ -50,7 +36,7 @@ const options = {
         },
         gridLines: {
           drawBorder: false,
-          color: "rgb(241, 244, 251)",
+          color: 'rgb(241, 244, 251)',
         },
       },
     ],
@@ -69,10 +55,10 @@ const options = {
   },
   plugins: {
     datalabels: {
-      color: "#333",
-      align: "top",
-      anchor: "end",
-      formatter: (data) => {
+      color: '#333',
+      align: 'top',
+      anchor: 'end',
+      formatter: data => {
         return `₴ ${data}`;
       },
     },
@@ -84,40 +70,37 @@ const options = {
   },
 };
 
-const BarChart = () => {
+const BarChart = ({ currentCategory }) => {
   const [chartData, setChartData] = useState({});
 
-  const category = "all";
-  // const category = "products";
+  const date = useSelector(state => state.statistics.month);
+  const month = date && Array.from(date).splice(3, 2).join('') - 1;
+  const year = date && Array.from(date).splice(6, 4).join('');
+
+  const products = useSelector(state => state.operations.costs);
+
+  const currency = useSelector(state =>
+    getCurrency(state.exchangeRatesRoot.exchangeCurrency),
+  );
+
+  const categories = useSelector(state => state.operations.categories);
 
   const chart = () => {
-    const data = getData(category, 6, 2020);
+    const data = getData(
+      products,
+      currentCategory,
+      Number(month),
+      Number(year),
+    );
 
     setChartData({
-      labels:
-        category === "all"
-          ? [
-              "Продукты",
-              "Алкоголь",
-              "Развлечения",
-              "Здоровье",
-              "Транспорт",
-              "Все для дома",
-              "Техника",
-              "Коммуналка, связь",
-              "Спорт, хобби",
-              "Образование",
-              "Прочее",
-            ]
-          : data && Object.keys(data),
-      // labels: data && Object.keys(data),
+      labels: data && Object.keys(data),
       datasets: [
         {
-          label: "Расходы",
           data: data && Object.values(data),
           backgroundColor: backgroundColor,
-          hoverBackgroundColor: "rgba(255, 179, 45, 0.8)",
-          barThickness: category === "all" ? 20 : 30,
+          hoverBackgroundColor: 'rgba(255, 179, 45, 0.8)',
+          barThickness: 20,
         },
       ],
       plugins: [ChartDataLabels],
@@ -126,10 +109,10 @@ const BarChart = () => {
 
   useEffect(() => {
     chart();
-  }, []);
+  }, [categories, date, currentCategory, currency]);
 
   return (
-    <div className={styles.chartContainer}>
+    <div className={`${styles.chartContainer} container`}>
       <Bar data={chartData} options={options} />
     </div>
   );

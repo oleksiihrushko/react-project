@@ -47,16 +47,18 @@ export const getCurrency = currency => {
     case 'EUR':
       return '€';
 
-    case 'RUR':
-      return '₽';
-
-    case 'BTC':
-      return '₿';
-
     default:
       return '';
   }
 };
+
+export const getRate = (rates, currency) =>
+  rates.filter(rate => {
+    if (rate.ccy === currency) {
+      // console.log(rate.buy);
+      return rate.buy;
+    }
+  });
 
 export const calculateHeight = chartData => {
   if (!chartData.labels) return;

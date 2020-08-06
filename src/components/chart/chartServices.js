@@ -1,16 +1,14 @@
-import { dummyData } from './dummyData';
+// import { dummyData } from './dummyData';
 
-const expenses = dummyData.items;
-
-const categorise = (selectedMonth, selectedYear) => {
+const categorise = (products, selectedMonth, selectedYear) => {
   let categoryData = {};
 
-  expenses.forEach(exp => {
-    const categoryName = exp.product.category.name;
-    const categoryItem = exp.product.name;
-    const amount = exp.amount;
-    const month = exp.date.getMonth();
-    const year = exp.date.getFullYear();
+  products.forEach(product => {
+    const categoryName = product.product.category.name;
+    const categoryItem = product.product.name;
+    const amount = product.amount;
+    const month = new Date(product.date).getMonth();
+    const year = new Date(product.date).getFullYear();
 
     if (month === selectedMonth && year === selectedYear) {
       if (!categoryData[categoryName]) {
@@ -37,8 +35,13 @@ const getCategoryDetails = data => {
   }, {});
 };
 
-const getSubcategoryData = (selectedCategory, selectedMonth, selectedYear) => {
-  const categories = categorise(selectedMonth, selectedYear);
+const getSubcategoryData = (
+  products,
+  selectedCategory,
+  selectedMonth,
+  selectedYear,
+) => {
+  const categories = categorise(products, selectedMonth, selectedYear);
 
   let data;
 
@@ -51,14 +54,14 @@ const getSubcategoryData = (selectedCategory, selectedMonth, selectedYear) => {
   return data && getCategoryDetails(data);
 };
 
-const getExpensesByAllCategories = (selectedMonth, selectedYear) => {
+const getExpensesByAllCategories = (products, selectedMonth, selectedYear) => {
   let categoryData = {};
 
-  expenses.forEach(exp => {
-    const categoryName = exp.product.category.name;
-    const amount = exp.amount;
-    const month = exp.date.getMonth();
-    const year = exp.date.getFullYear();
+  products.forEach(product => {
+    const categoryName = product.product.category.name;
+    const amount = product.amount;
+    const month = new Date(product.date).getMonth();
+    const year = new Date(product.date).getFullYear();
 
     if (month === selectedMonth && year === selectedYear) {
       if (!categoryData[categoryName]) {
@@ -71,13 +74,19 @@ const getExpensesByAllCategories = (selectedMonth, selectedYear) => {
 };
 
 export const getData = (
+  products,
   selectedCategory,
   selectedMonth = new Date().getMonth(),
   selectedYear = new Date().getFullYear(),
 ) => {
-  if (selectedCategory === 'all') {
-    return getExpensesByAllCategories(selectedMonth, selectedYear);
+  if (selectedCategory === 'All') {
+    return getExpensesByAllCategories(products, selectedMonth, selectedYear);
   } else {
-    return getSubcategoryData(selectedCategory, selectedMonth, selectedYear);
+    return getSubcategoryData(
+      products,
+      selectedCategory,
+      selectedMonth,
+      selectedYear,
+    );
   }
 };

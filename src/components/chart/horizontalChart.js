@@ -5,8 +5,8 @@ import { useSelector } from 'react-redux';
 import { getData } from './chartServices';
 import {
   backgroundColor,
-  // monthNameToNum,
   getCurrency,
+  getRate,
   calculateHeight,
 } from './helpers';
 import './roundedBars';
@@ -14,7 +14,7 @@ import styles from './BarChart.module.css';
 
 Chart.defaults.global.legend.display = false;
 
-const getOptions = currency => {
+const getOptions = (currency, exchangeRate) => {
   return {
     scales: {
       xAxes: [
@@ -34,9 +34,6 @@ const getOptions = currency => {
             mirror: true,
             beginAtZero: true,
             display: false,
-            // callback: function (value, index, values) {
-            //   return value;
-            // },
           },
           gridLines: {
             display: false,
@@ -51,7 +48,8 @@ const getOptions = currency => {
       bodyFontSize: 10,
       callbacks: {
         label: (tooltipItem, data) => {
-          return `${currency} ${tooltipItem.value}`;
+          console.log(exchangeRate);
+          return `${currency} ${tooltipItem.value / exchangeRate}`;
         },
       },
     },
@@ -102,35 +100,48 @@ const getOptions = currency => {
   };
 };
 
-const HorizontalChart = () => {
+const HorizontalChart = ({ currentCategory }) => {
   const [chartData, setChartData] = useState({});
 
   const date = useSelector(state => state.statistics.month);
   const month = date && Array.from(date).splice(3, 2).join('') - 1;
   const year = date && Array.from(date).splice(6, 4).join('');
 
-  const product = useSelector(state => state.operations.costs[0]);
-  const category = product && product.product.category.name;
+  const products = useSelector(state => state.operations.costs);
 
   const currency = useSelector(state =>
     getCurrency(state.exchangeRatesRoot.exchangeCurrency),
   );
 
-  const categories = useSelector(state => state.operations.categories);
-
-  const categoriesNames = useMemo(
-    () => categories.map(category => category.name),
-    [categories],
+  const exchangeInfo = useSelector(state =>
+    getRate(
+      state.exchangeRatesRoot.exchangeRates,
+      state.exchangeRatesRoot.exchangeCurrency,
+    ),
   );
 
+  const categories = useSelector(state => state.operations.categories);
+
   const chart = () => {
-    const data = getData(category, Number(month), Number(year));
+    const data = getData(
+      products,
+      currentCategory,
+      Number(month),
+      Number(year),
+    );
+
+    const exchangeRate = Number(exchangeInfo[0].buy);
+
+    const values = data && Object.values(data);
+    const convertedValues = values.map(value =>
+      Math.round(value / exchangeRate),
+    );
 
     setChartData({
-      labels: categoriesNames,
+      labels: data && Object.keys(data),
       datasets: [
         {
-          data: data && Object.values(data),
+          data: convertedValues,
           backgroundColor: backgroundColor,
           barThickness: 18,
         },
@@ -141,12 +152,12 @@ const HorizontalChart = () => {
 
   useEffect(() => {
     chart();
-  }, [categoriesNames, date]);
+  }, [categories, date, currentCategory, exchangeInfo]);
 
   const height = chartData.labels && calculateHeight(chartData);
 
   return chartData.labels && height ? (
-    <div className={styles.horizontalChartContainer}>
+    <div className={`${styles.horizontalChartContainer} container`}>
       <HorizontalBar
         data={chartData}
         options={getOptions(currency)}

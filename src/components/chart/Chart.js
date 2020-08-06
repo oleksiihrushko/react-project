@@ -21,7 +21,11 @@ const useWindowWidth = () => {
 
 const Chart = ({ currentCategory }) => {
   const width = useWindowWidth();
-  return width > 767 ? <BarChart /> : <HorizontalChart />;
+  return width > 767 ? (
+    <BarChart currentCategory={currentCategory} />
+  ) : (
+    <HorizontalChart currentCategory={currentCategory} />
+  );
 };
 
 export default Chart;
