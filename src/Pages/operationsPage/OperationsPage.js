@@ -10,6 +10,7 @@ import api from '../../services/api';
 import OperationSummaryContainer from '../../components/operationsSummary/OperationsSummaryContainer.js';
 import IncomeList from '../../incomeList/IncomeList';
 import MobileList from '../../components/mobileList/MobileList';
+import styles from "./OperationPage.module.css"
 
 const OperationsPage = () => {
   const [operationType, setOperation] = useState('credit');
@@ -72,7 +73,7 @@ const OperationsPage = () => {
   }, [operationType]);
 
   return (
-    <div>
+    <div className={`container`}>
       <OperationsHeader />
       <AddOperationForm
         operationType={operationType}
