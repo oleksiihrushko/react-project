@@ -20,6 +20,7 @@ const OperationForm = ({operationType, setOperation}) => {
   const [modalMobile, setModalMobile] = useState(false);
   const [category, setCategory] = useState("");
   const [categoryID, setCategoryID] = useState("");
+  const [alertModal, setAlertModal] = useState(false);
   
   const [displayValue, setDisplayValue] = useState("0");
   const [isCalcOpen, setOpenCalc] = useState(false);
@@ -35,6 +36,19 @@ const OperationForm = ({operationType, setOperation}) => {
     setTotal(displayValue);
     setOpenCalc(false);
   };
+
+  const formAlert = () => {
+    if (operationType === "debit" && date === "" || description === "" || category === "" || total === "") {
+        setAlertModal(true)
+    } else if (operationType === "credit" && date === "" || total === "") {
+      setAlertModal(true)
+    }
+
+    setTimeout(() => {
+      setAlertModal(false)
+    }, 2000);
+
+  }
 
   const handleChangeCategory = (e) => {
     setCategory(e.target.value)
@@ -55,6 +69,7 @@ const OperationForm = ({operationType, setOperation}) => {
   //? addCosts = (costDescription, categoryId, date, amount)
   const handleSubmit = (e) => {
     e.preventDefault();
+    formAlert()
     
     if (operationType === "credit") {
       if (date === "" || total === "") return
@@ -87,6 +102,7 @@ const OperationForm = ({operationType, setOperation}) => {
   return (
     <div className={styles.operationContainer}>
       {/* <button onClick={() => console.log(categoryList)}>TEST</button> */}
+      {alertModal && <div className={styles.formAlert}>Заполните все поля</div>}
       <button
         className={styles.debit}
         style={
