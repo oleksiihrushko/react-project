@@ -1,10 +1,10 @@
 import React, { useState, Fragment } from 'react';
 import Media from 'react-media';
 import { useDispatch } from 'react-redux';
-import Titles from '../oneIncome/titles/Titles';
-import Modal from '../components/modal/Modal';
-import OneIncome from '../oneIncome/OneIncome';
-import { deleteIncome } from '../redux/finance/financeOperations';
+import Titles from './oneIncome/titles/Titles';
+import Modal from '../modal/Modal';
+import OneIncome from './oneIncome/OneIncome';
+import { deleteIncome } from '../../redux/finance/financeOperations';
 import styles from './IncomeList.module.css';
 
 const IncomeList = ({ operations, setIsMobile }) => {

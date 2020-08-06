@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import OneMobileOperation from '../oneMobileOperation/OneMobileOperation';
+import OneMobileOperation from './oneMobileOperation/OneMobileOperation';
 import Modal from '../../components/modal/Modal';
 import {
   deleteIncome,
