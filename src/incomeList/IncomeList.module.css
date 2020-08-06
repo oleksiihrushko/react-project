@@ -1,9 +1,11 @@
 .incomeList {
   width: 280px;
+  max-height: 290px;
   padding-left: 20px;
   padding-right: 20px;
   margin: 0 auto;
   margin-top: 20px;
+  overflow-y: scroll;
 }
 
 .noIncome {
@@ -14,9 +16,10 @@
 
 @media (min-width: 768px) {
   .incomeList {
-    width: 694px;
+    width: 700px;
     padding: 0;
-    border-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
     border: 2px solid rgb(244, 246, 251);
     margin: 0 auto;
     margin-bottom: 20px;
@@ -24,8 +27,7 @@
 
   .incomeList:first-child {
     border-top: none;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
+
   }
 }
 

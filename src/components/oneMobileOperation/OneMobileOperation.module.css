@@ -4,17 +4,17 @@
 }
 
 .date {
-  width: 100px;
+  width: 90px;
   font-size: 9px;
   color: gray;
-  padding-top: 20px;
+  margin-top: 10px;
 }
 
 .category {
   font-size: 12px;
   font-weight: bold;
   width: 90px;
-  position: absolute;
+  margin: 0;
 }
 
 .priceCost {
@@ -39,7 +39,7 @@
 .btnDelete {
   padding: 4px;
   border: none;
-  width: 60px;
+  width: 70px;
   height: 38px;
   background-color: white;
   margin-left: 20px;

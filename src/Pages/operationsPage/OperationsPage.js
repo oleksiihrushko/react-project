@@ -52,11 +52,7 @@ const OperationsPage = () => {
     dispatch(getDataOnInit());
   }, []);
 
-  useEffect(() => {
-    // if (token) {
-    //   api.token.set(token);
-    // }
-    // dispatch(getDataOnInit());
+  useEffect(() => { 
 
     if (window.matchMedia('(max-width: 767px)').matches) {
       console.log('mobile');
