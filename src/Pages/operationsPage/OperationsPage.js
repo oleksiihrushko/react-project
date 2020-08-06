@@ -12,7 +12,7 @@ import IncomeList from '../../incomeList/IncomeList';
 import MobileList from '../../components/mobileList/MobileList';
 
 const OperationsPage = () => {
-  const [operationType, setOperation] = useState('credit');
+  const [operationType, setOperation] = useState('debit');
   const [operationsData, setOperationsData] = useState([]);
   const [isMobile, setIsMobile] = useState(false);
   const token = useSelector(state => authSelectors.token(state));
@@ -64,7 +64,7 @@ const OperationsPage = () => {
       setOperationsData(mobileOperations);
     } else {
       console.log('not mobile');
-      operationType === 'credit'
+      operationType === 'debit'
         ? setOperationsData(costsOperations)
         : setOperationsData(incomeOperations);
     }
@@ -73,7 +73,7 @@ const OperationsPage = () => {
   }, [isMobile, costs, income]);
 
   useEffect(() => {
-    operationType === 'credit'
+    operationType === 'debit'
       ? setOperationsData(costsOperations)
       : setOperationsData(incomeOperations);
   }, [operationType]);
@@ -97,7 +97,7 @@ const OperationsPage = () => {
                 operations={operationsData}
                 setIsMobile={setIsMobile}
               />
-            ) : operationType === 'credit' ? (
+            ) : operationType === 'debit' ? (
               <OperationList
                 operations={operationsData}
                 setIsMobile={setIsMobile}
