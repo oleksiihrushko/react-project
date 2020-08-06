@@ -48,7 +48,6 @@ class StatisticsHeader extends Component {
     const { setSelectedMonth } = this.props;
     const { date } = this.state;
     setSelectedMonth(date);
-    // console.log(moment(date).format('L'));
   }
 
   handleChangeMonth = ({ target }) => {
@@ -71,7 +70,6 @@ class StatisticsHeader extends Component {
   };
 
   exchangeBalancePerCurrentCurrency = () => {
-    // if (this.props.exchangeCurrency[0])
     if (this.props.exchangeCurrency[0]?.ccy === 'USD') {
       return this.props.balance / this.props.exchangeCurrency[0].buy;
     }
@@ -92,18 +90,14 @@ class StatisticsHeader extends Component {
 
   render() {
     const { exchangeCurrency, balance } = this.props;
-    // console.log(exchangeCurrency[0] ? exchangeCurrency[0].ccy : "UAH");
-    // console.log(exchangeCurrency);
-    // console.log('balance', balance);
 
     const { date } = this.state;
-    // console.log(this.props.onFetchEchangeRates())
     return (
       <div className={`${styles.statisticsHeaderWrapper} container`}>
         <div className={styles.leftBar}>
           <div className={styles.buttonGoBack}>
             <Link to="/">
-              <ArrowBack />
+              <ArrowBack className={styles.changeColorSvg} />
               <Media query="(min-width: 768px)">
                 {matches =>
                   matches ? (
@@ -117,44 +111,22 @@ class StatisticsHeader extends Component {
           </div>
 
           <div className={styles.currencyBar}>
-            <CurrencyBar />
+            <CurrencyBar className={styles.changeColorSvg} />
           </div>
-          <div className={styles.exchangeRates}>
-            {this.state.isShowModal && (<ModalExchangeRates closeModal={this.closeModal}/>)}
-            <label>
-              <button
-                className={styles.button}
-                type="button"
-                onClick={this.openModal}
-              >
-                <Exchange />
-              </button>
-              <Media query="(min-width: 768px)">
-                {matches =>
-                  matches ? <p className={styles.buttonText}>Курс</p> : <p></p>
-                }
-              </Media>
-            </label>
-          </div>
-          {/* <div className={styles.exchangeRates}>
+          <div className={styles.exchangeRates} onClick={this.openModal}>
             {this.state.isShowModal && (
               <ModalExchangeRates closeModal={this.closeModal} />
             )}
             <label>
-              <button
-                className={styles.button}
-                type="button"
-                onClick={this.openModal}
-              >
-                <Exchange />
-              </button>
+              <Exchange className={styles.changeColorSvg} />
+
               <Media query="(min-width: 768px)">
                 {matches =>
                   matches ? <p className={styles.buttonText}>Курс</p> : <p></p>
                 }
               </Media>
             </label>
-          </div> */}
+          </div>
         </div>
         <div className={styles.rightBar}>
           <div>

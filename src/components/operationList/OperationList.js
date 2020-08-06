@@ -1,11 +1,22 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import Media from 'react-media';
+import { useDispatch } from 'react-redux';
 import Title from '../oneOperation/title/Title';
+import Modal from '../modal/Modal';
+import { deleteCosts } from '../../redux/finance/financeOperations';
 import OneOperation from '../oneOperation/OneOperation';
 import styles from './OperationList.module.css';
 
-const OperationList = ({ deleteCosts, operations, setIsMobile }) => {
+const OperationList = ({ operations, setIsMobile }) => {
   setIsMobile(false);
+
+  const [isShowDeleteModal, setIsShowDeleteModal] = useState(false);
+  const [id, setId] = useState([]);
+  const dispatch = useDispatch();
+
+  const deleteOperation = () => {
+    dispatch(deleteCosts(id[0], id[1]));
+  };
 
   return (
     <>
@@ -27,13 +38,21 @@ const OperationList = ({ deleteCosts, operations, setIsMobile }) => {
                   <OneOperation
                     operation={operation}
                     key={operation.costsId}
-                    deleteCosts={deleteCosts}
+                    setId={setId}
+                    openModal={() => setIsShowDeleteModal(true)}
                   />
                 ))
               )}
             </Fragment>
           )}
         </Media>
+        {isShowDeleteModal && (
+          <Modal
+            text="Вы уверены?"
+            onTrue={deleteOperation}
+            closeModal={() => setIsShowDeleteModal(false)}
+          />
+        )}
       </ul>
     </>
   );

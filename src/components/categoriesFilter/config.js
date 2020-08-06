@@ -1,37 +1,41 @@
-import React from "react";
-import styles from "./CategoriesFilter.module.css";
+import React from 'react';
+import styles from './CategoriesFilter.module.css';
 
-import { ReactComponent as Alcohol } from "./svg/alcohol.svg";
-import { ReactComponent as Car } from "./svg/car.svg";
-import { ReactComponent as Comunal } from "./svg/comunal.svg";
-import { ReactComponent as Else } from "./svg/else.svg";
-import { ReactComponent as Health } from "./svg/health.svg";
-import { ReactComponent as Home } from "./svg/home.svg";
-import { ReactComponent as Learn } from "./svg/learn.svg";
-import { ReactComponent as Party } from "./svg/party.svg";
-import { ReactComponent as Products } from "./svg/products.svg";
-import { ReactComponent as Sport } from "./svg/sport.svg";
-import { ReactComponent as Tools } from "./svg/tools.svg";
-import { useSelector } from "react-redux";
+import { ReactComponent as Alcohol } from './svg/alcohol.svg';
+import { ReactComponent as Car } from './svg/car.svg';
+import { ReactComponent as Comunal } from './svg/comunal.svg';
+import { ReactComponent as Else } from './svg/else.svg';
+import { ReactComponent as Health } from './svg/health.svg';
+import { ReactComponent as Home } from './svg/home.svg';
+import { ReactComponent as Learn } from './svg/learn.svg';
+import { ReactComponent as Party } from './svg/party.svg';
+import { ReactComponent as Products } from './svg/products.svg';
+import { ReactComponent as Sport } from './svg/sport.svg';
+import { ReactComponent as Tools } from './svg/tools.svg';
+import { useSelector } from 'react-redux';
 
-export const TotalCountsCosts = ({setCurrentCategory})=> {
-  const allCosts = useSelector((state) => state.operations.costs);
-  const monthToFilter = useSelector((state) => state.statistics.month); //+
-    const getFilteredDate = allCosts.filter((costs) => {
+const getFilteredDate = (allCosts, monthToFilter) =>
+  allCosts.filter(costs => {
     const allDates = costs.date;
     const dataTarcsaction = new Date(allDates);
     const currentMonth = dataTarcsaction.getMonth() + 1;
-    // const currentMonth = dataTarcsaction.getDate();
+    const currentYaer = dataTarcsaction.getFullYear();
 
     const monthToFindSearsh = new Date(monthToFilter);
     const getMonthToSearch = monthToFindSearsh.getDate();
-    // const getMonthToSearch = monthToFindSearsh.getMonth() + 1;
+    const getYaerToSearch = monthToFindSearsh.getFullYear();
 
-    if (currentMonth === getMonthToSearch) {
+    if (currentMonth === getMonthToSearch && getYaerToSearch === currentYaer) {
       return true;
     }
   });
+<<<<<<< HEAD
     const totalCategoryCost = getFilteredDate.reduce(
+=======
+
+const totalCategoryCost = data =>
+  data.reduce(
+>>>>>>> dev
     (acc, costs) => {
       acc[costs.product.category.name] =
         acc[costs.product.category.name] + costs.amount;
@@ -43,92 +47,105 @@ export const TotalCountsCosts = ({setCurrentCategory})=> {
       Транспорт: 0,
       Развлечение: 0,
       Здоровье: 0,
-      "Все для дома": 0,
+      'Все для дома': 0,
       Техника: 0,
-      "Коммуналка, связь": 0,
+      'Коммуналка, связь': 0,
       Хобби: 0,
       Образование: 0,
       Прочее: 0,
-    }
+    },
   );
+
+export const TotalCountsCosts = ({ setCurrentCategory }) => {
+  const allCosts = useSelector(state => state.operations.costs);
+  const monthToFilter = useSelector(state => state.statistics.month); //+
+  const total = totalCategoryCost(getFilteredDate(allCosts, monthToFilter));
   const configs = [
     {
-      name: "Продукты",
+      name: 'Продукты',
       svg: <Products />,
-      total: totalCategoryCost["Продукты"],
+      total: total['Продукты'],
     },
     {
-      name: "Aлкоголь",
+      name: 'Aлкоголь',
       svg: <Alcohol />,
-      total: totalCategoryCost["Aлкоголь"],
+      total: total['Aлкоголь'],
     },
     {
-      name: "Pазвлечение",
+      name: 'Развлечение',
       svg: <Party />,
-      total: totalCategoryCost["Pазвлечение"],
+      total: total['Развлечение'],
     },
     {
-      name: "Здоровье",
+      name: 'Здоровье',
       svg: <Health />,
-      total: totalCategoryCost["Здоровье"],
+      total: total['Здоровье'],
     },
     {
-      name: "Транспорт",
+      name: 'Транспорт',
       svg: <Car />,
-      total: totalCategoryCost["Транспорт"],
+      total: total['Транспорт'],
     },
     {
-      name: "Все для дома",
+      name: 'Все для дома',
       svg: <Home />,
-      total: totalCategoryCost["Все для дома"],
+      total: total['Все для дома'],
     },
     {
-      name: "Техника",
+      name: 'Техника',
       svg: <Tools />,
-      total: totalCategoryCost["Техника"],
+      total: total['Техника'],
     },
     {
-      name: "Коммуналка, связь",
+      name: 'Коммуналка, связь',
       svg: <Comunal />,
-      total: totalCategoryCost["Коммуналка, связь"],
+      total: total['Коммуналка, связь'],
     },
     {
-      name: "Хобби",
+      name: 'Хобби',
       svg: <Sport />,
-      total: totalCategoryCost["Хобби"],
+      total: total['Хобби'],
     },
     {
-      name: "Образование",
+      name: 'Образование',
       svg: <Learn />,
-      total: totalCategoryCost["Образование"],
+      total: total['Образование'],
     },
     {
-      name: "Прочее",
+      name: 'Прочее',
       svg: <Else />,
-      total: totalCategoryCost["Прочее"],
+      total: total['Прочее'],
+    },
+    {
+      name: 'Корректировка',
+      svg: <Else />,
+      total: total['Корректировка'],
     },
   ];
   return (
     <ul
-      className={styles.ul}
-      className={styles.flex}
-      style={{ paddingLeft: 0 }}
+      className={`${styles.ul} ${styles.flex} }`}
+      style={{
+        padding: 0,
+      }}
     >
       {configs.map(({ name, svg, total }) => {
         return (
+          // (total !== null) > 0 && (
           total > 0 && (
             <li key={name} className={`${styles.flex} ${styles.li}`}>
               <button
-                onClick={ () =>{setCurrentCategory(name)} }    
+                onClick={() => {
+                  setCurrentCategory(name);
+                }}
                 className={styles.btn}
               >
                 <p className={`${styles.prise}`}>{total}</p>
                 <div className={styles.svg}>{svg}</div>
-                <p className={styles.name} >{name}</p>
+                <p className={styles.name}>{name}</p>
               </button>
             </li>
           )
-          // )
         );
       })}
     </ul>

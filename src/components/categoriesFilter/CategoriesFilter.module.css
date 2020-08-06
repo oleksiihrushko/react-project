@@ -19,8 +19,7 @@
   display: block;
 }
 .ul {
-  max-width: 600px;
-  /* justify-content: space-evenly; */
+  margin: 0 auto;
 }
 
 .li {
@@ -75,6 +74,7 @@
 
 @media (max-width: 767px) {
   .ul {
+    margin: 0 auto;
     max-width: 264px;
   }
   .li {
@@ -84,7 +84,7 @@
     margin-right: 20px;
   }
   .li::after {
-    content: "";
+    content: '';
     width: calc(100% + 20px);
     height: 2px;
     background-color: #232323;
@@ -96,7 +96,6 @@
 
 @media (min-width: 768px) {
   .wrapper {
-    width: 688px;
     padding: 40px 54px 0 54px;
 
     box-shadow: 7px 12px 65px rgba(179, 185, 200, 0.75);
@@ -110,6 +109,9 @@
   } */
   .li:not(:nth-child(6n)) {
     margin-right: 40px;
+  }
+  .ul {
+    width: 600px;
   }
 }
 
