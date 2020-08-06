@@ -6,7 +6,7 @@ import styles from './OperationList.module.css';
 
 const OperationList = ({ deleteCosts, operations, setIsMobile }) => {
   setIsMobile(false);
-  // console.log('operations', operations);
+
   return (
     <>
       <ul className={styles.operationList}>

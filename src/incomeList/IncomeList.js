@@ -6,7 +6,7 @@ import styles from './IncomeList.module.css';
 
 const IncomeList = ({ operations, deleteIncome, setIsMobile }) => {
   setIsMobile(false);
-  // console.log("IncomeList");
+
   return (
     <>
       <ul className={styles.incomeList}>
