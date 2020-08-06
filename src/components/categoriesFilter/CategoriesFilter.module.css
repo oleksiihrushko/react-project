@@ -1,7 +1,7 @@
 .flex {
   display: flex;
   justify-content: center;
-  align-items: baseline;
+  align-items: flex-start;
   align-content: center;
   flex-wrap: wrap;
 }
@@ -20,6 +20,7 @@
 }
 .ul {
   margin: 0 auto;
+  
 }
 
 .li {
