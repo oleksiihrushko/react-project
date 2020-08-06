@@ -1,41 +1,41 @@
-import randomDate from "@js-random/date";
+import randomDate from '@js-random/date';
 
 const randomAmount = () => Math.round(Math.random() * 1000);
 
 const getDate = () => {
   return randomDate({
     from: new Date(2020, 6, 1),
-    to: new Date(2020, 6, 31),
+    to: new Date(2020, 7, 31),
   });
 };
 
-const categoriesLabels = [
-  "Продукты",
-  "Алкоголь",
-  "Развлечения",
-  "Здоровье",
-  "Транспорт",
-  "Все для дома",
-  "Техника",
-  "Коммуналка, связь",
-  "Спорт, хобби",
-  "Образование",
-  "Прочее",
+const categories = [
+  'Продукты',
+  'Алкоголь',
+  'Развлечения',
+  'Здоровье',
+  'Транспорт',
+  'Все для дома',
+  'Техника',
+  'Коммуналка, связь',
+  'Спорт, хобби',
+  'Образование',
+  'Прочее',
 ];
 
-const categories = [
-  "products",
-  "alcohol",
-  "leisure",
-  "health",
-  "transport",
-  "housing",
-  "electronics",
-  "utilityPayments",
-  "sports",
-  "studying",
-  "other",
-];
+// const categories = [
+//   'products',
+//   'alcohol',
+//   'leisure',
+//   'health',
+//   'transport',
+//   'housing',
+//   'electronics',
+//   'utilityPayments',
+//   'sports',
+//   'studying',
+//   'other',
+// ];
 
 const getCategory = () => {
   const random = Math.floor(Math.random() * categories.length);
@@ -43,79 +43,79 @@ const getCategory = () => {
 };
 
 const products =
-  "lorem ipsum dolor consectetur adipisicing excepturi sapiente placeat quisquam";
-const alcohol = "repudiandae asperiores exercitationem";
-const leisure = "aspernatur possimus odititaque rerum culpa";
-const health = "corporis atque praesentium imperdiet";
-const transport = "curabitur ligula sapien tincidunt euismod vitae posuere";
-const housing = "fusce convallis metus felis luctus adipiscing laoreet";
-const electronics = "etiam tortor egestas vestibulum malesuada adipiscing";
-const utilityPayments = "felis ligula pharetra condimentum iaculis";
-const sports = "dolor phasellus justo pellentesque facilisis";
-const studying = "phasellus consectetuer vestibulum praesent";
-const other = "phasellus viverra laoreet blandit luctus pulvinarhendrerit";
+  'lorem ipsum dolor consectetur adipisicing excepturi sapiente placeat quisquam';
+const alcohol = 'repudiandae asperiores exercitationem';
+const leisure = 'aspernatur possimus odititaque rerum culpa';
+const health = 'corporis atque praesentium imperdiet';
+const transport = 'curabitur ligula sapien tincidunt euismod vitae posuere';
+const housing = 'fusce convallis metus felis luctus adipiscing laoreet';
+const electronics = 'etiam tortor egestas vestibulum malesuada adipiscing';
+const utilityPayments = 'felis ligula pharetra condimentum iaculis';
+const sports = 'dolor phasellus justo pellentesque facilisis';
+const studying = 'phasellus consectetuer vestibulum praesent';
+const other = 'phasellus viverra laoreet blandit luctus pulvinarhendrerit';
 
-const productsArray = products.split(" ");
-const alcoholArray = alcohol.split(" ");
-const leisureArray = leisure.split(" ");
-const healthArray = health.split(" ");
-const transportArray = transport.split(" ");
-const housingArray = housing.split(" ");
-const electronicsArray = electronics.split(" ");
-const utilityPaymentsArray = utilityPayments.split(" ");
-const sportsArray = sports.split(" ");
-const studyingArray = studying.split(" ");
-const otherArray = other.split(" ");
+const productsArray = products.split(' ');
+const alcoholArray = alcohol.split(' ');
+const leisureArray = leisure.split(' ');
+const healthArray = health.split(' ');
+const transportArray = transport.split(' ');
+const housingArray = housing.split(' ');
+const electronicsArray = electronics.split(' ');
+const utilityPaymentsArray = utilityPayments.split(' ');
+const sportsArray = sports.split(' ');
+const studyingArray = studying.split(' ');
+const otherArray = other.split(' ');
 
-const randomSubCategory = (category) => {
+const randomSubCategory = category => {
   let index;
   switch (category) {
-    case "products":
+    case 'Продукты':
       index = Math.round(Math.random() * productsArray.length);
       return productsArray[index];
 
-    case "alcohol":
+    case 'alcohol':
       index = Math.round(Math.random() * alcoholArray.length);
       return alcoholArray[index];
 
-    case "leisure":
+    case 'leisure':
       index = Math.round(Math.random() * leisureArray.length);
       return leisureArray[index];
 
-    case "health":
+    case 'health':
       index = Math.round(Math.random() * healthArray.length);
       return healthArray[index];
 
-    case "transport":
+    case 'transport':
       index = Math.round(Math.random() * transportArray.length);
       return transportArray[index];
 
-    case "housing":
+    case 'housing':
       index = Math.round(Math.random() * housingArray.length);
       return housingArray[index];
 
-    case "electronics":
+    case 'electronics':
       index = Math.round(Math.random() * electronicsArray.length);
       return electronicsArray[index];
 
-    case "utilityPayments":
+    case 'utilityPayments':
       index = Math.round(Math.random() * utilityPaymentsArray.length);
       return utilityPaymentsArray[index];
 
-    case "sports":
+    case 'sports':
       index = Math.round(Math.random() * sportsArray.length);
       return sportsArray[index];
 
-    case "studying":
+    case 'studying':
       index = Math.round(Math.random() * studyingArray.length);
       return studyingArray[index];
 
-    case "other":
+    case 'other':
       index = Math.round(Math.random() * otherArray.length);
       return otherArray[index];
 
     default:
-      return "";
+      return '';
   }
 };
 
