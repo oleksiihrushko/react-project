@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo, useRef } from 'react';
 import { Chart, HorizontalBar } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { useSelector } from 'react-redux';
@@ -14,7 +14,7 @@ import styles from './BarChart.module.css';
 
 Chart.defaults.global.legend.display = false;
 
-const getOptions = (currency, exchangeRate) => {
+const getOptions = currency => {
   return {
     scales: {
       xAxes: [
@@ -48,8 +48,7 @@ const getOptions = (currency, exchangeRate) => {
       bodyFontSize: 10,
       callbacks: {
         label: (tooltipItem, data) => {
-          console.log(exchangeRate);
-          return `${currency} ${tooltipItem.value / exchangeRate}`;
+          return `${currency} ${tooltipItem.value}`;
         },
       },
     },
@@ -134,6 +133,8 @@ const HorizontalChart = ({ currentCategory }) => {
     exchangeCurrency,
   ]);
 
+  const valuesRef = useRef();
+
   const chart = () => {
     const data = getData(
       products,
@@ -147,11 +148,15 @@ const HorizontalChart = ({ currentCategory }) => {
 
     const values = data && Object.values(data);
 
-    const convertedValues = values.map(value => {
-      if (currentCurrency === 'UAH') return value;
+    const convertedValues = data
+      ? values.map(value => {
+          if (currentCurrency === 'UAH') return value;
 
-      return Math.round(value / exchangeRate);
-    });
+          return Math.round(value / exchangeRate);
+        })
+      : [];
+
+    valuesRef.current = convertedValues;
 
     setChartData({
       labels: data && Object.keys(data),
@@ -172,7 +177,7 @@ const HorizontalChart = ({ currentCategory }) => {
 
   const height = chartData.labels && calculateHeight(chartData);
 
-  return chartData.labels && height ? (
+  return chartData.labels && height && valuesRef.current?.length > 0 ? (
     <div className={`${styles.horizontalChartContainer} container`}>
       <HorizontalBar
         data={chartData}
@@ -180,9 +185,7 @@ const HorizontalChart = ({ currentCategory }) => {
         height={height}
       />
     </div>
-  ) : (
-    <></>
-  );
+  ) : null;
 };
 
 export default HorizontalChart;

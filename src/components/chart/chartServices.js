@@ -51,7 +51,7 @@ const getSubcategoryData = (
   let data;
 
   for (let categoryTitle in categories) {
-    if (categoryTitle === selectedCategory) {
+    if (categoryTitle && categoryTitle === selectedCategory) {
       data = categories[categoryTitle];
     }
   }
