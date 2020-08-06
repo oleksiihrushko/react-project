@@ -19,13 +19,11 @@
   position: absolute;
   /* background-color: #fff; */
   padding: 0;
-  top: 32px;
+  top: 45px;
   right: 0;
   left: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 .currencyButton {
@@ -39,35 +37,82 @@
   border-radius: 50%;
   /* background-color: #fff; */
   color: #fff;
-
 }
 
-/* .currencyButton:hover {
-  background-color: rgba(82, 85, 95, 0.5);
-} */
 
-.menuItem:not(:last-child) {
-  border-bottom: 1px solid rgba(64, 80, 108, 0.1);
-}
 
 .menuItem:hover {
-  background-color: rgba(82, 85, 95, 0.5);
+  transition: 0.3s ease-in-out;
+  background-color: rgba(255, 108, 10, 0.8);
+}
+
+.menuItem:hover .changeColorSvgCurrency {
+  transition: 0.3s ease-in-out;
+  opacity: 0.75;
+  fill: #fff;
+}
+.changeColorSvgCurrency {
+  opacity: 0.75;
+  fill: #ff6b08;
 }
 
 @media (min-width: 768px) {
+  .popover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
+  .menuItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    border: none;
+    border-radius: 17px;
+    box-shadow: 1px 2px 3px rgba(170, 178, 197, 0.29);
+    background-color: #f5f7fa;
+  }
   .currencyBar {
     position: relative;
-    width: 100px;
+    width: 110px;
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-around;
     align-items: center;
     cursor: pointer;
+    padding: 10px 20px;
+    margin-right: 10px;
+    height: 45px;
+    border: none;
+    border-radius: 17px;
+    box-shadow: 1px 2px 3px rgba(170, 178, 197, 0.29);
+    background-color: #f5f7fa;
+    font-family: 'RobotoRegular';
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #52555f;
+    opacity: 0.75;
+  }
+
+  
+
+  .currencyBar:hover .changeColorSvg {
+    transition: 0.3s ease-in-out;
+    opacity: 0.75;
+    fill: #fff;
+  }
+
+  .currencyBar:hover p {
+    transition: 0.3s ease-in-out;
+    opacity: 0.75;
+    color: #fff;
   }
 
   .currencyBar:hover {
-    background-color: rgba(82, 85, 95, 0.5);
+    transition: 0.3s ease-in-out;
+    opacity: 0.75;
+    background-color: rgba(255, 108, 10, 0.8);
   }
 
   .buttonText {

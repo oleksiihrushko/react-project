@@ -31,7 +31,6 @@ export const getTransactions = () => async dispatch => {
   dispatch(loaderSlice.actions.setLoadingTrue());
   try {
     const { data } = await api.getTransactions();
-    console.log('data :>> ', data);
     dispatch(financeSlice.actions.getTransactionsSuccess(data));
     dispatch(financeSlice.actions.setErrorNull());
   } catch (error) {
@@ -64,16 +63,18 @@ export const addBalance = balance => dispatch => {
     .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
 };
 
-export const addIncome = income => dispatch => {
+export const addIncome = income => async dispatch => {
   dispatch(loaderSlice.actions.setLoadingTrue());
-  api
-    .addIncome(income)
-    .then(({ income }) => {
-      dispatch(financeSlice.actions.addIncomeSuccess(income));
-      dispatch(financeSlice.actions.setErrorNull());
-    })
-    .catch(error => dispatch(financeSlice.actions.addIncomeError(error)))
-    .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
+  try {
+    const addIncomeResponse = await api.addIncome(income);
+    dispatch(
+      financeSlice.actions.addIncomeSuccess(addIncomeResponse.data.income),
+    );
+    dispatch(financeSlice.actions.setErrorNull());
+  } catch (error) {
+    dispatch(financeSlice.actions.addIncomeError(error));
+  }
+  dispatch(loaderSlice.actions.setLoadingFalse());
 };
 
 export const deleteIncome = id => dispatch => {

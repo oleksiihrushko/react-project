@@ -9,12 +9,11 @@ import {
 import styles from './MobileList.module.css';
 
 const MobileList = ({ operations, setIsMobile }) => {
-  setIsMobile(true);
   const [isShowDeleteModal, setIsShowDeleteModal] = useState(false);
   const [id, setId] = useState([]);
   const dispatch = useDispatch();
-  // console.log('operations', operations)
-
+  setIsMobile(true);
+  
   const deleteOperation = () => {
     if (id[0] === 'cost') {
       dispatch(deleteCosts(id[1], id[2]));

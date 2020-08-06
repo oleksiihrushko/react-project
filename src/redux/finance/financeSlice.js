@@ -53,7 +53,7 @@ export default createSlice({
 
     addIncomeSuccess: (state, { payload }) => ({
       ...state,
-      income: [...state.income, payload.income],
+      income: [...state.income, payload],
     }),
 
     addIncomeError: (state, { payload }) => ({
