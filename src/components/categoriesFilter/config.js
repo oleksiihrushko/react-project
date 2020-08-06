@@ -31,7 +31,7 @@ export const TotalCountsCosts = ({setCurrentCategory})=> {
       return true;
     }
   });
-  const totalCategoryCost = getFilteredDate.reduce(
+    const totalCategoryCost = getFilteredDate.reduce(
     (acc, costs) => {
       acc[costs.product.category.name] =
         acc[costs.product.category.name] + costs.amount;
