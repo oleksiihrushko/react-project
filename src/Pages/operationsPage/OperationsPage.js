@@ -8,7 +8,7 @@ import authSelectors from '../../redux/auth/authSelectors';
 import { getDataOnInit } from '../../redux/finance/financeOperations';
 import api from '../../services/api';
 import OperationSummaryContainer from '../../components/operationsSummary/OperationsSummaryContainer.js';
-import IncomeList from '../../incomeList/IncomeList';
+import IncomeList from '../../components/incomeList/IncomeList';
 import MobileList from '../../components/mobileList/MobileList';
 import styles from './OperationPage.module.css';
 
@@ -53,12 +53,7 @@ const OperationsPage = () => {
     dispatch(getDataOnInit());
   }, []);
 
-  useEffect(() => {
-    // if (token) {
-    //   api.token.set(token);
-    // }
-    // dispatch(getDataOnInit());
-
+  useEffect(() => { 
     if (window.matchMedia('(max-width: 767px)').matches) {
       console.log('mobile');
 

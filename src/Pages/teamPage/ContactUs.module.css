@@ -1,34 +1,51 @@
-
-.teamPage{
+.teamPage {
   background-color: #f4f6fb;
 }
 
-.typewriter{
-  position: absolute;
- bottom: 5px;
- left: 50%;
- transform: translateX(-50%);
- color: #fd8e0f;
- font-family: 'RobotoBold', sans-serif;
- font-style: normal;
- font-weight: normal;
- font-size: 15px;
- 
+.listItem { 
+  position: relative;
 }
-/* .typewriter:hover  {
-  transform: rotateX(7deg) translateY(-6px);
-  transform: translateY(0%);
-} */
-/* .typewriter:hover::before {
-  opacity: 0.6;
-  transform: rotateX(7deg) translateY(-6px) scale(1.05);
-} */
 
+.linkedIn{
+  position: absolute;
+  width: 27px;
+  height: 27px;
+  z-index: 5555555;
+  top: 10px;
+  right: 10px;
+}
+
+.linkedInSvg {
+  width: 100%;
+  height: auto;
+  opacity: 0.6;
+}
+
+.linkedIn:hover .linkedInSvg {
+  opacity: 1;
+  transition: all .2s ease-in-out;
+  transform: scale(1.1);
+}
+
+.typewriter {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #f4f6fb;
+  text-shadow: 5px 8px 6px rgba(0, 0, 0, 0.2),
+    5px -5px 35px rgba(0, 0, 0, 0.3);
+  font-family: 'RobotoBold', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  z-index: 100;
+}
 
 .lcontainer {
   display: flex;
   flex-flow: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 30px;
 }
 @media screen and (max-width: 760px) {
@@ -42,10 +59,9 @@
   position: relative;
   z-index: 1;
   width: 240px;
-  padding-bottom:400px;
+  padding-bottom: 400px;
   perspective: 1000px;
   margin-bottom: 30px;
-  
 }
 .bgamecard__cover {
   position: absolute;
@@ -67,18 +83,23 @@
 }
 .bgamecard__cover::after {
   display: block;
-  content: "";
+  content: '';
   position: absolute;
   z-index: 100;
   top: 0;
   left: 0;
   width: 100%;
   height: 120%;
-  background: linear-gradient(226deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.4) 35%, rgba(255, 255, 255, 0.2) 42%, rgba(255, 255, 255, 0) 60%);
+  background: linear-gradient(
+    226deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.4) 35%,
+    rgba(255, 255, 255, 0.2) 42%,
+    rgba(255, 255, 255, 0) 60%
+  );
   transform: translateY(-20%);
   will-change: transform;
   transition: transform 0.65s cubic-bezier(0.18, 0.9, 0.58, 1);
-  
 }
 .bgamecard:hover .bgamecard__cover {
   transform: rotateX(7deg) translateY(-6px);
@@ -88,7 +109,7 @@
 }
 .bgamecard::before {
   display: block;
-  content: "";
+  content: '';
   position: absolute;
   top: 5%;
   left: 5%;
@@ -100,12 +121,10 @@
   transform-origin: top center;
   transform: skewX(0.001deg);
   transition: transform 0.35s ease-in-out, opacity 0.5s ease-in-out;
-  
 }
 .bgamecard:hover::before {
   opacity: 0.6;
   transform: rotateX(7deg) translateY(-6px) scale(1.05);
-  
 }
 
 .imgContact {
@@ -114,7 +133,3 @@
   width: 100%;
   z-index: 300;
 }
-.typewriter {
-  z-index: 400;
-}
-

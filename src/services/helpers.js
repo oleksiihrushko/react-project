@@ -1,4 +1,10 @@
-export const createGoogleUser = (googleUser) => ({
+export const getRandomInteger = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+};
+
+export const createGoogleUser = googleUser => ({
   userData: {
     name: {
       fullName: googleUser.getBasicProfile().getName(),
@@ -12,7 +18,7 @@ export const createGoogleUser = (googleUser) => ({
 });
 
 const filterCosts = (array, year, month, i) => {
-  return array.filter((item) => {
+  return array.filter(item => {
     const startMonth = new Date(year, month - i, 1, 0, 0);
     const endMonth = new Date(year, month - i + 1, 1, 0, 0);
     const res =
@@ -22,12 +28,12 @@ const filterCosts = (array, year, month, i) => {
   });
 };
 
-const getCostsSum = (array) =>
+const getCostsSum = array =>
   array.reduce((acc, item) => {
     return acc + item.amount;
   }, 0);
 
-export const makeSummary = (costs) => {
+export const makeSummary = costs => {
   let summaryAcc = [];
   const now = new Date();
   const currentYear = now.getFullYear();

@@ -11,8 +11,8 @@ const BallanceRedactor = () => {
   const balance = useSelector((state) => state.operations.balance);
   const [value, setValue] = useState(balance);
 
-  const income = useSelector((state) => state.operations.income);
-  const costs = useSelector((state) => state.operations.costs);
+  // const income = useSelector((state) => state.operations.income);
+  // const costs = useSelector((state) => state.operations.costs);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const BallanceRedactor = () => {
           <form onSubmit={handleSubmit} className={styles.flex}>
             <input
               autoFocus
-              className={`${styles.flex} ${styles.value}`}
+              className={`${styles.flex} ${styles.value} ${styles.inputCor}`}
               type="text"
               value={value}
               onChange={handleChange}

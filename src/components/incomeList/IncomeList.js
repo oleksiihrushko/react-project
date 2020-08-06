@@ -1,21 +1,21 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import Media from 'react-media';
 import { useDispatch } from 'react-redux';
-import Title from './oneOperation/title/Title';
+import Titles from './oneIncome/titles/Titles';
 import Modal from '../modal/Modal';
-import { deleteCosts } from '../../redux/finance/financeOperations';
-import OneOperation from './oneOperation/OneOperation';
-import styles from './OperationList.module.css';
+import OneIncome from './oneIncome/OneIncome';
+import { deleteIncome } from '../../redux/finance/financeOperations';
+import styles from './IncomeList.module.css';
 
-const OperationList = ({ operations, setIsMobile }) => {
+const IncomeList = ({ operations, setIsMobile }) => {
   setIsMobile(false);
 
   const [isShowDeleteModal, setIsShowDeleteModal] = useState(false);
-  const [id, setId] = useState([]);
   const dispatch = useDispatch();
+  const [id, setId] = useState('');
 
   const deleteOperation = () => {
-    dispatch(deleteCosts(id[0], id[1]));
+    dispatch(deleteIncome(id));
   };
 
   return (
@@ -28,19 +28,19 @@ const OperationList = ({ operations, setIsMobile }) => {
       >
         {matches => (
           <Fragment>
-            {matches.medium && <Title />}
-            {matches.large && <Title />}
+            {matches.medium && <Titles />}
+            {matches.large && <Titles />}
           </Fragment>
         )}
       </Media>
-      <ul className={styles.operationList}>
+      <ul className={styles.incomeList}>
         {operations.length === 0 ? (
-          <p className={styles.noOperations}>Нет операций</p>
+          <p className={styles.noIncome}>Нет доходов</p>
         ) : (
           operations.map(operation => (
-            <OneOperation
+            <OneIncome
               operation={operation}
-              key={operation.costsId}
+              key={operation.incomeId}
               setId={setId}
               openModal={() => setIsShowDeleteModal(true)}
             />
@@ -58,4 +58,4 @@ const OperationList = ({ operations, setIsMobile }) => {
   );
 };
 
-export default OperationList;
+export default IncomeList;

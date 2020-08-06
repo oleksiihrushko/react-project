@@ -1,4 +1,10 @@
-// import { dummyData } from './dummyData';
+const getSortedData = categoryData => {
+  const dataArrays = Object.entries(categoryData);
+  const sortedDataArrays = dataArrays.sort((a, b) => b[1] - a[1]);
+  const limitedData = sortedDataArrays.slice(0, 15);
+
+  return Object.fromEntries(limitedData);
+};
 
 const categorise = (products, selectedMonth, selectedYear) => {
   let categoryData = {};
@@ -20,15 +26,11 @@ const categorise = (products, selectedMonth, selectedYear) => {
     }
   });
 
-  const dataArrays = Object.entries(categoryData);
-  const sortedDataArrays = dataArrays.sort((a, b) => b[1] - a[1]);
-  const limitedData = sortedDataArrays.slice(0, 15);
-
-  return Object.fromEntries(limitedData);
+  return categoryData;
 };
 
 const getCategoryDetails = data => {
-  return data.reduce((acc, item) => {
+  const result = data.reduce((acc, item) => {
     const title = Object.keys(item)[0];
     const amount = Object.values(item)[0];
 
@@ -36,8 +38,11 @@ const getCategoryDetails = data => {
       acc[title] = 0;
     }
     acc[title] += amount;
+
     return acc;
   }, {});
+
+  return getSortedData(result);
 };
 
 const getSubcategoryData = (
@@ -76,11 +81,7 @@ const getExpensesByAllCategories = (products, selectedMonth, selectedYear) => {
     }
   });
 
-  const dataArrays = Object.entries(categoryData);
-  const sortedDataArrays = dataArrays.sort((a, b) => b[1] - a[1]);
-  const limitedData = sortedDataArrays.slice(0, 15);
-
-  return Object.fromEntries(limitedData);
+  return getSortedData(categoryData);
 };
 
 export const getData = (
