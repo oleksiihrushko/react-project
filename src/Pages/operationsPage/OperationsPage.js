@@ -104,10 +104,10 @@ const OperationsPage = () => {
           </Fragment>
         )}
       </Media>
-      <OperationSummaryContainer
+      {!(window.matchMedia('(max-width: 767px)').matches)&&<OperationSummaryContainer
         type={operationType}
         setOperationsData={setOperationsData}
-      />
+      />}
     </div>
   );
 };
