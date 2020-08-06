@@ -63,6 +63,8 @@ const Chart = ({ currentCategory }) => {
       Number(year),
     );
 
+    // console.log('data', data);
+
     const exchangeRate =
       currentCurrency !== 'UAH' && exchangeInfo && Number(exchangeInfo[0].buy);
 
@@ -91,11 +93,10 @@ const Chart = ({ currentCategory }) => {
     });
   };
 
+  const height = chartData.labels && calculateHeight(chartData);
   useEffect(() => {
     drawChart();
   }, [categoriesNames, date, currentCategory, exchangeInfo]);
-
-  const height = chartData.labels && calculateHeight(chartData);
 
   const width = useWindowWidth();
 
@@ -129,12 +130,12 @@ const HorizontalChart = ({ valuesRef, chartData, currencySign, height }) => {
   return chartData.labels && height && valuesRef.current?.length > 0 ? (
     <div
       className={`${styles.horizontalChartContainer} container`}
-      // styles={{ height: getHeight(), width: '100%' }}
+      // styles={{ position: 'relative', height: calculateHeight(chartData) }}
     >
       <HorizontalBar
         data={chartData}
         options={getHorizontalBarChartOptions(currencySign)}
-        height={height}
+        // height={calculateHeight(chartData)}
       />
     </div>
   ) : null;
