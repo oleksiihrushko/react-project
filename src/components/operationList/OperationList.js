@@ -1,29 +1,29 @@
-import React, { Fragment } from "react";
-import { connect } from "react-redux";
-import Media from "react-media";
-import Title from "../oneOperation/title/Title";
-import OneOperation from "../oneOperation/OneOperation";
-import styles from "./OperationList.module.css";
+import React, { Fragment } from 'react';
+import Media from 'react-media';
+import Title from '../oneOperation/title/Title';
+import OneOperation from '../oneOperation/OneOperation';
+import styles from './OperationList.module.css';
 
-const OperationList = ({ costs, deleteCosts }) => {
-  // console.log("OperationList");
+const OperationList = ({ deleteCosts, operations, setIsMobile }) => {
+  setIsMobile(false);
+  // console.log('operations', operations);
   return (
     <>
       <ul className={styles.operationList}>
         <Media
           queries={{
-            medium: "(min-width: 768px) and (max-width: 1023px)",
-            large: "(min-width: 1024px)",
+            medium: '(min-width: 768px) and (max-width: 1023px)',
+            large: '(min-width: 1024px)',
           }}
         >
-          {(matches) => (
+          {matches => (
             <Fragment>
               {matches.medium && <Title />}
               {matches.large && <Title />}
-              {costs.length === 0 ? (
-                <p className={styles.noOperations}>No operations</p>
+              {operations.length === 0 ? (
+                <p className={styles.noOperations}>Нет операций</p>
               ) : (
-                costs.map((operation) => (
+                operations.map(operation => (
                   <OneOperation
                     operation={operation}
                     key={operation.costsId}
@@ -39,9 +39,4 @@ const OperationList = ({ costs, deleteCosts }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  state,
-  costs: state.operations.costs,
-});
-
-export default connect(mapStateToProps)(OperationList);
+export default OperationList;

@@ -1,16 +1,16 @@
-import React, { Fragment } from "react";
-import Media from "react-media";
-import cart from "../operationList/icons/delete.png";
-import styles from "./OneOperation.module.css";
+import React, { Fragment } from 'react';
+import Media from 'react-media';
+import cart from '../operationList/icons/delete.png';
+import styles from './OneOperation.module.css';
 
 const OneOperation = ({
   operation: { amount, date, product, forDeleteId },
 }) => {
-  const deleteCosts = (id) => {};
+  const deleteCosts = id => {};
 
   const lengthOneOperationSmall = () => {
     if (product.name.length > 8) {
-      return product.name.slice(0, 8) + "...";
+      return product.name.slice(0, 8) + '...';
     } else {
       return product.name;
     }
@@ -18,7 +18,7 @@ const OneOperation = ({
 
   const lengthOneOperation = () => {
     if (product.name.length > 22) {
-      return product.name.slice(0, 22) + "...";
+      return product.name.slice(0, 22) + '...';
     } else {
       return product.name;
     }
@@ -31,12 +31,12 @@ const OneOperation = ({
           {
             <Media
               queries={{
-                small: "(max-width: 767px)",
-                medium: "(min-width: 768px) and (max-width: 1023px)",
-                large: "(min-width: 1024px)",
+                small: '(max-width: 767px)',
+                medium: '(min-width: 768px) and (max-width: 1023px)',
+                large: '(min-width: 1024px)',
               }}
             >
-              {(matches) => (
+              {matches => (
                 <Fragment>
                   {matches.small && lengthOneOperationSmall()}
                   {matches.medium && lengthOneOperation()}
@@ -46,9 +46,7 @@ const OneOperation = ({
             </Media>
           }
         </p>
-        <p className={styles.date}>
-          {date.slice(0, 10)}
-        </p>
+        <p className={styles.date}>{date.slice(0, 10)}</p>
       </div>
       <p className={styles.category}>{product.category.name}</p>
       <p className={styles.price}>-{amount} грн</p>

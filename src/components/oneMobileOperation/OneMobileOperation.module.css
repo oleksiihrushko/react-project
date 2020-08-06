@@ -13,11 +13,21 @@
 .category {
   font-size: 12px;
   font-weight: bold;
-  width: 50px;
+  width: 90px;
   position: absolute;
 }
 
-.price {
+.priceCost {
+  color: red;
+  font-size: 10px;
+  line-height: 40px;
+  width: 180px;
+  text-align: center;
+  margin: 0;
+  margin-left: 26px;
+}
+
+.priceIncome {
   font-size: 10px;
   line-height: 40px;
   width: 180px;
