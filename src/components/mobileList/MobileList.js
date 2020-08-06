@@ -13,6 +13,7 @@ const MobileList = ({ operations, setIsMobile }) => {
   const [id, setId] = useState([]);
   const dispatch = useDispatch();
   setIsMobile(true);
+  
   const deleteOperation = () => {
     if (id[0] === 'cost') {
       dispatch(deleteCosts(id[1], id[2]));
