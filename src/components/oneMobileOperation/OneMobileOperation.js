@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import cart from '../../components/operationList/icons/delete.png';
 import styles from './OneMobileOperation.module.css';
 
