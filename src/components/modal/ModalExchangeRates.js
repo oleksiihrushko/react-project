@@ -3,8 +3,6 @@ import styles from './ModalExchangeRates.module.css';
 import ExchangeRates from '../exchangeRates/ExchangeRates';
 
 
-
-
 const ModalExchangeRates = ({ closeModal }) => {
   const handleKeydown = e => {
     if (e.code === 'Escape') {
