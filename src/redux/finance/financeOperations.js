@@ -125,13 +125,12 @@ export const addCosts = (
     });
     const products = await api.getProducts();
     dispatch(financeSlice.actions.addProductSuccess(products.data.products));
-    const now = new Date();
     const createdCosts = await api.addCosts({
       date,
       product: {
         productId: productResponse.data.product._id,
         amount,
-        date: now.toISOString(),
+        date,
       },
     });
     dispatch(
