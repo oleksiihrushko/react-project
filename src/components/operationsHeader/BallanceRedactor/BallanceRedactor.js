@@ -65,7 +65,7 @@ const BallanceRedactor = () => {
           <form onSubmit={handleSubmit} className={styles.flex}>
             <input
               autoFocus
-              className={`${styles.flex} ${styles.value}`}
+              className={`${styles.flex} ${styles.value} ${styles.inputCor}`}
               type="text"
               value={value}
               onChange={handleChange}
