@@ -14,7 +14,7 @@ import exchangeRatesSelectors from '../../redux/exchange/exchangeRatesSelectors'
 import financeSelectors from '../../redux/finance/financeSelectors';
 import CurrencyBar from '../currencyBar/CurrencyBar';
 import exchangeRatesOperations from '../../redux/exchange/exchangeRatesOperations';
-import statisticsSlice from "../../redux/statistics/statisticsSlice"
+import statisticsSlice from '../../redux/statistics/statisticsSlice';
 
 import styles from './StatisticsHeader.module.css';
 import Media from 'react-media';
@@ -23,7 +23,6 @@ class StatisticsHeader extends Component {
   state = {
     date: '',
     isShowModal: false,
-
   };
 
   componentDidMount() {
@@ -39,23 +38,23 @@ class StatisticsHeader extends Component {
     this.setState({
       date: currentTime,
     });
-    const {setSelectedMonth} = this.props
-    const {date} = this.state
-    setSelectedMonth(date)
-    console.log(moment(currentTime).format('L'))
+    const { setSelectedMonth } = this.props;
+    const { date } = this.state;
+    setSelectedMonth(date);
+    // console.log(moment(currentTime).format('L'));
   }
 
-  componentDidUpdate () {
-    const {setSelectedMonth} = this.props
-    const {date} = this.state
-    setSelectedMonth(date)
-    console.log(moment(date).format('L'))
+  componentDidUpdate() {
+    const { setSelectedMonth } = this.props;
+    const { date } = this.state;
+    setSelectedMonth(date);
+    // console.log(moment(date).format('L'));
   }
 
   handleChangeMonth = ({ target }) => {
     const { name } = target;
     const { date } = this.state;
-    const {getSelectedMonth} = this.props
+    const { getSelectedMonth } = this.props;
     if (name === 'prevMonthBtn') {
       this.setState({
         date: moment(date).add(-1, 'month').format(),
@@ -120,8 +119,24 @@ class StatisticsHeader extends Component {
           <div className={styles.currencyBar}>
             <CurrencyBar />
           </div>
-
           <div className={styles.exchangeRates}>
+            {this.state.isShowModal && (<ModalExchangeRates closeModal={this.closeModal}/>)}
+            <label>
+              <button
+                className={styles.button}
+                type="button"
+                onClick={this.openModal}
+              >
+                <Exchange />
+              </button>
+              <Media query="(min-width: 768px)">
+                {matches =>
+                  matches ? <p className={styles.buttonText}>Курс</p> : <p></p>
+                }
+              </Media>
+            </label>
+          </div>
+          {/* <div className={styles.exchangeRates}>
             {this.state.isShowModal && (
               <ModalExchangeRates closeModal={this.closeModal} />
             )}
@@ -139,7 +154,7 @@ class StatisticsHeader extends Component {
                 }
               </Media>
             </label>
-          </div>
+          </div> */}
         </div>
         <div className={styles.rightBar}>
           <div>
@@ -204,7 +219,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  setSelectedMonth: (data) => dispatch(statisticsSlice.actions.setSelectedMonthSuccess(moment(data).format('L'))),
+  setSelectedMonth: data =>
+    dispatch(
+      statisticsSlice.actions.setSelectedMonthSuccess(moment(data).format('L')),
+    ),
   onFetchEchangeRates: () =>
     dispatch(exchangeRatesOperations.fetchCurrentExchangeRates()),
 });
