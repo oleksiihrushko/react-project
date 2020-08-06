@@ -4,15 +4,11 @@
     flex-flow: column;
     justify-content: center;
     align-self: center;
+    background-color: #f4f6fb;
+     
 }
   
 .arrowBtn {
-    /* display: flex;
-    max-width: 200px;
-    margin-bottom: 20px;
-    justify-content: flex-start;
-    border: none;
-    background: transparent; */
     border: none;
     background-color: transparent;
     margin-right: auto;

@@ -6,10 +6,19 @@
   padding: 32px;
 }
 
+.categoryInput {
+  position: absolute;
+  height: 45px;
+  width: 116px;
+  border: 2px solid rgb(244, 246, 251);
+  border-right: 0;
+  padding-left: 14px;
+  font-family: 'RobotoRegular';
+  font-size: 13px;
+  right: 155px;
+}
+
 .dateInput {
-  /* width: 102px;
-  border: 0;
-  margin-right: 27px; */
   width: 124px;
   border: 0;
   margin-right: 22px;
@@ -20,14 +29,13 @@
 
 .desctiptionInput {
   height: 45px;
-  width: 379px;
   width: 356px;
   border: 2px solid rgb(244, 246, 251);
   border-top-left-radius: 16px;
   padding-left: 18px;
-  font-size: 13px;
   font-family: 'RobotoRegular';
   font-size: 13px;
+  padding-right: 132px;
 }
 
 .desctiptionInput::placeholder,
@@ -80,7 +88,7 @@
   line-height: 44px;
 }
 
-.credit {
+.debit {
   position: absolute;
   width: 140px;
   height: 40px;
@@ -95,7 +103,7 @@
   line-height: 40px;
 }
 
-.debit {
+.credit {
   position: absolute;
   width: 140px;
   height: 40px;
@@ -111,7 +119,7 @@
 }
 
 @media (max-width: 767px) {
-  .credit {
+  .debit {
     border-radius: 0;
     top: inherit;
     left: 0;
@@ -121,7 +129,7 @@
     border-right: 1px solid #fff;
   }
 
-  .debit {
+  .credit {
     border-radius: 0;
     top: inherit;
     right: 0;
@@ -136,7 +144,7 @@
     position: absolute;
     z-index: -100;
     width: 100vw;
-    height: 50vh;
+    height: 63vh;
     background-color: #f4f6fb;
     border-bottom-left-radius: 116px;
   }
@@ -159,6 +167,7 @@
     z-index: 100;
     width: 100vw;
     height: 100vh;
+    top: 55px;
     background-color: gray;
   }
 
@@ -221,11 +230,15 @@
   }
 
   .modalButtons {
+    position: fixed;
     display: flex;
     justify-content: center;
     margin-top: 80px;
     font-family: 'RobotoBold';
     font-size: 11px;
+    right: 50vw;
+    bottom: 13vh;
+    transform: translateX(50%);
   }
 
   .submitModalButton {
@@ -252,6 +265,21 @@
     left: 20px;
     top: 23px;
   }
+
+  .categoryForm {
+    display: block;
+    margin: 0 auto;
+    width: 225px;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 18px;
+    padding: 16px;
+    padding-top: 14px;
+    background-color: inherit;
+    margin-bottom: 20px;
+    font-family: 'RobotoRegular';
+    font-size: 13px;
+    color: #000;
+  }
 }
 
 @media (min-width: 768px) {
@@ -273,6 +301,11 @@
 
   .desctiptionInput {
     width: 475px;
+  }
+
+  .categoryInput {
+    right: 438px;
+    top: 58px;
   }
 
   .totalInput {

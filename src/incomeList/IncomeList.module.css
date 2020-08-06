@@ -6,6 +6,12 @@
   margin-top: 20px;
 }
 
+.noIncome {
+  text-align: center;
+  font-size: 13px;
+  line-height: 20px;
+}
+
 @media (min-width: 768px) {
   .incomeList {
     width: 694px;
@@ -13,6 +19,7 @@
     border-radius: 25px;
     border: 2px solid rgb(244, 246, 251);
     margin: 0 auto;
+    margin-bottom: 20px;
   }
 
   .incomeList:first-child {
@@ -26,5 +33,6 @@
   .incomeList {
     margin: 0;
     margin-left: 34px;
+    margin-bottom: 20px;
   }
 }

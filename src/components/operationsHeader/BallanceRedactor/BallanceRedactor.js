@@ -6,7 +6,7 @@ import { addBalance } from "../../../redux/finance/financeOperations";
 
 const BallanceRedactor = () => {
   const [isEditing, setEditing] = useState(false);
-  const [isFirstTransaction, setisFirstTransaction] = useState(true);
+  // const [isFirstTransaction, setisFirstTransaction] = useState(true);
 
   const balance = useSelector((state) => state.operations.balance);
   const [value, setValue] = useState(balance);

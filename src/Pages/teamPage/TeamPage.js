@@ -12,6 +12,7 @@ const history = useHistory();
             <div className={s.contacts_div_main}>
                 {(
                     <>
+                    <div className='container'>
                     <button
                     className={s.arrowBtn}
                     type="button"
@@ -19,6 +20,7 @@ const history = useHistory();
                     ><ArrowBackHome />
                     <p className={s.textBackBtn}>Назад</p>
                     </button>
+                    </div>
                     </>
                 )}
                 <ContactUs />

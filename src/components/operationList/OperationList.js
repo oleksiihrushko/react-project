@@ -1,57 +1,36 @@
-import React, { Fragment } from "react";
-import Media from "react-media";
-import Title from "../oneOperation/title/Title";
-import OneOperation from "../oneOperation/OneOperation";
-import styles from "./OperationList.module.css";
+import React, { Fragment } from 'react';
+import Media from 'react-media';
+import Title from '../oneOperation/title/Title';
+import OneOperation from '../oneOperation/OneOperation';
+import styles from './OperationList.module.css';
 
-const testOperation = [
-  {
-    id: 1,
-    date: "21.07.2020",
-    category: "Transport",
-    price: 8,
-    operation: "Metroззззззззззззззззззззiiiiiiiiiiiiiiiii",
-  },
+const OperationList = ({ deleteCosts, operations, setIsMobile }) => {
+  setIsMobile(false);
 
-  {
-    id: 2,
-    date: "25.07.2020",
-    category: "Products",
-    price: 550,
-    operation: "Kiwi",
-  },
-
-  {
-    id: 3,
-    date: "28.07.2020",
-    category: "Transport",
-    price: 10,
-    operation: "Train",
-  },
-];
-
-const OperationList = ({ deleteOperation }) => {
-  
   return (
     <>
       <ul className={styles.operationList}>
         <Media
           queries={{
-            medium: "(min-width: 768px) and (max-width: 1023px)",
-            large: "(min-width: 1024px)",
+            medium: '(min-width: 768px) and (max-width: 1023px)',
+            large: '(min-width: 1024px)',
           }}
         >
-          {(matches) => (
+          {matches => (
             <Fragment>
               {matches.medium && <Title />}
               {matches.large && <Title />}
-              {testOperation.map((operation) => (
-                <OneOperation
-                  operation={operation}
-                  key={operation.id}
-                  deleteOperation={deleteOperation}
-                />
-              ))}
+              {operations.length === 0 ? (
+                <p className={styles.noOperations}>Нет операций</p>
+              ) : (
+                operations.map(operation => (
+                  <OneOperation
+                    operation={operation}
+                    key={operation.costsId}
+                    deleteCosts={deleteCosts}
+                  />
+                ))
+              )}
             </Fragment>
           )}
         </Media>
