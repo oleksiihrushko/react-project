@@ -14,11 +14,10 @@ import { ReactComponent as Sport } from "./svg/sport.svg";
 import { ReactComponent as Tools } from "./svg/tools.svg";
 import { useSelector } from "react-redux";
 
-export const TotalCountsCosts = () => {
+export const TotalCountsCosts = ({setCurrentCategory})=> {
   const allCosts = useSelector((state) => state.operations.costs);
   const monthToFilter = useSelector((state) => state.statistics.month); //+
-  // console.log("allCosts", monthToFilter);
-  const getFilteredDate = allCosts.filter((costs) => {
+    const getFilteredDate = allCosts.filter((costs) => {
     const allDates = costs.date;
     const dataTarcsaction = new Date(allDates);
     const currentMonth = dataTarcsaction.getMonth() + 1;
@@ -27,8 +26,6 @@ export const TotalCountsCosts = () => {
     const monthToFindSearsh = new Date(monthToFilter);
     const getMonthToSearch = monthToFindSearsh.getDate();
     // const getMonthToSearch = monthToFindSearsh.getMonth() + 1;
-
-    console.log("getMonthToSearch ", getMonthToSearch);
 
     if (currentMonth === getMonthToSearch) {
       return true;
@@ -122,12 +119,12 @@ export const TotalCountsCosts = () => {
           total > 0 && (
             <li key={name} className={`${styles.flex} ${styles.li}`}>
               <button
-                // onClick={(props = { name, total })}    //ЖЕНЯ
+                onClick={ () =>{setCurrentCategory(name)} }    
                 className={styles.btn}
               >
                 <p className={`${styles.prise}`}>{total}</p>
                 <div className={styles.svg}>{svg}</div>
-                <p className={styles.name}>{name}</p>
+                <p className={styles.name} >{name}</p>
               </button>
             </li>
           )

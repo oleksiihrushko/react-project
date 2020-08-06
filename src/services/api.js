@@ -11,42 +11,42 @@ const token = {
   },
 };
 
-const login = (credentials) => axios.post('/auth/login', credentials);
+const login = credentials => axios.post('/auth/login', credentials);
 
 const logout = () => axios.post('/auth/logout');
 
-const register = (credentials) => axios.post('/auth/register', credentials);
+const register = credentials => axios.post('/auth/register', credentials);
 
 const getTransactions = () => axios.get('/transactions');
 
 const getBalance = () => axios.get('/balance');
 
-const addBalance = (balance) => axios.post('/balance', balance);
+const addBalance = balance => axios.post('/balance', balance);
 
-const addIncome = (income) => axios.post('/income', income);
+const addIncome = income => axios.post('/income', income);
 
-const deleteIncome = (id) => axios.delete(`/income/${id}`);
+const deleteIncome = id => axios.delete(`/income/${id}`);
 
-const addCosts = (costs) => axios.post('/costs', costs);
+const addCosts = costs => axios.post('/costs', costs);
 
-const getCosts = (date) => axios.get('/costs', date);
+const getCosts = date => axios.get('/costs', date);
 
 const deleteCosts = (idDelete, id) => axios.delete(`/costs/${idDelete}/${id}`);
 
 const getCategories = () => axios.get('/categories');
 
-const addCategory = (category) => axios.post('/categories', category);
+const addCategory = category => axios.post('/categories', category);
 
-const deleteCategory = (id) => axios.delete(`/categories/${id}`);
+const deleteCategory = id => axios.delete(`/categories/${id}`);
 
 const patchCategory = (id, category) =>
   axios.patch(`/categories/${id}`, category);
 
 const getProducts = () => axios.get('/products');
 
-const addProduct = (product) => axios.post('/products', product);
+const addProduct = product => axios.post('/products', product);
 
-const deleteProduct = (id) => axios.delete(`/products/${id}`);
+const deleteProduct = id => axios.delete(`/products/${id}`);
 
 export default {
   token,
