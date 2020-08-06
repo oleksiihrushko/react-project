@@ -9,18 +9,18 @@ const OneOperation = ({
   const deleteCosts = id => {};
 
   const lengthOneOperationSmall = () => {
-    if (product.name.length > 8) {
-      return product.name.slice(0, 8) + '...';
+    if (product?.name.length > 8) {
+      return product?.name.slice(0, 8) + '...';
     } else {
-      return product.name;
+      return product?.name;
     }
   };
 
   const lengthOneOperation = () => {
-    if (product.name.length > 22) {
-      return product.name.slice(0, 22) + '...';
+    if (product?.name.length > 22) {
+      return product?.name.slice(0, 22) + '...';
     } else {
-      return product.name;
+      return product?.name;
     }
   };
   // console.log(product);
@@ -48,7 +48,7 @@ const OneOperation = ({
         </p>
         <p className={styles.date}>{date.slice(0, 10)}</p>
       </div>
-      <p className={styles.category}>{product.category.name}</p>
+      <p className={styles.category}>{product?.category.name}</p>
       <p className={styles.price}>-{amount} грн</p>
       <button
         type="button"
