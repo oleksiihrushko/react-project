@@ -4,10 +4,10 @@ import styles from './Title.module.css';
 const Title = () => {
   return (
     <div className={styles.titlesList}>
-      <h3 className={styles.titleDate}>ДАТА</h3>
-      <h3 className={styles.titleDescription}>ОПИСАНИЕ</h3>
-      <h3 className={styles.titleCategory}>КАТЕГОРИЯ</h3>
-      <h3 className={styles.titleSumm}>СУММА</h3>
+      <p className={styles.titleDate}>ДАТА</p>
+      <p className={styles.titleDescription}>ОПИСАНИЕ</p>
+      <p className={styles.titleCategory}>КАТЕГОРИЯ</p>
+      <p className={styles.titleSumm}>СУММА</p>
     </div>
   );
 };
