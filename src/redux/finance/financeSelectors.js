@@ -9,6 +9,8 @@ const deleteProducts = (state, id) =>
 
 const getBalance = state => state.operations.balance
 
+export const categoriesSelector = state => state.operations.categories
+
 export default {
   deleteIncome,
   deleteCosts,
