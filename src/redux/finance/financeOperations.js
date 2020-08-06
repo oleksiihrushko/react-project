@@ -113,17 +113,19 @@ export const addCosts = (
       category: categoryId,
     });
     const products = await api.getProducts();
-    dispatch(financeSlice.actions.addProductSuccess(products));
+    dispatch(financeSlice.actions.addProductSuccess(products.data.products));
     const now = new Date();
     const createdCosts = await api.addCosts({
       date,
       product: {
-        productId: productResponse.product._id,
+        productId: productResponse.data.product._id,
         amount,
         date: now.toISOString(),
       },
     });
-    dispatch(financeSlice.actions.addCostsSuccess(createdCosts));
+    dispatch(
+      financeSlice.actions.addCostsSuccess(createdCosts.data.createdCosts),
+    );
     dispatch(financeSlice.actions.setErrorNull());
   } catch (error) {
     dispatch(financeSlice.actions.addCostsError(error));

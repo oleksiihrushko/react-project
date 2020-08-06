@@ -73,7 +73,7 @@ export default createSlice({
 
     addCostsSuccess: (state, { payload }) => ({
       ...state,
-      costs: [...state.costs, payload.createdCosts],
+      costs: [...state.costs, payload],
     }),
 
     addCostsError: (state, { payload }) => ({
@@ -128,7 +128,7 @@ export default createSlice({
 
     addProductSuccess: (state, { payload }) => ({
       ...state,
-      products: payload.products,
+      products: payload,
     }),
 
     addProductError: (state, { payload }) => ({
