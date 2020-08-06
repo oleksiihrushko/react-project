@@ -21,9 +21,9 @@
 
 .modalDescription {
   font-size: 13px;
-  position: absolute;
   top: 40px;
-  left: 40px;
+  margin-top: 54px;
+  text-align: center;
 }
 
 .borderBtn {
@@ -33,7 +33,7 @@
 
 .btnModal {
   margin-left: 17px;
-  margin-top: 90px;
+  margin-top: 36px;
   height: 40px;
   width: 115px;
   background-color: white;

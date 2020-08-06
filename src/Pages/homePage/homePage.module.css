@@ -1,8 +1,5 @@
 .sectionHomePage {
-  min-height: calc(100vh - 85px);
-  /* padding-bottom: 66px; */
-  /* min-height: 100vh; */
-  margin-bottom: 150px;
+  min-height: calc(100vh - 50px);
 }
 
 .wrapper {
@@ -26,6 +23,10 @@
   margin-bottom: 9px;
 }
 
+.uahSymbol {
+  color: #ff6c0acc;
+}
+
 .description {
   font-weight: 700;
   font-size: 12px;
@@ -36,48 +37,20 @@
   padding-left: 12px;
 }
 
-.icon {
-  position: absolute;
-  fill: #d6dbe7;
-  opacity: 0.7;
-  right: -40px;
-  width: 90px;
-  top: 96px;
-  transform: scale(-1, -1);
-}
-
-.icon2 {
-  position: absolute;
-  fill: #d6dbe7;
-  opacity: 0.7;
-  right: -40px;
-  width: 90px;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
-  transform: translate(30px, 20px) rotate(20deg);
-  filter: invert(0.5);
-}
-
-.bitcoinIcon {
+.hryvniaIcon {
   position: absolute;
   z-index: 0;
   fill: #52555f;
   opacity: 0.05;
   width: 100px;
   height: auto;
-  top: 10%;
+  top: 90px;
   right: 50%;
   transform: translateX(70%);
 }
 
+/* --- TABLET RESOLUTION --- */
 @media (min-width: 768px) {
-  .sectionHomePage {
-    min-height: calc(100vh - 85px);
-    /* padding-bottom: 180px; */
-    margin-bottom: 300px;
-  }
-
   .wrapper {
     width: 100%;
     background-color: #f4f6fb;
@@ -105,25 +78,21 @@
     padding-left: 30px;
   }
 
-  .bitcoinIcon {
+  .hryvniaIcon {
     position: absolute;
     z-index: 0;
     fill: #52555f;
     opacity: 0.05;
-    width: 250px;
+    width: 178px;
     height: auto;
-    top: 4%;
+    top: 70px;
     right: 50%;
-    transform: translateX(50%);
+    transform: translateX(70%);
   }
 }
 
+/* --- DESKTOP RESOLUTION --- */
 @media (min-width: 1280px) {
-  .sectionHomePage {
-    min-height: calc(100vh - 85px);
-    /* padding-bottom: 142px; */
-  }
-
   .wrapper {
     width: 100%;
     background-color: #f4f6fb;
@@ -139,40 +108,25 @@
   }
 
   .wrapperDescription {
-    padding: 0;
-    padding-top: 30px;
+    padding-top: 50px;
     padding-left: 104px;
     margin: 0;
   }
 
   .bitcoinIcon {
-    position: absolute;
     z-index: 0;
     fill: #52555f;
     opacity: 0.05;
     width: 200px;
     height: auto;
-    top: 30%;
-    right: 10%;
+    transform: translateY(90px) translateX(900px);
   }
 
-  .euroIcon {
-    display: block;
-    width: 175px;
+  .hryvniaIcon {
+    width: 275px;
     height: auto;
-    margin: 0 auto;
-    margin-bottom: 50px;
-  }
-
-  .poundIcon {
-    position: absolute;
-    z-index: -1;
     fill: #52555f;
-    opacity: 0.1;
-    width: 75px;
-    height: auto;
-    left: 45%;
-    bottom: 35px;
+    transform: translateX(-60px) translateY(50px);
   }
 
   .description {

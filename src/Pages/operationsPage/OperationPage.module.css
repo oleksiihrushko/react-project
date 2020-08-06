@@ -1,0 +1,26 @@
+@media (min-width: 768px) {
+  .operationListWrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .operationList {
+    width: 100%;
+  }
+  .operationSummaryContainer {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .operationListWrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+  .operationList {
+    width: 75%;
+  }
+    .operationSummaryContainer {
+    width: 25%;
+  }
+}
+

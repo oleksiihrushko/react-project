@@ -1,14 +1,15 @@
 .titlesList {
   display: flex;
-  font-size: 11px;
+  font-size: 14px;
   margin-top: 20px;
   background-color: rgb(244, 246, 251);
   height: 40px;
   line-height: 40px;
-  width: 692px;
+  width: 100%;
   margin: 0 auto;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
+  font-weight: bold;
 }
 
 .titleDate {
@@ -17,15 +18,16 @@
 }
 
 .titleDescription {
-  padding-right: 75px;
+  padding-right: 106px;
 }
 
 .titleCategory {
-  padding-right: 92px;
+  padding-right: 74px;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
   .titlesList {
     margin: 0;
+     width: 75%;
   }
 }

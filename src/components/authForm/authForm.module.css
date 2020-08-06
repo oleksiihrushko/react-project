@@ -102,7 +102,7 @@
 .buttonLogin:hover,
 .buttonRegister:hover {
   transition: 0.3s ease-in-out;
-  background-color: rgba(255, 108, 10, 0.8);
+  background-color: #ff6c0acc;
   color: #fff;
 }
 

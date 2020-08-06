@@ -8,9 +8,9 @@ import authSelectors from '../../redux/auth/authSelectors';
 import { getDataOnInit } from '../../redux/finance/financeOperations';
 import api from '../../services/api';
 import OperationSummaryContainer from '../../components/operationsSummary/OperationsSummaryContainer.js';
-import IncomeList from '../../incomeList/IncomeList';
+import IncomeList from '../../components/incomeList/IncomeList';
 import MobileList from '../../components/mobileList/MobileList';
-import styles from "./OperationPage.module.css"
+import styles from './OperationPage.module.css';
 
 const OperationsPage = () => {
   const [operationType, setOperation] = useState('debit');
@@ -54,17 +54,9 @@ const OperationsPage = () => {
   }, []);
 
   useEffect(() => {
-    // if (token) {
-    //   api.token.set(token);
-    // }
-    // dispatch(getDataOnInit());
-
     if (window.matchMedia('(max-width: 767px)').matches) {
-      console.log('mobile');
-
       setOperationsData(mobileOperations);
     } else {
-      console.log('not mobile');
       operationType === 'debit'
         ? setOperationsData(costsOperations)
         : setOperationsData(incomeOperations);
@@ -82,40 +74,47 @@ const OperationsPage = () => {
   return (
     <div className={`container`}>
       <OperationsHeader />
-      <AddOperationForm
-        operationType={operationType}
-        setOperation={setOperation}
-      />
-      <Media
-        queries={{
-          small: '(max-width: 767px)',
-        }}
-      >
-        {matches => (
-          <Fragment>
-            {matches.small ? (
-              <MobileList
-                operations={operationsData}
-                setIsMobile={setIsMobile}
-              />
-            ) : operationType === 'debit' ? (
-              <OperationList
-                operations={operationsData}
-                setIsMobile={setIsMobile}
-              />
-            ) : (
-              <IncomeList
-                operations={operationsData}
-                setIsMobile={setIsMobile}
-              />
+      <div>
+        <AddOperationForm
+          operationType={operationType}
+          setOperation={setOperation}
+        />
+        <div className={styles.operationListWrapper}>
+          <Media
+            queries={{
+              small: '(max-width: 767px)',
+            }}
+          >
+            {matches => (
+              <Fragment>
+                {matches.small ? (
+                  <MobileList
+                    operations={operationsData}
+                    setIsMobile={setIsMobile}
+                  />
+                ) : operationType === 'debit' ? (
+                  <OperationList
+                    operations={operationsData}
+                    setIsMobile={setIsMobile}
+                  />
+                ) : (
+                  <IncomeList
+                    operations={operationsData}
+                    setIsMobile={setIsMobile}
+                  />
+                )}
+              </Fragment>
             )}
-          </Fragment>
-        )}
-      </Media>
-      {!(window.matchMedia('(max-width: 767px)').matches)&&<OperationSummaryContainer
-        type={operationType}
-        setOperationsData={setOperationsData}
-      />}
+          </Media>
+
+          {!window.matchMedia('(max-width: 767px)').matches && (
+            <OperationSummaryContainer
+              type={operationType}
+              setOperationsData={setOperationsData}
+            />
+          )}
+        </div>
+      </div>
     </div>
   );
 };

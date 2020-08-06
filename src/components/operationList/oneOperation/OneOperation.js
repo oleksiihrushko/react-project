@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Media from 'react-media';
-import cart from '../operationList/icons/delete.png';
+import cart from '../icons/delete.png';
 import styles from './OneOperation.module.css';
 
 const OneOperation = ({

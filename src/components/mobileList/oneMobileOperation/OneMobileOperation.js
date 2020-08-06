@@ -1,5 +1,5 @@
 import React from 'react';
-import cart from '../../components/operationList/icons/delete.png';
+import cart from '../../operationList/icons/delete.png';
 import styles from './OneMobileOperation.module.css';
 
 const OneMobileOperation = ({ operation, setId, openModal }) => {
@@ -12,20 +12,22 @@ const OneMobileOperation = ({ operation, setId, openModal }) => {
     openModal();
   };
 
-    const lengthOneMobileOperation = () => {
-      if (operation.product?.name.length > 9) {
-        return operation.product?.name.slice(0, 9) + '...';
-      } else {
-        return operation.product?.name;
-      }
-    };
+  const lengthOneMobileOperation = () => {
+    if (operation.product?.name.length > 15) {
+      return operation.product?.name.slice(0, 15) + '...';
+    } else {
+      return operation.product?.name;
+    }
+  };
 
   return (
     <li className={styles.operationListItem}>
-      <p className={styles.date}>{operation.date.slice(0, 10)}</p>
-      <p className={styles.category}>
-        {operation.costsId ? lengthOneMobileOperation() : 'Доход'}
-      </p>
+      <div className={styles.mobileDate}>
+        <p className={styles.category}>
+          {operation.costsId ? lengthOneMobileOperation() : 'Доход'}
+        </p>
+        <p className={styles.date}>{operation.date.slice(0, 10)}</p>
+      </div>
       {operation.costsId ? (
         <p className={styles.priceCost}>-{operation.amount} грн</p>
       ) : (

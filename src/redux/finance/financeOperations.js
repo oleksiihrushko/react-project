@@ -51,16 +51,16 @@ export const getBalance = () => dispatch => {
     .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
 };
 
-export const addBalance = balance => dispatch => {
+export const addBalance = balance => async dispatch => {
   dispatch(loaderSlice.actions.setLoadingTrue());
-  api
-    .addBalance(balance)
-    .then(({ data }) => {
-      dispatch(financeSlice.actions.addBalanceSuccess(data));
-      dispatch(financeSlice.actions.setErrorNull());
-    })
-    .catch(error => dispatch(financeSlice.actions.addBalanceError(error)))
-    .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
+  try {
+    const { data } = await api.addBalance(balance);
+    dispatch(financeSlice.actions.addBalanceSuccess(data.balance));
+    dispatch(financeSlice.actions.setErrorNull());
+  } catch (error) {
+    dispatch(financeSlice.actions.addBalanceError(error));
+  }
+  dispatch(loaderSlice.actions.setLoadingFalse());
 };
 
 export const addIncome = income => async dispatch => {
@@ -70,6 +70,9 @@ export const addIncome = income => async dispatch => {
     dispatch(
       financeSlice.actions.addIncomeSuccess(addIncomeResponse.data.income),
     );
+    dispatch(
+      financeSlice.actions.addBalanceSuccess(addIncomeResponse.data.balance),
+    );
     dispatch(financeSlice.actions.setErrorNull());
   } catch (error) {
     dispatch(financeSlice.actions.addIncomeError(error));
@@ -77,23 +80,30 @@ export const addIncome = income => async dispatch => {
   dispatch(loaderSlice.actions.setLoadingFalse());
 };
 
-export const deleteIncome = id => dispatch => {
+export const deleteIncome = id => async dispatch => {
   dispatch(loaderSlice.actions.setLoadingTrue());
-  api
-    .deleteIncome(id)
-    .then(() => {
-      dispatch(financeSlice.actions.deleteIncome(id));
-      dispatch(financeSlice.actions.setErrorNull());
-    })
-    .catch(error => dispatch(financeSlice.actions.deleteIncomeError(error)))
-    .finally(dispatch(loaderSlice.actions.setLoadingFalse()));
+  try {
+    const deleteIncomeResponse = await api.deleteIncome(id);
+    dispatch(financeSlice.actions.deleteIncomeSuccess(id));
+    dispatch(
+      financeSlice.actions.addBalanceSuccess(deleteIncomeResponse.data.balance),
+    );
+    dispatch(financeSlice.actions.setErrorNull());
+  } catch (error) {
+    dispatch(financeSlice.actions.deleteIncomeError(error));
+  }
+
+  dispatch(loaderSlice.actions.setLoadingFalse());
 };
 
 export const deleteCosts = (idDelete, id) => async dispatch => {
   dispatch(loaderSlice.actions.setLoadingTrue());
   try {
-    await api.deleteCosts(idDelete, id);
+    const deleteCostsResponse = await api.deleteCosts(idDelete, id);
     dispatch(financeSlice.actions.deleteCostsSuccess(id));
+    dispatch(
+      financeSlice.actions.addBalanceSuccess(deleteCostsResponse.data.balance),
+    );
     dispatch(financeSlice.actions.setErrorNull());
   } catch (error) {
     dispatch(financeSlice.actions.deleteCostsError(error));
@@ -115,18 +125,18 @@ export const addCosts = (
     });
     const products = await api.getProducts();
     dispatch(financeSlice.actions.addProductSuccess(products.data.products));
-    const now = new Date();
     const createdCosts = await api.addCosts({
       date,
       product: {
         productId: productResponse.data.product._id,
         amount,
-        date: now.toISOString(),
+        date,
       },
     });
     dispatch(
       financeSlice.actions.addCostsSuccess(createdCosts.data.createdCosts),
     );
+    dispatch(financeSlice.actions.addBalanceSuccess(createdCosts.data.balance));
     dispatch(financeSlice.actions.setErrorNull());
   } catch (error) {
     dispatch(financeSlice.actions.addCostsError(error));

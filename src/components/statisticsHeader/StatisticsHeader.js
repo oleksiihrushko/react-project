@@ -41,7 +41,7 @@ class StatisticsHeader extends Component {
     const { setSelectedMonth } = this.props;
     const { date } = this.state;
     setSelectedMonth(date);
-    // console.log(moment(currentTime).format('L'));
+
   }
 
   componentDidUpdate() {
