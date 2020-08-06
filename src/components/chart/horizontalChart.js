@@ -109,6 +109,10 @@ const HorizontalChart = () => {
   const month = date && Array.from(date).splice(3, 2).join('') - 1;
   const year = date && Array.from(date).splice(6, 4).join('');
 
+  const product = useSelector(state => state.operations.costs[0]);
+  const category = product && product.product.category.name;
+  console.log(category);
+
   const currency = useSelector(state =>
     getCurrency(state.exchangeRatesRoot.exchangeCurrency),
   );
@@ -121,7 +125,7 @@ const HorizontalChart = () => {
   );
 
   const chart = () => {
-    const data = getData('all', Number(month), Number(year));
+    const data = getData(category, Number(month), Number(year));
 
     setChartData({
       labels: categoriesNames,

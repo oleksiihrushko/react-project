@@ -3,7 +3,6 @@ import { dummyData } from './dummyData';
 const expenses = dummyData.items;
 
 const categorise = (selectedMonth, selectedYear) => {
-  console.log(selectedYear);
   let categoryData = {};
 
   expenses.forEach(exp => {
