@@ -11,8 +11,8 @@ const BallanceRedactor = () => {
   const balance = useSelector((state) => state.operations.balance);
   const [value, setValue] = useState(balance);
 
-  const income = useSelector((state) => state.operations.income);
-  const costs = useSelector((state) => state.operations.costs);
+  // const income = useSelector((state) => state.operations.income);
+  // const costs = useSelector((state) => state.operations.costs);
   const dispatch = useDispatch();
 
   useEffect(() => {

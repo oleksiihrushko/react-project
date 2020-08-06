@@ -13,9 +13,12 @@ import { ReactComponent as Products } from './svg/products.svg';
 import { ReactComponent as Sport } from './svg/sport.svg';
 import { ReactComponent as Tools } from './svg/tools.svg';
 import { useSelector } from 'react-redux';
+import { makeSummary } from '../../services/helpers';
 
-const getFilteredDate = (allCosts, monthToFilter) =>
-  allCosts.filter(costs => {
+const getFilteredDate = (allCosts, monthToFilter) =>{
+  // console.log('allCosts==============', allCosts)
+  // console.log('monthToFilter==============', monthToFilter)
+ const aaa = allCosts.filter(costs => {
     const allDates = costs.date;
     const dataTarcsaction = new Date(allDates);
     const currentMonth = dataTarcsaction.getMonth() + 1;
@@ -28,11 +31,18 @@ const getFilteredDate = (allCosts, monthToFilter) =>
     if (currentMonth === getMonthToSearch && getYaerToSearch === currentYaer) {
       return true;
     }
-  });
+  })
 
-const totalCategoryCost = data =>
-  data.reduce(
+  // console.log('aaa==============', aaa)
+  return aaa
+}
+
+const totalCategoryCost = data =>{
+  // debugger
+// 
+ const aaa =  data.reduce(
     (acc, costs) => {
+      // debugger
       acc[costs.product.category.name] =
         acc[costs.product.category.name] + costs.amount;
       return acc;
@@ -52,10 +62,35 @@ const totalCategoryCost = data =>
     },
   );
 
+console.log('aaa 11111111111111',aaa)
+
+return aaa
+}
+
+
+
 export const TotalCountsCosts = ({ setCurrentCategory }) => {
   const allCosts = useSelector(state => state.operations.costs);
   const monthToFilter = useSelector(state => state.statistics.month); //+
   const total = totalCategoryCost(getFilteredDate(allCosts, monthToFilter));
+
+  // const income = useSelector((state) => state.operations.income);
+  // const costs = useSelector((state) => state.operations.costs);
+  // console.log('makeSummary()', makeSummary(costs))
+  console.log('total', total)
+  
+  // console.log('Object.values total', Object.values(total))
+  // const onShow = Object.values(total).reduce((acc, item) => {
+  //   console.log('item', item);
+  //   if (!isNaN(item) ) {
+  //     acc += item;
+  //   }
+
+  //   console.log('acc', acc);
+  // }, 0);
+
+  // console.log('onShow', onShow);
+
   const configs = [
     {
       name: 'Продукты',
@@ -119,31 +154,33 @@ export const TotalCountsCosts = ({ setCurrentCategory }) => {
     },
   ];
   return (
-    <ul
-      className={`${styles.ul} ${styles.flex} }`}
-      style={{
-        padding: 0,
-      }}
-    >
-      {configs.map(({ name, svg, total }) => {
-        return (
-          // (total !== null) > 0 && (
-          total > 0 && (
-            <li key={name} className={`${styles.flex} ${styles.li}`}>
-              <button
-                onClick={() => {
-                  setCurrentCategory(name);
-                }}
-                className={styles.btn}
-              >
-                <p className={`${styles.prise}`}>{total}</p>
-                <div className={styles.svg}>{svg}</div>
-                <p className={styles.name}>{name}</p>
-              </button>
-            </li>
-          )
-        );
-      })}
-    </ul>
+    <section className={`${styles.wrapper} container`}>
+      <ul
+        className={`${styles.ul} ${styles.flex} }`}
+        style={{
+          padding: 0,
+        }}
+      >
+        {configs.map(({ name, svg, total }) => {
+          return (
+            // (total !== null) > 0 && (
+            total > 0 && (
+              <li key={name} className={`${styles.flex} ${styles.li}`}>
+                <button
+                  onClick={() => {
+                    setCurrentCategory(name);
+                  }}
+                  className={styles.btn}
+                >
+                  <p className={`${styles.prise}`}>{total}</p>
+                  <div className={styles.svg}>{svg}</div>
+                  <p className={styles.name}>{name}</p>
+                </button>
+              </li>
+            )
+          );
+        })}
+      </ul>
+    </section>
   );
 };
