@@ -20,23 +20,50 @@ const filterCosts = (array, year, month) => {
     const res =
       item.date > startMonth.toISOString() &&
       item.date < endMonth.toISOString();
+      console.log(res)
     return res;
   });
 };
 
+
 function TotalCostsSumAndIncomeSum() {
   const costs = useSelector(state => state.operations.costs);
   const income = useSelector(state => state.operations.income);
-  const month = useSelector(state => state.statistics.month);
-// console.log(costs);
-// console.log(income);
-// console.log(month);
-//   const costs
+  const date2 = useSelector(state => state.statistics.month);
+  const date = new Date(date2);
+  const year = date.getFullYear();
+  const month = date.getMonth();
 
-  // const costsTotal = costs.filter
+
+
+  const filteredCosts = getCostsSum(filterCosts(costs,year, month))
+  const filteredIncome = getCostsSum(filterCosts(income,year, month))
+  // const costsTota = filteredCosts.getCostsSum(costs);
   
-
-
+  // console.log(filteredCosts);
+  // console.log(filteredIncome);
+  // console.log(costsTota);
+  
+  // const costsSum = (costs) => {
+  //   return(
+  //       costsSum = costs
+  //       .filter(
+  //         item =>
+  //           moment(item.date).format('MMMM YYYY') ===
+  //           moment(date).format('MMMM YYYY'),
+  //       )
+  //       .reduce(acc, el) => acc + el.amount, 0);
+    
+  // }
+  
+  // console.log(income);
+  // console.log(month);
+  // console.log(costs);
+  
+  
+  
+  
+  
   // const costsSum = getCostsSum.filter(
   //             item =>
   //             filterCosts
@@ -51,17 +78,6 @@ function TotalCostsSumAndIncomeSum() {
   // console.log(income);
   // totalCategoryCost
   // console.log(totalCategoryCost);
-  // const costsSum = (costs) => {
-  //   return(
-  //       costsSum = costs
-  //       .filter(
-  //         item =>
-  //           moment(item.date).format('MMMM YYYY') ===
-  //           moment(date).format('MMMM YYYY'),
-  //       )
-  //       .reduce((acc, el) => acc + el.amount, 0);
-  //   }
-  // }
 
 
 
@@ -127,12 +143,12 @@ function TotalCostsSumAndIncomeSum() {
           <div className={s.wrapper}>
             <div className={s.column}>
               <p className={s.stat_title}>Расходы:</p>
-              <p className={s.stat_exp}>-{0} грн</p>
+              <p className={s.stat_exp}>-{filteredIncome} грн</p>
             </div>
             <div className={s.separate} />
             <div className={s.column}>
               <p className={s.stat_title}>Доходы:</p>
-              <p className={s.stat_inc}>{0} грн</p>
+              <p className={s.stat_inc}>{filteredCosts} грн</p>
             </div>
           </div>
         </div>
