@@ -12,11 +12,19 @@ const OneMobileOperation = ({ operation, setId, openModal }) => {
     openModal();
   };
 
+    const lengthOneMobileOperation = () => {
+      if (operation.product?.name.length > 9) {
+        return operation.product?.name.slice(0, 9) + '...';
+      } else {
+        return operation.product?.name;
+      }
+    };
+
   return (
     <li className={styles.operationListItem}>
       <p className={styles.date}>{operation.date.slice(0, 10)}</p>
       <p className={styles.category}>
-        {operation.costsId ? operation.product.name : 'Доход'}
+        {operation.costsId ? lengthOneMobileOperation() : 'Доход'}
       </p>
       {operation.costsId ? (
         <p className={styles.priceCost}>-{operation.amount} грн</p>
