@@ -19,7 +19,12 @@ const categorise = (products, selectedMonth, selectedYear) => {
         categoryData[categoryName].push({ [categoryItem]: amount });
     }
   });
-  return categoryData;
+
+  const dataArrays = Object.entries(categoryData);
+  const sortedDataArrays = dataArrays.sort((a, b) => b[1] - a[1]);
+  const limitedData = sortedDataArrays.slice(0, 15);
+
+  return Object.fromEntries(limitedData);
 };
 
 const getCategoryDetails = data => {
@@ -70,7 +75,12 @@ const getExpensesByAllCategories = (products, selectedMonth, selectedYear) => {
       categoryData[categoryName] += amount;
     }
   });
-  return categoryData;
+
+  const dataArrays = Object.entries(categoryData);
+  const sortedDataArrays = dataArrays.sort((a, b) => b[1] - a[1]);
+  const limitedData = sortedDataArrays.slice(0, 15);
+
+  return Object.fromEntries(limitedData);
 };
 
 export const getData = (
