@@ -111,7 +111,6 @@ const HorizontalChart = () => {
 
   const product = useSelector(state => state.operations.costs[0]);
   const category = product && product.product.category.name;
-  console.log(category);
 
   const currency = useSelector(state =>
     getCurrency(state.exchangeRatesRoot.exchangeCurrency),
