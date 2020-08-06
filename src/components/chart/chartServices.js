@@ -26,11 +26,11 @@ const categorise = (products, selectedMonth, selectedYear) => {
     }
   });
 
-  return getSortedData(categoryData);
+  return categoryData;
 };
 
 const getCategoryDetails = data => {
-  return data.reduce((acc, item) => {
+  const result = data.reduce((acc, item) => {
     const title = Object.keys(item)[0];
     const amount = Object.values(item)[0];
 
@@ -38,8 +38,11 @@ const getCategoryDetails = data => {
       acc[title] = 0;
     }
     acc[title] += amount;
+
     return acc;
   }, {});
+
+  return getSortedData(result);
 };
 
 const getSubcategoryData = (
