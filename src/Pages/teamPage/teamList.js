@@ -15,7 +15,7 @@ const teamList = [
     lastName: 'Свирко',
     email: 'ISvirko@yahoo.com',
     photo: svirko,
-    linkedIn: '',
+    linkedIn: 'https://www.linkedin.com/in/evgenia-svirko-2325041a2/',
     timer: 270,
   },
   {
@@ -31,7 +31,7 @@ const teamList = [
     lastName: 'Педько',
     email: 'yuriipedko@gmail.com',
     photo: pedko,
-    linkedIn: '',
+    linkedIn: 'https://www.linkedin.com/in/yurii-pedko-626bb31b2/',
     timer: 100,
   },
   {
@@ -39,7 +39,7 @@ const teamList = [
     lastName: 'Мавродий',
     email: 'mavrodiy.m.e@gmail.com',
     photo: mavrodiy,
-    linkedIn: '',
+    linkedIn: 'https://www.linkedin.com/in/mavrodiy/',
     timer: 330,
   },
   {
@@ -73,17 +73,8 @@ const teamList = [
     lastName: 'Грушко',
     email: 'oleksiihrushko@gmail.com',
     photo: hrushko,
-    linkedIn: '',
+    linkedIn: 'https://www.linkedin.com/in/alexhrushko/',
     timer: 270,
-  },
-  {
-    firstName: 'Денис',
-    lastName: 'Реинт',
-    email: 'reintdenis@gmail.com',
-    photo: reint,
-    linkedIn:
-      'https://www.linkedin.com/in/%D0%B4%D0%B5%D0%BD%D0%B8%D1%81-%D1%80%D0%B5%D0%B8%D0%BD%D1%82-b2a5481b4/',
-    timer: 330,
   },
   {
     firstName: 'Сергей',
@@ -91,7 +82,15 @@ const teamList = [
     email: '',
     photo: '',
     linkedIn: '',
-    timer: 200,
+    timer: 300,
+  },
+  {
+    firstName: 'Денис',
+    lastName: 'Реинт',
+    email: 'reintdenis@gmail.com',
+    photo: reint,
+    linkedIn: 'https://www.linkedin.com/in/%D0%B4%D0%B5%D0%BD%D0%B8%D1%81-%D1%80%D0%B5%D0%B8%D0%BD%D1%82-b2a5481b4/',
+    timer: 330,
   },
 ];
 
