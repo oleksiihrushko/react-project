@@ -88,7 +88,7 @@
   line-height: 44px;
 }
 
-.credit {
+.debit {
   position: absolute;
   width: 140px;
   height: 40px;
@@ -103,7 +103,7 @@
   line-height: 40px;
 }
 
-.debit {
+.credit {
   position: absolute;
   width: 140px;
   height: 40px;
@@ -119,7 +119,7 @@
 }
 
 @media (max-width: 767px) {
-  .credit {
+  .debit {
     border-radius: 0;
     top: inherit;
     left: 0;
@@ -129,7 +129,7 @@
     border-right: 1px solid #fff;
   }
 
-  .debit {
+  .credit {
     border-radius: 0;
     top: inherit;
     right: 0;
