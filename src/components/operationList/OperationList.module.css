@@ -12,9 +12,9 @@
   line-height: 20px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1279px){
   .operationList {
-    width: 694px;
+    width: 100%;
     padding: 0;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
@@ -30,10 +30,9 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
   .operationList {
     margin: 0;
-
     margin-bottom: 20px;
   }
 }

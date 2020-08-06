@@ -88,39 +88,42 @@ const OperationsPage = () => {
           setOperation={setOperation}
         />
         <div className={styles.operationListWrapper}>
-        <Media
-          queries={{
-            small: '(max-width: 767px)',
-          }}
-        >
-          {matches => (
-            <Fragment>
-              {matches.small ? (
-                <MobileList
-                  operations={operationsData}
-                  setIsMobile={setIsMobile}
-                />
-              ) : operationType === 'debit' ? (
-                <OperationList
-                  operations={operationsData}
-                  setIsMobile={setIsMobile}
-                />
-              ) : (
-                <IncomeList
-                  operations={operationsData}
-                  setIsMobile={setIsMobile}
-                />
-              )}
-            </Fragment>
-          )}
-        </Media>
 
-        {!window.matchMedia('(max-width: 767px)').matches && (
-          <OperationSummaryContainer
-            type={operationType}
-            setOperationsData={setOperationsData}
-          />
-        )}
+            <Media
+              queries={{
+                small: '(max-width: 767px)',
+              }}
+            >
+              {matches => (
+                <Fragment>
+                  {matches.small ? (
+                    <MobileList
+                      operations={operationsData}
+                      setIsMobile={setIsMobile}
+                    />
+                  ) : operationType === 'debit' ? (
+                    <OperationList
+                      operations={operationsData}
+                      setIsMobile={setIsMobile}
+                    />
+                  ) : (
+                    <IncomeList
+                      operations={operationsData}
+                      setIsMobile={setIsMobile}
+                    />
+                  )}
+                </Fragment>
+              )}
+            </Media>
+
+         
+            {!window.matchMedia('(max-width: 767px)').matches && (
+              <OperationSummaryContainer
+                type={operationType}
+                setOperationsData={setOperationsData}
+              />
+            )}
+
         </div>
       </div>
     </div>

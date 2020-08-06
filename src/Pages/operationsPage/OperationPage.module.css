@@ -1,15 +1,26 @@
-
-
 @media (min-width: 768px) and (max-width: 1279px) {
-    .operationListWrapper {
-        display: flex;
-        flex-wrap: wrap;
-    }
+  .operationListWrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .operationList {
+    width: 100%;
+  }
+  .operationSummaryContainer {
+    width: 100%;
+  }
 }
 
 @media (min-width: 1280px) {
-    .operationListWrapper {
-        display: flex;
-        justify-content: space-between;
-    }
+  .operationListWrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+  .operationList {
+    width: 75%;
+  }
+    .operationSummaryContainer {
+    width: 25%;
+  }
 }
+
