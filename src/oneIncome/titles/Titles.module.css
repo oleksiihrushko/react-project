@@ -12,17 +12,16 @@
 }
 
 .titleDate {
-  padding-left: 60px;
-  padding-right: 148px;
+  padding-left: 80px;
+  padding-right: 128px;
 }
 
 .titleCategory {
-  padding-right: 88px;
+  padding-right: 86px;
 }
 
 @media (min-width: 1024px) {
   .titlesList {
     margin: 0;
-    /* padding-top: 20px; */
   }
 }
