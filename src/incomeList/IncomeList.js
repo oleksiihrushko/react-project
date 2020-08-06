@@ -15,45 +15,45 @@ const IncomeList = ({ operations, setIsMobile }) => {
   const [id, setId] = useState('');
 
   const deleteOperation = () => {
-      dispatch(deleteIncome(id));
+    dispatch(deleteIncome(id));
   };
 
   return (
     <>
+      <Media
+        queries={{
+          medium: '(min-width: 768px) and (max-width: 1023px)',
+          large: '(min-width: 1024px)',
+        }}
+      >
+        {matches => (
+          <Fragment>
+            {matches.medium && <Titles />}
+            {matches.large && <Titles />}
+          </Fragment>
+        )}
+      </Media>
       <ul className={styles.incomeList}>
-        <Media
-          queries={{
-            medium: '(min-width: 768px) and (max-width: 1023px)',
-            large: '(min-width: 1024px)',
-          }}
-        >
-          {matches => (
-            <Fragment>
-              {matches.medium && <Titles />}
-              {matches.large && <Titles />}
-              {operations.length === 0 ? (
-                <p className={styles.noIncome}>No income</p>
-              ) : (
-                operations.map(operation => (
-                  <OneIncome
-                    operation={operation}
-                    key={operation.incomeId}
-                    setId={setId}
-                    openModal={() => setIsShowDeleteModal(true)}
-                  />
-                ))
-              )}
-            </Fragment>
-          )}
-        </Media>
-        {isShowDeleteModal && (
-          <Modal
-            text="Вы уверены?"
-            onTrue={deleteOperation}
-            closeModal={() => setIsShowDeleteModal(false)}
-          />
+        {operations.length === 0 ? (
+          <p className={styles.noIncome}>Нет доходов</p>
+        ) : (
+          operations.map(operation => (
+            <OneIncome
+              operation={operation}
+              key={operation.incomeId}
+              setId={setId}
+              openModal={() => setIsShowDeleteModal(true)}
+            />
+          ))
         )}
       </ul>
+      {isShowDeleteModal && (
+        <Modal
+          text="Вы уверены?"
+          onTrue={deleteOperation}
+          closeModal={() => setIsShowDeleteModal(false)}
+        />
+      )}
     </>
   );
 };

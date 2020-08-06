@@ -20,40 +20,40 @@ const OperationList = ({ operations, setIsMobile }) => {
 
   return (
     <>
+      <Media
+        queries={{
+          medium: '(min-width: 768px) and (max-width: 1023px)',
+          large: '(min-width: 1024px)',
+        }}
+      >
+        {matches => (
+          <Fragment>
+            {matches.medium && <Title />}
+            {matches.large && <Title />}
+          </Fragment>
+        )}
+      </Media>
       <ul className={styles.operationList}>
-        <Media
-          queries={{
-            medium: '(min-width: 768px) and (max-width: 1023px)',
-            large: '(min-width: 1024px)',
-          }}
-        >
-          {matches => (
-            <Fragment>
-              {matches.medium && <Title />}
-              {matches.large && <Title />}
-              {operations.length === 0 ? (
-                <p className={styles.noOperations}>Нет операций</p>
-              ) : (
-                operations.map(operation => (
-                  <OneOperation
-                    operation={operation}
-                    key={operation.costsId}
-                    setId={setId}
-                    openModal={() => setIsShowDeleteModal(true)}
-                  />
-                ))
-              )}
-            </Fragment>
-          )}
-        </Media>
-        {isShowDeleteModal && (
-          <Modal
-            text="Вы уверены?"
-            onTrue={deleteOperation}
-            closeModal={() => setIsShowDeleteModal(false)}
-          />
+        {operations.length === 0 ? (
+          <p className={styles.noOperations}>Нет операций</p>
+        ) : (
+          operations.map(operation => (
+            <OneOperation
+              operation={operation}
+              key={operation.costsId}
+              setId={setId}
+              openModal={() => setIsShowDeleteModal(true)}
+            />
+          ))
         )}
       </ul>
+      {isShowDeleteModal && (
+        <Modal
+          text="Вы уверены?"
+          onTrue={deleteOperation}
+          closeModal={() => setIsShowDeleteModal(false)}
+        />
+      )}
     </>
   );
 };
