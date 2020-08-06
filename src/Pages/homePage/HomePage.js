@@ -4,9 +4,10 @@ import Media from "react-media";
 import AuthForm from "../../components/authForm/AuthForm";
 import styles from "./homePage.module.css";
 
-import { ReactComponent as Bitcoin } from "../../ui/currency/bitcoin.svg";
-import { ReactComponent as Pound } from "../../ui/currency/pound.svg";
-import { ReactComponent as Euro } from "../../ui/currency/euro.svg";
+import { ReactComponent as Bitcoin } from "../../ui/homePage/currency/bitcoin.svg";
+import { ReactComponent as Pound } from "../../ui/homePage/currency/pound.svg";
+// import { ReactComponent as Euro } from "../../ui/homePage/currency/euro.svg";
+import { ReactComponent as Hryvnia } from "../../ui/homePage/currency/hryvnia_logo.svg";
 
 const HomePage = () => {
   return (
@@ -20,9 +21,9 @@ const HomePage = () => {
                   <div className={`${styles.wrapperDesktop} container`}>
                     <div className={styles.wrapperDescription}>
                       <Bitcoin className={styles.bitcoinIcon} />
-                      <Pound className={styles.poundIcon} />
-                      <Euro className={styles.euroIcon} />
-                      <h1 className={styles.title}>Karbovanet$</h1>
+                      <Hryvnia className={styles.hryvniaIcon} />
+                      <Pound className={styles.poundIcon} />  
+                      <h1 className={styles.title}>Karbovanet<span className={styles.uahSymbol}>₴</span></h1>
                       <p className={styles.description}>smart finance</p>
                     </div>
                     <AuthForm />
@@ -32,8 +33,8 @@ const HomePage = () => {
             ) : (
               <>
                 <div className={`${styles.wrapperDescription} container`}>
-                  <Bitcoin className={styles.bitcoinIcon} />
-                  <h1 className={styles.title}>Karbovanet$</h1>
+                  <Hryvnia className={styles.hryvniaIcon} />
+                  <h1 className={styles.title}>Karbovanet<span className={styles.uahSymbol}>₴</span></h1>
                   <p className={styles.description}>smart finance</p>
                 </div>
                 <AuthForm />

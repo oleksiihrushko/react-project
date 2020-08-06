@@ -13,12 +13,19 @@
     background-color: transparent;
     margin-right: auto;
 }
+
+.arrowBtn:hover .btnSvg{
+transition: all .2s ease-in-out;
+  transform: scale(1.2);
+}
+
 .arrowSvg {
     fill: var(--orange);
     color: var(--orange);
     width: 30px;
     height: 20px;
 }
+
 .textBackBtn {
     font-size: 14px;
     line-height: 20px;
