@@ -3,8 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import exchangeRatesSelectors from "../../redux/exchange/exchangeRatesSelectors";
 import moment from "moment";
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import Table from "react-bootstrap/Table";
+
 import styles from "./ExchangeRates.module.css";
 
 class ExchangeRates extends Component {

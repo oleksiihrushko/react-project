@@ -3,10 +3,10 @@ import moment from 'moment';
 import 'moment/locale/ru';
 import ModalExchangeRates from '../modal/ModalExchangeRates';
 
-import { ReactComponent as ArrowBack } from './arrowBack/back.svg';
-import { ReactComponent as PrevMonth } from './arrowBack/leftArrow.svg';
-import { ReactComponent as NextMonth } from './arrowBack/rightArrow.svg';
-import { ReactComponent as Exchange } from './img/exchange.svg';
+import { ReactComponent as ArrowBack } from '../../ui/statisticsPage/statisticsHeader/back.svg';
+import { ReactComponent as PrevMonth } from '../../ui/statisticsPage/statisticsHeader/leftArrow.svg';
+import { ReactComponent as NextMonth } from '../../ui/statisticsPage/statisticsHeader/rightArrow.svg';
+import { ReactComponent as Exchange } from '../../ui/statisticsPage/statisticsHeader/exchange.svg';
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
