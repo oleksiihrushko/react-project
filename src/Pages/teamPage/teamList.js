@@ -31,7 +31,7 @@ const teamList = [
     lastName: 'Ковбасенко',
     email: 's1.kovbasenko@gmail.com',
     photo: kovbasenko,
-    linkedIn: '',
+    linkedIn: 'https://www.linkedin.com/m/in/sergey-kovbasenko-9541881b1/',
     timer: 200,
   },
   {
@@ -56,7 +56,7 @@ const teamList = [
     lastName: 'Завадский',
     email: 'Zavadskiyweb@gmail.com',
     photo: zavadskiy,
-    linkedIn: '',
+    linkedIn: 'https://www.linkedin.com/in/alexsandr-zavadskiy-4121351b4/',
     timer: 270,
   },
   {
@@ -82,7 +82,7 @@ const teamList = [
     lastName: 'Мавродий',
     email: 'mavrodiy.m.e@gmail.com',
     photo: mavrodiy,
-    linkedIn: '',
+    linkedIn: 'https://www.linkedin.com/in/mavrodiy/',
     timer: 330,
   },
   {
