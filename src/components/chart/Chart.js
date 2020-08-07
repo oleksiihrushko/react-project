@@ -131,12 +131,14 @@ const Chart = ({ currentCategory }) => {
       currencySign={currencySign}
     />
   ) : (
-    <HorizontalChart
-      valuesRef={valuesRef}
-      chartData={chartData}
-      currencySign={currencySign}
-      height={height}
-    />
+    chartData.forEach(el => (
+      <HorizontalChart
+        valuesRef={valuesRef}
+        chartData={el}
+        currencySign={currencySign}
+        height={height}
+      />
+    ))
   );
 };
 
