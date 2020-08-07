@@ -28,6 +28,7 @@ const App = () => {
             </div>
           )}
           <Header />
+          <div className={styles.forBg}></div>
           <Switch>
             {routes.map(route => {
               return route.private ? (
