@@ -55,6 +55,9 @@ const Chart = ({ currentCategory }) => {
 
   const valuesRef = useRef();
 
+  let canvas = document.querySelector('canvas');
+  // console.log(canvas);
+
   const drawChart = () => {
     const data = getData(
       products,
@@ -94,9 +97,30 @@ const Chart = ({ currentCategory }) => {
   };
 
   const height = chartData.labels && calculateHeight(chartData);
+
   useEffect(() => {
     drawChart();
-  }, [categoriesNames, date, currentCategory, exchangeInfo]);
+  }, [categoriesNames, date, currentCategory, exchangeInfo, height, canvas]);
+
+  if (canvas) {
+    if (canvas.props) {
+      canvas.props.height = height;
+    }
+
+    canvas = (
+      <canvas
+        height={height}
+        width="282"
+        class="chartjs-render-monitor"
+        style={{
+          display: 'block',
+          height: `${height}px`,
+          width: '226px',
+        }}
+      ></canvas>
+    );
+    console.log('canvas', canvas.props.height);
+  }
 
   const width = useWindowWidth();
 
@@ -135,7 +159,7 @@ const HorizontalChart = ({ valuesRef, chartData, currencySign, height }) => {
       <HorizontalBar
         data={chartData}
         options={getHorizontalBarChartOptions(currencySign)}
-        // height={calculateHeight(chartData)}
+        height={calculateHeight(chartData)}
       />
     </div>
   ) : null;
