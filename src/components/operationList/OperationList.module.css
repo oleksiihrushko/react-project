@@ -1,11 +1,20 @@
 .operationList {
   width: 280px;
-  max-height: 290px;
+  height: 290px;
   padding-left: 20px;
   padding-right: 20px;
   margin: 0 auto;
   margin-top: 20px;
   overflow-y: scroll;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 25px;
+  background-color: #fd8e0f;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
 }
 
 .noOperations {
@@ -25,8 +34,9 @@
     margin-bottom: 20px;
   }
 
-  .operationList:first-child {
-    border-top: none;
+  .noOperations {
+    padding: 22px;
+    border-bottom: 2px solid rgb(244, 246, 251);
   }
 }
 

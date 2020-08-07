@@ -5,6 +5,7 @@ import Titles from './oneIncome/titles/Titles';
 import Modal from '../modal/Modal';
 import OneIncome from './oneIncome/OneIncome';
 import { deleteIncome } from '../../redux/finance/financeOperations';
+import EmptyMarkup from './oneIncome/OneIncomeEmpty';
 import styles from './IncomeList.module.css';
 
 const IncomeList = ({ operations, setIsMobile }) => {
@@ -45,6 +46,28 @@ const IncomeList = ({ operations, setIsMobile }) => {
               openModal={() => setIsShowDeleteModal(true)}
             />
           ))
+        )}
+        {operations.length === 3 && <EmptyMarkup />}
+        {operations.length === 2 && (
+          <>
+            <EmptyMarkup />
+            <EmptyMarkup />
+          </>
+        )}
+        {operations.length === 1 && (
+          <>
+            <EmptyMarkup />
+            <EmptyMarkup />
+            <EmptyMarkup />
+          </>
+        )}
+        {operations.length === 0 && (
+          <>
+            <EmptyMarkup />
+            <EmptyMarkup />
+            <EmptyMarkup />
+            <EmptyMarkup />
+          </>
         )}
       </ul>
       {isShowDeleteModal && (

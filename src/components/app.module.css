@@ -6,3 +6,20 @@
   height: 100%;
   z-index: 999999;
 }
+
+.forBg {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  height: 450px;
+  z-index: -1;
+  border-radius: 0 0 0 120px;
+  background-color: #f4f6fb;
+}
+
+@media (max-width: 767px) {
+  .forBg {
+    height: 300px;
+  }
+}

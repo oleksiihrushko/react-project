@@ -73,13 +73,14 @@ const OperationsPage = () => {
 
   return (
     <div className={`container`}>
+      <div className={styles.forBg}></div>
       <OperationsHeader />
       <div className={styles.operationListWrapper}>
         <AddOperationForm
           operationType={operationType}
           setOperation={setOperation}
         />
-        <div>
+        <div className={styles.pageWrapp}>
           <Media
             queries={{
               small: '(max-width: 767px)',
