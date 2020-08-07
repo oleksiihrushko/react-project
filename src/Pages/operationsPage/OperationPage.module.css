@@ -15,6 +15,9 @@
   .operationListWrapper {
     display: flex;
     justify-content: space-between;
+    background-color: #fff;
+    border-radius: 0 20px 20px;
+    box-shadow: 7px 12.124px 65px 0px rgba(179, 185, 200, 0.75);
   }
   .operationList {
     width: 75%;
