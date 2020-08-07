@@ -26,13 +26,15 @@ class StatisticsHeader extends Component {
   };
 
   componentDidMount() {
-    const getRates = currentRates => {
-      if (currentRates.length === 0) {
-        return this.props.onFetchEchangeRates();
-      } else {
-        return currentRates;
-      }
-    };
+    // { this.props.onFetchEchangeRates()}
+    // this.props.onFetchEchangeRates()
+    // const getRates = currentRates => {
+      if (this.props.exchangeRates.length === 0) {
+         this.props.onFetchEchangeRates();
+      } 
+         
+      
+    // };
     
     const currentTime = moment().format();
     this.setState({
@@ -89,7 +91,8 @@ class StatisticsHeader extends Component {
 
   render() {
     const { exchangeCurrency } = this.props;
-
+    console.log(exchangeCurrency)
+    // console.log(object)
     const { date } = this.state;
     return (
       <div className={`${styles.statisticsHeaderWrapper} container`}>
