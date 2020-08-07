@@ -13,9 +13,15 @@ footer {
 .info {
     color: black;
     text-align: center;
+    font-family: 'RobotoRegular', sans-serif;
+    font-style: normal;
+    font-weight: normal;
 }
 .linkInfoTeam {
     color: #52555f;
+    font-family: 'RobotoRegular', sans-serif;
+    font-style: normal;
+    font-weight: normal;
 }
 .linkInfoTeam:hover{
     color:#FB7C2F;
@@ -23,3 +29,10 @@ footer {
 .infoP {
     color: white;
 }
+
+@media (min-width: 768px) {
+    .container {
+      width: 688px;
+
+    }
+  }
