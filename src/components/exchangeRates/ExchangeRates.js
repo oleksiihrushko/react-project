@@ -1,14 +1,23 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
+<<<<<<< HEAD
 import { connect } from "react-redux";
 import exchangeRatesSelectors from "../../redux/exchange/exchangeRatesSelectors";
 import moment from "moment";
 
 import styles from "./ExchangeRates.module.css";
+=======
+import { connect } from 'react-redux';
+import exchangeRatesSelectors from '../../redux/exchange/exchangeRatesSelectors';
+import moment from 'moment';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import Table from "react-bootstrap/Table";
+import styles from './ExchangeRates.module.css';
+>>>>>>> dev
 
 class ExchangeRates extends Component {
   state = {
-    date: "",
+    date: '',
   };
 
   componentDidMount() {
@@ -26,38 +35,37 @@ class ExchangeRates extends Component {
 
     return (
       <>
-        <div className={styles.ExchangeRatesWrapper}>
-          
-          <table className={styles.table}> 
+        <div className={`${styles.ExchangeRatesWrapper} container`}>
+          <h6>курс валют на: {date && moment(date).format('L')}</h6>
+          {/* <Table responsive striped bordered hover variant="light"> */}
+          <caption className="text-danger">
+            <span>* курс биткоина указан в USD</span>
+          </caption>
 
-            <thead>
+          <thead>
             <tr className={styles.tr}>
-                <th className={styles.th}>Валюта</th>
-                <th className={styles.th}>курс покупки</th>
-                <th className={styles.th}>курс продажи</th>
+              <th className={styles.th}>Валюта</th>
+              <th className={styles.th}>курс покупки</th>
+              <th className={styles.th}>курс продажи</th>
+            </tr>
+          </thead>
+          <tbody>
+            {exchangeRates.map(currency => (
+              <tr key={currency.ccy} className={styles.tr}>
+                <td className={styles.td}>{currency.ccy}</td>
+                <td className={styles.td}>{currency.buy}</td>
+                <td className={styles.td}>{currency.sale}</td>
               </tr>
-            </thead>
-            <tbody>
-              {exchangeRates.map((currency) => (
-                <tr key={currency.ccy} className={styles.tr}>
-                  <td className={styles.td}>{currency.ccy}</td>
-                  <td className={styles.td}>{currency.buy}</td>
-                  <td className={styles.td}>{currency.sale}</td>
-                </tr>
-              ))}
-            </tbody>
-            <caption >
-              <span>курс валют на: {date && moment(date).format("L")}</span>
-            </caption>
-          </table>
-          <h3 className={styles.title}>* курс биткоина указан в USD  </h3>
+            ))}
+          </tbody>
+          {/* </Table> */}
         </div>
       </>
     );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     exchangeRates: exchangeRatesSelectors.getExchangeRates(state),
     isLoadingExhangeRates: exchangeRatesSelectors.getLoading(state),
