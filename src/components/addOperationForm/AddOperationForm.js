@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Media from 'react-media';
 import styles from './addOperationForm.module.css';
 import Calc from './calc/calc';
@@ -7,7 +7,7 @@ import calc from './img/calculator.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { categoriesSelector } from '../../redux/finance/financeSelectors';
 import {
-  getCategories,
+  // getCategories,
   addIncome,
   addCosts,
 } from '../../redux/finance/financeOperations';
