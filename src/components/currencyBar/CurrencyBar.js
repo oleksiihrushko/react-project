@@ -50,7 +50,7 @@ class currencyBar extends Component {
       <>
         <div className={styles.currencyBar} onClick={this.handleClickOpen}>
           <div className={styles.currencyButton}>
-          <Currency />
+          <Currency className={styles.changeColorSvg}/>
           </div>
           <Media query="(min-width: 768px)">
               {matches =>
@@ -66,7 +66,7 @@ class currencyBar extends Component {
                   type="button"
                   onClick={this.handleChangeUAH}
                 >
-                  <Uah />
+                  <Uah className={styles.changeColorSvgCurrency}/>
                 </button>
               </li>
               <li className={styles.menuItem}>
@@ -75,7 +75,7 @@ class currencyBar extends Component {
                   type="button"
                   onClick={this.handleChangeUSA}
                 >
-                  <Usd />
+                  <Usd className={styles.changeColorSvgCurrency}/>
                 </button>
               </li>
               <li className={styles.menuItem}>
@@ -84,18 +84,9 @@ class currencyBar extends Component {
                   type="button"
                   onClick={this.handleChangeEUR}
                 >
-                  <Eur />
+                  <Eur className={styles.changeColorSvgCurrency}/>
                 </button>
               </li>
-              {/* <li className={styles.menuItem}>
-                <button
-                  className={styles.button}
-                  type="button"
-                  onClick={this.handleChangeBTC}
-                >
-                  <Btc />
-                </button>
-              </li> */}
             </ul>
           )}
         </div>

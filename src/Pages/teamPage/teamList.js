@@ -6,7 +6,7 @@ import hrushko from './teamPhotos/hrushko.jpg';
 import pedko from './teamPhotos/pedko.jpg';
 import jdanov from './teamPhotos/jdanov.jpg';
 import reint from './teamPhotos/reint.jpg';
-// import kovbasenko from './teamPhotos/kovbasenko.jpg';
+import kovbasenko from './teamPhotos/kovbasenko.jpg';
 import smakovskyi from './teamPhotos/smakovskyi.jpg';
 
 const teamList = [
@@ -27,20 +27,20 @@ const teamList = [
     timer: 180,
   },
   {
+    firstName: 'Сергей',
+    lastName: 'Ковбасенко',
+    email: 's1.kovbasenko@gmail.com',
+    photo: kovbasenko,
+    linkedIn: '',
+    timer: 200,
+  },
+  {
     firstName: 'Юрий',
     lastName: 'Педько',
     email: 'yuriipedko@gmail.com',
     photo: pedko,
     linkedIn: 'https://www.linkedin.com/in/yurii-pedko-626bb31b2/',
     timer: 100,
-  },
-  {
-    firstName: 'Михаил',
-    lastName: 'Мавродий',
-    email: 'mavrodiy.m.e@gmail.com',
-    photo: mavrodiy,
-    linkedIn: 'https://www.linkedin.com/in/mavrodiy/',
-    timer: 330,
   },
   {
     firstName: 'Евгений',
@@ -50,7 +50,7 @@ const teamList = [
     linkedIn: 'https://www.linkedin.com/in/yevhen-zhdanov-199923160/',
     timer: 180,
   },
- 
+
   {
     firstName: 'Александр',
     lastName: 'Завадский',
@@ -73,23 +73,25 @@ const teamList = [
     lastName: 'Грушко',
     email: 'oleksiihrushko@gmail.com',
     photo: hrushko,
-    linkedIn: 'https://www.linkedin.com/in/alexhrushko/',
+    linkedIn: 'https://www.linkedin.com/in/oleksiihrushko/',
     timer: 270,
+    teamLead: true,
   },
   {
-    firstName: 'Сергей',
-    lastName: 'Ковбасенко',
-    email: '',
-    photo: '',
+    firstName: 'Михаил',
+    lastName: 'Мавродий',
+    email: 'mavrodiy.m.e@gmail.com',
+    photo: mavrodiy,
     linkedIn: '',
-    timer: 300,
+    timer: 330,
   },
   {
     firstName: 'Денис',
     lastName: 'Реинт',
     email: 'reintdenis@gmail.com',
     photo: reint,
-    linkedIn: 'https://www.linkedin.com/in/%D0%B4%D0%B5%D0%BD%D0%B8%D1%81-%D1%80%D0%B5%D0%B8%D0%BD%D1%82-b2a5481b4/',
+    linkedIn:
+      'https://www.linkedin.com/in/%D0%B4%D0%B5%D0%BD%D0%B8%D1%81-%D1%80%D0%B5%D0%B8%D0%BD%D1%82-b2a5481b4/',
     timer: 330,
   },
 ];

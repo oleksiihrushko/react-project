@@ -3,8 +3,8 @@ import teamList from '../teamPage/teamList';
 import Typewriter from 'typewriter-effect';
 import noImage from '../teamPage/teamPhotos/noFace.jpg';
 import s from './ContactUs.module.css';
-import { ReactComponent as LinkedIn } from "../../ui/homePage/linkedinIcon.svg";
-
+import { ReactComponent as LinkedIn } from '../../ui/homePage/linkedinIcon.svg';
+import { ReactComponent as TeamLead } from '../../ui/teamLead.svg';
 
 const ContactUs = () => {
   return (
@@ -15,9 +15,19 @@ const ContactUs = () => {
             console.log(contact.timer);
             return (
               <li className={s.listItem}>
-                  <a className={s.linkedIn} href={contact.linkedIn} target="_blank">
-                    <LinkedIn className={s.linkedInSvg}/>
-                  </a>
+                <a
+                  className={s.linkedIn}
+                  href={contact.linkedIn}
+                  target="_blank"
+                >
+                  <LinkedIn className={s.linkedInSvg} />
+                </a>
+                {contact.teamLead && (
+                  <span className={s.teamLead}>
+                    <TeamLead className={s.teamLeadSvg} />
+                  </span>
+                )}
+
                 <div className={s.bgamecard}>
                   <div className={s.bgamecard__cover}>
                     <img
@@ -27,7 +37,6 @@ const ContactUs = () => {
                     />
                   </div>
                   <div className={s.typewriter}>
-                  
                     <Typewriter
                       options={{
                         delay: contact.timer,

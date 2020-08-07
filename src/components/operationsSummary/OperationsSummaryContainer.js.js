@@ -6,9 +6,9 @@ import { makeSummary } from '../../services/helpers';
 const OperationSummaryContainer = ({ type, setOperationsData }) => {
   const [summary, setSummary] = useState([]);
 
-  const costs = useSelector((state) => state.operations.costs);
-  const income = useSelector((state) => state.operations.income);
-  const operations = type === 'credit' ? costs : income;
+  const costs = useSelector(state => state.operations.costs);
+  const income = useSelector(state => state.operations.income);
+  const operations = type === 'debit' ? costs : income;
 
   useEffect(() => {
     if (operations.length > 0) {
@@ -17,7 +17,6 @@ const OperationSummaryContainer = ({ type, setOperationsData }) => {
     }
   }, [operations]);
 
-  console.log('summary :>> ', summary);
   return (
     <OperationSummary data={summary} setOperationsData={setOperationsData} />
   );

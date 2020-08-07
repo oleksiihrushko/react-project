@@ -1,99 +1,20 @@
-import { dummyData } from "./dummyData";
+const getSortedData = categoryData => {
+  const dataArrays = Object.entries(categoryData);
+  const sortedDataArrays = dataArrays.sort((a, b) => b[1] - a[1]);
+  const limitedData = sortedDataArrays.slice(0, 15);
 
-const expenses = dummyData.items;
+  return Object.fromEntries(limitedData);
+};
 
-let categoryToFind;
-
-// export const getExpensesByAllCategories = (
-//   selectedMonth = new Date().getMonth(),
-//   selectedYear = new Date().getFullYear()
-// ) => {
-//   let categoryData = {};
-
-//   expenses.forEach((exp) => {
-//     const categoryName = exp.product.category.name;
-//     const amount = exp.amount;
-//     const month = exp.date.getMonth();
-//     const year = exp.date.getFullYear();
-
-//     if (month === selectedMonth && year === selectedYear) {
-//       if (!categoryData[categoryName]) {
-//         categoryData[categoryName] = 0;
-//       }
-//       categoryData[categoryName] += amount;
-//     }
-//   });
-//   return categoryData;
-// };
-
-// const getSubcategoryData = (
-//   selectedMonth = new Date().getMonth(),
-//   selectedYear = new Date().getFullYear()
-// ) => {
-//   let subcategoryData = {};
-
-//   expenses.forEach((exp) => {
-//     const categoryName = exp.product.category.name;
-//     const categoryItem = exp.product.name;
-//     const amount = exp.amount;
-//     const month = exp.date.getMonth();
-//     const year = exp.date.getFullYear();
-
-//     if (month === selectedMonth && year === selectedYear && ) {
-//       if (!subcategoryData[categoryName]) {
-//         subcategoryData[categoryName] = [];
-//       }
-
-//       categoryItem &&
-//         subcategoryData[categoryName].push({ [categoryItem]: amount });
-//     }
-//   });
-//   return subcategoryData;
-// };
-
-// const getSubcategoryExpenses = (data) => {
-//   return data.reduce((acc, item) => {
-//     const title = Object.keys(item)[0];
-//     const amount = Object.values(item)[0];
-
-//     if (!acc[title]) {
-//       acc[title] = 0;
-//     }
-//     return (acc[title] += amount);
-//   }, {});
-// };
-
-// export const getExpencesByOneCategory = (
-//   selectedCategory = "products",
-//   selectedMonth = new Date().getMonth(),
-//   selectedYear = new Date().getFullYear()
-// ) => {
-//   const categories = getSubcategoryData(selectedMonth, selectedYear);
-//   let data;
-
-//   for (let categoryName in categories) {
-//     if (categoryName === selectedCategory) {
-//       data = categories[categoryName];
-//     }
-//   }
-
-//   return data && getSubcategoryExpenses(data);
-// };
-
-// export default { getExpensesByAllCategories, getExpencesByOneCategory };
-
-const categorise = (
-  selectedMonth = new Date().getMonth(),
-  selectedYear = new Date().getFullYear()
-) => {
+const categorise = (products, selectedMonth, selectedYear) => {
   let categoryData = {};
 
-  expenses.forEach((exp) => {
-    const categoryName = exp.product.category.name;
-    const categoryItem = exp.product.name;
-    const amount = exp.amount;
-    const month = exp.date.getMonth();
-    const year = exp.date.getFullYear();
+  products.forEach(product => {
+    const categoryName = product.product.category.name;
+    const categoryItem = product.product.name;
+    const amount = product.amount;
+    const month = new Date(product.date).getMonth();
+    const year = new Date(product.date).getFullYear();
 
     if (month === selectedMonth && year === selectedYear) {
       if (!categoryData[categoryName]) {
@@ -104,11 +25,12 @@ const categorise = (
         categoryData[categoryName].push({ [categoryItem]: amount });
     }
   });
+
   return categoryData;
 };
 
-const getCategoryDetails = (data) => {
-  return data.reduce((acc, item) => {
+const getCategoryDetails = data => {
+  const result = data.reduce((acc, item) => {
     const title = Object.keys(item)[0];
     const amount = Object.values(item)[0];
 
@@ -116,31 +38,40 @@ const getCategoryDetails = (data) => {
       acc[title] = 0;
     }
     acc[title] += amount;
+
     return acc;
   }, {});
+
+  return getSortedData(result);
 };
 
-const getSubcategoryData = (selectedCategory, selectedMonth, selectedYear) => {
-  const categories = categorise(selectedMonth, selectedYear);
+const getSubcategoryData = (
+  products,
+  selectedCategory,
+  selectedMonth,
+  selectedYear,
+) => {
+  const categories = categorise(products, selectedMonth, selectedYear);
 
   let data;
 
   for (let categoryTitle in categories) {
-    if (categoryTitle === selectedCategory) {
+    if (categoryTitle && categoryTitle === selectedCategory) {
       data = categories[categoryTitle];
     }
   }
+
   return data && getCategoryDetails(data);
 };
 
-const getExpensesByAllCategories = (selectedMonth, selectedYear) => {
+const getExpensesByAllCategories = (products, selectedMonth, selectedYear) => {
   let categoryData = {};
 
-  expenses.forEach((exp) => {
-    const categoryName = exp.product.category.name;
-    const amount = exp.amount;
-    const month = exp.date.getMonth();
-    const year = exp.date.getFullYear();
+  products.forEach(product => {
+    const categoryName = product.product.category.name;
+    const amount = product.amount;
+    const month = new Date(product.date).getMonth();
+    const year = new Date(product.date).getFullYear();
 
     if (month === selectedMonth && year === selectedYear) {
       if (!categoryData[categoryName]) {
@@ -149,17 +80,24 @@ const getExpensesByAllCategories = (selectedMonth, selectedYear) => {
       categoryData[categoryName] += amount;
     }
   });
-  return categoryData;
+
+  return getSortedData(categoryData);
 };
 
 export const getData = (
+  products,
   selectedCategory,
   selectedMonth = new Date().getMonth(),
-  selectedYear = new Date().getFullYear()
+  selectedYear = new Date().getFullYear(),
 ) => {
-  if (selectedCategory === "all") {
-    return getExpensesByAllCategories(selectedMonth, selectedYear);
+  if (selectedCategory === 'All') {
+    return getExpensesByAllCategories(products, selectedMonth, selectedYear);
   } else {
-    return getSubcategoryData(selectedCategory, selectedMonth, selectedYear);
+    return getSubcategoryData(
+      products,
+      selectedCategory,
+      selectedMonth,
+      selectedYear,
+    );
   }
 };

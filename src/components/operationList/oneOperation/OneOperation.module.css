@@ -26,6 +26,7 @@
   margin-top: 25px;
   color: gray;
   width: 50px;
+  margin-left: 30px;
 }
 
 .price {
@@ -57,7 +58,7 @@
 
 @media (min-width: 768px) {
   .operationListItem {
-    width: 688px;
+    width: 100%;
     align-items: center;
     border-bottom: 2px solid rgb(244, 246, 251);
     margin: 0;
@@ -119,5 +120,11 @@
     top: 0;
     left: -45px;
     padding-top: 3px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .price {
+    margin-right: 50px;
   }
 }

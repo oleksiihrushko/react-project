@@ -1,11 +1,10 @@
-import React from "react";
-import cart from "../../components/operationList/icons/delete.png";
-import styles from "./OneMobileOperation.module.css";
+import React from 'react';
+import cart from '../../operationList/icons/delete.png';
+import styles from './OneMobileOperation.module.css';
 
 const OneMobileOperation = ({ operation, setId, openModal }) => {
-
   const deleteOperation = (type, id, xId) => {
-    if (type === "cost") {
+    if (type === 'cost') {
       setId([type, id, xId]);
     } else {
       setId([type, id]);
@@ -13,12 +12,22 @@ const OneMobileOperation = ({ operation, setId, openModal }) => {
     openModal();
   };
 
+  const lengthOneMobileOperation = () => {
+    if (operation.product?.name.length > 15) {
+      return operation.product?.name.slice(0, 15) + '...';
+    } else {
+      return operation.product?.name;
+    }
+  };
+
   return (
     <li className={styles.operationListItem}>
-      <p className={styles.date}>{operation.date.slice(0, 10)}</p>
-      <p className={styles.category}>
-        {operation.costsId ? operation.product.name : "Доход"}
-      </p>
+      <div className={styles.mobileDate}>
+        <p className={styles.category}>
+          {operation.costsId ? lengthOneMobileOperation() : 'Доход'}
+        </p>
+        <p className={styles.date}>{operation.date.slice(0, 10)}</p>
+      </div>
       {operation.costsId ? (
         <p className={styles.priceCost}>-{operation.amount} грн</p>
       ) : (
@@ -30,8 +39,8 @@ const OneMobileOperation = ({ operation, setId, openModal }) => {
         className={styles.btnDelete}
         onClick={() =>
           operation.costsId
-            ? deleteOperation("cost", operation.forDeleteId, operation.costsId)
-            : deleteOperation("income", operation.incomeId)
+            ? deleteOperation('cost', operation.forDeleteId, operation.costsId)
+            : deleteOperation('income', operation.incomeId)
         }
       >
         <img

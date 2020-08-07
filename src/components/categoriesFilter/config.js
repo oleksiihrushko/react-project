@@ -1,39 +1,101 @@
-import React from "react";
-import styles from "./CategoriesFilter.module.css";
+import React from 'react';
+import styles from './CategoriesFilter.module.css';
 
-import { ReactComponent as Alcohol } from "./svg/alcohol.svg";
-import { ReactComponent as Car } from "./svg/car.svg";
-import { ReactComponent as Comunal } from "./svg/comunal.svg";
-import { ReactComponent as Else } from "./svg/else.svg";
-import { ReactComponent as Health } from "./svg/health.svg";
-import { ReactComponent as Home } from "./svg/home.svg";
-import { ReactComponent as Learn } from "./svg/learn.svg";
-import { ReactComponent as Party } from "./svg/party.svg";
-import { ReactComponent as Products } from "./svg/products.svg";
-import { ReactComponent as Sport } from "./svg/sport.svg";
-import { ReactComponent as Tools } from "./svg/tools.svg";
-import { useSelector } from "react-redux";
+import { ReactComponent as Alcohol } from './svg/alcohol.svg';
+import { ReactComponent as Car } from './svg/car.svg';
+import { ReactComponent as Comunal } from './svg/comunal.svg';
+import { ReactComponent as Else } from './svg/else.svg';
+import { ReactComponent as Health } from './svg/health.svg';
+import { ReactComponent as Home } from './svg/home.svg';
+import { ReactComponent as Learn } from './svg/learn.svg';
+import { ReactComponent as Party } from './svg/party.svg';
+import { ReactComponent as Products } from './svg/products.svg';
+import { ReactComponent as Sport } from './svg/sport.svg';
+import { ReactComponent as Tools } from './svg/tools.svg';
+import { ReactComponent as Chart } from './svg/bar_chart.svg';
 
-export const TotalCountsCosts = () => {
-  const allCosts = useSelector((state) => state.operations.costs);
-  const monthToFilter = useSelector((state) => state.statistics.month); //+
-  // console.log("allCosts", monthToFilter);
-  const getFilteredDate = allCosts.filter((costs) => {
+import { useSelector } from 'react-redux';
+// import { makeSummary } from '../../services/helpers';
+
+// const getFilteredDate = (allCosts, monthToFilter) =>{
+//   console.log('allCosts==============', allCosts)
+//   console.log('monthToFilter==============', monthToFilter)
+//  const aaa = allCosts.filter(costs => {
+//     const allDates = costs.date;
+//     const dataTarcsaction = new Date(allDates);
+//     const currentMonth = dataTarcsaction.getMonth() + 1;
+//     const currentYaer = dataTarcsaction.getFullYear();
+
+//     const monthToFindSearsh = new Date(monthToFilter);
+//     const getMonthToSearch = monthToFindSearsh.getDate();
+//     const getYaerToSearch = monthToFindSearsh.getFullYear();
+
+//     if (currentMonth === getMonthToSearch && getYaerToSearch === currentYaer) {
+//       return true;
+//     }
+//   })
+
+//   console.log('aaa==============', aaa)
+//   return aaa
+// }
+
+// const totalCategoryCost = data => {
+//   // debugger
+//   //
+//   const aaa = data.reduce(
+//     (acc, costs) => {
+//       // debugger
+//       acc[costs.product.category.name] =
+//         acc[costs.product.category.name] + costs.amount;
+//       return acc;
+//     },
+//     {
+//       Продукты: 0,
+//       Aлкоголь: 0,
+//       Транспорт: 0,
+//       Развлечение: 0,
+//       Здоровье: 0,
+//       'Все для дома': 0,
+//       Техника: 0,
+//       'Коммуналка, связь': 0,
+//       Хобби: 0,
+//       Образование: 0,
+//       Прочее: 0,
+//     },
+//   );
+
+//   console.log('aaa 2222222222222222', aaa);
+
+//   return aaa;
+// };
+
+export const TotalCountsCosts = ({ setCurrentCategory }) => {
+  const allCosts = useSelector(state => state.operations.costs);
+  // data to Filter
+  const dateToFilter = useSelector(state => state.statistics.month); ///++
+  const dateParce = dateToFilter.split('.').map(i => Number(i));
+  const monthToFilter = dateParce[1];
+  const yearToFilter = dateParce[2];
+
+  const getFilteredDate = allCosts.filter(costs => {
     const allDates = costs.date;
     const dataTarcsaction = new Date(allDates);
-    const currentMonth = dataTarcsaction.getMonth() + 1;
-    // const currentMonth = dataTarcsaction.getDate();
+    const currentMonthTarcsaction = dataTarcsaction.getMonth() + 1;
+    const currentYaerarcsaction = dataTarcsaction.getFullYear();
 
-    const monthToFindSearsh = new Date(monthToFilter);
-    const getMonthToSearch = monthToFindSearsh.getDate();
-    // const getMonthToSearch = monthToFindSearsh.getMonth() + 1;
-
-    console.log("getMonthToSearch ", getMonthToSearch);
-
-    if (currentMonth === getMonthToSearch) {
+    if (
+      monthToFilter === currentMonthTarcsaction &&
+      yearToFilter === currentYaerarcsaction
+    ) {
       return true;
     }
   });
+  //   // console.log('Object.values total', Object.values(total))
+  //   // const onShow = Object.values(total).reduce((acc, item) => {
+  //   //   console.log('item', item);
+  //   //   if (!isNaN(item) ) {
+  //   //     acc += item;
+  //   //   }
   const totalCategoryCost = getFilteredDate.reduce(
     (acc, costs) => {
       acc[costs.product.category.name] =
@@ -42,87 +104,88 @@ export const TotalCountsCosts = () => {
     },
     {
       Продукты: 0,
-      Aлкоголь: 0,
+      Алкоголь: 0,
       Транспорт: 0,
       Развлечение: 0,
       Здоровье: 0,
-      "Все для дома": 0,
+      'Все для дома': 0,
       Техника: 0,
-      "Коммуналка, связь": 0,
+      'Коммуналка,Связь': 0,
       Хобби: 0,
       Образование: 0,
       Прочее: 0,
-    }
+    },
   );
   const configs = [
     {
-      name: "Продукты",
+      name: 'Продукты',
       svg: <Products />,
-      total: totalCategoryCost["Продукты"],
+      total: totalCategoryCost['Продукты'],
     },
     {
-      name: "Aлкоголь",
+      name: 'Алкоголь',
       svg: <Alcohol />,
-      total: totalCategoryCost["Aлкоголь"],
+      total: totalCategoryCost['Алкоголь'],
     },
     {
-      name: "Pазвлечение",
+      name: 'Развлечение',
       svg: <Party />,
-      total: totalCategoryCost["Pазвлечение"],
+      total: totalCategoryCost['Развлечение'],
     },
     {
-      name: "Здоровье",
+      name: 'Здоровье',
       svg: <Health />,
-      total: totalCategoryCost["Здоровье"],
+      total: totalCategoryCost['Здоровье'],
     },
     {
-      name: "Транспорт",
+      name: 'Транспорт',
       svg: <Car />,
-      total: totalCategoryCost["Транспорт"],
+      total: totalCategoryCost['Транспорт'],
     },
     {
-      name: "Все для дома",
+      name: 'Все для дома',
       svg: <Home />,
-      total: totalCategoryCost["Все для дома"],
+      total: totalCategoryCost['Все для дома'],
     },
     {
-      name: "Техника",
+      name: 'Техника',
       svg: <Tools />,
-      total: totalCategoryCost["Техника"],
+      total: totalCategoryCost['Техника'],
     },
     {
-      name: "Коммуналка, связь",
+      name: 'Коммуналка,Связь',
       svg: <Comunal />,
-      total: totalCategoryCost["Коммуналка, связь"],
+      total: totalCategoryCost['Коммуналка,Связь'],
     },
     {
-      name: "Хобби",
+      name: 'Хобби',
       svg: <Sport />,
-      total: totalCategoryCost["Хобби"],
+      total: totalCategoryCost['Хобби'],
     },
     {
-      name: "Образование",
+      name: 'Образование',
       svg: <Learn />,
-      total: totalCategoryCost["Образование"],
+      total: totalCategoryCost['Образование'],
     },
     {
-      name: "Прочее",
+      name: 'Прочее',
       svg: <Else />,
-      total: totalCategoryCost["Прочее"],
+      total: totalCategoryCost['Прочее'],
     },
+
   ];
+
   return (
-    <ul
-      className={styles.ul}
-      className={styles.flex}
-      style={{ paddingLeft: 0 }}
-    >
-      {configs.map(({ name, svg, total }) => {
-        return (
-          total > 0 && (
+    <section className={`${styles.wrapper} ${styles.flex} container`}>
+      <ul className={`${styles.ul} ${styles.flex} }`} style={{ padding: 0 }}>
+        {configs.map(({ name, svg, total }) => {
+          return (
+            // total > 0 && (
             <li key={name} className={`${styles.flex} ${styles.li}`}>
               <button
-                // onClick={(props = { name, total })}    //ЖЕНЯ
+                onClick={() => {
+                  setCurrentCategory(name);
+                }}
                 className={styles.btn}
               >
                 <p className={`${styles.prise}`}>{total}</p>
@@ -130,10 +193,28 @@ export const TotalCountsCosts = () => {
                 <p className={styles.name}>{name}</p>
               </button>
             </li>
-          )
-          // )
-        );
-      })}
-    </ul>
+          );
+        })}
+        <li key='123123123' className={`${styles.flex} ${styles.li}`}>
+              <button
+                onClick={() => {
+                  setCurrentCategory('All');
+                }}
+                className={styles.btn}
+              >
+                <p className={`${styles.prise}`}>Все</p>
+                <div className={styles.svg}><Chart /></div>
+                <p className={styles.name}>Категории</p>
+              </button>
+            </li>
+      </ul>
+      {/* <button className={` ${styles.btn}`}
+        onClick={() => {
+          setCurrentCategory('All');
+        }}
+      >
+        Все
+      </button> */}
+    </section>
   );
 };

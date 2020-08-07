@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import financeSelectors from './financeSelectors';
 
 const initialState = {
   balance: '',
@@ -44,7 +43,7 @@ export default createSlice({
 
     addBalanceSuccess: (state, { payload }) => ({
       ...state,
-      balance: payload.balance,
+      balance: payload,
     }),
 
     addBalanceError: (state, { payload }) => ({
@@ -54,7 +53,7 @@ export default createSlice({
 
     addIncomeSuccess: (state, { payload }) => ({
       ...state,
-      income: [...state.income, payload.income],
+      income: [...state.income, payload],
     }),
 
     addIncomeError: (state, { payload }) => ({
@@ -62,10 +61,13 @@ export default createSlice({
       error: payload.error,
     }),
 
-    deleteIncomeSuccess: (state, { payload }) => ({
-      ...state,
-      income: financeSelectors.deleteIncome(state, payload.id),
-    }),
+    deleteIncomeSuccess: (state, { payload }) => {
+      console.log('payload :>> ', payload);
+      return {
+        ...state,
+        income: state.income.filter(item => item.incomeId !== payload),
+      };
+    },
 
     deleteIncomeError: (state, { payload }) => ({
       ...state,
@@ -74,7 +76,7 @@ export default createSlice({
 
     addCostsSuccess: (state, { payload }) => ({
       ...state,
-      costs: [...state.costs, payload.createdCosts],
+      costs: [...state.costs, payload],
     }),
 
     addCostsError: (state, { payload }) => ({
@@ -84,7 +86,7 @@ export default createSlice({
 
     deleteCostsSuccess: (state, { payload }) => ({
       ...state,
-      costs: financeSelectors.deleteCosts(state, payload.id),
+      costs: state.costs.filter(item => item.costsId !== payload),
     }),
 
     getCategoriesSuccess: (state, { payload }) => ({
@@ -129,7 +131,7 @@ export default createSlice({
 
     addProductSuccess: (state, { payload }) => ({
       ...state,
-      products: payload.products,
+      products: payload,
     }),
 
     addProductError: (state, { payload }) => ({
@@ -139,7 +141,7 @@ export default createSlice({
 
     deleteProductSuccess: (state, { payload }) => ({
       ...state,
-      products: financeSelectors.deleteProducts(state, payload.id),
+      products: state.products.filter(item => item._id !== payload),
     }),
 
     deleteProductError: (state, { payload }) => ({

@@ -16,7 +16,7 @@ const Header = () => {
               <p className={styles.logoTitle}>KARBO</p>
             </Link>
           </li>
-          <li>{state.auth.token && <UserMenu />}</li>
+          {state.auth.token && <li><UserMenu /></li>}
         </ul>
       </header>
   );

@@ -17,7 +17,7 @@ const exchangeCurrency = createReducer("UAH", {
     [exchangeRatesActions.currentCurrencyUAH]: () => "UAH",
     [exchangeRatesActions.currentCurrencyUSA]: () => "USD",
     [exchangeRatesActions.currentCurrencyEUR]: () => "EUR",
-    [exchangeRatesActions.currentCurrencyBTC]: () => "BTC",
+    // [exchangeRatesActions.currentCurrencyBTC]: () => "BTC",
 }
 )
 
