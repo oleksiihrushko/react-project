@@ -50,42 +50,24 @@ class currencyBar extends Component {
       <>
         <div className={styles.currencyBar} onClick={this.handleClickOpen}>
           <div className={styles.currencyButton}>
-          <Currency className={styles.changeColorSvg}/>
+            <Currency className={styles.changeColorSvg} />
           </div>
           <Media query="(min-width: 768px)">
-              {matches =>
-                matches ? <p className={styles.buttonText} >Валюта</p> : <p></p>
-              }
-            </Media>
+            {matches =>
+              matches ? <p className={styles.buttonText}>Валюта</p> : <p></p>
+            }
+          </Media>
 
           {this.state.open && (
             <ul className={styles.popover}>
-              <li className={styles.menuItem}>
-                <button
-                  className={styles.button}
-                  type="button"
-                  onClick={this.handleChangeUAH}
-                >
-                  <Uah className={styles.changeColorSvgCurrency}/>
-                </button>
+              <li className={styles.menuItem} onClick={this.handleChangeUAH}>
+                <Uah className={styles.changeColorSvgCurrency} />
               </li>
-              <li className={styles.menuItem}>
-                <button
-                  className={styles.button}
-                  type="button"
-                  onClick={this.handleChangeUSA}
-                >
-                  <Usd className={styles.changeColorSvgCurrency}/>
-                </button>
+              <li className={styles.menuItem} onClick={this.handleChangeUSA}>
+                <Usd className={styles.changeColorSvgCurrency} />
               </li>
-              <li className={styles.menuItem}>
-                <button
-                  className={styles.button}
-                  type="button"
-                  onClick={this.handleChangeEUR}
-                >
-                  <Eur className={styles.changeColorSvgCurrency}/>
-                </button>
+              <li className={styles.menuItem} onClick={this.handleChangeEUR}>
+                <Eur className={styles.changeColorSvgCurrency} />
               </li>
             </ul>
           )}

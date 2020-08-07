@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { clientData, getUserTransactions } from "./apiMono";
+import { clientData, getUserTransactions, clientData2 } from "./apiMono";
 
 const GoToMono = () => {
   const [tokenMono, setTokenMonoBank] = useState("");
@@ -11,7 +11,8 @@ const GoToMono = () => {
     }
     setTokenMonoBank("");
   };
-  clientData()
+  // clientData()
+  clientData2()
   getUserTransactions()
 
   return (
