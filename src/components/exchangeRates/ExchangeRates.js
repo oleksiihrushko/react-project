@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 
 import { connect } from "react-redux";
-import exchangeRatesOperations from "../../redux/exchange/exchangeRatesOperations";
 import exchangeRatesSelectors from "../../redux/exchange/exchangeRatesSelectors";
-import exchangeRatesActions from "../../redux/exchange/exchangeRatesActions";
 import moment from "moment";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import Table from "react-bootstrap/Table";
@@ -29,29 +27,31 @@ class ExchangeRates extends Component {
 
     return (
       <>
-        <div className={`${styles.ExchangeRatesWrapper} container`}>
-          <h6>курс валют на: {date && moment(date).format("L")}</h6>
-          {/* <Table responsive striped bordered hover variant="light"> */}
-            <caption className="text-danger">
-              <span>* курс биткоина указан в USD</span>
-            </caption>
+        <div className={styles.ExchangeRatesWrapper}>
+          
+          <table className={styles.table}> 
+
             <thead>
-              <tr>
-                <th>Валюта</th>
-                <th>курс покупки</th>
-                <th>курс продажи</th>
+            <tr className={styles.tr}>
+                <th className={styles.th}>Валюта</th>
+                <th className={styles.th}>курс покупки</th>
+                <th className={styles.th}>курс продажи</th>
               </tr>
             </thead>
             <tbody>
               {exchangeRates.map((currency) => (
-                <tr key={currency.ccy}>
-                  <td>{currency.ccy}</td>
-                  <td>{currency.buy}</td>
-                  <td>{currency.sale}</td>
+                <tr key={currency.ccy} className={styles.tr}>
+                  <td className={styles.td}>{currency.ccy}</td>
+                  <td className={styles.td}>{currency.buy}</td>
+                  <td className={styles.td}>{currency.sale}</td>
                 </tr>
               ))}
             </tbody>
-          {/* </Table> */}
+            <caption >
+              <span>курс валют на: {date && moment(date).format("L")}</span>
+            </caption>
+          </table>
+          <h3 className={styles.title}>* курс биткоина указан в USD  </h3>
         </div>
       </>
     );

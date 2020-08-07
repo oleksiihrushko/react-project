@@ -1,21 +1,24 @@
-footer {
-    padding: 10px 0;
-    margin-top: auto;
-}
 .footerInfo {
     background-color: #F5F6FB;
     width: 100%;
-    /* position: fixed; */
-    /* z-index: -1; */
-    /* bottom: 0; */
-    
+    position: fixed;
+    z-index: -1;
+    bottom: 0;
+    padding: 10px 0;
+    margin-top: auto;
 }
 .info {
     color: black;
     text-align: center;
+    font-family: 'RobotoRegular', sans-serif;
+    font-style: normal;
+    font-weight: normal;
 }
 .linkInfoTeam {
     color: #52555f;
+    font-family: 'RobotoRegular', sans-serif;
+    font-style: normal;
+    font-weight: normal;
 }
 .linkInfoTeam:hover{
     color:#FB7C2F;
@@ -23,3 +26,10 @@ footer {
 .infoP {
     color: white;
 }
+
+@media (min-width: 768px) {
+    .container {
+      width: 688px;
+
+    }
+  }
