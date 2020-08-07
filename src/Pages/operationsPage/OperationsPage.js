@@ -74,12 +74,12 @@ const OperationsPage = () => {
   return (
     <div className={`container`}>
       <OperationsHeader />
-      <div>
+      <div className={styles.operationListWrapper}>
         <AddOperationForm
           operationType={operationType}
           setOperation={setOperation}
         />
-        <div className={styles.operationListWrapper}>
+        <div>
           <Media
             queries={{
               small: '(max-width: 767px)',
@@ -106,14 +106,14 @@ const OperationsPage = () => {
               </Fragment>
             )}
           </Media>
-
-          {!window.matchMedia('(max-width: 767px)').matches && (
-            <OperationSummaryContainer
-              type={operationType}
-              setOperationsData={setOperationsData}
-            />
-          )}
         </div>
+
+        {!window.matchMedia('(max-width: 767px)').matches && (
+          <OperationSummaryContainer
+            type={operationType}
+            setOperationsData={setOperationsData}
+          />
+        )}
       </div>
     </div>
   );

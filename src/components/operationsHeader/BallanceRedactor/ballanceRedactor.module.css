@@ -15,8 +15,7 @@
   flex-direction: column;
   border-radius: 0 0 0 120px;
   background-color: #f4f6fb;
-  height: 180px;
-
+  /* height: 180px; */
 }
 
 .div {
@@ -25,6 +24,7 @@
 }
 .secPad {
   padding-top: 36px;
+  margin-bottom: 50px;
 }
 
 .reportBtn {
@@ -100,8 +100,16 @@
 }
 .btn:hover {
   background-color: rgb(255, 129, 45);
+  color: #fff;
 }
-
+.btnToSubmit {
+  background-color: rgb(255, 129, 45);
+  color: #fff;
+}
+.btnToSubmit:hover {
+  background-color: transparent;
+  color: #52555f;
+}
 @media (min-width: 768px) {
   .div {
     flex-direction: row;
@@ -123,13 +131,16 @@
   }
   .wrapper {
     flex-direction: row-reverse;
-    padding-bottom: 8px; /* padding-bottom: 426px; */
+    padding-bottom: 36px;
+    padding-top: 36px;
+
+    /* padding-bottom: 426px; */
   }
 }
 
 @media (min-width: 1280px) {
   .stats {
-    /* margin-left: 215px; */
+    margin-left: 220px;
   }
 
   /* .wrapper {
