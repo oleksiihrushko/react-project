@@ -3,8 +3,8 @@ import teamList from '../teamPage/teamList';
 import Typewriter from 'typewriter-effect';
 import noImage from '../teamPage/teamPhotos/noFace.jpg';
 import s from './ContactUs.module.css';
-import { ReactComponent as LinkedIn } from '../../ui/homePage/linkedinIcon.svg';
-import { ReactComponent as TeamLead } from '../../ui/teamLead.svg';
+import { ReactComponent as LinkedIn } from '../../ui/teamPage/linkedinIcon.svg';
+import { ReactComponent as TeamLead } from '../../ui/teamPage/teamLead.svg';
 
 const ContactUs = () => {
   return (

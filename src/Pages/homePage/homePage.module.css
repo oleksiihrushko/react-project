@@ -1,5 +1,6 @@
 .sectionHomePage {
   min-height: calc(100vh - 50px);
+  margin-bottom: 50px;
 }
 
 .wrapper {
