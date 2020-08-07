@@ -15,8 +15,8 @@ const AuthForm = () => {
 
   const dispatch = useDispatch();
 
-  const setGoogleUser = (googleUser) => {
-   const user = createGoogleUser(googleUser);
+  const setGoogleUser = googleUser => {
+    const user = createGoogleUser(googleUser);
     dispatch(authSlice.actions.loginSuccess(user));
   };
 
@@ -25,13 +25,13 @@ const AuthForm = () => {
     GoogleAuth.signIn({
       scope: 'profile email',
     }).then(
-      (user) => setGoogleUser(user),
-      (error) => dispatch(authSlice.actions.loginError(error)),
+      user => setGoogleUser(user),
+      error => dispatch(authSlice.actions.loginError(error)),
     );
   };
 
   useEffect(() => {
-    window.gapi.load('auth2', function() {
+    window.gapi.load('auth2', function () {
       window.gapi.auth2
         .init({
           // client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
@@ -39,30 +39,30 @@ const AuthForm = () => {
         })
         .then(
           () => console.log('Google init Success'),
-          (error) => dispatch(authSlice.actions.loginError(error)),
+          error => dispatch(authSlice.actions.loginError(error)),
         );
     });
     return;
   }, []);
 
-  const handleInputFirstName = (e) => {
+  const handleInputFirstName = e => {
     e.preventDefault();
     setFirstName(e.target.value);
   };
-  const handleInputLastName = (e) => {
+  const handleInputLastName = e => {
     e.preventDefault();
     setLastName(e.target.value);
   };
-  const handleInputEmail = (e) => {
+  const handleInputEmail = e => {
     e.preventDefault();
     setEmail(e.target.value);
   };
-  const handleInputPassword = (e) => {
+  const handleInputPassword = e => {
     e.preventDefault();
     setPassword(e.target.value);
   };
   const handleTypeRegister = () => {
-    setTypeRegister((currentState) => {
+    setTypeRegister(currentState => {
       if (currentState) {
         return false;
       } else {
@@ -71,7 +71,7 @@ const AuthForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
 
     if (typeRegister) {
@@ -98,7 +98,7 @@ const AuthForm = () => {
     <div className={styles.authWrapper}>
       <form onSubmit={handleSubmit}>
         {/* --------- form start --------- */}
-        
+
         <p className={styles.googleDescr}>
           Вы можете авторизироваться с помощью Google account:
         </p>
@@ -119,7 +119,7 @@ const AuthForm = () => {
 
         {typeRegister && (
           <>
-          {/* --------- first name input --------- */}
+            {/* --------- first name input --------- */}
             <label className={styles.label} htmlFor="name">
               Имя
             </label>
@@ -138,7 +138,7 @@ const AuthForm = () => {
               autoFocus
             />
 
-          {/* --------- last name input --------- */}
+            {/* --------- last name input --------- */}
             <label className={styles.label} htmlFor="lastName">
               Фамилия
             </label>
@@ -158,7 +158,7 @@ const AuthForm = () => {
           </>
         )}
 
-          {/* --------- email input --------- */}
+        {/* --------- email input --------- */}
         <label className={styles.label} htmlFor="email">
           Электронная почта
         </label>
@@ -175,14 +175,13 @@ const AuthForm = () => {
           autoFocus
         />
 
-          {/* --------- password input --------- */}
+        {/* --------- password input --------- */}
         <label className={styles.label} htmlFor="password">
           Пароль
         </label>
 
         <input
           className={styles.input + ' ' + styles.inputPassword}
-          pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}'
           placeholder="Пароль"
           id="password"
           type="password"
@@ -207,7 +206,7 @@ const AuthForm = () => {
             {typeRegister ? 'аккаунт' : 'регистрация'}
           </button>
         </div>
-        
+
         {/* --------- /form end --------- */}
       </form>
     </div>
