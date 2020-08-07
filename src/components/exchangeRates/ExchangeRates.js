@@ -27,9 +27,13 @@ class ExchangeRates extends Component {
 
     return (
       <>
-        <div className={styles.ExchangeRatesWrapper}>
-          
-          <table className={styles.table}> 
+
+        <div className={`${styles.ExchangeRatesWrapper} container`}>
+          <h6>курс валют на: {date && moment(date).format("L")}</h6>
+          {/* <Table responsive striped bordered hover variant="light"> */}
+            <caption className="text-danger">
+              <span>* курс биткоина указан в USD</span>
+            </caption>
 
             <thead>
             <tr className={styles.tr}>
@@ -47,11 +51,7 @@ class ExchangeRates extends Component {
                 </tr>
               ))}
             </tbody>
-            <caption >
-              <span>курс валют на: {date && moment(date).format("L")}</span>
-            </caption>
-          </table>
-          <h3 className={styles.title}>* курс биткоина указан в USD  </h3>
+          {/* </Table> */
         </div>
       </>
     );
