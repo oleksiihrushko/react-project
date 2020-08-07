@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { useSelector } from 'react-redux';
 import Media from 'react-media';
 import cart from '../icons/delete.png';
 import styles from './OneOperation.module.css';
@@ -19,6 +20,22 @@ const OneOperation = ({
     } else {
       return product?.name;
     }
+  };
+  const exchangeRatesUSD = Number(
+    useSelector(state => state.exchangeRatesRoot.exchangeRates[0]?.buy),
+  );
+  const exchangeRatesEUR = Number(
+    useSelector(state => state.exchangeRatesRoot.exchangeRates[1]?.buy),
+  );
+  const currentCurrency = useSelector(
+    state => state.exchangeRatesRoot.exchangeCurrency,
+  );
+  const ballanceExchange = (currentCurrency, balance) => {
+    if (currentCurrency === 'USD')
+      return Math.floor(balance / exchangeRatesUSD);
+    if (currentCurrency === 'EUR')
+      return Math.floor(balance / exchangeRatesEUR);
+    if (currentCurrency === 'UAH') return balance;
   };
 
   return (
@@ -44,7 +61,9 @@ const OneOperation = ({
         <p className={styles.date}>{date.slice(0, 10)}</p>
       </div>
       <p className={styles.category}>{product?.category.name}</p>
-      <p className={styles.price}>-{amount} грн</p>
+      <p className={styles.price}>
+        -{ballanceExchange(currentCurrency, amount)} {currentCurrency}
+      </p>
       <button
         type="button"
         className={styles.btnDelete}
