@@ -61,6 +61,14 @@ const IncomeList = ({ operations, setIsMobile }) => {
             <EmptyMarkup />
           </>
         )}
+        {operations.length === 0 && (
+          <>
+            <EmptyMarkup />
+            <EmptyMarkup />
+            <EmptyMarkup />
+            <EmptyMarkup />
+          </>
+        )}
       </ul>
       {isShowDeleteModal && (
         <Modal

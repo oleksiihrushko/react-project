@@ -36,7 +36,7 @@ const OperationList = ({ operations, setIsMobile }) => {
       </Media>
       <ul className={styles.operationList}>
         {operations.length === 0 ? (
-          <p className={styles.noOperations}>Нет операций</p>
+          <li className={styles.noOperations}>Нет операций</li>
         ) : (
           operations.map(operation => (
             <OneOperation
@@ -56,6 +56,14 @@ const OperationList = ({ operations, setIsMobile }) => {
         )}
         {operations.length === 1 && (
           <>
+            <EmptyMarkup />
+            <EmptyMarkup />
+            <EmptyMarkup />
+          </>
+        )}
+        {operations.length === 0 && (
+          <>
+            <EmptyMarkup />
             <EmptyMarkup />
             <EmptyMarkup />
             <EmptyMarkup />
