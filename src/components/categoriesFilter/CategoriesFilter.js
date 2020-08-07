@@ -4,7 +4,7 @@ import GoToMono from './monoBank/GoToMono';
 
 const CategoriesFilter = ({ setCurrentCategory }) => (
   <>
-    <GoToMono />
+    {/* <GoToMono /> */}
     <TotalCountsCosts setCurrentCategory={setCurrentCategory} />
   </>
 );
