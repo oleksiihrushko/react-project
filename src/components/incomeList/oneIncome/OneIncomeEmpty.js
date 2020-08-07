@@ -1,5 +1,4 @@
 import React from 'react';
-import cart from '../../operationList/icons/delete.png';
 import styles from './OneIncome.module.css';
 
 const OneIncomeEmpty = () => {
