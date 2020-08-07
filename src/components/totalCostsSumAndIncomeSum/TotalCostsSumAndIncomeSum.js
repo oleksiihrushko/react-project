@@ -14,8 +14,8 @@ const filterCosts = (array, year, month1) => {
   console.log('month1 :>> ', month1);
   console.log('array :>> ', array);
   return array.filter(item => {
-    const startMonth = new Date(year, month1, 1, 0, 0);
-    const endMonth = new Date(year, month1 + 1, 1, 0, 0);
+    const startMonth = new Date(year, month1 - 1, 1, 0, 0);
+    const endMonth = new Date(year, month1 , 1, 0, 0);
     const res =
       item.date > startMonth.toISOString() &&
       item.date < endMonth.toISOString();
