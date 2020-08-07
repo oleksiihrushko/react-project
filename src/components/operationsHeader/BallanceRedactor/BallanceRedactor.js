@@ -57,10 +57,10 @@ const BallanceRedactor = () => {
     state => state.exchangeRatesRoot.exchangeRates,
   );
   const exchangeRatesUSD = Number(
-    useSelector(state => state.exchangeRatesRoot.exchangeRates[0].buy),
+    useSelector(state => state.exchangeRatesRoot.exchangeRates[0]?.buy),
   );
   const exchangeRatesEUR = Number(
-    useSelector(state => state.exchangeRatesRoot.exchangeRates[1].buy),
+    useSelector(state => state.exchangeRatesRoot.exchangeRates[1]?.buy),
   );
   const currentCurrency = useSelector(
     state => state.exchangeRatesRoot.exchangeCurrency,
