@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import exchangeRatesSelectors from '../../redux/exchange/exchangeRatesSelectors';
 import moment from 'moment';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import Table from "react-bootstrap/Table";
+
 import styles from './ExchangeRates.module.css';
 
 class ExchangeRates extends Component {
@@ -28,10 +27,10 @@ class ExchangeRates extends Component {
     return (
       <>
         <div className={`${styles.ExchangeRatesWrapper} container`}>
-          <h6>курс валют на: {date && moment(date).format('L')}</h6>
-          {/* <Table responsive striped bordered hover variant="light"> */}
+
+          <table className={styles.table}>
           <caption className="text-danger">
-            <span>* курс биткоина указан в USD</span>
+            <span>курс валют на: {date && moment(date).format('L')}</span>
           </caption>
 
           <thead>
@@ -50,7 +49,8 @@ class ExchangeRates extends Component {
               </tr>
             ))}
           </tbody>
-          {/* </Table> */}
+          </table>
+          <h4 className={styles.title}>* курс биткоина указан в USD</h4>
         </div>
       </>
     );
