@@ -10,7 +10,7 @@ const OneIncome = ({
   return (
     <li className={styles.operationListItem}>
       <p className={styles.date}>
-        {date.slice(0, 10) + ' ' + date.slice(11, 19)}
+        {date.slice(0, 10)}
       </p>
       <p className={styles.category}>Доход</p>
       <p className={styles.price}>{amount} грн</p>
