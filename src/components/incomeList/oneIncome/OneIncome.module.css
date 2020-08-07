@@ -86,7 +86,7 @@
     width: 50px;
     height: 48px;
     margin-left: 80px;
-    margin-right: 100px;
+    margin-right: 60px;
     position: relative;
   }
 
@@ -102,7 +102,7 @@
 }
 
 @media (min-width: 1280px) {
-  .price{
+  .price {
     margin-right: 10px;
   }
 }
