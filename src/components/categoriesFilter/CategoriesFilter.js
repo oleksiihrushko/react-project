@@ -1,6 +1,6 @@
 import React from 'react';
 import { TotalCountsCosts } from './config';
-import GoToMono from './monoBank/GoToMono';
+// import GoToMono from './monoBank/GoToMono';
 
 const CategoriesFilter = ({ setCurrentCategory }) => (
   <>
