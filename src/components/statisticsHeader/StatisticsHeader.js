@@ -26,16 +26,10 @@ class StatisticsHeader extends Component {
   };
 
   componentDidMount() {
-    // { this.props.onFetchEchangeRates()}
-    // this.props.onFetchEchangeRates()
-    // const getRates = currentRates => {
-      if (this.props.exchangeRates.length === 0) {
-         this.props.onFetchEchangeRates();
-      } 
-         
-      
-    // };
-    
+    if (this.props.exchangeRates.length === 0) {
+      this.props.onFetchEchangeRates();
+    }
+
     const currentTime = moment().format();
     this.setState({
       date: currentTime,
@@ -43,7 +37,6 @@ class StatisticsHeader extends Component {
     const { setSelectedMonth } = this.props;
     const { date } = this.state;
     setSelectedMonth(date);
-
   }
 
   componentDidUpdate() {
@@ -60,13 +53,11 @@ class StatisticsHeader extends Component {
       this.setState({
         date: moment(date).add(-1, 'month').format(),
       });
-
     }
     if (name === 'nextMonthBtn') {
       this.setState({
         date: moment(date).add(1, 'month').format(),
       });
-
     }
   };
 
@@ -91,7 +82,7 @@ class StatisticsHeader extends Component {
 
   render() {
     const { exchangeCurrency } = this.props;
-    console.log(exchangeCurrency)
+    console.log(exchangeCurrency);
     // console.log(object)
     const { date } = this.state;
     return (
