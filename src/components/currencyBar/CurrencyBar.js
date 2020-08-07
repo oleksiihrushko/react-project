@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+
 import { connect } from 'react-redux';
 import exchangeRatesSelectors from '../../redux/exchange/exchangeRatesSelectors';
 import exchangeRatesActions from '../../redux/exchange/exchangeRatesActions';
@@ -7,11 +7,10 @@ import Media from 'react-media';
 
 import styles from './CurrencyBar.module.css';
 
-import { ReactComponent as Currency } from './img/currency.svg';
-import { ReactComponent as Uah } from './img/hryvnia.svg';
-import { ReactComponent as Usd } from './img/dollar.svg';
-import { ReactComponent as Eur } from './img/euro.svg';
-// import { ReactComponent as Btc } from './img/bitcoin.svg';
+import { ReactComponent as Currency } from '../../ui/statisticsPage/currencyBar/currency.svg';
+import { ReactComponent as Uah } from '../../ui/statisticsPage/currencyBar/hryvnia.svg';
+import { ReactComponent as Usd } from '../../ui/statisticsPage/currencyBar/dollar.svg';
+import { ReactComponent as Eur } from '../../ui/statisticsPage/currencyBar/euro.svg';
 
 class currencyBar extends Component {
   state = {
@@ -50,42 +49,24 @@ class currencyBar extends Component {
       <>
         <div className={styles.currencyBar} onClick={this.handleClickOpen}>
           <div className={styles.currencyButton}>
-          <Currency className={styles.changeColorSvg}/>
+            <Currency className={styles.changeColorSvg} />
           </div>
           <Media query="(min-width: 768px)">
-              {matches =>
-                matches ? <p className={styles.buttonText} >Валюта</p> : <p></p>
-              }
-            </Media>
+            {matches =>
+              matches ? <p className={styles.buttonText}>Валюта</p> : <p></p>
+            }
+          </Media>
 
           {this.state.open && (
             <ul className={styles.popover}>
-              <li className={styles.menuItem}>
-                <button
-                  className={styles.button}
-                  type="button"
-                  onClick={this.handleChangeUAH}
-                >
-                  <Uah className={styles.changeColorSvgCurrency}/>
-                </button>
+              <li className={styles.menuItem} onClick={this.handleChangeUAH}>
+                <Uah className={styles.changeColorSvgCurrency} />
               </li>
-              <li className={styles.menuItem}>
-                <button
-                  className={styles.button}
-                  type="button"
-                  onClick={this.handleChangeUSA}
-                >
-                  <Usd className={styles.changeColorSvgCurrency}/>
-                </button>
+              <li className={styles.menuItem} onClick={this.handleChangeUSA}>
+                <Usd className={styles.changeColorSvgCurrency} />
               </li>
-              <li className={styles.menuItem}>
-                <button
-                  className={styles.button}
-                  type="button"
-                  onClick={this.handleChangeEUR}
-                >
-                  <Eur className={styles.changeColorSvgCurrency}/>
-                </button>
+              <li className={styles.menuItem} onClick={this.handleChangeEUR}>
+                <Eur className={styles.changeColorSvgCurrency} />
               </li>
             </ul>
           )}
