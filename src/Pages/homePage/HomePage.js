@@ -14,8 +14,7 @@ const HomePage = () => {
         <Media queries={{ large: '(min-width: 1280px)' }}>
           {matches =>
             matches.large ? (
-              <>
-                {matches.large && (
+                matches.large && (
                   <div className={`${styles.wrapperDesktop} container`}>
                     <div className={styles.wrapperDescription}>
                       <Bitcoin className={styles.bitcoinIcon} />
@@ -27,8 +26,7 @@ const HomePage = () => {
                     </div>
                     <AuthForm />
                   </div>
-                )}
-              </>
+                )
             ) : (
               <>
                 <div className={`${styles.wrapperDescription} container`}>

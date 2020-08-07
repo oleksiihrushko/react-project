@@ -98,12 +98,12 @@ const OperationForm = ({ operationType, setOperation }) => {
     setTotal('');
     setCategory('');
   };
-
+  
   const openModal = () => {
     if (window.screen.width >= 767) return;
     setModalMobile(true);
   };
-
+  
   return (
     <div className={styles.operationContainer}>
       {/* <button onClick={() => console.log(categoryList)}>TEST</button> */}
@@ -112,10 +112,10 @@ const OperationForm = ({ operationType, setOperation }) => {
         className={styles.debit}
         style={
           window.screen.width >= 767
-            ? operationType === 'debit'
-              ? { backgroundColor: '#fefefe', color: '#fb812d', zIndex: 10 }
-              : null
-            : null
+          ? operationType === 'debit'
+          ? { backgroundColor: '#fefefe', color: '#fb812d', zIndex: 10 }
+          : null
+          : null
         }
         name="debit"
         onClick={e => {
@@ -123,17 +123,17 @@ const OperationForm = ({ operationType, setOperation }) => {
           handleClear();
           openModal();
         }}
-      >
+        >
         РАСХОД
       </button>
       <button
         className={styles.credit}
         style={
           window.screen.width >= 767
-            ? operationType === 'credit'
-              ? { backgroundColor: '#fefefe', color: '#fb812d', zIndex: 10 }
-              : null
-            : null
+          ? operationType === 'credit'
+          ? { backgroundColor: '#fefefe', color: '#fb812d', zIndex: 10 }
+          : null
+          : null
         }
         name="credit"
         onClick={e => {
@@ -141,14 +141,14 @@ const OperationForm = ({ operationType, setOperation }) => {
           handleClear();
           openModal();
         }}
-      >
+        >
         ДОХОД
       </button>
       <Media
         queries={{
           small: '(max-width: 767px)',
         }}
-      >
+        >
         {matches =>
           matches.small ? (
             modalMobile && (
@@ -158,7 +158,7 @@ const OperationForm = ({ operationType, setOperation }) => {
                   src={arrow}
                   alt="arrow"
                   onClick={() => setModalMobile(false)}
-                />
+                  />
                 <div className={styles.modalBackground} />
                 <form onSubmit={handleSubmit}>
                   <input
@@ -175,17 +175,17 @@ const OperationForm = ({ operationType, setOperation }) => {
                     disabled={operationType === 'credit' ? 'disabled' : null}
                   >
                     {operationType === 'credit' ? (
-                      <option value="" disabled selected hidden>
+                      <option value="" disabled defaultValue hidden>
                         Доход
                       </option>
                     ) : (
-                      <option value="" disabled selected hidden>
+                      <option value="" disabled defaultValue hidden>
                         Категория
                       </option>
                     )}
                     {categoryList.map(categ => (
-                      <option id={categ._id}>{categ.name}</option>
-                    ))}
+                      <option id={categ._id} key={categ._id}>{categ.name}</option>
+                      ))}
                   </select>
 
                   <textarea
@@ -194,13 +194,13 @@ const OperationForm = ({ operationType, setOperation }) => {
                     name="description"
                     placeholder={
                       operationType === 'credit'
-                        ? 'Внесите ваш доход в следующее поле'
-                        : 'Здесь ты будешь вносить на что ты тратишь деньги'
+                      ? 'Внесите ваш доход в следующее поле'
+                      : 'Здесь ты будешь вносить на что ты тратишь деньги'
                     }
                     value={operationType === 'credit' ? '' : description}
                     onChange={({ target }) => setDescription(target.value)}
                     readOnly={operationType === 'credit' && 'readOnly'}
-                  />
+                    />
                   <div className={styles.modalTotal}>
                     <input
                       type="number"
@@ -209,19 +209,20 @@ const OperationForm = ({ operationType, setOperation }) => {
                       placeholder="00.00"
                       value={total}
                       onChange={({ target }) => setTotal(target.value)}
-                    />
+                      />
                     <div className={styles.modalCalc}>
                       <img
                         src={calc}
                         alt="calculator"
                         onClick={() => openCalc()}
-                      />
+                        />
                     </div>
                   </div>
 
                   <div className={styles.modalButtons}>
                     <button className={styles.submitModalButton}>ВВОД</button>
                     <button
+                      type="button"
                       onClick={() => handleClear()}
                       className={styles.clearModalButton}
                     >
@@ -231,8 +232,8 @@ const OperationForm = ({ operationType, setOperation }) => {
                 </form>
                 {isCalcOpen && (
                   <Calc
-                    displayValue={displayValue}
-                    setDisplayValue={setDisplayValue}
+                  displayValue={displayValue}
+                  setDisplayValue={setDisplayValue}
                     changeTotalByCalc={changeTotalByCalc}
                     setOpenCalc={setOpenCalc}
                   />
@@ -273,16 +274,16 @@ const OperationForm = ({ operationType, setOperation }) => {
                   disabled={operationType === 'credit' ? 'disabled' : null}
                 >
                   {operationType === 'credit' ? (
-                    <option value="" disabled selected hidden>
+                    <option value="" disabled defaultValue hidden>
                       Доход
                     </option>
                   ) : (
-                    <option value="" disabled selected hidden>
+                    <option value="" disabled defaultValue hidden>
                       Категория
                     </option>
                   )}
                   {categoryList.map(categ => (
-                    <option id={categ._id}>{categ.name}</option>
+                    <option id={categ._id} key={categ._id}>{categ.name}</option>
                   ))}
                 </select>
                 <input
@@ -302,20 +303,21 @@ const OperationForm = ({ operationType, setOperation }) => {
                 <div className={styles.buttons}>
                   <button className={styles.submitButton}>ВВОД</button>
                   <button
+                    type="button"
                     onClick={() => handleClear()}
                     className={styles.clearButton}
-                  >
+                    >
                     ОЧИСТИТЬ
                   </button>
                 </div>
               </form>
               {isCalcOpen && (
                 <Calc
-                  displayValue={displayValue}
+                displayValue={displayValue}
                   setDisplayValue={setDisplayValue}
                   changeTotalByCalc={changeTotalByCalc}
                 />
-              )}
+                )}
             </div>
           )
         }

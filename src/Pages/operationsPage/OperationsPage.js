@@ -73,6 +73,7 @@ const OperationsPage = () => {
 
   return (
     <div className={`container`}>
+      <div className={styles.forBg}></div>
       <OperationsHeader />
       <div className={styles.operationListWrapper}>
         <AddOperationForm
