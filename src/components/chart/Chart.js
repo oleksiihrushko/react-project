@@ -66,7 +66,7 @@ const Chart = ({ currentCategory }) => {
     // console.log('data', data);
 
     const exchangeRate =
-      currentCurrency !== 'UAH' && exchangeInfo && Number(exchangeInfo[0].buy);
+      currentCurrency !== 'UAH' && exchangeInfo && Number(exchangeInfo[0]?.buy);
 
     const values = data && Object.values(data);
 

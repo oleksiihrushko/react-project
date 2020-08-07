@@ -80,7 +80,7 @@ const OperationsPage = () => {
           operationType={operationType}
           setOperation={setOperation}
         />
-        <div>
+        <div className={styles.pageWrapp}>
           <Media
             queries={{
               small: '(max-width: 767px)',

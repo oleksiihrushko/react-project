@@ -5,6 +5,7 @@ import Title from './oneOperation/title/Title';
 import Modal from '../modal/Modal';
 import { deleteCosts } from '../../redux/finance/financeOperations';
 import OneOperation from './oneOperation/OneOperation';
+import EmptyMarkup from '../../components/incomeList/oneIncome/OneIncomeEmpty';
 import styles from './OperationList.module.css';
 
 const OperationList = ({ operations, setIsMobile }) => {
@@ -45,6 +46,20 @@ const OperationList = ({ operations, setIsMobile }) => {
               openModal={() => setIsShowDeleteModal(true)}
             />
           ))
+        )}
+        {operations.length === 3 && <EmptyMarkup />}
+        {operations.length === 2 && (
+          <>
+            <EmptyMarkup />
+            <EmptyMarkup />
+          </>
+        )}
+        {operations.length === 1 && (
+          <>
+            <EmptyMarkup />
+            <EmptyMarkup />
+            <EmptyMarkup />
+          </>
         )}
       </ul>
       {isShowDeleteModal && (

@@ -4,7 +4,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
@@ -90,4 +90,3 @@ button:focus {
     width: 1100px;
   }
 }
-
