@@ -12,6 +12,8 @@ import { ReactComponent as Party } from './svg/party.svg';
 import { ReactComponent as Products } from './svg/products.svg';
 import { ReactComponent as Sport } from './svg/sport.svg';
 import { ReactComponent as Tools } from './svg/tools.svg';
+import { ReactComponent as Chart } from './svg/bar_chart.svg';
+
 import { useSelector } from 'react-redux';
 // import { makeSummary } from '../../services/helpers';
 
@@ -88,12 +90,12 @@ export const TotalCountsCosts = ({ setCurrentCategory }) => {
       return true;
     }
   });
-//   // console.log('Object.values total', Object.values(total))
-//   // const onShow = Object.values(total).reduce((acc, item) => {
-//   //   console.log('item', item);
-//   //   if (!isNaN(item) ) {
-//   //     acc += item;
-//   //   }
+  //   // console.log('Object.values total', Object.values(total))
+  //   // const onShow = Object.values(total).reduce((acc, item) => {
+  //   //   console.log('item', item);
+  //   //   if (!isNaN(item) ) {
+  //   //     acc += item;
+  //   //   }
   const totalCategoryCost = getFilteredDate.reduce(
     (acc, costs) => {
       acc[costs.product.category.name] =
@@ -151,7 +153,7 @@ export const TotalCountsCosts = ({ setCurrentCategory }) => {
       total: totalCategoryCost['Техника'],
     },
     {
-      name: 'Коммуналка, связь',
+      name: 'Коммуналка,Связь',
       svg: <Comunal />,
       total: totalCategoryCost['Коммуналка,Связь'],
     },
@@ -170,16 +172,12 @@ export const TotalCountsCosts = ({ setCurrentCategory }) => {
       svg: <Else />,
       total: totalCategoryCost['Прочее'],
     },
+
   ];
 
   return (
-    <section className={`${styles.wrapper} container`}>
-      <ul
-        className={`${styles.ul} ${styles.flex} }`}
-        style={{
-          padding: 0,
-        }}
-      >
+    <section className={`${styles.wrapper} ${styles.flex} container`}>
+      <ul className={`${styles.ul} ${styles.flex} }`} style={{ padding: 0 }}>
         {configs.map(({ name, svg, total }) => {
           return (
             // total > 0 && (
@@ -197,7 +195,26 @@ export const TotalCountsCosts = ({ setCurrentCategory }) => {
             </li>
           );
         })}
+        <li key='123123123' className={`${styles.flex} ${styles.li}`}>
+              <button
+                onClick={() => {
+                  setCurrentCategory('All');
+                }}
+                className={styles.btn}
+              >
+                <p className={`${styles.prise}`}>Все</p>
+                <div className={styles.svg}><Chart /></div>
+                <p className={styles.name}>Категории</p>
+              </button>
+            </li>
       </ul>
+      {/* <button className={` ${styles.btn}`}
+        onClick={() => {
+          setCurrentCategory('All');
+        }}
+      >
+        Все
+      </button> */}
     </section>
   );
 };

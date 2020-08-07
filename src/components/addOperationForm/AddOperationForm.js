@@ -18,10 +18,11 @@ const OperationForm = ({ operationType, setOperation }) => {
   const [description, setDescription] = useState('');
   const [total, setTotal] = useState('');
   const [modalMobile, setModalMobile] = useState(false);
-  const [category, setCategory] = useState('');
-  const [categoryID, setCategoryID] = useState('');
-
-  const [displayValue, setDisplayValue] = useState('0');
+  const [category, setCategory] = useState("");
+  const [categoryID, setCategoryID] = useState("");
+  const [alertModal, setAlertModal] = useState(false);
+  
+  const [displayValue, setDisplayValue] = useState("0");
   const [isCalcOpen, setOpenCalc] = useState(false);
 
   const dispatch = useDispatch();
@@ -36,9 +37,25 @@ const OperationForm = ({ operationType, setOperation }) => {
     setOpenCalc(false);
   };
 
-  const handleChangeCategory = e => {
-    setCategory(e.target.value);
-    let id = '';
+  const formAlert = () => {
+    if (operationType === "debit") {
+      if (date === "" || description === "" || category === "" || total === "") {
+        setAlertModal(true)
+      }
+    }  else if (operationType === "credit") {
+      if (date === "" || total === "") {
+        setAlertModal(true)
+      }
+    } 
+
+    setTimeout(() => {
+      setAlertModal(false)
+    }, 2000);
+  }
+
+  const handleChangeCategory = (e) => {
+    setCategory(e.target.value)
+    let id = ""; 
     e.target.childNodes.forEach(element => {
       // console.log(element.id);
       if (element.value === e.target.value) {
@@ -55,29 +72,23 @@ const OperationForm = ({ operationType, setOperation }) => {
   //? addCosts = (costDescription, categoryId, date, amount)
   const handleSubmit = e => {
     e.preventDefault();
-
-    if (operationType === 'credit') {
-      if (date === '' || total === '') return;
-      dispatch(
-        addIncome({
-          amount: Number(total),
-          date: new Date(date).toISOString(),
-        }),
-      );
-      handleClear();
+    formAlert()
+    
+    if (operationType === "credit") {
+      if (date === "" || total === "") return
+      dispatch(addIncome({
+        amount: Number(total),
+        date: new Date(date).toISOString()
+      }))
+      setModalMobile(false)
+      handleClear()
       // dispatch(addIncome(Number(total)))
     } else {
-      if (date === '' || description === '' || total === '' || category === '')
-        return;
-      dispatch(
-        addCosts(
-          description,
-          categoryID,
-          new Date(date).toISOString(),
-          Number(total),
-        ),
-      );
-      handleClear();
+      if (date === "" || description === "" || total === "" || category === "") return
+      dispatch(addCosts(description, categoryID, new Date(date).toISOString(), Number(total)))
+      handleClear()
+      setModalMobile(false)
+
     }
   };
 
@@ -96,6 +107,7 @@ const OperationForm = ({ operationType, setOperation }) => {
   return (
     <div className={styles.operationContainer}>
       {/* <button onClick={() => console.log(categoryList)}>TEST</button> */}
+      {alertModal && <div className={styles.formAlert}>Заполните все поля</div>}
       <button
         className={styles.debit}
         style={

@@ -20,17 +20,12 @@
 }
 .ul {
   margin: 0 auto;
-  
-}
+  }
 
 .li {
   width: 58px;
   margin-bottom: 50px;
 }
-
-/* .li:not(:nth-child(3n)) {
-  margin-right: 20px;
-} */
 
 .li p {
   text-align: center;
@@ -72,6 +67,10 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
+
+
+
+
 
 @media (max-width: 767px) {
   .ul {
