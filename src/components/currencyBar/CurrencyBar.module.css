@@ -43,7 +43,7 @@
 
 .menuItem:hover {
   transition: 0.3s ease-in-out;
-  background-color: rgba(255, 108, 10, 0.8);
+  background-color: #ff6c0acc;
 }
 
 .menuItem:hover .changeColorSvgCurrency {
@@ -111,13 +111,12 @@
 
   .currencyBar:hover {
     transition: 0.3s ease-in-out;
-    opacity: 0.75;
-    background-color: rgba(255, 108, 10, 0.8);
+    background-color:#ff6c0acc;
   }
 
   .buttonText {
     display: inline-block;
-    /* text-align: center; */
+
     margin: 0;
     font-family: 'RobotoRegular';
     font-weight: 500;
