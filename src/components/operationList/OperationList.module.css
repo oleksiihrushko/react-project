@@ -32,7 +32,6 @@
 
 @media (min-width: 1280px) {
   .operationList {
-    width: 75%;
     margin: 0;
     margin-bottom: 20px;
   }
