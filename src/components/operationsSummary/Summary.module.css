@@ -44,7 +44,7 @@
   }
 
   .summaryListItem:last-child{
-  border-radius: 40px 0 40px 0;
+  border-radius: 0 0 40px 40px;
   } 
 
   .summaryListItem:hover {

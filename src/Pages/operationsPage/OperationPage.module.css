@@ -14,7 +14,7 @@
 @media (min-width: 1280px) {
   .operationListWrapper {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
   }
   .operationList {
     width: 75%;
