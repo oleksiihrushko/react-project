@@ -42,6 +42,24 @@ function TotalCostsSumAndIncomeSum() {
   const incomeSum =
     date2 && date2 !== 'Invalid date' && getCostsSum(filteredIncome);
 
+  
+    const exchangeRatesUSD = Number(
+      useSelector(state => state.exchangeRatesRoot.exchangeRates[0]?.buy),
+    );
+    const exchangeRatesEUR = Number(
+      useSelector(state => state.exchangeRatesRoot.exchangeRates[1]?.buy),
+    );
+    const currentCurrency = useSelector(
+      state => state.exchangeRatesRoot.exchangeCurrency,
+    );
+    const ballanceExchange = (currentCurrency, balance) => {
+      if (currentCurrency === 'USD')
+        return Math.floor(balance / exchangeRatesUSD);
+      if (currentCurrency === 'EUR')
+        return Math.floor(balance / exchangeRatesEUR);
+      if (currentCurrency === 'UAH') return balance;
+    };
+
   return (
     date2 && (
       <div className={'container'}>
@@ -49,12 +67,12 @@ function TotalCostsSumAndIncomeSum() {
           <div className={s.wrapper}>
             <div className={s.column}>
               <p className={s.stat_title}>Расходы:</p>
-              <p className={s.stat_exp}>-{costsSum} грн</p>
+              <p className={s.stat_exp}>-{ballanceExchange( currentCurrency,costsSum)} {currentCurrency}</p>
             </div>
             <div className={s.separate} />
             <div className={s.column}>
               <p className={s.stat_title}>Доходы:</p>
-              <p className={s.stat_inc}>{incomeSum} грн</p>
+              <p className={s.stat_inc}>{ballanceExchange( currentCurrency,incomeSum)} {currentCurrency}</p>
             </div>
           </div>
         </div>
