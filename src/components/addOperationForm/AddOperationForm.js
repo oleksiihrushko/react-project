@@ -11,6 +11,8 @@ import {
   addIncome,
   addCosts,
 } from '../../redux/finance/financeOperations';
+import DropdownItem from '../dropdownItem/DropdownItem';
+import { filterProducts, findProducts } from '../../services/helpers';
 
 const OperationForm = ({ operationType, setOperation }) => {
   // const [operationType, setOperation] = useState("credit");
@@ -18,15 +20,17 @@ const OperationForm = ({ operationType, setOperation }) => {
   const [description, setDescription] = useState('');
   const [total, setTotal] = useState('');
   const [modalMobile, setModalMobile] = useState(false);
-  const [category, setCategory] = useState("");
-  const [categoryID, setCategoryID] = useState("");
+  const [category, setCategory] = useState('');
+  const [categoryID, setCategoryID] = useState('');
   const [alertModal, setAlertModal] = useState(false);
-  
-  const [displayValue, setDisplayValue] = useState("0");
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
+  const [displayValue, setDisplayValue] = useState('0');
   const [isCalcOpen, setOpenCalc] = useState(false);
 
   const dispatch = useDispatch();
   const categoryList = useSelector(categoriesSelector);
+  const products = useSelector(state => state.operations.products);
 
   // useEffect(() => {
   //   dispatch(getCategories());
@@ -38,24 +42,29 @@ const OperationForm = ({ operationType, setOperation }) => {
   };
 
   const formAlert = () => {
-    if (operationType === "debit") {
-      if (date === "" || description === "" || category === "" || total === "") {
-        setAlertModal(true)
+    if (operationType === 'debit') {
+      if (
+        date === '' ||
+        description === '' ||
+        category === '' ||
+        total === ''
+      ) {
+        setAlertModal(true);
       }
-    }  else if (operationType === "credit") {
-      if (date === "" || total === "") {
-        setAlertModal(true)
+    } else if (operationType === 'credit') {
+      if (date === '' || total === '') {
+        setAlertModal(true);
       }
-    } 
+    }
 
     setTimeout(() => {
-      setAlertModal(false)
+      setAlertModal(false);
     }, 2000);
-  }
+  };
 
-  const handleChangeCategory = (e) => {
-    setCategory(e.target.value)
-    let id = ""; 
+  const handleChangeCategory = e => {
+    setCategory(e.target.value);
+    let id = '';
     e.target.childNodes.forEach(element => {
       // console.log(element.id);
       if (element.value === e.target.value) {
@@ -72,23 +81,39 @@ const OperationForm = ({ operationType, setOperation }) => {
   //? addCosts = (costDescription, categoryId, date, amount)
   const handleSubmit = e => {
     e.preventDefault();
-    formAlert()
-    
-    if (operationType === "credit") {
-      if (date === "" || total === "") return
-      dispatch(addIncome({
-        amount: Number(total),
-        date: new Date(date).toISOString()
-      }))
-      setModalMobile(false)
-      handleClear()
+    formAlert();
+
+    if (operationType === 'credit') {
+      if (date === '' || total === '') return;
+      dispatch(
+        addIncome({
+          amount: Number(total),
+          date: new Date(date).toISOString(),
+        }),
+      );
+      setModalMobile(false);
+      handleClear();
       // dispatch(addIncome(Number(total)))
     } else {
-      if (date === "" || description === "" || total === "" || category === "") return
-      dispatch(addCosts(description, categoryID, new Date(date).toISOString(), Number(total)))
-      handleClear()
-      setModalMobile(false)
+      if (date === '' || description === '' || total === '' || category === '')
+        return;
 
+      const productStored = findProducts(products, description);
+      const costDescription = productStored?.name || description;
+      const productId = productStored?._id;
+      console.log('productId :>> ', productId);
+      console.log('costDescription :>> ', costDescription);
+      dispatch(
+        addCosts(
+          costDescription,
+          categoryID,
+          productId,
+          new Date(date).toISOString(),
+          Number(total),
+        ),
+      );
+      handleClear();
+      setModalMobile(false);
     }
   };
 
@@ -201,6 +226,7 @@ const OperationForm = ({ operationType, setOperation }) => {
                     onChange={({ target }) => setDescription(target.value)}
                     readOnly={operationType === 'credit' && 'readOnly'}
                   />
+
                   <div className={styles.modalTotal}>
                     <input
                       type="number"
@@ -249,23 +275,41 @@ const OperationForm = ({ operationType, setOperation }) => {
                   value={date}
                   onChange={({ target }) => setDate(target.value)}
                 />
-                <input
-                  type="text"
-                  className={styles.desctiptionInput}
-                  name="description"
-                  placeholder={
-                    window.screen.width >= 767 && window.screen.width <= 1279
-                      ? operationType === 'credit'
-                        ? 'Внесите ваш доход далее'
-                        : 'На что вы тратите деньги'
-                      : operationType === 'credit'
-                      ? 'Внесите ваш доход в следующее поле'
-                      : 'Здесь ты будешь вносить на что ты тратишь деньги'
-                  }
-                  value={operationType === 'credit' ? '' : description}
-                  onChange={({ target }) => setDescription(target.value)}
-                  readOnly={operationType === 'credit' && 'readOnly'}
-                />
+                <div className="costsInput">
+                  <input
+                    type="text"
+                    className={styles.desctiptionInput}
+                    name="description"
+                    placeholder={
+                      window.screen.width >= 767 && window.screen.width <= 1279
+                        ? operationType === 'credit'
+                          ? 'Внесите ваш доход далее'
+                          : 'На что вы тратите деньги'
+                        : operationType === 'credit'
+                        ? 'Внесите ваш доход в следующее поле'
+                        : 'Здесь ты будешь вносить на что ты тратишь деньги'
+                    }
+                    value={operationType === 'credit' ? '' : description}
+                    onChange={({ target }) => {
+                      const filtered = target.value
+                        ? filterProducts(products, target.value)
+                        : [];
+                      setFilteredProducts(filtered);
+                      setDescription(target.value);
+                    }}
+                    readOnly={operationType === 'credit' && 'readOnly'}
+                  />
+                  <ul className="costsInput__dropdown">
+                    {filteredProducts.map(item => (
+                      <DropdownItem
+                        description={item.name}
+                        id={item._id}
+                        handleClick={setDescription}
+                      />
+                    ))}
+                  </ul>
+                </div>
+
                 <select
                   className={styles.categoryInput}
                   value={category}
