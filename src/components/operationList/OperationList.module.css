@@ -9,12 +9,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-border-radius: 25px;
-background-color:#fd8e0f;
+  border-radius: 25px;
+  background-color: #fd8e0f;
 }
 
-::-webkit-scrollbar{
-width: 6px;
+::-webkit-scrollbar {
+  width: 6px;
 }
 
 .noOperations {
@@ -32,6 +32,11 @@ width: 6px;
     border: 2px solid rgb(244, 246, 251);
     margin: 0 auto;
     margin-bottom: 20px;
+  }
+
+  .noOperations {
+    padding: 22px;
+    border-bottom: 2px solid rgb(244, 246, 251);
   }
 }
 

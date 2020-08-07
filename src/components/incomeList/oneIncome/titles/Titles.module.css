@@ -20,6 +20,10 @@
   padding-right: 74px;
 }
 
+.titleSumm{
+padding-right: 60px;
+}
+
 @media (min-width: 1280px) {
   .titlesList {
     margin: 0;
