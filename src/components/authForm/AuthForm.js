@@ -125,8 +125,10 @@ const AuthForm = () => {
             </label>
 
             <input
-              id="name"
               className={styles.input}
+              pattern="(^[A-Za-zА-Яа-яЁё]).{3,}"
+              maxLength="20"
+              id="name"
               type="text"
               placeholder="First name"
               name="firstName"
@@ -142,11 +144,13 @@ const AuthForm = () => {
             </label>
 
             <input
-              id="lastName"
               className={styles.input}
-              type="text"
+              pattern="(^[A-Za-zА-Яа-яЁё]).{3,}"
+              maxLength="20"
+              id="lastName"
               placeholder="Last name"
               name="lastName"
+              type="text"
               value={lastName}
               onChange={handleInputLastName}
               required
@@ -177,14 +181,15 @@ const AuthForm = () => {
         </label>
 
         <input
-          id="password"
           className={styles.input + ' ' + styles.inputPassword}
-          type="password"
+          pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}'
           placeholder="Пароль"
+          id="password"
+          type="password"
           name="password"
           value={password}
           onChange={handleInputPassword}
-          minLength="5"
+          minLength="6"
           maxLength="15"
           required
         />
