@@ -4,11 +4,8 @@ import { Chart as ChartDefault, Pie } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { getData } from './chartServices';
 import { useWindowWidth } from './helpers';
-
 import { pieChartOptions } from './chartOptions';
 import styles from './Chart.module.css';
-
-ChartDefault.defaults.global.legend.display = false;
 
 ChartDefault.Legend.prototype.afterFit = function () {
   this.height = this.height + 40;
@@ -83,24 +80,15 @@ const PieChart = ({ currentCategory }) => {
   const tablet = windowWidth >= 768 && windowWidth < 1280;
   const desktop = windowWidth >= 1280;
 
-  console.log(chartData.labels);
-
   return chartData && chartData.labels ? (
     <div className={`${styles.pieChartContainer} container`}>
       {mobile && (
-        <>
-          <div>
-            {chartData.labels.map(label => (
-              <span key={label}>{label}</span>
-            ))}
-          </div>
-          <Pie
-            data={chartData}
-            options={pieChartOptions}
-            width={170}
-            height={160}
-          />
-        </>
+        <Pie
+          data={chartData}
+          options={pieChartOptions}
+          width={170}
+          height={170}
+        />
       )}
 
       {tablet && (

@@ -22,7 +22,7 @@
 .horLabel {
   font-size: 11px;
   padding-left: 10px;
-  transform: translateY(24px);
+  transform: translateY(38px);
 }
 
 .chartWrapper {
@@ -30,5 +30,39 @@
   margin-bottom: 60px;
 }
 
-.pieChartContainer {
+/* TABS */
+
+.tabLinks {
+  margin-top: 70px;
+  margin-bottom: 32px;
+}
+
+.tabButton {
+  position: relative;
+  margin-left: 16px;
+  padding-bottom: 10px;
+  border: none;
+  outline: none;
+  color: #333;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: transparent;
+}
+
+.tabButton::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background-color: rgba(255, 129, 45, 0.8);
+  transition: 0.4s;
+}
+
+.tabButton:hover::after,
+.tabButton:focus::after,
+.tabButton.active::after {
+  width: 100%;
 }

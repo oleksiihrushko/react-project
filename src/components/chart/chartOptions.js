@@ -149,16 +149,14 @@ export const pieChartOptions = {
   layout: {
     padding: {
       bottom: 30,
-      left: 0,
-      right: 0,
     },
   },
   legend: {
-    fullWidth: false,
+    // fullWidth: false,
     labels: {
       fontSize: 12,
       padding: 6,
-      usePointStyle: true,
+      // usePointStyle: true,
     },
   },
 };
