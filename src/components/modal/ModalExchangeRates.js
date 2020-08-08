@@ -21,13 +21,13 @@ const ModalExchangeRates = ({ closeModal }) => {
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeydown);
-    // modalRef.current.addEventListener('click', handleClickModal);
+    modalRef.current.addEventListener('click', handleClickModal);
     modalRef.current.addEventListener('click', handleClickModal);
 
     return () => {
       window.removeEventListener('keydown', handleKeydown);
       //! не снят слушатель с окна 
-    //   modalRef.current.removeEventListener('click', handleClickModal);
+      modalRef.current.removeEventListener('click', handleClickModal);
     };
   }, []);
 

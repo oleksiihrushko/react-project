@@ -200,16 +200,18 @@ const OperationForm = ({ operationType, setOperation }) => {
                     disabled={operationType === 'credit' ? 'disabled' : null}
                   >
                     {operationType === 'credit' ? (
-                      <option value="" disabled selected hidden>
+                      <option value="" disabled defaultValue hidden>
                         Доход
                       </option>
                     ) : (
-                      <option value="" disabled selected hidden>
+                      <option value="" disabled defaultValue hidden>
                         Категория
                       </option>
                     )}
                     {categoryList.map(categ => (
-                      <option id={categ._id}>{categ.name}</option>
+                      <option id={categ._id} key={categ._id}>
+                        {categ.name}
+                      </option>
                     ))}
                   </select>
 
@@ -248,6 +250,7 @@ const OperationForm = ({ operationType, setOperation }) => {
                   <div className={styles.modalButtons}>
                     <button className={styles.submitModalButton}>ВВОД</button>
                     <button
+                      type="button"
                       onClick={() => handleClear()}
                       className={styles.clearModalButton}
                     >
@@ -317,16 +320,18 @@ const OperationForm = ({ operationType, setOperation }) => {
                   disabled={operationType === 'credit' ? 'disabled' : null}
                 >
                   {operationType === 'credit' ? (
-                    <option value="" disabled selected hidden>
+                    <option value="" disabled defaultValue hidden>
                       Доход
                     </option>
                   ) : (
-                    <option value="" disabled selected hidden>
+                    <option value="" disabled defaultValue hidden>
                       Категория
                     </option>
                   )}
                   {categoryList.map(categ => (
-                    <option id={categ._id}>{categ.name}</option>
+                    <option id={categ._id} key={categ._id}>
+                      {categ.name}
+                    </option>
                   ))}
                 </select>
                 <input
@@ -346,6 +351,7 @@ const OperationForm = ({ operationType, setOperation }) => {
                 <div className={styles.buttons}>
                   <button className={styles.submitButton}>ВВОД</button>
                   <button
+                    type="button"
                     onClick={() => handleClear()}
                     className={styles.clearButton}
                   >

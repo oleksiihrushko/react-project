@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import cart from '../../operationList/icons/delete.png';
 import styles from './OneMobileOperation.module.css';
 
@@ -19,6 +20,22 @@ const OneMobileOperation = ({ operation, setId, openModal }) => {
       return operation.product?.name;
     }
   };
+  const exchangeRatesUSD = Number(
+    useSelector(state => state.exchangeRatesRoot.exchangeRates[0]?.buy),
+  );
+  const exchangeRatesEUR = Number(
+    useSelector(state => state.exchangeRatesRoot.exchangeRates[1]?.buy),
+  );
+  const currentCurrency = useSelector(
+    state => state.exchangeRatesRoot.exchangeCurrency,
+  );
+  const ballanceExchange = (currentCurrency, balance) => {
+    if (currentCurrency === 'USD')
+      return Math.floor(balance / exchangeRatesUSD);
+    if (currentCurrency === 'EUR')
+      return Math.floor(balance / exchangeRatesEUR);
+    if (currentCurrency === 'UAH') return balance;
+  };
 
   return (
     <li className={styles.operationListItem}>
@@ -29,9 +46,15 @@ const OneMobileOperation = ({ operation, setId, openModal }) => {
         <p className={styles.date}>{operation.date.slice(0, 10)}</p>
       </div>
       {operation.costsId ? (
-        <p className={styles.priceCost}>-{operation.amount} грн</p>
+        <p className={styles.priceCost}>
+          -{ballanceExchange(currentCurrency, operation.amount)}{' '}
+          {currentCurrency}
+        </p>
       ) : (
-        <p className={styles.priceIncome}>{operation.amount} грн</p>
+        <p className={styles.priceIncome}>
+          {ballanceExchange(currentCurrency, operation.amount)}{' '}
+          {currentCurrency}
+        </p>
       )}
 
       <button

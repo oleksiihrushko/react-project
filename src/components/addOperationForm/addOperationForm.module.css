@@ -10,7 +10,7 @@
   position: absolute;
   background-color: rgba(255, 38, 0, 0.295);
   border: 2px solid rgb(244, 246, 251);
-  
+
   border-radius: 8px;
   font-family: 'RobotoRegular';
   font-size: 18px;
@@ -28,7 +28,7 @@
   font-family: 'RobotoRegular';
   font-size: 13px;
   right: 157px;
-    top: 35px;
+  top: 34px;
 }
 
 .dateInput {
@@ -322,8 +322,6 @@
     right: 54px;
     top: 45px;
   }
-
-  
 }
 
 @media (min-width: 1280px) {
@@ -364,5 +362,11 @@
     position: absolute;
     right: 327px;
     top: 71px;
+  }
+  .debit {
+    left: -20px;
+  }
+  .credit {
+    left: 120px;
   }
 }
