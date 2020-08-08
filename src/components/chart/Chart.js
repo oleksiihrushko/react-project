@@ -56,9 +56,10 @@ const Chart = ({ currentCategory }) => {
     exchangeCurrency,
   ]);
 
-  const valuesRef = useRef();
+  const exchangeRate =
+    currentCurrency !== 'UAH' && exchangeInfo && Number(exchangeInfo[0].buy);
 
-  // SET CHART DATA
+  const valuesRef = useRef();
 
   const drawBarChart = () => {
     const data = getData(
@@ -69,10 +70,6 @@ const Chart = ({ currentCategory }) => {
     );
 
     const values = data && Object.values(data);
-
-    // CONVERTING CURRENCY
-    const exchangeRate =
-      currentCurrency !== 'UAH' && exchangeInfo && Number(exchangeInfo[0].buy);
 
     const convertedValues = data
       ? values.map(value => {
@@ -107,22 +104,6 @@ const Chart = ({ currentCategory }) => {
       Number(year),
     );
 
-    const values = data && Object.values(data);
-
-    // CONVERTING CURRENCY
-    const exchangeRate =
-      currentCurrency !== 'UAH' && exchangeInfo && Number(exchangeInfo[0].buy);
-
-    const convertedValues = data
-      ? values.map(value => {
-          if (currentCurrency === 'UAH') return value;
-
-          return Math.round(value / exchangeRate);
-        })
-      : [];
-
-    valuesRef.current = convertedValues;
-
     // SET HORIZONTAL CHART DATA
 
     let horChartData = [];
@@ -130,11 +111,19 @@ const Chart = ({ currentCategory }) => {
     const dataArrays = data && Object.entries(data);
 
     for (let i = 0; i < dataArrays.length; i += 1) {
+      const convertAmount = () => {
+        if (currentCurrency === 'UAH') return dataArrays[i][1];
+
+        return Math.round(dataArrays[i][1] / exchangeRate);
+      };
+
+      const convertedValue = convertAmount();
+
       horChartData.push({
         labels: [dataArrays[i][0]],
         datasets: [
           {
-            data: [dataArrays[i][1]],
+            data: [convertedValue],
             backgroundColor: () => {
               for (let j = 0; j < backgroundColor.length; j += 1)
                 return backgroundColor[i];

@@ -122,7 +122,7 @@ export const getHorizontalBarChartOptions = currency => {
     },
     layout: {
       padding: {
-        right: 44,
+        right: 46,
       },
     },
   };
