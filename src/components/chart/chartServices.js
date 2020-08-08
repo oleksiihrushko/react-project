@@ -1,7 +1,7 @@
 const getSortedData = categoryData => {
   const dataArrays = Object.entries(categoryData);
   const sortedDataArrays = dataArrays.sort((a, b) => b[1] - a[1]);
-  const limitedData = sortedDataArrays.slice(0, 11);
+  const limitedData = sortedDataArrays.slice(0, 9);
 
   return Object.fromEntries(limitedData);
 };

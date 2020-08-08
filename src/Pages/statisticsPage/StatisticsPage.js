@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import StatistcsHeader from '../../components/statisticsHeader/StatisticsHeader';
 import TotalCostsSumAndIncomeSum from '../../components/totalCostsSumAndIncomeSum/TotalCostsSumAndIncomeSum';
 import CategoriesFilter from '../../components/categoriesFilter/CategoriesFilter';
-import Chart from '../../components/chart/Chart';
+// import Chart from '../../components/chart/Chart';
+import PieChart from '../../components/chart/PieChart';
 import { useSelector, useDispatch } from 'react-redux';
 import api from '../../services/api';
 import { getDataOnInit } from '../../redux/finance/financeOperations';
@@ -29,7 +30,8 @@ const StatistcsPage = () => {
         currentCategory={currentCategory}
         setCurrentCategory={setCurrentCategory}
       />
-      <Chart currentCategory={currentCategory} />
+      <PieChart currentCategory={currentCategory} />
+      {/* <Chart currentCategory={currentCategory} /> */}
     </>
   );
 };
