@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Chart as ChartDefault, Pie } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { getData } from './chartServices';
-import { useWindowWidth } from './helpers';
+import { useWindowWidth, getFilteredData, pieChartBgColors } from './helpers';
 import { pieChartOptions } from './chartOptions';
 import styles from './Chart.module.css';
 
@@ -14,29 +13,12 @@ ChartDefault.Legend.prototype.afterFit = function () {
 const PieChart = ({ currentCategory }) => {
   const [chartData, setChartData] = useState({});
 
-  const categories = useSelector(state => state.operations.categories);
-
-  const categoriesNames = useMemo(
-    () => categories.map(category => category.name),
-    [categories],
-  );
-
-  // DATE CHECK
-
   const date = useSelector(state => state.statistics.month);
-  const month = date && Array.from(date).splice(3, 2).join('') - 1;
-  const year = date && Array.from(date).splice(6, 4).join('');
-
   const products = useSelector(state => state.operations.costs);
 
-  const drawPieChart = () => {
-    const data = getData(
-      products,
-      currentCategory,
-      Number(month),
-      Number(year),
-    );
+  const data = getFilteredData(currentCategory, date, products);
 
+  const drawPieChart = () => {
     const values = data && Object.values(data);
     const total = values && values.reduce((acc, value) => (acc += value), 0);
 
@@ -52,18 +34,7 @@ const PieChart = ({ currentCategory }) => {
       datasets: [
         {
           data: percentages,
-          backgroundColor: [
-            '#ff8c00',
-            '#fff100',
-            '#e81123',
-            '#ec008c',
-            '#68217a',
-            '#00188f',
-            '#00bcf2',
-            '#00b294',
-            '#009e49',
-            '#bad80a',
-          ],
+          backgroundColor: pieChartBgColors,
         },
       ],
       plugins: [ChartDataLabels],
@@ -74,7 +45,7 @@ const PieChart = ({ currentCategory }) => {
 
   useEffect(() => {
     drawPieChart();
-  }, [categoriesNames, date, currentCategory, windowWidth]);
+  }, [date, currentCategory, windowWidth]);
 
   const mobile = windowWidth < 768;
   const tablet = windowWidth >= 768 && windowWidth < 1280;

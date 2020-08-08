@@ -2,7 +2,6 @@ import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { Bar, HorizontalBar } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { getData } from './chartServices';
 import {
   getBarChartOptions,
   getHorizontalBarChartOptions,
@@ -12,6 +11,7 @@ import {
   backgroundColor,
   getCurrencySign,
   getRate,
+  getFilteredData,
 } from './helpers';
 import './roundedBars';
 import styles from './Chart.module.css';
@@ -26,47 +26,36 @@ const BarChart = ({ currentCategory }) => {
     [categories],
   );
 
-  // DATE CHECK
-
-  const date = useSelector(state => state.statistics.month);
-  const month = date && Array.from(date).splice(3, 2).join('') - 1;
-  const year = date && Array.from(date).splice(6, 4).join('');
-
-  const products = useSelector(state => state.operations.costs);
-
   // GET CURRENCY RATE AND SIGN
 
   const currentCurrency = useSelector(
     state => state.exchangeRatesRoot.exchangeCurrency,
   );
 
-  const currencySign = getCurrencySign(currentCurrency);
-
   const exchangeRates = useSelector(
     state => state.exchangeRatesRoot.exchangeRates,
   );
-  const exchangeCurrency = useSelector(
-    state => state.exchangeRatesRoot.exchangeCurrency,
-  );
 
-  const exchangeInfo = useMemo(() => getRate(exchangeRates, exchangeCurrency), [
+  const exchangeInfo = useMemo(() => getRate(exchangeRates, currentCurrency), [
     exchangeRates,
-    exchangeCurrency,
+    currentCurrency,
   ]);
 
   const exchangeRate =
     currentCurrency !== 'UAH' && exchangeInfo && Number(exchangeInfo[0].buy);
 
+  const currencySign = getCurrencySign(currentCurrency);
+
+  // DATA FOR CHARTS
+
+  const date = useSelector(state => state.statistics.month);
+  const products = useSelector(state => state.operations.costs);
+
+  const data = getFilteredData(currentCategory, date, products);
+
   const valuesRef = useRef();
 
   const drawBarChart = () => {
-    const data = getData(
-      products,
-      currentCategory,
-      Number(month),
-      Number(year),
-    );
-
     const values = data && Object.values(data);
 
     const convertedValues = data
@@ -78,8 +67,6 @@ const BarChart = ({ currentCategory }) => {
       : [];
 
     valuesRef.current = convertedValues;
-
-    // SET BAR CHART DATA
 
     setBarChartData({
       labels: data && Object.keys(data),
@@ -95,43 +82,37 @@ const BarChart = ({ currentCategory }) => {
   };
 
   const drawHorChart = () => {
-    const data = getData(
-      products,
-      currentCategory,
-      Number(month),
-      Number(year),
-    );
-
-    // SET HORIZONTAL CHART DATA
-
     let horChartData = [];
 
     const dataArrays = data && Object.entries(data);
 
-    for (let i = 0; i < dataArrays.length; i += 1) {
-      const convertAmount = () => {
-        if (currentCurrency === 'UAH') return dataArrays[i][1];
+    if (dataArrays) {
+      for (let i = 0; i < dataArrays.length; i += 1) {
+        const convertAmount = () => {
+          if (currentCurrency === 'UAH') return dataArrays[i][1];
 
-        return Math.round(dataArrays[i][1] / exchangeRate);
-      };
+          return Math.round(dataArrays[i][1] / exchangeRate);
+        };
 
-      const convertedValue = convertAmount();
+        const convertedValue = convertAmount();
 
-      horChartData.push({
-        labels: [dataArrays[i][0]],
-        datasets: [
-          {
-            data: [convertedValue],
-            backgroundColor: () => {
-              for (let j = 0; j < backgroundColor.length; j += 1)
-                return backgroundColor[i];
+        horChartData.push({
+          labels: [dataArrays[i][0]],
+          datasets: [
+            {
+              data: [convertedValue],
+              backgroundColor: () => {
+                for (let j = 0; j < backgroundColor.length; j += 1)
+                  return backgroundColor[i];
+              },
+              barThickness: 18,
             },
-            barThickness: 18,
-          },
-        ],
-        plugins: [ChartDataLabels],
-      });
+          ],
+          plugins: [ChartDataLabels],
+        });
+      }
     }
+
     return horChartData;
   };
 
