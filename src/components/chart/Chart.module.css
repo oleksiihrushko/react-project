@@ -14,6 +14,18 @@
 
 .horizontalChartContainer {
   max-width: 278px;
-  margin: 30px auto;
+  height: 24px;
+  margin: 24px auto;
   padding: 14px 26px;
+}
+
+.horLabel {
+  font-size: 11px;
+  padding-left: 10px;
+  transform: translateY(24px);
+}
+
+.chartWrapper {
+  margin-top: -54px;
+  margin-bottom: 60px;
 }

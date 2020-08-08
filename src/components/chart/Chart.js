@@ -12,7 +12,6 @@ import {
   backgroundColor,
   getCurrencySign,
   getRate,
-  calculateHeight,
 } from './helpers';
 import './roundedBars';
 import styles from './Chart.module.css';
@@ -20,7 +19,7 @@ import styles from './Chart.module.css';
 ChartDefault.defaults.global.legend.display = false;
 
 const Chart = ({ currentCategory }) => {
-  const [chartData, setChartData] = useState({});
+  const [barChartData, setBarChartData] = useState({});
 
   const categories = useSelector(state => state.operations.categories);
 
@@ -29,11 +28,15 @@ const Chart = ({ currentCategory }) => {
     [categories],
   );
 
+  // DATE CHECK
+
   const date = useSelector(state => state.statistics.month);
   const month = date && Array.from(date).splice(3, 2).join('') - 1;
   const year = date && Array.from(date).splice(6, 4).join('');
 
   const products = useSelector(state => state.operations.costs);
+
+  // GET CURRENCY RATE AND SIGN
 
   const currentCurrency = useSelector(
     state => state.exchangeRatesRoot.exchangeCurrency,
@@ -53,20 +56,18 @@ const Chart = ({ currentCategory }) => {
     exchangeCurrency,
   ]);
 
+  const exchangeRate =
+    currentCurrency !== 'UAH' && exchangeInfo && Number(exchangeInfo[0].buy);
+
   const valuesRef = useRef();
 
-  const drawChart = () => {
+  const drawBarChart = () => {
     const data = getData(
       products,
       currentCategory,
       Number(month),
       Number(year),
     );
-
-    // console.log('data', data);
-
-    const exchangeRate =
-      currentCurrency !== 'UAH' && exchangeInfo && Number(exchangeInfo[0]?.buy);
 
     const values = data && Object.values(data);
 
@@ -80,22 +81,67 @@ const Chart = ({ currentCategory }) => {
 
     valuesRef.current = convertedValues;
 
-    setChartData({
+    // SET BAR CHART DATA
+
+    setBarChartData({
       labels: data && Object.keys(data),
       datasets: [
         {
           data: convertedValues,
           backgroundColor: backgroundColor,
-          barThickness: 18,
+          barThickness: 22,
         },
       ],
       plugins: [ChartDataLabels],
     });
   };
 
-  const height = chartData.labels && calculateHeight(chartData);
+  const drawHorChart = () => {
+    const data = getData(
+      products,
+      currentCategory,
+      Number(month),
+      Number(year),
+    );
+
+    // SET HORIZONTAL CHART DATA
+
+    let horChartData = [];
+
+    const dataArrays = data && Object.entries(data);
+
+    for (let i = 0; i < dataArrays.length; i += 1) {
+      const convertAmount = () => {
+        if (currentCurrency === 'UAH') return dataArrays[i][1];
+
+        return Math.round(dataArrays[i][1] / exchangeRate);
+      };
+
+      const convertedValue = convertAmount();
+
+      horChartData.push({
+        labels: [dataArrays[i][0]],
+        datasets: [
+          {
+            data: [convertedValue],
+            backgroundColor: () => {
+              for (let j = 0; j < backgroundColor.length; j += 1)
+                return backgroundColor[i];
+            },
+            barThickness: 18,
+          },
+        ],
+        plugins: [ChartDataLabels],
+      });
+    }
+    return horChartData;
+  };
+
+  const horChartData = drawHorChart();
+
   useEffect(() => {
-    drawChart();
+    drawBarChart();
+    drawHorChart();
   }, [categoriesNames, date, currentCategory, exchangeInfo]);
 
   const width = useWindowWidth();
@@ -103,40 +149,52 @@ const Chart = ({ currentCategory }) => {
   return width > 767 ? (
     <BarChart
       valuesRef={valuesRef}
-      chartData={chartData}
+      barChartData={barChartData}
       currencySign={currencySign}
     />
   ) : (
     <HorizontalChart
       valuesRef={valuesRef}
-      chartData={chartData}
+      horChartData={horChartData}
       currencySign={currencySign}
-      height={height}
     />
   );
 };
 
 export default Chart;
 
-const BarChart = ({ valuesRef, chartData, currencySign }) => {
+const BarChart = ({ valuesRef, barChartData, currencySign }) => {
   return valuesRef.current?.length > 0 ? (
     <div className={`${styles.chartContainer} container`}>
-      <Bar data={chartData} options={getBarChartOptions(currencySign)} />
+      <Bar data={barChartData} options={getBarChartOptions(currencySign)} />
     </div>
   ) : null;
 };
 
-const HorizontalChart = ({ valuesRef, chartData, currencySign, height }) => {
-  return chartData.labels && height && valuesRef.current?.length > 0 ? (
-    <div
-      className={`${styles.horizontalChartContainer} container`}
-      // styles={{ position: 'relative', height: calculateHeight(chartData) }}
-    >
-      <HorizontalBar
-        data={chartData}
-        options={getHorizontalBarChartOptions(currencySign)}
-        // height={calculateHeight(chartData)}
-      />
+const HorizontalChart = ({ horChartData, currencySign }) => {
+  let max = 0;
+
+  for (let i = 0; i < horChartData.length; i += 1) {
+    max = horChartData[0].datasets[0].data;
+  }
+
+  return horChartData ? (
+    <div className={styles.chartWrapper}>
+      {horChartData.map(elem => {
+        return (
+          <div
+            className={`${styles.horizontalChartContainer} container`}
+            key={elem.labels}
+          >
+            <p className={styles.horLabel}>{elem.labels}</p>
+            <HorizontalBar
+              data={elem}
+              options={getHorizontalBarChartOptions(currencySign, Number(max))}
+              height={110}
+            />
+          </div>
+        );
+      })}
     </div>
   ) : null;
 };

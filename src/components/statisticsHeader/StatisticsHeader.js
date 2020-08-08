@@ -82,7 +82,7 @@ class StatisticsHeader extends Component {
 
   render() {
     const { exchangeCurrency } = this.props;
-    console.log(exchangeCurrency);
+    // console.log(exchangeCurrency);
     // console.log(object)
     const { date } = this.state;
     return (
