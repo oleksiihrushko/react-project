@@ -120,23 +120,23 @@ export const addCosts = (
 ) => async dispatch => {
   dispatch(loaderSlice.actions.setLoadingTrue());
   try {
-    let productResponse;
+    let id;
     if (productId) {
-      productResponse = productId;
+      id = productId;
     } else {
-      const productResponse = await api.addProduct({
+      const { data } = await api.addProduct({
         name: costDescription,
         category: categoryId,
-      }).data.product._id;
+      });
       const products = await api.getProducts();
       dispatch(financeSlice.actions.addProductSuccess(products.data.products));
-      console.log('productResponse :>> ', productResponse);
+      id = data.product._id;
     }
 
     const createdCosts = await api.addCosts({
       date,
       product: {
-        productId: productResponse,
+        productId: id,
         amount,
         date,
       },
