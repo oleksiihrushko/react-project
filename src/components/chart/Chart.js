@@ -171,8 +171,14 @@ const BarChart = ({ valuesRef, barChartData, currencySign }) => {
   ) : null;
 };
 
-const HorizontalChart = ({ valuesRef, horChartData, currencySign }) => {
-  return horChartData && valuesRef.current?.length > 0 ? (
+const HorizontalChart = ({ horChartData, currencySign }) => {
+  let max = 0;
+
+  for (let i = 0; i < horChartData.length; i += 1) {
+    max = horChartData[0].datasets[0].data;
+  }
+
+  return horChartData ? (
     <div className={styles.chartWrapper}>
       {horChartData.map(elem => {
         return (
@@ -182,9 +188,8 @@ const HorizontalChart = ({ valuesRef, horChartData, currencySign }) => {
           >
             <p className={styles.horLabel}>{elem.labels}</p>
             <HorizontalBar
-              key={elem.labels}
               data={elem}
-              options={getHorizontalBarChartOptions(currencySign)}
+              options={getHorizontalBarChartOptions(currencySign, Number(max))}
               height={110}
             />
           </div>

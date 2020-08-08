@@ -59,7 +59,7 @@ export const getBarChartOptions = currency => {
   };
 };
 
-export const getHorizontalBarChartOptions = currency => {
+export const getHorizontalBarChartOptions = (currency, max) => {
   return {
     scales: {
       xAxes: [
@@ -67,6 +67,8 @@ export const getHorizontalBarChartOptions = currency => {
           ticks: {
             beginAtZero: true,
             display: false,
+            min: 0,
+            max: max,
           },
           gridLines: {
             display: false,
