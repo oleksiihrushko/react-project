@@ -78,11 +78,3 @@ export const getRate = (rates, currency) =>
       return rate.buy;
     }
   });
-
-export const calculateHeight = chartData => {
-  if (!chartData.labels) return;
-
-  let length = chartData.labels ? chartData.labels.length : 0;
-
-  return length * 60;
-};

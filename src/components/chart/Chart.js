@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Chart as ChartSettings } from 'react-chartjs-2';
-import { getCurrencySign } from './helpers';
+import { getCurrencySign, getFilteredData } from './helpers';
 import BarChart from './BarChart';
 import PieChart from './PieChart';
 import styles from './Chart.module.css';
@@ -15,6 +15,11 @@ const Chart = ({ currentCategory }) => {
 
   const currencySign = getCurrencySign(currentCurrency);
 
+  const date = useSelector(state => state.statistics.month);
+  const products = useSelector(state => state.operations.costs);
+
+  const data = getFilteredData(currentCategory, date, products);
+
   if (activeTab === 'bar') {
     ChartSettings.defaults.global.legend.display = false;
   }
@@ -24,25 +29,27 @@ const Chart = ({ currentCategory }) => {
   }
 
   return (
-    <div className="container">
-      <div className={styles.tabLinks}>
-        <button
-          className={styles.tabButton}
-          type="button"
-          onClick={() => setActiveTab('bar')}
-        >{`График расходов в ${currencySign}`}</button>
-        <button
-          className={styles.tabButton}
-          type="button"
-          onClick={() => setActiveTab('pie')}
-        >
-          График расходов в %
-        </button>
-      </div>
+    Object.keys(data).length !== 0 && (
+      <div className="container">
+        <div className={styles.tabLinks}>
+          <button
+            className={styles.tabButton}
+            type="button"
+            onClick={() => setActiveTab('bar')}
+          >{`График расходов в ${currencySign}`}</button>
+          <button
+            className={styles.tabButton}
+            type="button"
+            onClick={() => setActiveTab('pie')}
+          >
+            График расходов в %
+          </button>
+        </div>
 
-      {activeTab === 'bar' && <BarChart currentCategory={currentCategory} />}
-      {activeTab === 'pie' && <PieChart currentCategory={currentCategory} />}
-    </div>
+        {activeTab === 'bar' && <BarChart currentCategory={currentCategory} />}
+        {activeTab === 'pie' && <PieChart currentCategory={currentCategory} />}
+      </div>
+    )
   );
 };
 
