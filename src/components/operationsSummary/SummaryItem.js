@@ -10,7 +10,7 @@ const SummaryItem = ({ data, setOperationsData }) => {
       <li
         className={s.summaryListItem}
         onClick={() => {
-          // console.log('data[3] :>> ', data[3]);
+          console.log('data[3] :>> ', data[3]);
           setOperationsData(data[3]);
         }}
       >

@@ -1,5 +1,8 @@
 export const getBarChartOptions = currency => {
   return {
+    legend: {
+      position: 'bottom',
+    },
     scales: {
       xAxes: [
         {
@@ -27,8 +30,8 @@ export const getBarChartOptions = currency => {
     },
     tooltips: {
       displayColors: false,
-      titleFontSize: 11,
-      bodyFontSize: 10,
+      titleFontSize: 12,
+      bodyFontSize: 11,
       xPadding: 10,
       yPadding: 10,
       callbacks: {
@@ -47,7 +50,7 @@ export const getBarChartOptions = currency => {
         },
         font: {
           weight: 'normal',
-          size: 10,
+          size: 11,
         },
       },
     },
@@ -59,16 +62,16 @@ export const getBarChartOptions = currency => {
   };
 };
 
-export const getHorizontalBarChartOptions = (currency, max) => {
+export const getHorizontalBarChartOptions = currency => {
   return {
+    responsive: true,
+    maintainAspectRatio: false,
     scales: {
       xAxes: [
         {
           ticks: {
             beginAtZero: true,
             display: false,
-            min: 0,
-            max: max,
           },
           gridLines: {
             display: false,
@@ -78,6 +81,7 @@ export const getHorizontalBarChartOptions = (currency, max) => {
       yAxes: [
         {
           ticks: {
+            mirror: true,
             beginAtZero: true,
             display: false,
           },
@@ -88,14 +92,13 @@ export const getHorizontalBarChartOptions = (currency, max) => {
         },
       ],
     },
-
     tooltips: {
       displayColors: false,
-      titleFontSize: 11,
+      titleFontSize: 12,
       bodyFontSize: 10,
       callbacks: {
         label: (tooltipItem, data) => {
-          return `${currency}  ${tooltipItem.value}`;
+          return `${currency} ${tooltipItem.value}`;
         },
       },
     },
@@ -103,16 +106,31 @@ export const getHorizontalBarChartOptions = (currency, max) => {
     plugins: {
       datalabels: {
         labels: {
+          title: {
+            font: {
+              size: '11',
+              weight: 'normal',
+            },
+            color: '#333',
+
+            align: 'top',
+            anchor: 'start',
+
+            formatter: function (value, context) {
+              return `${context.chart.config.data.labels[context.dataIndex]}`;
+            },
+            padding: {
+              bottom: 14,
+            },
+          },
+
           value: {
             color: '#333',
             align: 'end',
             anchor: 'end',
             font: {
-              size: '10',
+              size: '11',
               weight: 'normal',
-            },
-            padding: {
-              bottom: 10,
             },
 
             formatter: function (value, context) {
@@ -124,7 +142,8 @@ export const getHorizontalBarChartOptions = (currency, max) => {
     },
     layout: {
       padding: {
-        right: 46,
+        left: 42,
+        right: 42,
       },
     },
   };
