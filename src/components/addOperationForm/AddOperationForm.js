@@ -278,7 +278,7 @@ const OperationForm = ({ operationType, setOperation }) => {
                   value={date}
                   onChange={({ target }) => setDate(target.value)}
                 />
-                <div className="costsInput">
+                <div className={styles.costsInput}>
                   <input
                     type="text"
                     className={styles.desctiptionInput}
