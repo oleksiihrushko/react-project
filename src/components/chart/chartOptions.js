@@ -1,8 +1,5 @@
 export const getBarChartOptions = currency => {
   return {
-    legend: {
-      position: 'bottom',
-    },
     scales: {
       xAxes: [
         {
@@ -30,8 +27,8 @@ export const getBarChartOptions = currency => {
     },
     tooltips: {
       displayColors: false,
-      titleFontSize: 12,
-      bodyFontSize: 11,
+      titleFontSize: 11,
+      bodyFontSize: 10,
       xPadding: 10,
       yPadding: 10,
       callbacks: {
@@ -50,7 +47,7 @@ export const getBarChartOptions = currency => {
         },
         font: {
           weight: 'normal',
-          size: 11,
+          size: 10,
         },
       },
     },
@@ -64,8 +61,6 @@ export const getBarChartOptions = currency => {
 
 export const getHorizontalBarChartOptions = currency => {
   return {
-    responsive: true,
-    maintainAspectRatio: false,
     scales: {
       xAxes: [
         {
@@ -81,7 +76,6 @@ export const getHorizontalBarChartOptions = currency => {
       yAxes: [
         {
           ticks: {
-            mirror: true,
             beginAtZero: true,
             display: false,
           },
@@ -92,13 +86,14 @@ export const getHorizontalBarChartOptions = currency => {
         },
       ],
     },
+
     tooltips: {
       displayColors: false,
-      titleFontSize: 12,
+      titleFontSize: 11,
       bodyFontSize: 10,
       callbacks: {
         label: (tooltipItem, data) => {
-          return `${currency} ${tooltipItem.value}`;
+          return `${currency}  ${tooltipItem.value}`;
         },
       },
     },
@@ -106,31 +101,16 @@ export const getHorizontalBarChartOptions = currency => {
     plugins: {
       datalabels: {
         labels: {
-          title: {
-            font: {
-              size: '11',
-              weight: 'normal',
-            },
-            color: '#333',
-
-            align: 'top',
-            anchor: 'start',
-
-            formatter: function (value, context) {
-              return `${context.chart.config.data.labels[context.dataIndex]}`;
-            },
-            padding: {
-              bottom: 14,
-            },
-          },
-
           value: {
             color: '#333',
             align: 'end',
             anchor: 'end',
             font: {
-              size: '11',
+              size: '10',
               weight: 'normal',
+            },
+            padding: {
+              bottom: 10,
             },
 
             formatter: function (value, context) {
@@ -142,8 +122,7 @@ export const getHorizontalBarChartOptions = currency => {
     },
     layout: {
       padding: {
-        left: 42,
-        right: 42,
+        right: 44,
       },
     },
   };

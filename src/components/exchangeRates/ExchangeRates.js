@@ -20,35 +20,34 @@ class ExchangeRates extends Component {
 
   render() {
     const { exchangeRates } = this.props;
-    console.log(exchangeRates);
+    // console.log(exchangeRates);
 
     const { date } = this.state;
 
     return (
       <>
         <div className={`${styles.ExchangeRatesWrapper} container`}>
-
           <table className={styles.table}>
-          <caption className="text-danger">
-            <span>курс валют на: {date && moment(date).format('L')}</span>
-          </caption>
+            <caption className="text-danger">
+              <span>курс валют на: {date && moment(date).format('L')}</span>
+            </caption>
 
-          <thead>
-            <tr className={styles.tr}>
-              <th className={styles.th}>Валюта</th>
-              <th className={styles.th}>курс покупки</th>
-              <th className={styles.th}>курс продажи</th>
-            </tr>
-          </thead>
-          <tbody>
-            {exchangeRates.map(currency => (
-              <tr key={currency.ccy} className={styles.tr}>
-                <td className={styles.td}>{currency.ccy}</td>
-                <td className={styles.td}>{currency.buy}</td>
-                <td className={styles.td}>{currency.sale}</td>
+            <thead>
+              <tr className={styles.tr}>
+                <th className={styles.th}>Валюта</th>
+                <th className={styles.th}>курс покупки</th>
+                <th className={styles.th}>курс продажи</th>
               </tr>
-            ))}
-          </tbody>
+            </thead>
+            <tbody>
+              {exchangeRates.map(currency => (
+                <tr key={currency.ccy} className={styles.tr}>
+                  <td className={styles.td}>{currency.ccy}</td>
+                  <td className={styles.td}>{currency.buy}</td>
+                  <td className={styles.td}>{currency.sale}</td>
+                </tr>
+              ))}
+            </tbody>
           </table>
           <h4 className={styles.title}>* курс биткоина указан в USD</h4>
         </div>
