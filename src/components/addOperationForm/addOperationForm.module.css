@@ -18,11 +18,6 @@
   text-align: center;
 }
 
-.costsInput {
-  display: inline-block;
-  position: relative;
-}
-
 .categoryInput {
   position: absolute;
   height: 40px;
