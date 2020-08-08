@@ -61,3 +61,13 @@ export const makeSummary = costs => {
 
   return summaryAcc;
 };
+
+export const filterProducts = (array, value) =>
+  array.filter(item =>
+    item.name.toLowerCase().trim().includes(value.toLowerCase().trim()),
+  );
+
+export const findProducts = (array, value) =>
+  array.find(item =>
+    item.name.toLowerCase().trim().includes(value.toLowerCase().trim()),
+  );

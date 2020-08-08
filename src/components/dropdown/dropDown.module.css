@@ -1,0 +1,19 @@
+.costsInput__dropdown {
+  position: absolute;
+  background-color: #fff;
+  max-height: 300px;
+  overflow: auto;
+  width: 356px;
+  border: 2px solid rgb(244, 246, 251);
+  border-bottom-right-radius: 16px;
+  font-family: 'RobotoRegular';
+  font-size: 13px;
+}
+
+.dropdownItem {
+  padding: 6px 18px 0;
+}
+
+.dropdownItem:hover {
+  background-color: #ffa162;
+}
