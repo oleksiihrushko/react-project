@@ -11,7 +11,7 @@ import {
   addIncome,
   addCosts,
 } from '../../redux/finance/financeOperations';
-import DropdownItem from '../dropdownItem/DropdownItem';
+import Dropdown from '../dropdown/Dropdown';
 import { filterProducts, findProducts } from '../../services/helpers';
 
 const OperationForm = ({ operationType, setOperation }) => {
@@ -31,10 +31,6 @@ const OperationForm = ({ operationType, setOperation }) => {
   const dispatch = useDispatch();
   const categoryList = useSelector(categoriesSelector);
   const products = useSelector(state => state.operations.products);
-
-  // useEffect(() => {
-  //   dispatch(getCategories());
-  // }, []);
 
   const changeTotalByCalc = () => {
     setTotal(displayValue);
@@ -101,8 +97,6 @@ const OperationForm = ({ operationType, setOperation }) => {
       const productStored = findProducts(products, description);
       const costDescription = productStored?.name || description;
       const productId = productStored?._id;
-      console.log('productId :>> ', productId);
-      console.log('costDescription :>> ', costDescription);
       dispatch(
         addCosts(
           costDescription,
@@ -302,15 +296,13 @@ const OperationForm = ({ operationType, setOperation }) => {
                     }}
                     readOnly={operationType === 'credit' && 'readOnly'}
                   />
-                  <ul className="costsInput__dropdown">
-                    {filteredProducts.map(item => (
-                      <DropdownItem
-                        description={item.name}
-                        id={item._id}
-                        handleClick={setDescription}
-                      />
-                    ))}
-                  </ul>
+                  {filteredProducts.length > 0 && (
+                    <Dropdown
+                      filteredProducts={filteredProducts}
+                      setFilteredProducts={setFilteredProducts}
+                      handleClick={setDescription}
+                    />
+                  )}
                 </div>
 
                 <select

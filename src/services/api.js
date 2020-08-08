@@ -27,10 +27,7 @@ const addIncome = income => axios.post('/income', income);
 
 const deleteIncome = id => axios.delete(`/income/${id}`);
 
-const addCosts = costs => {
-  console.log(111);
-  axios.post('/costs', costs);
-};
+const addCosts = costs => axios.post('/costs', costs);
 
 const getCosts = date => axios.get('/costs', date);
 

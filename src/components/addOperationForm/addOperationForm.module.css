@@ -20,6 +20,7 @@
 
 .costsInput {
   display: inline-block;
+  position: relative;
 }
 
 .categoryInput {
