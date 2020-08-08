@@ -18,16 +18,19 @@
 }
 
 .titleDescription {
-  padding-right: 106px;
+  padding-right: 82px;
 }
 
 .titleCategory {
   padding-right: 74px;
 }
 
+.titleSumm{
+  padding-right: 40px;
+}
+
 @media (min-width: 1280px) {
   .titlesList {
     margin: 0;
-     width: 75%;
   }
 }

@@ -6,16 +6,29 @@
   padding: 32px;
 }
 
+.formAlert {
+  position: absolute;
+  background-color: rgba(255, 38, 0, 0.295);
+  border: 2px solid rgb(244, 246, 251);
+
+  border-radius: 8px;
+  font-family: 'RobotoRegular';
+  font-size: 18px;
+  line-height: 26px;
+  text-align: center;
+}
+
 .categoryInput {
   position: absolute;
-  height: 45px;
+  height: 40px;
   width: 116px;
-  border: 2px solid rgb(244, 246, 251);
-  border-right: 0;
+  border: none;
+  border-left: 2px solid rgb(244, 246, 251);
   padding-left: 14px;
   font-family: 'RobotoRegular';
   font-size: 13px;
-  right: 155px;
+  right: 157px;
+  top: 34px;
 }
 
 .dateInput {
@@ -119,6 +132,15 @@
 }
 
 @media (max-width: 767px) {
+  .formAlert {
+    z-index: 101;
+    bottom: 5vh;
+    left: 50vw;
+    transform: translateX(-50%);
+    font-size: 15px;
+    width: 200px;
+  }
+
   .debit {
     border-radius: 0;
     top: inherit;
@@ -167,7 +189,8 @@
     z-index: 100;
     width: 100vw;
     height: 100vh;
-    top: 55px;
+    top: 50px;
+    left: 0;
     background-color: gray;
   }
 
@@ -283,6 +306,13 @@
 }
 
 @media (min-width: 768px) {
+  .formAlert {
+    top: 111px;
+    left: 20px;
+    width: 178px;
+    font-size: 13px;
+  }
+
   .operationContainer {
     position: relative;
   }
@@ -295,6 +325,13 @@
 }
 
 @media (min-width: 1280px) {
+  .formAlert {
+    height: 30px;
+    width: 300px;
+    top: 16px;
+    left: 771px;
+  }
+
   .operationForm {
     width: 1091px;
   }
@@ -304,8 +341,8 @@
   }
 
   .categoryInput {
-    right: 438px;
-    top: 58px;
+    right: 442px;
+    top: 61px;
   }
 
   .totalInput {
@@ -325,5 +362,11 @@
     position: absolute;
     right: 327px;
     top: 71px;
+  }
+  .debit {
+    left: -20px;
+  }
+  .credit {
+    left: 120px;
   }
 }

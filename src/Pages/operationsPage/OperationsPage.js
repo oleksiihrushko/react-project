@@ -53,13 +53,10 @@ const OperationsPage = () => {
     dispatch(getDataOnInit());
   }, []);
 
-  useEffect(() => { 
+  useEffect(() => {
     if (window.matchMedia('(max-width: 767px)').matches) {
-      console.log('mobile');
-
       setOperationsData(mobileOperations);
     } else {
-      console.log('not mobile');
       operationType === 'debit'
         ? setOperationsData(costsOperations)
         : setOperationsData(incomeOperations);
@@ -76,50 +73,48 @@ const OperationsPage = () => {
 
   return (
     <div className={`container`}>
+      <div className={styles.forBg}></div>
       <OperationsHeader />
-      <div>
+      <div className={styles.operationListWrapper}>
         <AddOperationForm
           operationType={operationType}
           setOperation={setOperation}
         />
-        <div className={styles.operationListWrapper}>
-
-            <Media
-              queries={{
-                small: '(max-width: 767px)',
-              }}
-            >
-              {matches => (
-                <Fragment>
-                  {matches.small ? (
-                    <MobileList
-                      operations={operationsData}
-                      setIsMobile={setIsMobile}
-                    />
-                  ) : operationType === 'debit' ? (
-                    <OperationList
-                      operations={operationsData}
-                      setIsMobile={setIsMobile}
-                    />
-                  ) : (
-                    <IncomeList
-                      operations={operationsData}
-                      setIsMobile={setIsMobile}
-                    />
-                  )}
-                </Fragment>
-              )}
-            </Media>
-
-         
-            {!window.matchMedia('(max-width: 767px)').matches && (
-              <OperationSummaryContainer
-                type={operationType}
-                setOperationsData={setOperationsData}
-              />
+        <div className={styles.pageWrapp}>
+          <Media
+            queries={{
+              small: '(max-width: 767px)',
+            }}
+          >
+            {matches => (
+              <Fragment>
+                {matches.small ? (
+                  <MobileList
+                    operations={operationsData}
+                    setIsMobile={setIsMobile}
+                  />
+                ) : operationType === 'debit' ? (
+                  <OperationList
+                    operations={operationsData}
+                    setIsMobile={setIsMobile}
+                  />
+                ) : (
+                  <IncomeList
+                    operations={operationsData}
+                    setIsMobile={setIsMobile}
+                  />
+                )}
+              </Fragment>
             )}
-
+          </Media>
         </div>
+
+        {!window.matchMedia('(max-width: 767px)').matches && (
+          <OperationSummaryContainer
+            type={operationType}
+            setOperationsData={setOperationsData}
+          />
+        )}
       </div>
     </div>
   );

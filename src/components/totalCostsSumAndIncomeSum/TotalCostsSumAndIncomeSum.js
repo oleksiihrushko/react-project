@@ -4,25 +4,24 @@ import s from './TotalCostsSumAndIncomeSum.module.css';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
 
-const getCostsSum = (array) =>
-array.reduce((acc, item) => {
-  return acc + item.amount;
-}, 0);
+const getCostsSum = array =>
+  array.reduce((acc, item) => {
+    return acc + item.amount;
+  }, 0);
 
 const filterCosts = (array, year, month1) => {
   console.log('year :>> ', year);
   console.log('month1 :>> ', month1);
   console.log('array :>> ', array);
-  return array.filter((item) => {
-    const startMonth = new Date(year, month1, 1, 0, 0 );
-    const endMonth = new Date(year, month1  + 1, 1, 0, 0);
+  return array.filter(item => {
+    const startMonth = new Date(year, month1 - 1, 1, 0, 0);
+    const endMonth = new Date(year, month1 , 1, 0, 0);
     const res =
       item.date > startMonth.toISOString() &&
       item.date < endMonth.toISOString();
-      return res;
+    return res;
   });
 };
-
 
 function TotalCostsSumAndIncomeSum() {
   const costs = useSelector(state => state.operations.costs);
@@ -31,34 +30,60 @@ function TotalCostsSumAndIncomeSum() {
   const year = date2.split('.')[2];
   const month = date2.split('.')[1];
 
-  const filteredCosts = filterCosts(costs,year, month);
-  const filteredIncome = filterCosts(income,year, month);
+  console.log(1111111, date2);
 
-  const costsSum = getCostsSum(filteredCosts);
-  const incomeSum = getCostsSum(filteredIncome);
+  const filteredCosts =
+    date2 && date2 !== 'Invalid date' && filterCosts(costs, year, month);
+  const filteredIncome =
+    date2 && date2 !== 'Invalid date' && filterCosts(income, year, month);
 
-      return (
-      <div className={"container"}>
+  const costsSum =
+    date2 && date2 !== 'Invalid date' && getCostsSum(filteredCosts);
+  const incomeSum =
+    date2 && date2 !== 'Invalid date' && getCostsSum(filteredIncome);
+
+  
+    const exchangeRatesUSD = Number(
+      useSelector(state => state.exchangeRatesRoot.exchangeRates[0]?.buy),
+    );
+    const exchangeRatesEUR = Number(
+      useSelector(state => state.exchangeRatesRoot.exchangeRates[1]?.buy),
+    );
+    const currentCurrency = useSelector(
+      state => state.exchangeRatesRoot.exchangeCurrency,
+    );
+    const ballanceExchange = (currentCurrency, balance) => {
+      if (currentCurrency === 'USD')
+        return Math.floor(balance / exchangeRatesUSD);
+      if (currentCurrency === 'EUR')
+        return Math.floor(balance / exchangeRatesEUR);
+      if (currentCurrency === 'UAH') return balance;
+    };
+
+  return (
+    date2 && (
+      <div className={'container'}>
         <div className={s.fon}>
           <div className={s.wrapper}>
             <div className={s.column}>
               <p className={s.stat_title}>Расходы:</p>
-              <p className={s.stat_exp}>-{costsSum} грн</p>
+              <p className={s.stat_exp}>-{ballanceExchange( currentCurrency,costsSum)} {currentCurrency}</p>
             </div>
             <div className={s.separate} />
             <div className={s.column}>
               <p className={s.stat_title}>Доходы:</p>
-              <p className={s.stat_inc}>{incomeSum} грн</p>
+              <p className={s.stat_inc}>{ballanceExchange( currentCurrency,incomeSum)} {currentCurrency}</p>
             </div>
           </div>
         </div>
       </div>
-    );
-  }
+    )
+  );
+}
 
-  TotalCostsSumAndIncomeSum.propTypes = {
-    costsSum: PropTypes.number.isRequired,
-    incomeSum: PropTypes.number.isRequired,
-  };
+TotalCostsSumAndIncomeSum.propTypes = {
+  costsSum: PropTypes.number.isRequired,
+  incomeSum: PropTypes.number.isRequired,
+};
 
-    export default TotalCostsSumAndIncomeSum;
+export default TotalCostsSumAndIncomeSum;
