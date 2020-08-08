@@ -1,4 +1,5 @@
 import React, { Suspense } from 'react';
+import Media from 'react-media';
 import {
   BrowserRouter,
   Switch,
@@ -18,9 +19,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Header />
-      <Suspense fallback={<CommonLoading color='orange' size='large' />}>
-      {/* <Suspense fallback={<h1>Loading...</h1>}> */}
-        {/* <TotalCostsSumAndIncomeSum /> */}
+      <Suspense fallback={<CommonLoading color="orange" size="large" />}>
         <Switch>
           {routes.map(route => {
             return route.private ? (
@@ -35,7 +34,11 @@ const App = () => {
           })}
           <Redirect to="/" />
         </Switch>
-      <Footer />
+
+        <Media queries={{ small: '(max-width: 767px)' }}>
+          {!matches && <Footer />}
+           
+        
       </Suspense>
     </BrowserRouter>
   );
