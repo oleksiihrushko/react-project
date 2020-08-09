@@ -25,18 +25,6 @@ export const getBarChartOptions = currency => {
         },
       ],
     },
-    tooltips: {
-      displayColors: false,
-      titleFontSize: 11,
-      bodyFontSize: 10,
-      xPadding: 10,
-      yPadding: 10,
-      callbacks: {
-        label: (tooltipItem, data) => {
-          return `${currency}  ${tooltipItem.value}`;
-        },
-      },
-    },
     plugins: {
       datalabels: {
         color: '#333',
@@ -89,17 +77,6 @@ export const getHorizontalBarChartOptions = (currency, max) => {
       ],
     },
 
-    tooltips: {
-      displayColors: false,
-      titleFontSize: 11,
-      bodyFontSize: 10,
-      callbacks: {
-        label: (tooltipItem, data) => {
-          return `${currency}  ${tooltipItem.value}`;
-        },
-      },
-    },
-
     plugins: {
       datalabels: {
         labels: {
@@ -137,12 +114,13 @@ export const pieChartOptions = {
       align: 'end',
       anchor: 'end',
       formatter: data => {
-        return `${data} %`;
+        return `${data}%`;
       },
       font: {
         weight: 'normal',
         size: 10,
       },
+      display: 'auto',
     },
   },
   layout: {
@@ -155,6 +133,15 @@ export const pieChartOptions = {
       fontSize: 12,
       padding: 10,
       usePointStyle: true,
+    },
+  },
+  tooltips: {
+    callbacks: {
+      label: (tooltipItem, data) => {
+        return `${data.labels[tooltipItem.index]} ${
+          data.datasets[0].data[tooltipItem.index]
+        }%`;
+      },
     },
   },
 };
