@@ -28,17 +28,23 @@ const Chart = ({ currentCategory }) => {
     ChartSettings.defaults.global.legend.display = true;
   }
 
+  const barTab = [styles.tabButton];
+  const pieTab = [styles.tabButton];
+  activeTab === 'bar'
+    ? barTab.push(styles.btnActive)
+    : pieTab.push(styles.btnActive);
+
   return (
     Object.keys(data).length !== 0 && (
       <div className="container">
         <div className={styles.tabLinks}>
           <button
-            className={styles.tabButton}
+            className={barTab.join(' ')}
             type="button"
             onClick={() => setActiveTab('bar')}
           >{`График расходов в ${currencySign}`}</button>
           <button
-            className={styles.tabButton}
+            className={pieTab.join(' ')}
             type="button"
             onClick={() => setActiveTab('pie')}
           >
