@@ -129,3 +129,34 @@ export const getHorizontalBarChartOptions = (currency, max) => {
     },
   };
 };
+
+export const pieChartOptions = {
+  mainPieSize: 1,
+  plugins: {
+    datalabels: {
+      color: '#333',
+      align: 'end',
+      anchor: 'end',
+      formatter: data => {
+        return `${data} %`;
+      },
+      font: {
+        weight: 'normal',
+        size: 10,
+      },
+    },
+  },
+  layout: {
+    padding: {
+      bottom: 30,
+    },
+  },
+  legend: {
+    // fullWidth: false,
+    labels: {
+      fontSize: 12,
+      padding: 6,
+      // usePointStyle: true,
+    },
+  },
+};
