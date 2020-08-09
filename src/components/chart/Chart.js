@@ -30,33 +30,32 @@ const Chart = ({ currentCategory }) => {
 
   const barTab = [styles.tabButton];
   const pieTab = [styles.tabButton];
+
   activeTab === 'bar'
     ? barTab.push(styles.btnActive)
     : pieTab.push(styles.btnActive);
 
-  return (
-    Object.keys(data).length !== 0 && (
-      <div className="container">
-        <div className={styles.tabLinks}>
-          <button
-            className={barTab.join(' ')}
-            type="button"
-            onClick={() => setActiveTab('bar')}
-          >{`График расходов в ${currencySign}`}</button>
-          <button
-            className={pieTab.join(' ')}
-            type="button"
-            onClick={() => setActiveTab('pie')}
-          >
-            График расходов в %
-          </button>
-        </div>
-
-        {activeTab === 'bar' && <BarChart currentCategory={currentCategory} />}
-        {activeTab === 'pie' && <PieChart currentCategory={currentCategory} />}
+  return data && Object.keys(data).length > 0 ? (
+    <div className="container">
+      <div className={styles.tabLinks}>
+        <button
+          className={barTab.join(' ')}
+          type="button"
+          onClick={() => setActiveTab('bar')}
+        >{`График расходов в ${currencySign}`}</button>
+        <button
+          className={pieTab.join(' ')}
+          type="button"
+          onClick={() => setActiveTab('pie')}
+        >
+          График расходов в %
+        </button>
       </div>
-    )
-  );
+
+      {activeTab === 'bar' && <BarChart currentCategory={currentCategory} />}
+      {activeTab === 'pie' && <PieChart currentCategory={currentCategory} />}
+    </div>
+  ) : null;
 };
 
 export default Chart;
