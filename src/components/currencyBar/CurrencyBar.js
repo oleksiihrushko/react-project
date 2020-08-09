@@ -3,11 +3,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import exchangeRatesSelectors from '../../redux/exchange/exchangeRatesSelectors';
 import exchangeRatesActions from '../../redux/exchange/exchangeRatesActions';
-import Media from 'react-media';
+
 
 import styles from './CurrencyBar.module.css';
 
-import { ReactComponent as Currency } from '../../ui/statisticsPage/currencyBar/currency.svg';
 import { ReactComponent as Uah } from '../../ui/statisticsPage/currencyBar/hryvnia.svg';
 import { ReactComponent as Usd } from '../../ui/statisticsPage/currencyBar/dollar.svg';
 import { ReactComponent as Eur } from '../../ui/statisticsPage/currencyBar/euro.svg';
@@ -39,24 +38,13 @@ class currencyBar extends Component {
     this.props.onShowEUR();
   };
 
-  // handleChangeBTC = () => {
-  //   this.props.onShowBTC();
-  // };
 
   render() {
-    // console.log(this.props.exchangeCurrency)
     return (
       <>
         <div className={styles.currencyBar} onClick={this.handleClickOpen}>
-          <div className={styles.currencyButton}>
-            <Currency className={styles.changeColorSvg} />
-          </div>
-          <Media query="(min-width: 768px)">
-            {matches =>
-              matches ? <p className={styles.buttonText}>Валюта</p> : <p></p>
-            }
-          </Media>
-
+    
+          <p className={styles.buttonText}>Валюта</p>
           {this.state.open && (
             <ul className={styles.popover}>
               <li className={styles.menuItem} onClick={this.handleChangeUAH}>

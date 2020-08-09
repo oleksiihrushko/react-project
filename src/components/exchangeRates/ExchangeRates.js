@@ -20,7 +20,7 @@ class ExchangeRates extends Component {
 
   render() {
     const { exchangeRates } = this.props;
-    // console.log(exchangeRates);
+
 
     const { date } = this.state;
 
@@ -28,8 +28,8 @@ class ExchangeRates extends Component {
       <>
         <div className={`${styles.ExchangeRatesWrapper} container`}>
           <table className={styles.table}>
-            <caption className="text-danger">
-              <span>курс валют на: {date && moment(date).format('L')}</span>
+            <caption className={styles.caption}>
+              <span>курс валют на: <span className={styles.captionSpan}>{date && moment(date).format('L')}</span></span>
             </caption>
 
             <thead>
@@ -40,13 +40,15 @@ class ExchangeRates extends Component {
               </tr>
             </thead>
             <tbody>
-              {exchangeRates.map(currency => (
+              {exchangeRates.map(currency => {
+                
+                return(
                 <tr key={currency.ccy} className={styles.tr}>
                   <td className={styles.td}>{currency.ccy}</td>
-                  <td className={styles.td}>{currency.buy}</td>
-                  <td className={styles.td}>{currency.sale}</td>
-                </tr>
-              ))}
+                  <td className={styles.td}>{parseFloat(currency.buy).toFixed(2)}</td>
+                  <td className={styles.td}>{parseFloat(currency.sale).toFixed(2)}</td>
+                </tr>)
+              })}
             </tbody>
           </table>
           <h4 className={styles.title}>* курс биткоина указан в USD</h4>

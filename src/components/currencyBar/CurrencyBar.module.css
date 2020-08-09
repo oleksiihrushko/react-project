@@ -1,5 +1,7 @@
 .currencyBar {
   min-width: 10px;
+  cursor: pointer;
+  border: none;
 }
 .wrapper {
   position: relative;
@@ -19,7 +21,7 @@
   position: absolute;
   /* background-color: #fff; */
   padding: 0;
-  top: 45px;
+  top: 55px;
   right: 0;
   left: 0;
   display: flex;
@@ -37,6 +39,18 @@
   color: #fff;
 }
 
+.menuItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 66px;
+  border: none;
+  border-radius: 17px;
+  box-shadow: 1px 2px 3px rgba(170, 178, 197, 0.29);
+  background-color: #fff;
+}
+
 .menuItem:hover {
   transition: 0.3s ease-in-out;
   background-color: #ff6c0acc;
@@ -52,22 +66,22 @@
   fill: #ff6b08;
 }
 
+@media (min-width: 768px) and (max-width: 1279px) {
+  .currencyBar {
+    margin-right: 5px;
+  }
+}
+
 @media (min-width: 768px) {
   .popover {
     display: flex;
     align-items: center;
     justify-content: center;
+    top: 45px;
   }
 
   .menuItem {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 100px;
-    border: none;
-    border-radius: 17px;
-    box-shadow: 1px 2px 3px rgba(170, 178, 197, 0.29);
-    background-color: #fff;
   }
   .currencyBar {
     position: relative;
@@ -76,9 +90,7 @@
     flex-wrap: nowrap;
     justify-content: space-around;
     align-items: center;
-
     padding: 10px 20px;
-    margin-right: 10px;
     height: 45px;
     border: none;
     border-radius: 17px;
@@ -88,7 +100,6 @@
     font-weight: 500;
     text-transform: uppercase;
     color: #52555f;
-    /* opacity: 0.75; */
   }
 
   .currencyBar:hover .changeColorSvg {

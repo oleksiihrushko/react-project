@@ -1,56 +1,78 @@
 .overlay {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgb(128, 128, 128, 0.3);
-    z-index: 999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .modalWindow {
-    margin-bottom: 40px;
-    position: relative;
-    margin: 0 auto;
-    height: 300px;
-    width: 520px;
-    background-color: white;
-    border-radius: 25px;
-    position: relative;
-  }
-  
-  .modalDescription {
-    font-size: 13px;
-    position: absolute;
-    top: 40px;
-    left: 40px;
-  }
-  
-  .borderBtn {
-    display: flex;
-    justify-content: space-between;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(128, 128, 128, 0.3);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.modalWindow {
+  margin-bottom: 40px;
+  position: relative;
+  margin: 0 auto;
+  height: 50vh;
+  width: 100vw;
+  background-color: white;
+  border-radius: 25px;
+  position: relative;
+}
+
+.modalDescription {
+  font-size: 14px;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+
+.borderBtn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btnModal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 24px;
+  width: 24px;
+  background-color: white;
+  border: 1.5px solid gray;
+  border-radius: 50%;
+  font-size: 11px;
+}
+
+.btnModal:hover,
+.btnModal:focus {
+  background-color: orange;
+  border: none;
+  color: white;
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .modalWindow {
+    height: 55vh;
+    width: 70vw;
   }
-  
   .btnModal {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    height: 24px;
-    width: 24px;
-    background-color: white;
-    border: 1.5px solid gray;
-    border-radius: 11px;
-    font-size: 11px;
+    height: 35px;
+    width: 35px;
+    font-size: 14px;
   }
-  
-  .btnModal:hover,
-  .btnModal:focus {
-    background-color: orange;
-    border: none;
-    color: white;
+}
+
+@media (min-width: 1280px) {
+  .modalWindow {
+    height: 50vh;
+    width: 40vw;
   }
-  
+  .btnModal {
+    height: 40px;
+    width: 40px;
+    font-size: 20px;
+  }
+}
