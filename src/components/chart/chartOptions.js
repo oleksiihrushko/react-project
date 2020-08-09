@@ -131,7 +131,6 @@ export const getHorizontalBarChartOptions = (currency, max) => {
 };
 
 export const pieChartOptions = {
-  mainPieSize: 1,
   plugins: {
     datalabels: {
       color: '#333',
@@ -152,11 +151,10 @@ export const pieChartOptions = {
     },
   },
   legend: {
-    // fullWidth: false,
     labels: {
       fontSize: 12,
-      padding: 6,
-      // usePointStyle: true,
+      padding: 10,
+      usePointStyle: true,
     },
   },
 };
