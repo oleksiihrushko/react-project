@@ -7,6 +7,14 @@
 .calendarWrapper {
   text-align: center;
 }
+.balanceCurrency {
+  padding-left: 10px;
+  color: #000000
+}
+.statisticsSpan {
+  color: #447b46;
+  font-weight: bold;
+}
 
 .calendarText {
   margin: 0;
@@ -24,7 +32,6 @@
 }
 
 .statisticsHeaderWrapper {
-
   position: relative;
   display: flex;
   justify-content: center;
@@ -43,10 +50,11 @@
   justify-content: center;
   margin: 0;
   align-items: center;
-  height: 43px;
+  height: 45px;
   border-radius: 19px;
   border: 2px solid #ffffff;
-  background-color: #f4f6fb;
+  background-color: #ffffff;
+  box-shadow: 1px 2px 3px rgba(170, 178, 197, 0.29);
 }
 
 .balance {
@@ -62,14 +70,15 @@
 
 .changeColorSvg {
   fill:#ff6b08;
-
   opacity: 0.75;
 }
 
 @media (max-width: 767px) {
   .statisticsHeaderBalance {
-    margin-bottom: 36px;
+    margin-bottom: 15px;
   }
+
+
 
   .buttonGoBack {
     position: absolute;
@@ -80,28 +89,50 @@
   }
   .currencyBar {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    bottom: -25px;
+    left: 10px;
+    padding: 20px 10px;
+    background-color: #fff;
+    border-radius: 17px;
+    box-shadow: 1px 2px 3px rgba(170, 178, 197, 0.29);
+    font-family: 'RobotoRegular';
+    font-weight: 500;
   }
 
   .exchangeRates {
     position: absolute;
-    bottom: 10px;
+    bottom: -25px;
     right: 10px;
-
+    padding: 20px 10px;
+    border: none;
+    background-color: #fff;
+    border-radius: 17px;
+    box-shadow: 1px 2px 3px rgba(170, 178, 197, 0.29);
+    font-family: 'RobotoRegular';
+    font-weight: 500;
   }
   .statisticsHeaderWrapper {
-    margin-bottom: 36px;
-    /* height: 220px; */
+    margin-bottom: 40px;
+  
   }
 
   .calendarWrapper {
-    margin-bottom: 36px;
+    margin-bottom: 50px;
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1279px) {
+  .buttonGoBack {
+    margin-right: 5px;
+}
+}
 
+
+@media (min-width: 768px) {
+.balanceBar {
+  padding-bottom: 13px;
+  
+}
   .changeColorSvg {
     margin-right: 10px;
   }
@@ -119,7 +150,7 @@
     align-items: center;
     cursor: pointer;
     padding: 10px 10px;
-    width: 100px;
+    /* width: 100px; */
     height: 45px;
     border: none;
     background-color: #fff;
@@ -154,6 +185,7 @@
     text-transform: uppercase;
     opacity: 0.75;
     color: #52555f;
+    cursor: pointer;
   }
 
 
@@ -171,8 +203,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 10px;
-    margin-right: 7px;
-    width: 170px;
+
     height: 45px;
     border: none;
     background-color: #fff;
@@ -207,12 +238,11 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-
   }
 
    .statisticsHeaderWrapper {
     height: 160px;
-    padding: 0 10px;
+    padding: 0 ;
     position: relative;
     justify-content: space-between;
     align-items: center;
@@ -224,15 +254,14 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 54%;
+    width: 52%;
   }
 
   .rightBar {
     display: flex;
-
     justify-content: space-around;
     align-items: center;
-    width: 46%;
+    width: 48%;
   }
   .calendarWrapper {
     justify-content: center;

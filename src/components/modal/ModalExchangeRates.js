@@ -25,7 +25,6 @@ const ModalExchangeRates = ({ closeModal }) => {
 
     return () => {
       window.removeEventListener('keydown', handleKeydown);
-      //! не снят слушатель с окна
       modalRef.current.removeEventListener('click', handleClickModal);
     };
   }, []);
