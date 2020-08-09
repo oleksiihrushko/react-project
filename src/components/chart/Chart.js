@@ -35,7 +35,7 @@ const Chart = ({ currentCategory }) => {
     ? barTab.push(styles.btnActive)
     : pieTab.push(styles.btnActive);
 
-  return Object.keys(data).length > 0 ? (
+  return data && Object.keys(data).length > 0 ? (
     <div className="container">
       <div className={styles.tabLinks}>
         <button
