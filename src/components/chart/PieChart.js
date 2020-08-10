@@ -58,7 +58,7 @@ const PieChart = ({ currentCategory }) => {
           data={chartData}
           options={pieChartOptions}
           width={160}
-          height={200}
+          height={210}
         />
       )}
 
