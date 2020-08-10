@@ -1,39 +1,13 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Chart as ChartDefault, Bar, HorizontalBar } from 'react-chartjs-2';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { getData } from './chartServices';
-import {
-  getBarChartOptions,
-  getHorizontalBarChartOptions,
-} from './chartOptions';
-import {
-  useWindowWidth,
-  backgroundColor,
-  getCurrencySign,
-  getRate,
-  calculateHeight,
-} from './helpers';
-import './roundedBars';
+import { Chart as ChartSettings } from 'react-chartjs-2';
+import { getCurrencySign, getFilteredData } from './helpers';
+import BarChart from './BarChart';
+import PieChart from './PieChart';
 import styles from './Chart.module.css';
 
-ChartDefault.defaults.global.legend.display = false;
-
 const Chart = ({ currentCategory }) => {
-  const [chartData, setChartData] = useState({});
-
-  const categories = useSelector(state => state.operations.categories);
-
-  const categoriesNames = useMemo(
-    () => categories.map(category => category.name),
-    [categories],
-  );
-
-  const date = useSelector(state => state.statistics.month);
-  const month = date && Array.from(date).splice(3, 2).join('') - 1;
-  const year = date && Array.from(date).splice(6, 4).join('');
-
-  const products = useSelector(state => state.operations.costs);
+  const [activeTab, setActiveTab] = useState('bar');
 
   const currentCurrency = useSelector(
     state => state.exchangeRatesRoot.exchangeCurrency,
@@ -41,102 +15,47 @@ const Chart = ({ currentCategory }) => {
 
   const currencySign = getCurrencySign(currentCurrency);
 
-  const exchangeRates = useSelector(
-    state => state.exchangeRatesRoot.exchangeRates,
-  );
-  const exchangeCurrency = useSelector(
-    state => state.exchangeRatesRoot.exchangeCurrency,
-  );
+  const date = useSelector(state => state.statistics.month);
+  const products = useSelector(state => state.operations.costs);
 
-  const exchangeInfo = useMemo(() => getRate(exchangeRates, exchangeCurrency), [
-    exchangeRates,
-    exchangeCurrency,
-  ]);
+  const data = getFilteredData(currentCategory, date, products);
 
-  const valuesRef = useRef();
+  if (activeTab === 'bar') {
+    ChartSettings.defaults.global.legend.display = false;
+  }
 
-  const drawChart = () => {
-    const data = getData(
-      products,
-      currentCategory,
-      Number(month),
-      Number(year),
-    );
+  if (activeTab === 'pie') {
+    ChartSettings.defaults.global.legend.display = true;
+  }
 
-    // console.log('data', data);
+  const barTab = [styles.tabButton];
+  const pieTab = [styles.tabButton];
 
-    const exchangeRate =
-      currentCurrency !== 'UAH' && exchangeInfo && Number(exchangeInfo[0]?.buy);
+  activeTab === 'bar'
+    ? barTab.push(styles.btnActive)
+    : pieTab.push(styles.btnActive);
 
-    const values = data && Object.values(data);
+  return data && Object.keys(data).length > 0 ? (
+    <div className="container">
+      <div className={styles.tabLinks}>
+        <button
+          className={barTab.join(' ')}
+          type="button"
+          onClick={() => setActiveTab('bar')}
+        >{`График расходов в ${currencySign}`}</button>
+        <button
+          className={pieTab.join(' ')}
+          type="button"
+          onClick={() => setActiveTab('pie')}
+        >
+          График расходов в %
+        </button>
+      </div>
 
-    const convertedValues = data
-      ? values.map(value => {
-          if (currentCurrency === 'UAH') return value;
-
-          return Math.round(value / exchangeRate);
-        })
-      : [];
-
-    valuesRef.current = convertedValues;
-
-    setChartData({
-      labels: data && Object.keys(data),
-      datasets: [
-        {
-          data: convertedValues,
-          backgroundColor: backgroundColor,
-          barThickness: 18,
-        },
-      ],
-      plugins: [ChartDataLabels],
-    });
-  };
-
-  const height = chartData.labels && calculateHeight(chartData);
-  useEffect(() => {
-    drawChart();
-  }, [categoriesNames, date, currentCategory, exchangeInfo]);
-
-  const width = useWindowWidth();
-
-  return width > 767 ? (
-    <BarChart
-      valuesRef={valuesRef}
-      chartData={chartData}
-      currencySign={currencySign}
-    />
-  ) : (
-    <HorizontalChart
-      valuesRef={valuesRef}
-      chartData={chartData}
-      currencySign={currencySign}
-      height={height}
-    />
-  );
+      {activeTab === 'bar' && <BarChart currentCategory={currentCategory} />}
+      {activeTab === 'pie' && <PieChart currentCategory={currentCategory} />}
+    </div>
+  ) : null;
 };
 
 export default Chart;
-
-const BarChart = ({ valuesRef, chartData, currencySign }) => {
-  return valuesRef.current?.length > 0 ? (
-    <div className={`${styles.chartContainer} container`}>
-      <Bar data={chartData} options={getBarChartOptions(currencySign)} />
-    </div>
-  ) : null;
-};
-
-const HorizontalChart = ({ valuesRef, chartData, currencySign, height }) => {
-  return chartData.labels && height && valuesRef.current?.length > 0 ? (
-    <div
-      className={`${styles.horizontalChartContainer} container`}
-      // styles={{ position: 'relative', height: calculateHeight(chartData) }}
-    >
-      <HorizontalBar
-        data={chartData}
-        options={getHorizontalBarChartOptions(currencySign)}
-        // height={calculateHeight(chartData)}
-      />
-    </div>
-  ) : null;
-};

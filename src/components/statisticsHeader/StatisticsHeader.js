@@ -6,7 +6,6 @@ import ModalExchangeRates from '../modal/ModalExchangeRates';
 import { ReactComponent as ArrowBack } from '../../ui/statisticsPage/statisticsHeader/back.svg';
 import { ReactComponent as PrevMonth } from '../../ui/statisticsPage/statisticsHeader/leftArrow.svg';
 import { ReactComponent as NextMonth } from '../../ui/statisticsPage/statisticsHeader/rightArrow.svg';
-import { ReactComponent as Exchange } from '../../ui/statisticsPage/statisticsHeader/exchange.svg';
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
@@ -24,6 +23,10 @@ class StatisticsHeader extends Component {
     date: '',
     isShowModal: false,
   };
+
+//  balanceWithSpaces(x) {
+//     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+//   }
 
   componentDidMount() {
     if (this.props.exchangeRates.length === 0) {
@@ -82,8 +85,7 @@ class StatisticsHeader extends Component {
 
   render() {
     const { exchangeCurrency } = this.props;
-    console.log(exchangeCurrency);
-    // console.log(object)
+
     const { date } = this.state;
     return (
       <div className={`${styles.statisticsHeaderWrapper} container`}>
@@ -111,26 +113,21 @@ class StatisticsHeader extends Component {
               <ModalExchangeRates closeModal={this.closeModal} />
             )}
             <label>
-              <Exchange className={styles.changeColorSvg} />
 
-              <Media query="(min-width: 768px)">
-                {matches =>
-                  matches ? <p className={styles.buttonText}>Курс</p> : <p></p>
-                }
-              </Media>
+              <p className={styles.buttonText}>Курс валют</p>
             </label>
           </div>
         </div>
         <div className={styles.rightBar}>
-          <div>
-            <div>
+          <div >
+            <div className={styles.balanceBar}>
               <p className={styles.balance}>
                 Баланс на <span>{moment().format('L')}:</span>
               </p>
               <div className={styles.statisticsHeaderBalance}>
                 <span className={styles.statisticsSpan}>
-                  {Math.round(this.exchangeBalancePerCurrentCurrency())}{' '}
-                  {exchangeCurrency[0] ? exchangeCurrency[0].ccy : 'UAH'}
+                  {(Math.round(this.exchangeBalancePerCurrentCurrency())).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} 
+                  <span className={styles.balanceCurrency}>{exchangeCurrency[0] ? exchangeCurrency[0].ccy : 'UAH'}</span>
                 </span>
               </div>
             </div>

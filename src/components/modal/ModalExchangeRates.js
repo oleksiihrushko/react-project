@@ -2,7 +2,6 @@ import React, { createRef, useEffect } from 'react';
 import styles from './ModalExchangeRates.module.css';
 import ExchangeRates from '../exchangeRates/ExchangeRates';
 
-
 const ModalExchangeRates = ({ closeModal }) => {
   const handleKeydown = e => {
     if (e.code === 'Escape') {
@@ -11,7 +10,7 @@ const ModalExchangeRates = ({ closeModal }) => {
   };
 
   const handleClickModal = e => {
-    console.log(e.target);
+    // console.log(e.target);
     if (e.target === modalRef.current || e.target.nodeName === 'BUTTON') {
       closeModal();
     }
@@ -26,7 +25,6 @@ const ModalExchangeRates = ({ closeModal }) => {
 
     return () => {
       window.removeEventListener('keydown', handleKeydown);
-      //! не снят слушатель с окна 
       modalRef.current.removeEventListener('click', handleClickModal);
     };
   }, []);
@@ -34,7 +32,6 @@ const ModalExchangeRates = ({ closeModal }) => {
   return (
     <div ref={modalRef} className={styles.overlay}>
       <div className={styles.modalWindow}>
-
         <ExchangeRates />
         <div className="borderBtn">
           <button
@@ -51,6 +48,3 @@ const ModalExchangeRates = ({ closeModal }) => {
 };
 
 export default ModalExchangeRates;
-
-
-

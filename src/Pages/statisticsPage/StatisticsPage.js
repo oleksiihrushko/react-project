@@ -20,7 +20,7 @@ const StatistcsPage = () => {
     return;
   }, []);
   const [currentCategory, setCurrentCategory] = useState('All');
-  // console.log('currentCategory', currentCategory)
+
   return (
     <>
       <StatistcsHeader />

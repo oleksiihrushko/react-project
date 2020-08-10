@@ -14,6 +14,58 @@
 
 .horizontalChartContainer {
   max-width: 278px;
-  margin: 30px auto;
+  height: 24px;
+  margin: 24px auto;
   padding: 14px 26px;
+}
+
+.horLabel {
+  font-size: 11px;
+  padding-left: 10px;
+  transform: translateY(42px);
+}
+
+.chartWrapper {
+  margin-top: -54px;
+  margin-bottom: 60px;
+}
+
+/* TABS */
+
+.tabLinks {
+  margin-top: 70px;
+  margin-bottom: 32px;
+}
+
+.tabButton {
+  position: relative;
+  margin-left: 16px;
+  padding-bottom: 10px;
+  border: none;
+  outline: none;
+  color: #333;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: transparent;
+}
+
+.tabButton::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: rgba(255, 129, 45, 0.8);
+  transition: 0.4s;
+}
+
+.tabButton:hover::after {
+  background-color: rgba(255, 129, 45, 0.3);
+  width: 100%;
+}
+
+.btnActive::after {
+  width: 100%;
 }
