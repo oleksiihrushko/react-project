@@ -44,7 +44,7 @@ export const backgroundColor = [
 ];
 
 export const pieChartBgColors = [
-  'rgba(255, 140, 0, 0.8)',
+  'rgba(255, 129, 45, 0.8)',
   'rgba(255, 241, 0, 0.8)',
   'rgba(232, 17, 35, 0.8)',
   'rgba(236, 0, 140, 0.8)',
