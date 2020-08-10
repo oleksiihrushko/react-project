@@ -1,4 +1,7 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { ballanceExchange, getFilteredDate } from './currencyExchange';
+
 import styles from './CategoriesFilter.module.css';
 
 import { ReactComponent as Alcohol } from './svg/alcohol.svg';
@@ -14,40 +17,22 @@ import { ReactComponent as Sport } from './svg/sport.svg';
 import { ReactComponent as Tools } from './svg/tools.svg';
 import { ReactComponent as Chart } from './svg/bar_chart.svg';
 
-import { useSelector } from 'react-redux';
-
-
 export const TotalCountsCosts = ({ setCurrentCategory }) => {
   const allCosts = useSelector(state => state.operations.costs);
-  // data to Filter
   const dateToFilter = useSelector(state => state.statistics.month); ///++
-  const dateParce = dateToFilter.split('.').map(i => Number(i));
-  const monthToFilter = dateParce[1];
-  const yearToFilter = dateParce[2];
 
-  const getFilteredDate = allCosts.filter(costs => {
-    const allDates = costs.date;
-    const dataTarcsaction = new Date(allDates);
-    const currentMonthTarcsaction = dataTarcsaction.getMonth() + 1;
-    const currentYaerarcsaction = dataTarcsaction.getFullYear();
-
-    if (
-      monthToFilter === currentMonthTarcsaction &&
-      yearToFilter === currentYaerarcsaction
-    ) {
-      return true;
-    }
-  });
-  //   // console.log('Object.values total', Object.values(total))
-  //   // const onShow = Object.values(total).reduce((acc, item) => {
-  //   //   console.log('item', item);
-  //   //   if (!isNaN(item) ) {
-  //   //     acc += item;
-  //   //   }
-  const totalCategoryCost = getFilteredDate.reduce(
+  const exchangeRates = useSelector(
+    state => state.exchangeRatesRoot.exchangeRates,
+  );
+  const currentCurrency = useSelector(
+    state => state.exchangeRatesRoot.exchangeCurrency,
+  );
+  let ifNotEmpty = 0;
+  const totalCategoryCost = getFilteredDate(allCosts, dateToFilter).reduce(
     (acc, costs) => {
       acc[costs.product.category.name] =
         acc[costs.product.category.name] + costs.amount;
+      ifNotEmpty += costs.amount;
       return acc;
     },
     {
@@ -64,6 +49,7 @@ export const TotalCountsCosts = ({ setCurrentCategory }) => {
       Прочее: 0,
     },
   );
+
   const configs = [
     {
       name: 'Продукты',
@@ -121,68 +107,51 @@ export const TotalCountsCosts = ({ setCurrentCategory }) => {
       total: totalCategoryCost['Прочее'],
     },
   ];
-
-  const exchangeRates = useSelector(
-    state => state.exchangeRatesRoot.exchangeRates,
-  );
-  const exchangeRatesUSD = Number(
-    useSelector(state => state.exchangeRatesRoot.exchangeRates[0]?.buy),
-  );
-  const exchangeRatesEUR = Number(
-    useSelector(state => state.exchangeRatesRoot.exchangeRates[1]?.buy),
-  );
-  const currentCurrency = useSelector(
-    state => state.exchangeRatesRoot.exchangeCurrency,
-  );
-  const ballanceExchange = (currentCurrency, balance) => {
-    if (currentCurrency === 'USD')
-      return Math.floor(balance / exchangeRatesUSD);
-    if (currentCurrency === 'EUR')
-      return Math.floor(balance / exchangeRatesEUR);
-    if (currentCurrency === 'UAH') return balance;
-  };
+  const exchangeRatesUSD = Number(exchangeRates[0]?.buy);
+  const exchangeRatesEUR = Number(exchangeRates[1]?.buy);
 
   return (
-    <section className={`${styles.wrapper} ${styles.flex} container`}>
-      <ul className={`${styles.ul} ${styles.flex} }`} style={{ padding: 0 }}>
-        {configs.map(({ name, svg, total }) => {
-          return (
-            // total > 0 && (
-            <li key={name} className={`${styles.flex} ${styles.li}`}>
-              <button
-                onClick={() => {
-                  setCurrentCategory(name);
-                }}
-                className={styles.btn}
-              >
-                <p className={`${styles.prise}`}>
-                  {ballanceExchange(currentCurrency, total)}
-                </p>
-                <div className={styles.svg}>{svg}</div>
-                <p className={styles.name}>{name}</p>
-              </button>
-            </li>
-          );
-        })}
-        <li key="hg6HG55" className={`${styles.flex} ${styles.li}`}>
-          <button
-            onClick={() => {
-              setCurrentCategory('All');
-            }}
-            className={styles.btn}
-          >
-            <p className={`${styles.prise}`}>Все</p>
-            <div className={styles.svg}>
-              <Chart />
-            </div>
-            <p className={styles.name}>Категории</p>
-          </button>
-        </li>
-      </ul>
-    </section>
+    ifNotEmpty > 0 && (
+      <section className={`${styles.wrapper} ${styles.flex} container`}>
+        <ul className={`${styles.ul} ${styles.flex} }`} style={{ padding: 0 }}>
+          {configs.map(({ name, svg, total }) => {
+            return (
+              <li key={name} className={`${styles.flex} ${styles.li}`}>
+                <button
+                  onClick={() => {setCurrentCategory(name)}}
+                  className={styles.btn}
+                >
+                  <p className={`${styles.prise}`}>
+                    {ballanceExchange(
+                      exchangeRatesUSD,
+                      exchangeRatesEUR,
+                      currentCurrency,
+                      total,
+                    )}
+                  </p>
+                  <div className={styles.svg}>{svg}</div>
+                  <p className={styles.name}>{name}</p>
+                </button>
+              </li>
+            );
+          })}
+          <li key="hg6HG55" className={`${styles.flex} ${styles.li}`}>
+            <button
+              onClick={() => {setCurrentCategory('All')}}
+              className={styles.btn}
+            >
+              <p className={`${styles.prise}`}>Все</p>
+              <div className={styles.svg}>
+                <Chart />
+              </div>
+              <p className={styles.name}>Категории</p>
+            </button>
+          </li>
+        </ul>
+      </section>
+    )
   );
 };
-
 
 // import { makeSummary } from '../../services/helpers';
 
