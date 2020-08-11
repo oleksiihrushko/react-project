@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './ballanceRedactor.module.css';
 import GoToStatsButton from './GoToStatsButton/GoToStatsButton';
 import { addBalance } from '../../../redux/finance/financeOperations';
-// import { useFormik } from 'formik';ы
 import { ballanceExchange } from '../../categoriesFilter/currencyExchange';
 const BallanceRedactor = () => {
   // const [isFirstTransaction, setisFirstTransaction] = useState(true);
@@ -17,14 +16,10 @@ const BallanceRedactor = () => {
   const exchangeRatesRoot = useSelector(state => state.exchangeRatesRoot);
   const exchangeRates = exchangeRatesRoot.exchangeRates;
   const currentCurrency = exchangeRatesRoot.exchangeCurrency;
-  // console.log('currentCurrency', currentCurrency)
   const [isEditing, setEditing] = useState(false);
   const balance = useSelector(state => state.operations.balance);
 
   const [value, setValue] = useState(balance);
-  // console.log('currentCurrency', currentCurrency);
-  // console.log('value', value)
-  // console.log('newValue', newValue)
   useEffect(() => {
     window.addEventListener('keydown', escListener);
     return () => {
@@ -55,29 +50,36 @@ const BallanceRedactor = () => {
       return;
     }
     if (value) {
-      const newValue = value - balance;
-      // switch (currentCurrency) {
-      //   case 'USD':
-      //     console.log('111', 111);
-      //     const valueUSD = Math.floor(newValue * exchangeRatesUSD);
-      //     console.log('valueUSD', valueUSD);
-      //     dispatch(addBalance({ amount: valueUSD }));
-      //     setValue('');
-      //     togleEdit();
-      //     return;
-      //   case 'EUR':
-      //     dispatch(
-      //       addBalance({ amount: Math.round(newValue * exchangeRatesEUR) }),
-      //     );
-      //     setValue('');
-      //     togleEdit();
-      //     return;
-      //   default:
-      //     dispatch(addBalance({ amount: newValue }));
-      // }
-      dispatch(addBalance({ amount: newValue }));
-      setValue('');
-      togleEdit();
+      const newBalance = exchangeRates => balance / exchangeRates;
+      const getExchangeBalance = newBalance => value - newBalance;
+      const getNewValue = (getExchangeBalance, exchangeRate) => Math.round(getExchangeBalance * exchangeRate);
+
+      const dispath = exchangeRates => {
+        dispatch(
+          addBalance({
+            amount: getNewValue(
+              getExchangeBalance(newBalance(exchangeRates)),
+              exchangeRates,
+            ),
+          }),
+        );
+        setValue('');
+        togleEdit();
+      };
+
+      switch (currentCurrency) {
+        case 'USD':
+          dispath(exchangeRatesUSD);
+          return;
+        case 'EUR':
+          dispath(exchangeRatesEUR);
+          return;
+        default:
+          const newBalanceUAH = value - balance;
+          dispatch(addBalance({ amount: newBalanceUAH }));
+          setValue('');
+          togleEdit();
+      }
     }
   };
 
@@ -98,14 +100,11 @@ const BallanceRedactor = () => {
                 className={`${styles.flex} ${styles.value} ${styles.inputCor}`}
                 type="text"
                 value={value}
-                onChange={handleChange}
-              />
+                onChange={handleChange}/>
               <button
                 type="submit"
                 className={`${styles.flex} ${styles.btn} ${styles.btnToSubmit}`}
-              >
-                подтвердить
-              </button>
+              >подтвердить</button>
             </form>
           ) : (
             <div className={styles.flex}>
@@ -122,9 +121,7 @@ const BallanceRedactor = () => {
                 type="button"
                 className={`${styles.flex} ${styles.btn}`}
                 onClick={() => togleEdit()}
-              >
-                изменить
-              </button>
+              >изменить</button>
             </div>
           )}
         </div>
