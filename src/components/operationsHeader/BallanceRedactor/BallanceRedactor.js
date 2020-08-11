@@ -100,7 +100,7 @@ const BallanceRedactor = () => {
                 className={`${styles.flex} ${styles.value} ${styles.inputCor}`}
                 type="text"
                 value={value}
-                onChange={handleChange}/>
+                onChange={handleChange}              />
               <button
                 type="submit"
                 className={`${styles.flex} ${styles.btn} ${styles.btnToSubmit}`}
