@@ -19,8 +19,7 @@ import { ReactComponent as Chart } from './svg/bar_chart.svg';
 
 export const TotalCountsCosts = ({ setCurrentCategory }) => {
   const allCosts = useSelector(state => state.operations.costs);
-  const dateToFilter = useSelector(state => state.statistics.month); ///++
-
+  const dateToFilter = useSelector(state => state.statistics.month);
   const exchangeRates = useSelector(
     state => state.exchangeRatesRoot.exchangeRates,
   );
@@ -118,12 +117,9 @@ export const TotalCountsCosts = ({ setCurrentCategory }) => {
             <li
               key={name}
               className={` ${styles.flex} ${styles.li}              
-              ${total === 0 && styles.notAvailible}`}
-            >
+              ${total === 0 && styles.notAvailible}`}>
               <button
-                onClick={() => {
-                  setCurrentCategory(name);
-                }}
+                onClick={() => {setCurrentCategory(name)}}
                 className={styles.btn}
               >
                 <p className={`${styles.prise}`}>
@@ -131,8 +127,7 @@ export const TotalCountsCosts = ({ setCurrentCategory }) => {
                     exchangeRatesUSD,
                     exchangeRatesEUR,
                     currentCurrency,
-                    total,
-                  )}
+                    total)}
                 </p>
                 <div className={styles.svg}>{svg}</div>
                 <p className={styles.name}>{name}</p>
@@ -141,9 +136,7 @@ export const TotalCountsCosts = ({ setCurrentCategory }) => {
           ))}
           <li key="hg6HG55" className={`${styles.flex} ${styles.li}`}>
             <button
-              onClick={() => {
-                setCurrentCategory('All');
-              }}
+              onClick={() => {setCurrentCategory('All')}}
               className={styles.btn}
             >
               <p className={`${styles.prise}`}>Все</p>
@@ -158,57 +151,3 @@ export const TotalCountsCosts = ({ setCurrentCategory }) => {
     )
   );
 };
-
-// import { makeSummary } from '../../services/helpers';
-
-// const getFilteredDate = (allCosts, monthToFilter) =>{
-//   console.log('allCosts==============', allCosts)
-//   console.log('monthToFilter==============', monthToFilter)
-//  const aaa = allCosts.filter(costs => {
-//     const allDates = costs.date;
-//     const dataTarcsaction = new Date(allDates);
-//     const currentMonth = dataTarcsaction.getMonth() + 1;
-//     const currentYaer = dataTarcsaction.getFullYear();
-
-//     const monthToFindSearsh = new Date(monthToFilter);
-//     const getMonthToSearch = monthToFindSearsh.getDate();
-//     const getYaerToSearch = monthToFindSearsh.getFullYear();
-
-//     if (currentMonth === getMonthToSearch && getYaerToSearch === currentYaer) {
-//       return true;
-//     }
-//   })
-
-//   console.log('aaa==============', aaa)
-//   return aaa
-// }
-
-// const totalCategoryCost = data => {
-//   // debugger
-//   //
-//   const aaa = data.reduce(
-//     (acc, costs) => {
-//       // debugger
-//       acc[costs.product.category.name] =
-//         acc[costs.product.category.name] + costs.amount;
-//       return acc;
-//     },
-//     {
-//       Продукты: 0,
-//       Aлкоголь: 0,
-//       Транспорт: 0,
-//       Развлечение: 0,
-//       Здоровье: 0,
-//       'Все для дома': 0,
-//       Техника: 0,
-//       'Коммуналка, связь': 0,
-//       Хобби: 0,
-//       Образование: 0,
-//       Прочее: 0,
-//     },
-//   );
-
-//   console.log('aaa 2222222222222222', aaa);
-
-//   return aaa;
-// };
