@@ -9,9 +9,9 @@ export const ballanceExchange = (
   ) => {
     switch (currentCurrency) {
       case 'USD':
-        return Math.ceil(balance / exchangeRatesUSD);
+        return Math.round(balance / exchangeRatesUSD);
       case 'EUR':
-        return Math.ceil(balance / exchangeRatesEUR);
+        return Math.round(balance / exchangeRatesEUR);
       default:
         return balance;
         }

@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './ballanceRedactor.module.css';
 import GoToStatsButton from './GoToStatsButton/GoToStatsButton';
 import { addBalance } from '../../../redux/finance/financeOperations';
-
+// import { useFormik } from 'formik';ы
+import { ballanceExchange } from '../../categoriesFilter/currencyExchange';
 const BallanceRedactor = () => {
   // const [isFirstTransaction, setisFirstTransaction] = useState(true);
   // const income = useSelector((state) => state.operations.income);
@@ -11,12 +12,19 @@ const BallanceRedactor = () => {
   // if (income.length !== 0 && costs.length !== 0 && balance !== 0) {
   //   setisFirstTransaction(false);
   // }
-  const [isEditing, setEditing] = useState(false);
-  const balance = useSelector(state => state.operations.balance);
-  const [value, setValue] = useState(balance);
-
   const dispatch = useDispatch();
 
+  const exchangeRatesRoot = useSelector(state => state.exchangeRatesRoot);
+  const exchangeRates = exchangeRatesRoot.exchangeRates;
+  const currentCurrency = exchangeRatesRoot.exchangeCurrency;
+  // console.log('currentCurrency', currentCurrency)
+  const [isEditing, setEditing] = useState(false);
+  const balance = useSelector(state => state.operations.balance);
+
+  const [value, setValue] = useState(balance);
+  // console.log('currentCurrency', currentCurrency);
+  // console.log('value', value)
+  // console.log('newValue', newValue)
   useEffect(() => {
     window.addEventListener('keydown', escListener);
     return () => {
@@ -25,6 +33,7 @@ const BallanceRedactor = () => {
   }, []);
 
   const togleEdit = () => setEditing(!isEditing);
+
   const escListener = event => {
     if (event.keyCode === 27) {
       event.keyCode === 27 && setEditing(false);
@@ -45,34 +54,35 @@ const BallanceRedactor = () => {
       togleEdit();
       return;
     }
-    if (value !== 0) {
+    if (value) {
       const newValue = value - balance;
+      // switch (currentCurrency) {
+      //   case 'USD':
+      //     console.log('111', 111);
+      //     const valueUSD = Math.floor(newValue * exchangeRatesUSD);
+      //     console.log('valueUSD', valueUSD);
+      //     dispatch(addBalance({ amount: valueUSD }));
+      //     setValue('');
+      //     togleEdit();
+      //     return;
+      //   case 'EUR':
+      //     dispatch(
+      //       addBalance({ amount: Math.round(newValue * exchangeRatesEUR) }),
+      //     );
+      //     setValue('');
+      //     togleEdit();
+      //     return;
+      //   default:
+      //     dispatch(addBalance({ amount: newValue }));
+      // }
       dispatch(addBalance({ amount: newValue }));
       setValue('');
       togleEdit();
     }
   };
 
-  // const exchangeRates = useSelector(
-  //   state => state.exchangeRatesRoot.exchangeRates,
-  // );
-  const exchangeRatesUSD = Number(
-    useSelector(state => state.exchangeRatesRoot.exchangeRates[0]?.buy),
-  );
-  const exchangeRatesEUR = Number(
-    useSelector(state => state.exchangeRatesRoot.exchangeRates[1]?.buy),
-  );
-  const currentCurrency = useSelector(
-    state => state.exchangeRatesRoot.exchangeCurrency,
-  );
-  const ballanceExchange = (currentCurrency, balance) => {
-    if (currentCurrency === 'USD')
-      return Math.floor(balance / exchangeRatesUSD);
-    if (currentCurrency === 'EUR')
-      return Math.floor(balance / exchangeRatesEUR);
-    if (currentCurrency === 'UAH') return balance;
-  };
-
+  const exchangeRatesUSD = Number(exchangeRates[0]?.buy);
+  const exchangeRatesEUR = Number(exchangeRates[1]?.buy);
   return (
     <section
       className={`${styles.flex} ${styles.wrapper}  ${styles.secPad}  container`}
@@ -100,7 +110,13 @@ const BallanceRedactor = () => {
           ) : (
             <div className={styles.flex}>
               <p className={styles.value}>
-                {ballanceExchange(currentCurrency, balance)} {currentCurrency}
+                {ballanceExchange(
+                  exchangeRatesUSD,
+                  exchangeRatesEUR,
+                  currentCurrency,
+                  balance,
+                )}{' '}
+                {currentCurrency}
               </p>
               <button
                 type="button"
