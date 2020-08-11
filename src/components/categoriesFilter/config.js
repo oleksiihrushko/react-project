@@ -27,12 +27,12 @@ export const TotalCountsCosts = ({ setCurrentCategory }) => {
   const currentCurrency = useSelector(
     state => state.exchangeRatesRoot.exchangeCurrency,
   );
-  let ifNotEmpty = 0;
+  let ifAllNotEmpty = 0;
   const totalCategoryCost = getFilteredDate(allCosts, dateToFilter).reduce(
     (acc, costs) => {
       acc[costs.product.category.name] =
         acc[costs.product.category.name] + costs.amount;
-      ifNotEmpty += costs.amount;
+      ifAllNotEmpty += costs.amount;
       return acc;
     },
     {
@@ -111,33 +111,39 @@ export const TotalCountsCosts = ({ setCurrentCategory }) => {
   const exchangeRatesEUR = Number(exchangeRates[1]?.buy);
 
   return (
-    ifNotEmpty > 0 && (
+    ifAllNotEmpty > 0 && (
       <section className={`${styles.wrapper} ${styles.flex} container`}>
-        <ul className={`${styles.ul} ${styles.flex} }`} style={{ padding: 0 }}>
-          {configs.map(({ name, svg, total }) => {
-            return (
-              <li key={name} className={`${styles.flex} ${styles.li}`}>
-                <button
-                  onClick={() => {setCurrentCategory(name)}}
-                  className={styles.btn}
-                >
-                  <p className={`${styles.prise}`}>
-                    {ballanceExchange(
-                      exchangeRatesUSD,
-                      exchangeRatesEUR,
-                      currentCurrency,
-                      total,
-                    )}
-                  </p>
-                  <div className={styles.svg}>{svg}</div>
-                  <p className={styles.name}>{name}</p>
-                </button>
-              </li>
-            );
-          })}
+        <ul className={`${styles.ul} ${styles.flex}`} style={{ padding: 0 }}>
+          {configs.map(({ name, svg, total }) => (
+            <li
+              key={name}
+              className={` ${styles.flex} ${styles.li}              
+              ${total === 0 && styles.notAvailible}`}
+            >
+              <button
+                onClick={() => {
+                  setCurrentCategory(name);
+                }}
+                className={styles.btn}
+              >
+                <p className={`${styles.prise}`}>
+                  {ballanceExchange(
+                    exchangeRatesUSD,
+                    exchangeRatesEUR,
+                    currentCurrency,
+                    total,
+                  )}
+                </p>
+                <div className={styles.svg}>{svg}</div>
+                <p className={styles.name}>{name}</p>
+              </button>
+            </li>
+          ))}
           <li key="hg6HG55" className={`${styles.flex} ${styles.li}`}>
             <button
-              onClick={() => {setCurrentCategory('All')}}
+              onClick={() => {
+                setCurrentCategory('All');
+              }}
               className={styles.btn}
             >
               <p className={`${styles.prise}`}>Все</p>

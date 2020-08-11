@@ -20,12 +20,11 @@
 }
 .ul {
   margin: 0 auto;
-  }
+}
 
 .li {
   width: 58px;
   margin-bottom: 50px;
-  
 }
 
 .li p {
@@ -68,10 +67,9 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
-
-
-
-
+.notAvailible {
+  pointer-events: none;
+}
 
 @media (max-width: 767px) {
   .ul {
