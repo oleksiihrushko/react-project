@@ -19,7 +19,19 @@ const BallanceRedactor = () => {
   const [isEditing, setEditing] = useState(false);
   const balance = useSelector(state => state.operations.balance);
 
-  const [value, setValue] = useState(balance);
+  const exchangeRatesUSD = Number(exchangeRates[0]?.buy);
+  const exchangeRatesEUR = Number(exchangeRates[1]?.buy);
+
+
+  // const [value, setValue] = useState(balance);
+  const [value, setValue] = useState(
+    ballanceExchange(
+      exchangeRatesUSD,
+      exchangeRatesEUR,
+      currentCurrency,
+      balance,
+    ),
+  );
   useEffect(() => {
     window.addEventListener('keydown', escListener);
     return () => {
@@ -59,8 +71,7 @@ const BallanceRedactor = () => {
           addBalance({
             amount: getNewValue(
               getExchangeBalance(newBalance(exchangeRates)),
-              exchangeRates,
-            ),
+              exchangeRates),
           }),
         );
         setValue('');
@@ -83,13 +94,12 @@ const BallanceRedactor = () => {
     }
   };
 
-  const exchangeRatesUSD = Number(exchangeRates[0]?.buy);
-  const exchangeRatesEUR = Number(exchangeRates[1]?.buy);
+
   return (
-    <section
-      className={`${styles.flex} ${styles.wrapper}  ${styles.secPad}  container`}
-    >
+    <section className={`${styles.flex} ${styles.wrapper}  ${styles.secPad}  container`}>
+
       <GoToStatsButton />
+
       <div className={`${styles.flex} ${styles.div} `}>
         <p className={`${styles.bal_text}  `}>Баланс:</p>
         <div className={`${styles.flex} ${styles.ballanceWrap}`}>
@@ -99,8 +109,8 @@ const BallanceRedactor = () => {
                 autoFocus
                 className={`${styles.flex} ${styles.value} ${styles.inputCor}`}
                 type="text"
-                value={value}
-                onChange={handleChange}              />
+                value={value}              //не изменяет сумму в зависимости от валюты
+                onChange={handleChange}/>
               <button
                 type="submit"
                 className={`${styles.flex} ${styles.btn} ${styles.btnToSubmit}`}

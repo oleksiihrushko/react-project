@@ -27,6 +27,7 @@ export const TotalCountsCosts = ({ setCurrentCategory }) => {
     state => state.exchangeRatesRoot.exchangeCurrency,
   );
   let ifAllNotEmpty = 0;
+  
   const totalCategoryCost = getFilteredDate(allCosts, dateToFilter).reduce(
     (acc, costs) => {
       acc[costs.product.category.name] =
@@ -137,8 +138,7 @@ export const TotalCountsCosts = ({ setCurrentCategory }) => {
           <li key="hg6HG55" className={`${styles.flex} ${styles.li}`}>
             <button
               onClick={() => {setCurrentCategory('All')}}
-              className={styles.btn}
-            >
+              className={styles.btn}>
               <p className={`${styles.prise}`}>Все</p>
               <div className={styles.svg}>
                 <Chart />
