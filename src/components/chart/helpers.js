@@ -44,16 +44,16 @@ export const backgroundColor = [
 ];
 
 export const pieChartBgColors = [
-  '#ff8c00',
-  '#fff100',
-  '#e81123',
-  '#ec008c',
-  '#68217a',
-  '#00188f',
-  '#00bcf2',
-  '#00b294',
-  '#009e49',
-  '#bad80a',
+  'rgba(255, 129, 45, 0.8)',
+  'rgba(255, 241, 0, 0.8)',
+  'rgba(232, 17, 35, 0.8)',
+  'rgba(236, 0, 140, 0.8)',
+  'rgba(104, 33, 122, 0.8)',
+  'rgba(0, 24, 143, 0.8)',
+  'rgba(0, 188, 242, 0.8)',
+  'rgba(0, 178, 148, 0.8)',
+  'rgba(0, 158, 73, 0.8)',
+  'rgba(186, 216, 10, 0.8)',
 ];
 
 export const getCurrencySign = currency => {

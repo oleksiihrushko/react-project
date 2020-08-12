@@ -22,10 +22,12 @@ const Chart = ({ currentCategory }) => {
 
   if (activeTab === 'bar') {
     ChartSettings.defaults.global.legend.display = false;
+    ChartSettings.defaults.global.tooltips.enabled = false;
   }
 
   if (activeTab === 'pie') {
     ChartSettings.defaults.global.legend.display = true;
+    ChartSettings.defaults.global.tooltips.enabled = true;
   }
 
   const barTab = [styles.tabButton];
