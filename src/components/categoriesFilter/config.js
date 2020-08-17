@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { ballanceExchange, getFilteredDate } from './currencyExchange';
-
 import styles from './CategoriesFilter.module.css';
 
 import { ReactComponent as Alcohol } from './svg/alcohol.svg';
@@ -27,7 +26,6 @@ export const TotalCountsCosts = ({ setCurrentCategory }) => {
     state => state.exchangeRatesRoot.exchangeCurrency,
   );
   let ifAllNotEmpty = 0;
-  
   const totalCategoryCost = getFilteredDate(allCosts, dateToFilter).reduce(
     (acc, costs) => {
       acc[costs.product.category.name] =
@@ -50,7 +48,7 @@ export const TotalCountsCosts = ({ setCurrentCategory }) => {
     },
   );
 
-  const configs = [
+  const categoryList = [
     {
       name: 'Продукты',
       svg: <Products />,
@@ -109,18 +107,20 @@ export const TotalCountsCosts = ({ setCurrentCategory }) => {
   ];
   const exchangeRatesUSD = Number(exchangeRates[0]?.buy);
   const exchangeRatesEUR = Number(exchangeRates[1]?.buy);
-
   return (
     ifAllNotEmpty > 0 && (
       <section className={`${styles.wrapper} ${styles.flex} container`}>
         <ul className={`${styles.ul} ${styles.flex}`} style={{ padding: 0 }}>
-          {configs.map(({ name, svg, total }) => (
+          {categoryList.map(({ name, svg, total }) => (
             <li
               key={name}
               className={` ${styles.flex} ${styles.li}              
-              ${total === 0 && styles.notAvailible}`}>
+              ${total === 0 && styles.notAvailible}`}
+            >
               <button
-                onClick={() => {setCurrentCategory(name)}}
+                onClick={() => {
+                  setCurrentCategory(name);
+                }}
                 className={styles.btn}
               >
                 <p className={`${styles.prise}`}>
@@ -128,7 +128,8 @@ export const TotalCountsCosts = ({ setCurrentCategory }) => {
                     exchangeRatesUSD,
                     exchangeRatesEUR,
                     currentCurrency,
-                    total)}
+                    total,
+                  )}
                 </p>
                 <div className={styles.svg}>{svg}</div>
                 <p className={styles.name}>{name}</p>
@@ -137,8 +138,11 @@ export const TotalCountsCosts = ({ setCurrentCategory }) => {
           ))}
           <li key="hg6HG55" className={`${styles.flex} ${styles.li}`}>
             <button
-              onClick={() => {setCurrentCategory('All')}}
-              className={styles.btn}>
+              onClick={() => {
+                setCurrentCategory('All');
+              }}
+              className={styles.btn}
+            >
               <p className={`${styles.prise}`}>Все</p>
               <div className={styles.svg}>
                 <Chart />
