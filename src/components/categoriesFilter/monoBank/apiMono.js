@@ -24,16 +24,18 @@ export const clientData = () =>
 
 const dateFrom = Math.floor(Date.now() / 1000) - 60 * 60 * 24 * 5;
 // const dateFrom = Math.floor(Date.now() / 1000) - 60 * 60 * 24 * 30;
-console.log('da', dateFrom);
+// console.log('da', dateFrom);
 
-export const getUserTransactions = () =>
-  axios
-    .get(`/personal/statement/0/${dateFrom}/`, config)
-    // .then((response) => console.log("object", response.data))
-    .then(response => console.log('object', response.data))
-    .catch(error => {
-      console.log(error);
-    });
+// export const getUserTransactions = async () => {
+//   const data = await axios
+//     .get(`/personal/statement/0/${dateFrom}/`, config)
+//     // .then((response) => console.log("object", response.data))
+//     .then(response => response.data)
+//     .catch(error => {
+//       console.log(error);
+//     });
+//     console.log('data', data)
+// };
 
 export const clientData2 = () => {
   try {
@@ -49,11 +51,14 @@ export const clientData2 = () => {
   }
 };
 
-export const getUserTransactions2 = () =>
-  axios
+export const getUserTransactions2 = async () => {
+  const {data} = await axios
     .get(`${BASE_URL}/personal/statement/0/${dateFrom}/`, config)
-    // .then((response) => console.log("object", response.data))
-    .then(response => console.log('object', response.data))
-    .catch(error => {
-      console.log(error);
-    });
+    // .then(response => response.data)
+    // .catch(error => {
+    //   console.log(error);
+    // });
+    console.log('data', data)
+};
+
+

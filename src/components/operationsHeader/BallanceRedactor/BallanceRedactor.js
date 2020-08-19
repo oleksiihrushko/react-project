@@ -18,21 +18,38 @@ const BallanceRedactor = () => {
   const currentCurrency = exchangeRatesRoot.exchangeCurrency;
   const [isEditing, setEditing] = useState(false);
   const balance = useSelector(state => state.operations.balance);
+  const exchangeRatesUSD = Number(exchangeRates[0]?.buy);
+  const exchangeRatesEUR = Number(exchangeRates[1]?.buy);
 
-  const [value, setValue] = useState(balance);
+  const [value, setValue] = useState(
+    ballanceExchange(
+      exchangeRatesUSD,
+      exchangeRatesEUR,
+      currentCurrency,
+      balance,
+    ),
+  );
   useEffect(() => {
-    window.addEventListener('keydown', escListener);
+    window.addEventListener('keydown', isEditing ? null : escListener);
+    window.addEventListener('click', isEditing ? null : closeOnMouseClick);
     return () => {
       window.removeEventListener('keydown', escListener);
+      window.removeEventListener('click', closeOnMouseClick);
     };
   }, []);
 
-  const togleEdit = () => setEditing(!isEditing);
+  const closeOnMouseClick = ({ target: { name: clickName } }) => {
+    if (clickName !== 'balanceChangeBtn') {
+      setEditing(false);
+      setValue('');
+    }
+  };
 
   const escListener = event => {
     if (event.keyCode === 27) {
       event.keyCode === 27 && setEditing(false);
       setValue('');
+      return;
     }
   };
 
@@ -46,13 +63,14 @@ const BallanceRedactor = () => {
   const handleSubmit = event => {
     event.preventDefault();
     if (value === '') {
-      togleEdit();
+      setEditing(!isEditing);
       return;
     }
     if (value) {
       const newBalance = exchangeRates => balance / exchangeRates;
       const getExchangeBalance = newBalance => value - newBalance;
-      const getNewValue = (getExchangeBalance, exchangeRate) => Math.round(getExchangeBalance * exchangeRate);
+      const getNewValue = (getExchangeBalance, exchangeRate) =>
+        Math.round(getExchangeBalance * exchangeRate);
 
       const dispath = exchangeRates => {
         dispatch(
@@ -64,7 +82,7 @@ const BallanceRedactor = () => {
           }),
         );
         setValue('');
-        togleEdit();
+        setEditing(!isEditing);
       };
 
       switch (currentCurrency) {
@@ -78,18 +96,17 @@ const BallanceRedactor = () => {
           const newBalanceUAH = value - balance;
           dispatch(addBalance({ amount: newBalanceUAH }));
           setValue('');
-          togleEdit();
+          setEditing(!isEditing);
       }
     }
   };
 
-  const exchangeRatesUSD = Number(exchangeRates[0]?.buy);
-  const exchangeRatesEUR = Number(exchangeRates[1]?.buy);
   return (
     <section
       className={`${styles.flex} ${styles.wrapper}  ${styles.secPad}  container`}
     >
       <GoToStatsButton />
+
       <div className={`${styles.flex} ${styles.div} `}>
         <p className={`${styles.bal_text}  `}>Баланс:</p>
         <div className={`${styles.flex} ${styles.ballanceWrap}`}>
@@ -99,12 +116,16 @@ const BallanceRedactor = () => {
                 autoFocus
                 className={`${styles.flex} ${styles.value} ${styles.inputCor}`}
                 type="text"
-                value={value}
-                onChange={handleChange}/>
+                value={value} //не изменяет сумму в зависимости от валюты
+                onChange={handleChange}
+              />
               <button
                 type="submit"
+                name="balanceChangeBtn"
                 className={`${styles.flex} ${styles.btn} ${styles.btnToSubmit}`}
-              >подтвердить</button>
+              >
+                подтвердить
+              </button>
             </form>
           ) : (
             <div className={styles.flex}>
@@ -119,9 +140,12 @@ const BallanceRedactor = () => {
               </p>
               <button
                 type="button"
+                name="balanceChangeBtn"
                 className={`${styles.flex} ${styles.btn}`}
-                onClick={() => togleEdit()}
-              >изменить</button>
+                onClick={() => setEditing(!isEditing)}
+              >
+                изменить
+              </button>
             </div>
           )}
         </div>
