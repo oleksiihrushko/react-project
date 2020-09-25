@@ -25,10 +25,10 @@ const StatistcsPage = () => {
     <>
       <StatistcsHeader />
       <TotalCostsSumAndIncomeSum />
-      <CategoriesFilter
-        currentCategory={currentCategory}
-        setCurrentCategory={setCurrentCategory}
-      />
+        <CategoriesFilter
+          currentCategory={currentCategory}
+          setCurrentCategory={setCurrentCategory}
+        />
       <Chart currentCategory={currentCategory} />
     </>
   );

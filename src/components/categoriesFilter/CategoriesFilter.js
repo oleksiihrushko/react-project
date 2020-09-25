@@ -4,7 +4,7 @@ import { TotalCountsCosts } from './config';
 
 const CategoriesFilter = ({ setCurrentCategory }) => (
   <>
-    {/* <GoToMono /> */}
+    {/* <GoToMono />   */}
     <TotalCountsCosts setCurrentCategory={setCurrentCategory} />
   </>
 );
