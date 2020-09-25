@@ -1,32 +1,31 @@
-import React, { useEffect } from "react";
-import styles from "./Modal.module.css";
+import React, { useEffect } from 'react';
+import styles from './Modal.module.css';
 
 const Modal = ({ text, onTrue, closeModal }) => {
-  const handleKeydown = (e) => {
-    if (e.code === "Escape") {
-      closeModal();
+  const handleKeydown = e => {
+    if (e.code === 'Escape') {
+      closeModal(false);
     }
   };
 
-  const handleClickModal = (e) => {
+  const handleClickModal = e => {
     if (
-      e.target.dataset.type === "div" ||
-      e.target.dataset.type === "no" ||
-      e.target.dataset.type === "yes"
+      e.target.dataset.type === 'div' ||
+      e.target.dataset.type === 'no' ||
+      e.target.dataset.type === 'yes'
     ) {
-
-      if (e.target.dataset.type === "yes") {
+      if (e.target.dataset.type === 'yes') {
         onTrue();
       }
-      closeModal();
+      closeModal(false);
     }
   };
 
   useEffect(() => {
-    window.addEventListener("keydown", handleKeydown);
+    window.addEventListener('keydown', handleKeydown);
 
     return () => {
-      window.removeEventListener("keydown", handleKeydown);
+      window.removeEventListener('keydown', handleKeydown);
     };
   }, []);
 

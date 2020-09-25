@@ -4,13 +4,18 @@ import cart from '../../operationList/icons/delete.png';
 import styles from './OneMobileOperation.module.css';
 
 const OneMobileOperation = ({ operation, setId, openModal }) => {
+  // const deleteOperation = (type, id, xId) => {
   const deleteOperation = (type, id, xId) => {
-    if (type === 'cost') {
-      setId([type, id, xId]);
-    } else {
-      setId([type, id]);
-    }
-    openModal();
+    operation.costsId
+      ? setId(['cost', operation.forDeleteId, operation.costsId])
+      : setId(['income', operation.incomeId]);
+
+    openModal(true);
+    // if (type === 'cost') {
+    //   setId([type, id, xId]);
+    // } else {
+    //   setId([type, id]);
+    // }
   };
 
   const lengthOneMobileOperation = () => {
@@ -60,11 +65,12 @@ const OneMobileOperation = ({ operation, setId, openModal }) => {
       <button
         type="button"
         className={styles.btnDelete}
-        onClick={() =>
-          operation.costsId
-            ? deleteOperation('cost', operation.forDeleteId, operation.costsId)
-            : deleteOperation('income', operation.incomeId)
-        }
+        onClick={deleteOperation}
+        // onClick={() =>
+        //   operation.costsId
+        //     ? deleteOperation('cost', operation.forDeleteId, operation.costsId)
+        //     : deleteOperation('income', operation.incomeId)
+        // }
       >
         <img
           src={cart}

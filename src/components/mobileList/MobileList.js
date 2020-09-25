@@ -13,7 +13,7 @@ const MobileList = ({ operations, setIsMobile }) => {
   const [id, setId] = useState([]);
   const dispatch = useDispatch();
   setIsMobile(true);
-  
+
   const deleteOperation = () => {
     if (id[0] === 'cost') {
       dispatch(deleteCosts(id[1], id[2]));
@@ -31,9 +31,9 @@ const MobileList = ({ operations, setIsMobile }) => {
           operations.map(operation => (
             <OneMobileOperation
               operation={operation}
-              key={operation.date}
+              key={operation.incomeId ? operation.incomeId : operation.costsId}
               setId={setId}
-              openModal={() => setIsShowDeleteModal(true)}
+              openModal={setIsShowDeleteModal}
             />
           ))
         )}
@@ -42,7 +42,7 @@ const MobileList = ({ operations, setIsMobile }) => {
         <Modal
           text="Вы уверены?"
           onTrue={deleteOperation}
-          closeModal={() => setIsShowDeleteModal(false)}
+          closeModal={setIsShowDeleteModal}
         />
       )}
     </>

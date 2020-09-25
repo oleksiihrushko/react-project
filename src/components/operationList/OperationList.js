@@ -43,7 +43,7 @@ const OperationList = ({ operations, setIsMobile }) => {
               operation={operation}
               key={operation.costsId}
               setId={setId}
-              openModal={() => setIsShowDeleteModal(true)}
+              openModal={setIsShowDeleteModal}
             />
           ))
         )}
@@ -74,7 +74,7 @@ const OperationList = ({ operations, setIsMobile }) => {
         <Modal
           text="Вы уверены?"
           onTrue={deleteOperation}
-          closeModal={() => setIsShowDeleteModal(false)}
+          closeModal={setIsShowDeleteModal}
         />
       )}
     </>

@@ -119,7 +119,7 @@ const OperationForm = ({ operationType, setOperation }) => {
   };
 
   const openModal = () => {
-    if (window.screen.width >= 767) return;
+    if (window.innerWidth >= 767) return;
     setModalMobile(true);
   };
 
