@@ -42,7 +42,7 @@ const BarChart = ({ currentCategory }) => {
   ]);
 
   const exchangeRate =
-    currentCurrency !== 'UAH' && exchangeInfo && Number(exchangeInfo[0].buy);
+    currentCurrency !== 'UAH' && exchangeInfo && Number(exchangeInfo[0]?.buy);
 
   const currencySign = getCurrencySign(currentCurrency);
 

@@ -1,5 +1,5 @@
 @media (min-width: 768px) {
-    .summary{
+  .summary {
     display: table;
     width: 232px;
     border: 2px solid white;
@@ -8,9 +8,8 @@
     background-color: #f4f6fb;
   }
 
-  .summaryListHeading{
+  .summaryListHeading {
     text-align: center;
-    padding-top: 10px;
     height: 39px;
     line-height: 39px;
     text-transform: uppercase;
@@ -18,7 +17,7 @@
     font-style: normal;
     font-weight: normal;
   }
-  .summaryListItemMonth{
+  .summaryListItemMonth {
     padding: 12px 12px;
     width: 30%;
     text-align: left;
@@ -40,15 +39,14 @@
     font-family: 'RobotoRegular', sans-serif;
     font-style: normal;
     font-weight: normal;
-
   }
 
-  .summaryListItem:last-child{
-  border-radius: 0 0 40px 40px;
-  } 
+  .summaryListItem:last-child {
+    border-radius: 0 0 40px 40px;
+  }
 
   .summaryListItem:hover {
-    background-color: rgba(255, 108, 10, 0.8);;
+    background-color: rgba(255, 108, 10, 0.8);
     transition: 0.3s ease-in-out;
     cursor: pointer;
   }

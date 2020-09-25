@@ -99,21 +99,26 @@ const AuthForm = () => {
       <form onSubmit={handleSubmit}>
         {/* --------- form start --------- */}
 
-        <p className={styles.googleDescr}>
+        {/* <p className={styles.googleDescr}>
           Вы можете авторизироваться с помощью Google account:
-        </p>
+        </p> */}
 
         {/* --------- google button--------- */}
-        <button type="button" onClick={googleSignIn} className={styles.google}>
+        {/* <button type="button" onClick={googleSignIn} className={styles.google}>
           <img
             className={styles.googleIcon}
             src={googleIcon}
             alt="google-icon"
           />
           Google
-        </button>
-        <p className={styles.authDescr}>
+        </button> */}
+        {/* <p className={styles.authDescr}>
           Или зайти в приложение с помощью имейла и пароля, сперва
+          зарегистрировавшись:
+        </p> */}
+
+        <p className={styles.authDescr}>
+          Зайдите в приложение с помощью имейла и пароля, сперва
           зарегистрировавшись:
         </p>
 

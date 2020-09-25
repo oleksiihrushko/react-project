@@ -39,7 +39,7 @@ const OperationsPage = () => {
           b.date.slice(14, 16) +
           b.date.slice(17, 19),
       );
-      return aa - bb;
+      return bb - aa;
     });
 
   const mobileOperations = sortedOperations([...costs, ...income]);
