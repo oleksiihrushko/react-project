@@ -130,7 +130,7 @@ const OperationForm = ({ operationType, setOperation }) => {
       <button
         className={styles.debit}
         style={
-          window.screen.width >= 767
+          window.innerWidth >= 767
             ? operationType === 'debit'
               ? { backgroundColor: '#fefefe', color: '#fb812d', zIndex: 10 }
               : null
@@ -138,7 +138,10 @@ const OperationForm = ({ operationType, setOperation }) => {
         }
         name="debit"
         onClick={e => {
-          setOperation(e.target.name);
+          if (window.innerWidth >= 767) {
+            setOperation(e.target.name);
+          }
+
           handleClear();
           openModal();
         }}
@@ -148,7 +151,7 @@ const OperationForm = ({ operationType, setOperation }) => {
       <button
         className={styles.credit}
         style={
-          window.screen.width >= 767
+          window.innerWidth >= 767
             ? operationType === 'credit'
               ? { backgroundColor: '#fefefe', color: '#fb812d', zIndex: 10 }
               : null
@@ -156,7 +159,9 @@ const OperationForm = ({ operationType, setOperation }) => {
         }
         name="credit"
         onClick={e => {
-          setOperation(e.target.name);
+          if (window.innerWidth >= 767) {
+            setOperation(e.target.name);
+          }
           handleClear();
           openModal();
         }}
@@ -278,7 +283,7 @@ const OperationForm = ({ operationType, setOperation }) => {
                     className={styles.desctiptionInput}
                     name="description"
                     placeholder={
-                      window.screen.width >= 767 && window.screen.width <= 1279
+                      window.innerWidth >= 767 && window.innerWidth <= 1279
                         ? operationType === 'credit'
                           ? 'Внесите ваш доход далее'
                           : 'На что вы тратите деньги'
